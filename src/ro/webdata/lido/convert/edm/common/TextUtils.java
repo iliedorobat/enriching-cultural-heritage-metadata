@@ -2,10 +2,9 @@ package ro.webdata.lido.convert.edm.common;
 
 import org.apache.commons.text.CaseUtils;
 import ro.webdata.lido.convert.edm.common.constants.Constants;
+import ro.webdata.lido.convert.edm.common.constants.EnvConst;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.StringWriter;
+import java.io.*;
 
 public class TextUtils {
     /**
@@ -18,10 +17,10 @@ public class TextUtils {
 
         if (langSeparator.equals("@")) {
             String text = input.substring(0, input.length() - 3);
-            return CaseUtils.toCamelCase(text, Constants.CAPITALIZE_FIRST_LETTER, Constants.CHAR_DELIMITER);
+            return CaseUtils.toCamelCase(text, EnvConst.CAPITALIZE_FIRST_LETTER, Constants.CHAR_DELIMITER);
         }
 
-        return CaseUtils.toCamelCase(input, Constants.CAPITALIZE_FIRST_LETTER, Constants.CHAR_DELIMITER);
+        return CaseUtils.toCamelCase(input, EnvConst.CAPITALIZE_FIRST_LETTER, Constants.CHAR_DELIMITER);
     }
 
     /**
@@ -30,7 +29,7 @@ public class TextUtils {
      * @return The camel-case transformed value
      */
     public static String toCamelCase(String value) {
-        return CaseUtils.toCamelCase(value, Constants.CAPITALIZE_FIRST_LETTER, Constants.CHAR_DELIMITER);
+        return CaseUtils.toCamelCase(value, EnvConst.CAPITALIZE_FIRST_LETTER, Constants.CHAR_DELIMITER);
     }
 
     /**
@@ -52,6 +51,7 @@ public class TextUtils {
      */
     public static void write(StringWriter sw, String filePath) {
         FileWriter fw = null;
+
         try {
             fw = new FileWriter(filePath);
             fw.write(sw.toString());
@@ -66,5 +66,39 @@ public class TextUtils {
                         + "\nError: " + e.getMessage());
             }
         }
+    }
+
+    public static StringBuilder read(String fileName) {
+        BufferedReader br = null;
+        StringBuilder sb = null;
+
+        try {
+            br = new BufferedReader(new FileReader(fileName));
+            sb = new StringBuilder();
+            String readLine;
+
+            while ((readLine = br.readLine()) != null) {
+                if (readLine.length() > 0) {
+                    sb.append(readLine + "\n");
+                }
+            }
+
+            // Remove the last "Enter"
+            sb.delete(sb.lastIndexOf("\n"), sb.length());
+        } catch (FileNotFoundException e) {
+            System.err.println("The file " + fileName + " have not been found."
+                    + "\nError: " + e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                br.close();
+            } catch (IOException e) {
+                System.err.println("The file 'BufferedReader' could not be closed."
+                        + "\nError: " + e.getMessage());
+            }
+        }
+
+        return sb;
     }
 }

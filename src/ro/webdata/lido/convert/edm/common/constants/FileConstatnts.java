@@ -5,7 +5,8 @@ public class FileConstatnts {
     public static final String FILE_SEPARATOR = System.getProperty("file.separator");
     public static final String WORKSPACE_DIR = System.getProperty("user.dir");
 
-    public static final String FILE_PATH = WORKSPACE_DIR + FILE_SEPARATOR + "files/lido-schema";
+//    public static final String FILE_PATH = WORKSPACE_DIR + FILE_SEPARATOR + "files/lido-schema";
+    public static final String FILE_PATH = "files/lido-schema";
     public static final String FILE_NAME_ARHEOLOGIE = "inp-clasate-arheologie-2014-02-02";
     public static final String FILE_NAME_ARTA = "inp-clasate-arta-2014-02-02";
     public static final String FILE_NAME_ARTE_DECO = "inp-clasate-arte-decorative-2014-02-02";
@@ -20,8 +21,9 @@ public class FileConstatnts {
     public static final String OUTPUT_FILE_PATH = WORKSPACE_DIR + FILE_SEPARATOR + "files/output";
     public static final String OUTPUT_FILE_FULL_PATH = OUTPUT_FILE_PATH + FILE_SEPARATOR + "dataset.rdf";
 
+    //TODO: demo file name
     //    public static final String TEST_FILE_NAME = "LIDO-Extended-Example.xml";
-    public static final String TEST_FILE_NAME = "EX-inp-clasate-num-2014-02-02";
+    public static final String TEST_FILE_NAME = "test-item-istorie";
     public static final String TEST_FILE_PATH = WORKSPACE_DIR + FILE_SEPARATOR + "files/testing";
     public static final String TEST_FILE_FULL_PATH = TEST_FILE_PATH + FILE_SEPARATOR + TEST_FILE_NAME + FILE_EXTENSION;
     public static final String TEST_OUTPUT_FILE_FULL_PATH = TEST_FILE_PATH + FILE_SEPARATOR +

@@ -20,6 +20,7 @@ public class EDM {
     public static final Resource ProvidedCHO;
     public static final Resource TimeSpan;
     public static final Resource WebResource;
+
     public static final Property aggregatedCHO;
     public static final Property begin;
     /**

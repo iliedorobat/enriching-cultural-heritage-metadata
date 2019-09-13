@@ -59,9 +59,9 @@ public class RecordRightsProcessing {
             Term term = termList.get(0);
             String text = term.getText();
 
-            List licences = Arrays.asList(NSConstants.CC_LICENSES);
+            List licences = Arrays.asList(NSConstants.LICENSES_NAME);
             int index = licences.indexOf(text);
-            String licenseLink = NSConstants.CC_LICENSES_MAPPING[index];
+            String licenseLink = NSConstants.LICENSES_LINK[index];
 
             return model.createResource(licenseLink);
         }

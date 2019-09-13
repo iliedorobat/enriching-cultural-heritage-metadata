@@ -4,7 +4,7 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.RDF;
 import ro.webdata.lido.convert.edm.common.PrintMessages;
-import ro.webdata.lido.convert.edm.common.constants.Constants;
+import ro.webdata.lido.convert.edm.common.constants.EnvConst;
 import ro.webdata.lido.convert.edm.common.constants.NSConstants;
 import ro.webdata.lido.convert.edm.core.administrativeMetadata.AdministrativeMetadataProcessing;
 import ro.webdata.lido.convert.edm.core.category.CategoryProcessing;
@@ -30,7 +30,7 @@ public class LidoWrapProcessing {
     private static AdministrativeMetadataProcessing administrativeMetadataProcessing = new AdministrativeMetadataProcessing();
 
     public void processing(Model model, String fullPath) {
-        PrintMessages.printOperation(Constants.OPERATION_START, fullPath);
+        PrintMessages.printOperation(EnvConst.OPERATION_START, fullPath);
         LidoWrap lidoWrap = parserDAO.parseLidoFile(fullPath);
 
         for (int i = 0; i < lidoWrap.getLido().size(); i++) {
@@ -61,7 +61,7 @@ public class LidoWrapProcessing {
             );
         }
 
-        PrintMessages.printOperation(Constants.OPERATION_END, fullPath);
+        PrintMessages.printOperation(EnvConst.OPERATION_END, fullPath);
     }
 
     private Resource generateProvidedCHO(Model model, ArrayList<LidoRecID> lidoRecIDList) {

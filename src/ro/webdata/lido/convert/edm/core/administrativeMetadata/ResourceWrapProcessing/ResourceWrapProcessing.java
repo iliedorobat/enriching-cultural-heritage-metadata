@@ -13,6 +13,7 @@ import ro.webdata.lido.parser.core.leaf.term.Term;
 import ro.webdata.lido.parser.core.set.resourceSet.ResourceSet;
 import ro.webdata.lido.parser.core.wrap.resourceWrap.ResourceWrap;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 public class ResourceWrapProcessing {
@@ -67,6 +68,7 @@ public class ResourceWrapProcessing {
      * @param resourceRepresentation <b>lido:rightsResource</b> element
      * @return <b>Resource</b>
      */
+    //TODO: the "en" and "ro" link are reversed (en is ro and ro is en)
     private Resource generateWebResource(
             Model model,
             ResourceRepresentation resourceRepresentation,
@@ -74,6 +76,8 @@ public class ResourceWrapProcessing {
     ) {
         LinkResource linkResource = resourceRepresentation.getLinkResource();
         String resourceLink = linkResource.getText();
+        //TODO: externalize (replace the spaces with the URL encoded character)
+        resourceLink = resourceLink.replaceAll(" ", "%20");
 
         Resource webResource = model.createResource(resourceLink);
         webResource.addProperty(RDF.type, EDM.WebResource);

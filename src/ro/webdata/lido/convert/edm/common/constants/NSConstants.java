@@ -1,16 +1,16 @@
 package ro.webdata.lido.convert.edm.common.constants;
 
 public class NSConstants {
+    private static final String CC_LICENSES_LINK = "http://creativecommons.org";
+    private static final String RIGHTS_LICENSES_LINK = "http://rightsstatements.org";
+
     // https://pro.europeana.eu/page/available-rights-statements
-    public static final String[] CC_LICENSES = {
+    public static final String[] LICENSES_NAME = {
             "PDM", "NoC-NC", "NoC-OKLR", "CC0", "CC BY", "CC BY-SA", "CC BY-ND",
             "CC BY-NC", "CC BY-NC-SA", "CC BY-NC-ND", "InC", "InC-EDU", "InC-EU-OW", "CNE"
     };
-    public static final String CC_LICENSES_LINK = "http://creativecommons.org/";
-    public static final String[] CC_LICENSES_MAPPING = {
-            CC_LICENSES_LINK + "publicdomain/mark/1.0/",
-            "http://rightsstatements.org/vocab/NoC-NC/1.0/",
-            "http://rightsstatements.org/vocab/NoC-OKLR/1.0/",
+    public static final String[] LICENSES_LINK = {
+            CC_LICENSES_LINK + "/publicdomain/mark/1.0/",
             CC_LICENSES_LINK + "/publicdomain/zero/1.0/",
             CC_LICENSES_LINK + "/licenses/by/4.0/",
             CC_LICENSES_LINK + "/licenses/by-sa/4.0/",
@@ -18,10 +18,12 @@ public class NSConstants {
             CC_LICENSES_LINK + "/licenses/by-nc/4.0/",
             CC_LICENSES_LINK + "/licenses/by-nc-sa/4.0/",
             CC_LICENSES_LINK + "/licenses/by-nc-nd/4.0/",
-            "http://rightsstatements.org/vocab/InC/1.0/",
-            "http://rightsstatements.org/vocab/InC-EDU/1.0/",
-            "http://rightsstatements.org/vocab/InC-OW-EU/1.0/",
-            "http://rightsstatements.org/vocab/CNE/1.0/"
+            RIGHTS_LICENSES_LINK + "vocab/NoC-NC/1.0/",
+            RIGHTS_LICENSES_LINK + "vocab/NoC-OKLR/1.0/",
+            RIGHTS_LICENSES_LINK + "vocab/InC/1.0/",
+            RIGHTS_LICENSES_LINK + "vocab/InC-EDU/1.0/",
+            RIGHTS_LICENSES_LINK + "vocab/InC-OW-EU/1.0/",
+            RIGHTS_LICENSES_LINK + "vocab/CNE/1.0/"
     };
 
     public static final String NS_LIDO = "http://www.lido-schema.org/schema/v1.0/lido-v1.0-schema-listing.html#";

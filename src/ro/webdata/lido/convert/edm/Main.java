@@ -9,6 +9,7 @@ import org.apache.jena.vocabulary.SKOS;
 import ro.webdata.lido.convert.edm.common.PrintMessages;
 import ro.webdata.lido.convert.edm.common.TextUtils;
 import ro.webdata.lido.convert.edm.common.constants.Constants;
+import ro.webdata.lido.convert.edm.common.constants.EnvConst;
 import ro.webdata.lido.convert.edm.common.constants.FileConstatnts;
 import ro.webdata.lido.convert.edm.common.constants.NSConstants;
 import ro.webdata.lido.convert.edm.core.LidoWrapProcessing;
@@ -45,7 +46,8 @@ public class Main {
         model.setNsPrefix("skos", SKOS.getURI());
         model.setNsPrefix("openData", NSConstants.NS_REPO_PROPERTY + FileConstatnts.FILE_SEPARATOR);
 
-        System.out.println(Constants.OPERATION_START);
+        System.out.println(EnvConst.OPERATION_START);
+        //---------------------- Real Scenario ---------------------- //
         for (int i = 0; i < fileNames.length; i++) {
             String filePath = FileConstatnts.FILE_PATH + FileConstatnts.FILE_SEPARATOR + fileNames[i] + FileConstatnts.FILE_EXTENSION;
             lidoWrapProcessing.processing(model, filePath);
@@ -53,7 +55,14 @@ public class Main {
 
         writeRDFGraph(model, FileConstatnts.OUTPUT_FILE_FULL_PATH);
 
-        PrintMessages.printOperation(Constants.OPERATION_FINISH);
+//        //---------------------- DEMO Scenario ---------------------- //
+//        // The demo file is found in: files/lido-schema/inp-clasate-arheologie-2014-02-02.xml
+//        // @See: in the demo we map only the first 1000 CHO's
+//        String filePath = FileConstatnts.FILE_PATH + FileConstatnts.FILE_SEPARATOR + fileNames[0] + FileConstatnts.FILE_EXTENSION;
+//        lidoWrapProcessing.processing(model, filePath);
+//        writeRDFGraph(model, FileConstatnts.OUTPUT_FILE_FULL_PATH);
+
+        PrintMessages.printOperation(EnvConst.OPERATION_FINISH);
     }
 
     private static void writeRDFGraph(Model model, String outputFilePath) {

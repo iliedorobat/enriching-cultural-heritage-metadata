@@ -1,14 +1,7 @@
 package ro.webdata.lido.convert.edm.common.constants;
 
 public class Constants {
-    public static final boolean CAPITALIZE_FIRST_LETTER = false;
-    public static final boolean PRINT_OPERATION = true;
     public static final char[] CHAR_DELIMITER = new char[]{' '};
-
-    public static final String OPERATION_START = "START";
-    public static final String OPERATION_END = "END";
-    public static final String OPERATION_FINISH = "FINISH";
-
     public static final String LABEL = "label";
     public static final String LANGUAGE = "language";
     public static final String PREF = "pref";
