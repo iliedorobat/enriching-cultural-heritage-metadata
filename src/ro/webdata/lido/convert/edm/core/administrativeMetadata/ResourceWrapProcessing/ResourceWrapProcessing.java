@@ -68,7 +68,6 @@ public class ResourceWrapProcessing {
      * @param resourceRepresentation <b>lido:rightsResource</b> element
      * @return <b>Resource</b>
      */
-    //TODO: the "en" and "ro" link are reversed (en is ro and ro is en)
     private Resource generateWebResource(
             Model model,
             ResourceRepresentation resourceRepresentation,
