@@ -48,7 +48,6 @@ public class LidoWrapProcessing {
                     ? descriptiveMetadataList.get(0)
                     : null;
 
-            //TODO: add "/ro" to every link
             Resource providedCHO = generateProvidedCHO(model, lidoRecIDList);
             administrativeMetadataProcessing.processing(
                     model, providedCHO, administrativeMetadata

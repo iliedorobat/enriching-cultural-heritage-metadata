@@ -28,8 +28,10 @@ public class NSConstants {
 
     public static final String NS_LIDO = "http://www.lido-schema.org/schema/v1.0/lido-v1.0-schema-listing.html#";
     public static final String NS_REPO = "http://opendata.cs.pub.ro";
-    public static final String NS_REPO_PROPERTY = NS_REPO + "/property";
-    public static final String NS_REPO_RESOURCE = NS_REPO + "/resource";
+    public static final String NS_REPO_PROPERTY = NS_REPO + FileConstatnts.FILE_SEPARATOR
+            + "property" + FileConstatnts.FILE_SEPARATOR + Constants.LANG_MAIN;
+    public static final String NS_REPO_RESOURCE = NS_REPO + FileConstatnts.FILE_SEPARATOR
+            + "resource" + FileConstatnts.FILE_SEPARATOR + Constants.LANG_MAIN;
     public static final String LINK_ID_AGENT = "/agent";
     public static final String LINK_ID_AGGREGATION = "/aggregation";
     public static final String LINK_ID_CHO = "/cho";

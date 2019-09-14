@@ -22,7 +22,10 @@ public class IdentifierComplexTypeProcessing {
         String type = identifierComplexType.getType().getType();
 
         if (text != null) {
-            if (type.equals(LIDOConstants.LIDO_TYPE_CIMEC) || type.equals(LIDOConstants.LIDO_TYPE_GUID)) {
+            // Only the entries from romanian dataset could have a CIMEC id (link)
+            if (Constants.LANG_MAIN.equals(Constants.LANG_RO) &&
+                    (type.equals(LIDOConstants.LIDO_TYPE_CIMEC) || type.equals(LIDOConstants.LIDO_TYPE_GUID))
+            ) {
                 resource.addProperty(DC_11.identifier, Constants.CIMEC_LINK_RO + text, Constants.LANG_RO);
                 resource.addProperty(DC_11.identifier, Constants.CIMEC_LINK_EN + text, Constants.LANG_EN);
             } else {
