@@ -47,22 +47,26 @@ public class Main {
         model.setNsPrefix("openData", NSConstants.NS_REPO_PROPERTY + FileConstatnts.FILE_SEPARATOR);
 
         System.out.println(EnvConst.OPERATION_START);
-        //---------------------- Real Scenario ---------------------- //
+        if (!EnvConst.IS_DEMO) run(model);
+        else runDemo(model);
+        PrintMessages.printOperation(EnvConst.OPERATION_FINISH);
+    }
+
+    //---------------------- Real Scenario ---------------------- //
+    private static void run(Model model) {
         for (int i = 0; i < fileNames.length; i++) {
             String filePath = FileConstatnts.FILE_PATH + FileConstatnts.FILE_SEPARATOR + fileNames[i] + FileConstatnts.FILE_EXTENSION;
             lidoWrapProcessing.processing(model, filePath);
         }
-
         writeRDFGraph(model, FileConstatnts.OUTPUT_FILE_FULL_PATH);
+    }
 
-//        //---------------------- DEMO Scenario ---------------------- //
-//        // The demo file is found in: files/lido-schema/inp-clasate-arheologie-2014-02-02.xml
-//        // @See: in the demo we map only the first 1000 CHO's
-//        String filePath = FileConstatnts.FILE_PATH + FileConstatnts.FILE_SEPARATOR + fileNames[0] + FileConstatnts.FILE_EXTENSION;
-//        lidoWrapProcessing.processing(model, filePath);
-//        writeRDFGraph(model, FileConstatnts.OUTPUT_FILE_FULL_PATH);
-
-        PrintMessages.printOperation(EnvConst.OPERATION_FINISH);
+    //---------------------- DEMO Scenario ---------------------- //
+    private static void runDemo(Model model) {
+        // The demo file is found in: files/lido-schema/inp-clasate-arheologie-2014-02-02.xml
+        String filePath = FileConstatnts.FILE_PATH + FileConstatnts.FILE_SEPARATOR + fileNames[0] + FileConstatnts.FILE_EXTENSION;
+        lidoWrapProcessing.processing(model, filePath);
+        writeRDFGraph(model, FileConstatnts.OUTPUT_FILE_FULL_PATH);
     }
 
     private static void writeRDFGraph(Model model, String outputFilePath) {
