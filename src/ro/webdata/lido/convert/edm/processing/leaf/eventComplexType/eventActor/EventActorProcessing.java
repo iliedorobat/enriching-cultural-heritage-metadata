@@ -13,6 +13,7 @@ import ro.webdata.lido.convert.edm.common.constants.FileConstatnts;
 import ro.webdata.lido.convert.edm.common.constants.NSConstants;
 import ro.webdata.lido.convert.edm.vocabulary.EDM;
 import ro.webdata.lido.parser.core.leaf.actor.Actor;
+import ro.webdata.lido.parser.core.leaf.actorID.ActorID;
 import ro.webdata.lido.parser.core.leaf.actorInRole.ActorInRole;
 import ro.webdata.lido.parser.core.leaf.appellationValue.AppellationValue;
 import ro.webdata.lido.parser.core.leaf.eventActor.EventActor;
@@ -58,6 +59,11 @@ public class EventActorProcessing {
         ArrayList<Resource> actorNameList = new ArrayList<>();
 
         for (int i = 0; i < nameActorSetList.size(); i++) {
+            //TODO: check if in "lido:actor" class exists the actorID resource and
+            // if exists, check if there is any other actor with the same actorID
+            ArrayList<ActorID> actorID = actor.getActorID();
+            //TODO: same as for all kind of resources ([agent], aggregation, cho, event, license, organization) !!!
+
             NameActorSet nameActorSet = nameActorSetList.get(i);
             ArrayList<AppellationValue> appellationValueList = nameActorSet.getAppellationValue();
 

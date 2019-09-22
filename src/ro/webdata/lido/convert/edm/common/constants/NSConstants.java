@@ -40,6 +40,7 @@ public class NSConstants {
     public static final String LINK_ID_ORGANIZATION = "/organization";
 
     public static final String NS_REPO_RESOURCE_AGENT = NS_REPO_RESOURCE + LINK_ID_AGENT;
+    public static final String NS_REPO_RESOURCE_AGGREGATION = NS_REPO_RESOURCE + LINK_ID_AGGREGATION;
     public static final String NS_REPO_RESOURCE_CHO = NS_REPO_RESOURCE + LINK_ID_CHO;
     public static final String NS_REPO_RESOURCE_EVENT = NS_REPO_RESOURCE + LINK_ID_EVENT;
     public static final String NS_REPO_RESOURCE_ORGANIZATION = NS_REPO_RESOURCE + LINK_ID_ORGANIZATION;

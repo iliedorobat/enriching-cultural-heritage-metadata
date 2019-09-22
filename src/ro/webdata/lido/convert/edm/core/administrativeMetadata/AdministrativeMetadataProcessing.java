@@ -46,7 +46,7 @@ public class AdministrativeMetadataProcessing {
         String identifier = recordIDProcessing.consolidatesIdentifiers(recordWrap);
 
         Resource aggregation = model.createResource(
-                NSConstants.NS_REPO_RESOURCE + NSConstants.LINK_ID_AGGREGATION + identifier
+                NSConstants.NS_REPO_RESOURCE_AGGREGATION + identifier
         );
         aggregation.addProperty(RDF.type, ORE.Aggregation);
 

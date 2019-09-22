@@ -11,7 +11,7 @@ public class Constants {
     public static final String LANG_RO = "ro";
     /**
      * The native dataset language
-     * TODO: change the main language if you need
+     * FIXME: change the main language if you need
      */
     public static final String LANG_MAIN = LANG_RO;
 
