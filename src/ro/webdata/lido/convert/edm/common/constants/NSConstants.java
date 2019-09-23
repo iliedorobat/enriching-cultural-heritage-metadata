@@ -38,13 +38,15 @@ public class NSConstants {
     public static final String LINK_ID_EVENT = "/event";
     public static final String LINK_ID_LICENSE = "/license";
     public static final String LINK_ID_ORGANIZATION = "/organization";
+    public static final String LINK_ID_PLACE = "/place";
 
     public static final String NS_REPO_RESOURCE_AGENT = NS_REPO_RESOURCE + LINK_ID_AGENT;
     public static final String NS_REPO_RESOURCE_AGGREGATION = NS_REPO_RESOURCE + LINK_ID_AGGREGATION;
     public static final String NS_REPO_RESOURCE_CHO = NS_REPO_RESOURCE + LINK_ID_CHO;
     public static final String NS_REPO_RESOURCE_EVENT = NS_REPO_RESOURCE + LINK_ID_EVENT;
     public static final String NS_REPO_RESOURCE_ORGANIZATION = NS_REPO_RESOURCE + LINK_ID_ORGANIZATION;
+    public static final String NS_REPO_RESOURCE_PLACE = NS_REPO_RESOURCE + LINK_ID_PLACE;
 
-    public static final String NS_DBPEDIA_PAGE = "http://dbpedia.org/page";
-    public static final String NS_DBPEDIA_PROPERTY = "http://dbpedia.org/property";
+    public static final String NS_DBPEDIA_PAGE = "http://dbpedia.org/page/";
+    public static final String NS_DBPEDIA_PROPERTY = "http://dbpedia.org/property/";
 }

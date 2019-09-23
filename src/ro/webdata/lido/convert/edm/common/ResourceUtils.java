@@ -8,6 +8,7 @@ import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.SKOS;
 import ro.webdata.lido.convert.edm.common.constants.Constants;
 import ro.webdata.lido.convert.edm.common.constants.EDMConstants;
+import ro.webdata.lido.convert.edm.common.constants.FileConstatnts;
 import ro.webdata.lido.convert.edm.common.constants.NSConstants;
 import ro.webdata.lido.convert.edm.vocabulary.EDM;
 import ro.webdata.lido.convert.edm.vocabulary.EDM2;
@@ -100,8 +101,28 @@ public class ResourceUtils {
      * Add Romania country for a provider from Romania
      * @param provider The provider, dataProvider or intermediateProvider
      */
+    //TODO: automatize
     public static void addProviderCountry(Resource provider) {
         provider.addProperty(EDM.country, "Romania", Constants.LANG_EN);
         provider.addProperty(EDM.country, "România", Constants.LANG_RO);
+    }
+
+    /**
+     * Generate a URI based on the namespace
+     * @param namespace The namespace (see NSConstants)
+     * @param resourceName The name of resource (a country, a name, a concept etc.)
+     * @return The generated URI
+     */
+    public static String generateURI(String namespace, String resourceName) {
+        return namespace + FileConstatnts.FILE_SEPARATOR + TextUtils.sanitizeString(resourceName);
+    }
+
+    /**
+     * Generate an encoded URI using the DBPedia namespace
+     * @param resourceName The name of resource (a country, a name, a concept etc.)
+     * @return The DBPedia encoded URI
+     */
+    public static String generateDBPediaURI(String resourceName) {
+        return NSConstants.NS_DBPEDIA_PAGE + TextUtils.encodeURI(resourceName);
     }
 }
