@@ -8,7 +8,6 @@ import org.apache.jena.vocabulary.DC_11;
 import org.apache.jena.vocabulary.SKOS;
 import ro.webdata.lido.convert.edm.common.PrintMessages;
 import ro.webdata.lido.convert.edm.common.TextUtils;
-import ro.webdata.lido.convert.edm.common.constants.Constants;
 import ro.webdata.lido.convert.edm.common.constants.EnvConst;
 import ro.webdata.lido.convert.edm.common.constants.FileConstatnts;
 import ro.webdata.lido.convert.edm.common.constants.NSConstants;
@@ -64,7 +63,8 @@ public class Main {
     //---------------------- DEMO Scenario ---------------------- //
     private static void runDemo(Model model) {
         // The demo file is found in: files/lido-schema/inp-clasate-arheologie-2014-02-02.xml
-        String filePath = FileConstatnts.FILE_PATH + FileConstatnts.FILE_SEPARATOR + fileNames[0] + FileConstatnts.FILE_EXTENSION;
+        String filePath = FileConstatnts.FILE_PATH + FileConstatnts.FILE_SEPARATOR
+                + FileConstatnts.FILE_NAME_DEMO + FileConstatnts.FILE_EXTENSION;
         lidoWrapProcessing.processing(model, filePath);
         writeRDFGraph(model, FileConstatnts.OUTPUT_FILE_FULL_PATH);
     }

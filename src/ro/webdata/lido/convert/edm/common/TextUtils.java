@@ -5,6 +5,8 @@ import ro.webdata.lido.convert.edm.common.constants.Constants;
 import ro.webdata.lido.convert.edm.common.constants.EnvConst;
 
 import java.io.*;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 public class TextUtils {
     /**
@@ -42,6 +44,15 @@ public class TextUtils {
         String regex = "[ \\.\\[\\]]+";
         String replacement = "_";
         return value.replaceAll(regex, replacement);
+    }
+
+    /**
+     * Encode the URI
+     * @param uri The URI
+     * @return The encoded URI
+     */
+    public static String encodeURI(String uri) {
+        return URLEncoder.encode(uri, StandardCharsets.UTF_8);
     }
 
     /**

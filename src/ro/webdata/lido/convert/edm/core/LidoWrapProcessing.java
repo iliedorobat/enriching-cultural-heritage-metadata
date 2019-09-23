@@ -32,12 +32,9 @@ public class LidoWrapProcessing {
     public void processing(Model model, String fullPath) {
         PrintMessages.printOperation(EnvConst.OPERATION_START, fullPath);
         LidoWrap lidoWrap = parserDAO.parseLidoFile(fullPath);
-        long size = EnvConst.IS_DEMO
-                ? EnvConst.DEMO_LIDO_LIST_SIZE
-                : lidoWrap.getLido().size();
 
-        //TODO: change in the parser module "getLido" to "getLidoList"
-        for (int i = 0; i < size; i++) {
+        //TODO: change in the parser module from "getLido" to "getLidoList"
+        for (int i = 0; i < lidoWrap.getLido().size(); i++) {
             Lido lido = lidoWrap.getLido().get(i);
 
             ArrayList<LidoRecID> lidoRecIDList = lido.getLidoRecID();

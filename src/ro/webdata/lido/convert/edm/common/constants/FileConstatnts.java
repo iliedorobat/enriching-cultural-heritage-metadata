@@ -17,6 +17,7 @@ public class FileConstatnts {
     public static final String FILE_NAME_MEDALISTICA = "inp-clasate-medalistica-2014-02-02";
     public static final String FILE_NAME_NUMISMATICA = "inp-clasate-numismatica-2014-02-02";
     public static final String FILE_NAME_ST_NAT = "inp-clasate-stiintele-naturii-2014-02-03-7";
+    public static final String FILE_NAME_DEMO = "demo";
 
     public static final String OUTPUT_FILE_PATH = WORKSPACE_DIR + FILE_SEPARATOR + "files/output";
     public static final String OUTPUT_FILE_FULL_PATH = OUTPUT_FILE_PATH + FILE_SEPARATOR + "dataset.rdf";
