@@ -1,4 +1,4 @@
-package ro.webdata.lido.convert.edm.processing.leaf;
+package ro.webdata.lido.convert.edm.mapping.leaf;
 
 import ro.webdata.lido.convert.edm.common.constants.FileConstatnts;
 import ro.webdata.lido.parser.core.leaf.recordID.RecordID;

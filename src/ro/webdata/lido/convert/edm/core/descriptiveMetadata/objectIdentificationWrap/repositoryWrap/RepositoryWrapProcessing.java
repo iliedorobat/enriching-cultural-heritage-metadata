@@ -2,8 +2,8 @@ package ro.webdata.lido.convert.edm.core.descriptiveMetadata.objectIdentificatio
 
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
-import ro.webdata.lido.convert.edm.processing.leaf.LegalBodyRefComplexTypeProcessing;
-import ro.webdata.lido.convert.edm.processing.leaf.WorkIDProcessing;
+import ro.webdata.lido.convert.edm.mapping.leaf.LegalBodyRefComplexTypeProcessing;
+import ro.webdata.lido.convert.edm.mapping.leaf.WorkIDProcessing;
 import ro.webdata.lido.convert.edm.vocabulary.EDM;
 import ro.webdata.lido.parser.core.leaf.repositoryName.RepositoryName;
 import ro.webdata.lido.parser.core.leaf.workID.WorkID;

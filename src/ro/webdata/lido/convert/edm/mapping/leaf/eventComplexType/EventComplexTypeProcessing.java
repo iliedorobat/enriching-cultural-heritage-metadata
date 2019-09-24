@@ -1,14 +1,14 @@
-package ro.webdata.lido.convert.edm.processing.leaf.eventComplexType;
+package ro.webdata.lido.convert.edm.mapping.leaf.eventComplexType;
 
 import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
-import ro.webdata.lido.convert.edm.processing.leaf.eventComplexType.culture.CultureProcessing;
-import ro.webdata.lido.convert.edm.processing.leaf.eventComplexType.eventActor.EventActorProcessing;
-import ro.webdata.lido.convert.edm.processing.leaf.eventComplexType.eventDate.EventDateProcessing;
-import ro.webdata.lido.convert.edm.processing.leaf.eventComplexType.eventMaterialsTech.EventMaterialsTechProcessing;
-import ro.webdata.lido.convert.edm.processing.leaf.eventComplexType.eventPlace.EventPlaceProcessing;
-import ro.webdata.lido.convert.edm.processing.leaf.eventComplexType.eventType.EventTypeProcessing;
+import ro.webdata.lido.convert.edm.mapping.leaf.eventComplexType.eventDate.EventDateProcessing;
+import ro.webdata.lido.convert.edm.mapping.leaf.eventComplexType.eventPlace.EventPlaceProcessing;
+import ro.webdata.lido.convert.edm.mapping.leaf.eventComplexType.eventType.EventTypeProcessing;
+import ro.webdata.lido.convert.edm.mapping.leaf.eventComplexType.culture.CultureProcessing;
+import ro.webdata.lido.convert.edm.mapping.leaf.eventComplexType.eventActor.EventActorProcessing;
+import ro.webdata.lido.convert.edm.mapping.leaf.eventComplexType.eventMaterialsTech.EventMaterialsTechProcessing;
 import ro.webdata.lido.convert.edm.vocabulary.EDM;
 import ro.webdata.lido.parser.core.leaf.event.Event;
 

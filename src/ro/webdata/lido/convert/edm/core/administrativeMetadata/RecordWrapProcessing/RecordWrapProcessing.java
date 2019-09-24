@@ -3,8 +3,8 @@ package ro.webdata.lido.convert.edm.core.administrativeMetadata.RecordWrapProces
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import ro.webdata.lido.convert.edm.common.ResourceUtils;
-import ro.webdata.lido.convert.edm.processing.leaf.RecordRightsProcessing;
-import ro.webdata.lido.convert.edm.processing.leaf.RecordSourceProcessing;
+import ro.webdata.lido.convert.edm.mapping.leaf.RecordRightsProcessing;
+import ro.webdata.lido.convert.edm.mapping.leaf.RecordSourceProcessing;
 import ro.webdata.lido.convert.edm.vocabulary.EDM;
 import ro.webdata.lido.parser.core.wrap.recordWrap.RecordWrap;
 

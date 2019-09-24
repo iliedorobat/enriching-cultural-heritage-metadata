@@ -6,7 +6,7 @@ import org.apache.jena.vocabulary.RDF;
 import ro.webdata.lido.convert.edm.common.constants.NSConstants;
 import ro.webdata.lido.convert.edm.core.administrativeMetadata.RecordWrapProcessing.RecordWrapProcessing;
 import ro.webdata.lido.convert.edm.core.administrativeMetadata.ResourceWrapProcessing.ResourceWrapProcessing;
-import ro.webdata.lido.convert.edm.processing.leaf.RecordIDProcessing;
+import ro.webdata.lido.convert.edm.mapping.leaf.RecordIDProcessing;
 import ro.webdata.lido.convert.edm.vocabulary.ORE;
 import ro.webdata.lido.parser.core.leaf.administrativeMetadata.AdministrativeMetadata;
 import ro.webdata.lido.parser.core.wrap.recordWrap.RecordWrap;

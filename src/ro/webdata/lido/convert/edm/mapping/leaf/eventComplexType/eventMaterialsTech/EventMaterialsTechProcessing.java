@@ -1,4 +1,4 @@
-package ro.webdata.lido.convert.edm.processing.leaf.eventComplexType.eventMaterialsTech;
+package ro.webdata.lido.convert.edm.mapping.leaf.eventComplexType.eventMaterialsTech;
 
 import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.Model;

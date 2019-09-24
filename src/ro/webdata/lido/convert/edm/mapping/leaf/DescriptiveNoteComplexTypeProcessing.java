@@ -1,4 +1,4 @@
-package ro.webdata.lido.convert.edm.processing.leaf;
+package ro.webdata.lido.convert.edm.mapping.leaf;
 
 public class DescriptiveNoteComplexTypeProcessing {
 }

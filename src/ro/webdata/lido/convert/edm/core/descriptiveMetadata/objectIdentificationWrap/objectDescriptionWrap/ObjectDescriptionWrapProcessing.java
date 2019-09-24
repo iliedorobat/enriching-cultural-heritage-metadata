@@ -2,7 +2,7 @@ package ro.webdata.lido.convert.edm.core.descriptiveMetadata.objectIdentificatio
 
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
-import ro.webdata.lido.convert.edm.processing.leaf.TextComplexTypeProcessing;
+import ro.webdata.lido.convert.edm.mapping.leaf.TextComplexTypeProcessing;
 import ro.webdata.lido.parser.core.attribute.LidoType;
 import ro.webdata.lido.parser.core.leaf.descriptiveNoteValue.DescriptiveNoteValue;
 import ro.webdata.lido.parser.core.set.objectDescriptionSet.ObjectDescriptionSet;
