@@ -1,6 +1,6 @@
 package ro.webdata.lido.convert.edm.mapping.leaf;
 
-import ro.webdata.lido.convert.edm.common.constants.FileConstatnts;
+import ro.webdata.lido.convert.edm.common.constants.FileConstants;
 import ro.webdata.lido.parser.core.leaf.recordID.RecordID;
 import ro.webdata.lido.parser.core.wrap.recordWrap.RecordWrap;
 
@@ -32,9 +32,9 @@ public class RecordIDProcessing {
             String type = recordID.getType().getType();
 
             if (type != null)
-                id = FileConstatnts.FILE_SEPARATOR + type + FileConstatnts.FILE_SEPARATOR + text;
+                id = FileConstants.FILE_SEPARATOR + type + FileConstants.FILE_SEPARATOR + text;
             else
-                id = FileConstatnts.FILE_SEPARATOR + text;
+                id = FileConstants.FILE_SEPARATOR + text;
         } else {
             System.err.println(this.getClass().getName() + ":" +
                     "There should be provided at least one \"lido:recordID\" property" +

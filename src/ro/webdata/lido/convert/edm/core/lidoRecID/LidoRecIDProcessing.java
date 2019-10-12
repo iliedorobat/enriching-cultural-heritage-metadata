@@ -1,6 +1,6 @@
 package ro.webdata.lido.convert.edm.core.lidoRecID;
 
-import ro.webdata.lido.convert.edm.common.constants.FileConstatnts;
+import ro.webdata.lido.convert.edm.common.constants.FileConstants;
 import ro.webdata.lido.parser.core.leaf.lidoRecID.LidoRecID;
 
 import java.util.ArrayList;
@@ -21,9 +21,9 @@ public class LidoRecIDProcessing {
             String type = lidoRecID.getType().getType();
 
             if (type != null)
-                id = FileConstatnts.FILE_SEPARATOR + type + FileConstatnts.FILE_SEPARATOR + text;
+                id = FileConstants.FILE_SEPARATOR + type + FileConstants.FILE_SEPARATOR + text;
             else
-                id = FileConstatnts.FILE_SEPARATOR + text;
+                id = FileConstants.FILE_SEPARATOR + text;
         } else {
             System.err.println(this.getClass().getName() + ":" +
                     "There should be provided at least one \"lido:lidoRecID\" property" +

@@ -3,6 +3,8 @@ package ro.webdata.lido.convert.edm.mapping.leaf.eventComplexType;
 import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.vocabulary.SKOS;
+import ro.webdata.lido.convert.edm.common.PropertyUtils;
 import ro.webdata.lido.convert.edm.mapping.leaf.eventComplexType.eventDate.EventDateProcessing;
 import ro.webdata.lido.convert.edm.mapping.leaf.eventComplexType.eventPlace.EventPlaceProcessing;
 import ro.webdata.lido.convert.edm.mapping.leaf.eventComplexType.eventType.EventTypeProcessing;
@@ -36,6 +38,9 @@ public class EventComplexTypeProcessing {
         ArrayList<Resource> eventMaterialsList = eventMaterialsTechProcessing.addEventMaterialsTechList(
                 model, providedCHO, event.getEventMaterialsTech());
 
+        //TODO: add a new property "edm:timePeriod" (extending "skos:note") for storing
+        // the original data related to "edm:occuredAt"
+//        PropertyUtils.createSubProperty(model, "timePeriod", SKOS.note);
         resourceEvent.addProperty(EDM.occurredAt, eventDateResource);
         providedCHO.addProperty(EDM.wasPresentAt, resourceEvent);
 

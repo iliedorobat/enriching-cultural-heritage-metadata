@@ -33,7 +33,7 @@ public class RecordSourceProcessing {
                 String providerName = legalBodyRefComplexTypeProcessing.getOrganizationName(recordSource.getLegalBodyName());
                 Resource dataProvider = model.createResource(
                         NSConstants.NS_REPO_RESOURCE_ORGANIZATION
-                        + FileConstatnts.FILE_SEPARATOR + TextUtils.sanitizeString(providerName)
+                        + FileConstants.FILE_SEPARATOR + TextUtils.sanitizeString(providerName)
                 );
                 dataProvider.addProperty(RDF.type, FOAF.Organization);
 

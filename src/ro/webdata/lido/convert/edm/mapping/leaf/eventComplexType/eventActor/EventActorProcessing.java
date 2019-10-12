@@ -9,7 +9,7 @@ import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.SKOS;
 import ro.webdata.lido.convert.edm.common.TextUtils;
 import ro.webdata.lido.convert.edm.common.constants.Constants;
-import ro.webdata.lido.convert.edm.common.constants.FileConstatnts;
+import ro.webdata.lido.convert.edm.common.constants.FileConstants;
 import ro.webdata.lido.convert.edm.common.constants.NSConstants;
 import ro.webdata.lido.convert.edm.vocabulary.EDM;
 import ro.webdata.lido.parser.core.leaf.actor.Actor;
@@ -94,8 +94,8 @@ public class EventActorProcessing {
 
             Resource actor = model.createResource(
                     NSConstants.NS_REPO_RESOURCE_AGENT
-                    + FileConstatnts.FILE_SEPARATOR + role
-                    + FileConstatnts.FILE_SEPARATOR + TextUtils.sanitizeString(actorName)
+                    + FileConstants.FILE_SEPARATOR + role
+                    + FileConstants.FILE_SEPARATOR + TextUtils.sanitizeString(actorName)
             );
             actor.addProperty(RDF.type, EDM.Agent);
             actor.addProperty(FOAF.name, literal);

@@ -5,7 +5,7 @@ import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.RDF;
 import ro.webdata.lido.convert.edm.common.TextUtils;
 import ro.webdata.lido.convert.edm.common.constants.Constants;
-import ro.webdata.lido.convert.edm.common.constants.FileConstatnts;
+import ro.webdata.lido.convert.edm.common.constants.FileConstants;
 import ro.webdata.lido.convert.edm.common.constants.NSConstants;
 import ro.webdata.lido.convert.edm.vocabulary.EDM;
 import ro.webdata.lido.parser.core.leaf.eventType.EventType;
@@ -60,8 +60,8 @@ public class EventTypeProcessing {
                 String eventName = term.getText();
                 Resource resource = model.createResource(
                         NSConstants.NS_REPO_RESOURCE_EVENT
-                        + FileConstatnts.FILE_SEPARATOR + TextUtils.sanitizeString(eventName)
-                        + FileConstatnts.FILE_SEPARATOR + choUri.substring(index)
+                        + FileConstants.FILE_SEPARATOR + TextUtils.sanitizeString(eventName)
+                        + FileConstants.FILE_SEPARATOR + choUri.substring(index)
                 );
                 resource.addProperty(RDF.type, EDM.Event);
                 return resource;

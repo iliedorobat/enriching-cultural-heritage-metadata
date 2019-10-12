@@ -134,6 +134,8 @@ public class EDM {
         landingPage = m.createProperty(NS + "landingPage");
         language = m.createProperty(NS + "language");
         object = m.createProperty(NS + "object");
+        //TODO: occurredAt or occuredAt:
+        // https://github.com/europeana/corelib/wiki/EDMObjectTemplatesProviders#edmEvent
         occurredAt = m.createProperty(NS + "occurredAt");
         preview = m.createProperty(NS + "preview");
         provider = m.createProperty(NS + "provider");

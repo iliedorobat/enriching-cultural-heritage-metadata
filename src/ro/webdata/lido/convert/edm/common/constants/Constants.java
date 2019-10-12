@@ -2,6 +2,9 @@ package ro.webdata.lido.convert.edm.common.constants;
 
 public class Constants {
     public static final char[] CHAR_DELIMITER = new char[]{' '};
+    public static final String URL_SEPARATOR = "/";
+    public static final String INTERVAL_SEPARATOR = "#TO#";
+
     public static final String LABEL = "label";
     public static final String LANGUAGE = "language";
     public static final String PREF = "pref";
@@ -14,6 +17,8 @@ public class Constants {
      * FIXME: change the main language if you need
      */
     public static final String LANG_MAIN = LANG_RO;
+    public static final int LAST_UPDATE_YEAR = 2014;
+    public static final String UNKNOWN_MONTH = "Unknown";
 
     public static final String CIMEC_LINK_EN = "http://ghidulmuzeelor.cimec.ro/muzeeen.asp?ctext=";
     public static final String CIMEC_LINK_RO = "http://ghidulmuzeelor.cimec.ro/muzee.asp?ctext=";

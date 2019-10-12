@@ -8,7 +8,7 @@ import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.SKOS;
 import ro.webdata.lido.convert.edm.common.constants.Constants;
 import ro.webdata.lido.convert.edm.common.constants.EDMConstants;
-import ro.webdata.lido.convert.edm.common.constants.FileConstatnts;
+import ro.webdata.lido.convert.edm.common.constants.FileConstants;
 import ro.webdata.lido.convert.edm.common.constants.NSConstants;
 import ro.webdata.lido.convert.edm.vocabulary.EDM;
 import ro.webdata.lido.convert.edm.vocabulary.EDM2;
@@ -114,7 +114,7 @@ public class ResourceUtils {
      * @return The generated URI
      */
     public static String generateURI(String namespace, String resourceName) {
-        return namespace + FileConstatnts.FILE_SEPARATOR + TextUtils.sanitizeString(resourceName);
+        return namespace + FileConstants.FILE_SEPARATOR + TextUtils.sanitizeString(resourceName);
     }
 
     /**

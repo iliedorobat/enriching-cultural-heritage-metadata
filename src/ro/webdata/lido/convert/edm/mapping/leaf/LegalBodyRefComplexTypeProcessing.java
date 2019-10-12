@@ -9,7 +9,7 @@ import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.SKOS;
 import ro.webdata.lido.convert.edm.common.TextUtils;
 import ro.webdata.lido.convert.edm.common.constants.Constants;
-import ro.webdata.lido.convert.edm.common.constants.FileConstatnts;
+import ro.webdata.lido.convert.edm.common.constants.FileConstants;
 import ro.webdata.lido.convert.edm.common.constants.NSConstants;
 import ro.webdata.lido.parser.core.complex.legalBodyRefComplexType.LegalBodyRefComplexType;
 import ro.webdata.lido.parser.core.leaf.appellationValue.AppellationValue;
@@ -32,7 +32,7 @@ public class LegalBodyRefComplexTypeProcessing {
             String name = getOrganizationName(legalBodyNameList);
             organization = model.createResource(
                     NSConstants.NS_REPO_RESOURCE_ORGANIZATION
-                    + FileConstatnts.FILE_SEPARATOR + TextUtils.sanitizeString(name)
+                    + FileConstants.FILE_SEPARATOR + TextUtils.sanitizeString(name)
             );
             organization.addProperty(RDF.type, FOAF.Organization);
             addOrganizationIdentifier(model, organization, legalBodyIDList);
@@ -160,7 +160,7 @@ public class LegalBodyRefComplexTypeProcessing {
 
             String name = getOrganizationName(legalBodyNameList);
             return NSConstants.NS_REPO_RESOURCE_ORGANIZATION
-                    + FileConstatnts.FILE_SEPARATOR + TextUtils.sanitizeString(name);
+                    + FileConstants.FILE_SEPARATOR + TextUtils.sanitizeString(name);
         }
 
         return null;

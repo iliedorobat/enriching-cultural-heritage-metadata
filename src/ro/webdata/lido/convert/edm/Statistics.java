@@ -4,7 +4,7 @@ import org.apache.jena.rdf.model.*;
 import org.apache.jena.sparql.vocabulary.FOAF;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.SKOS;
-import ro.webdata.lido.convert.edm.common.constants.FileConstatnts;
+import ro.webdata.lido.convert.edm.common.constants.FileConstants;
 import ro.webdata.lido.convert.edm.vocabulary.EDM;
 import ro.webdata.lido.convert.edm.vocabulary.ORE;
 
@@ -26,7 +26,7 @@ public class Statistics {
     private static final String ENGRAVER = "http://opendata.cs.pub.ro/resource/agent/engraver";
 
     public static void main(String[] args) {
-        System.out.println(FileConstatnts.OUTPUT_FILE_FULL_PATH);
+        System.out.println(FileConstants.OUTPUT_FILE_FULL_PATH);
         Model model = ModelFactory.createDefaultModel();
         model.read("files/output/dataset.rdf");
 

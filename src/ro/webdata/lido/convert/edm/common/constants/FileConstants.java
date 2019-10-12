@@ -1,6 +1,6 @@
 package ro.webdata.lido.convert.edm.common.constants;
 
-public class FileConstatnts {
+public class FileConstants {
     public static final String FILE_EXTENSION = ".xml";
     public static final String FILE_SEPARATOR = System.getProperty("file.separator");
     public static final String WORKSPACE_DIR = System.getProperty("user.dir");
@@ -19,8 +19,11 @@ public class FileConstatnts {
     public static final String FILE_NAME_ST_NAT = "inp-clasate-stiintele-naturii-2014-02-03-7";
     public static final String FILE_NAME_DEMO = "demo";
 
-    public static final String OUTPUT_FILE_PATH = WORKSPACE_DIR + FILE_SEPARATOR + "files/output";
-    public static final String OUTPUT_FILE_FULL_PATH = OUTPUT_FILE_PATH + FILE_SEPARATOR + "dataset.rdf";
+    public static final String OUTPUT_FILE_PATH = WORKSPACE_DIR + FILE_SEPARATOR + "files";
+    public static final String OUTPUT_FILE_FULL_PATH = OUTPUT_FILE_PATH + FILE_SEPARATOR + "output"
+            + FILE_SEPARATOR + "dataset.rdf";
+    public static final String OUTPUT_FILE_TIMESPAN = OUTPUT_FILE_PATH + FILE_SEPARATOR + "data-processing"
+            + FILE_SEPARATOR + "timespan-original.txt";
 
     //TODO: demo file name
     //    public static final String TEST_FILE_NAME = "LIDO-Extended-Example.xml";

@@ -20,6 +20,7 @@ public class EventDateProcessing {
      * @param eventDate The <b>lido:eventDate</b> object
      * @return
      */
+    //TODO: return ArrayList<Resource> (there could be more than one date)
     public Resource generateEventDate(Model model, Resource providedCHO, EventDate eventDate) {
         ArrayList<DisplayDate> displayDateList = new ArrayList<>();
         //TODO: remove this check when the LIDO Parser bug is fixed
