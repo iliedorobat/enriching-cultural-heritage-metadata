@@ -1,6 +1,6 @@
 package ro.webdata.lido.convert.edm.processing.timespan.ro.model;
 
-import ro.webdata.lido.convert.edm.common.constants.Constants;
+import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.TimespanRegex;
 
 public class YearIntervalModel {
     private static final String CHRISTUM_ANTE  = "ante Christum natum";
@@ -56,7 +56,7 @@ public class YearIntervalModel {
     @Override
     public String toString() {
         return ageFromValue + " (" + ageFromType + ")"
-                + Constants.INTERVAL_SEPARATOR
+                + TimespanRegex.INTERVAL_SEPARATOR
                 + ageToValue + " (" + ageToType + ")";
     }
 

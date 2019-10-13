@@ -9,6 +9,7 @@ import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.ShortDateRe
 /**
  * Used for date presented as month-year
  */
+//TODO: extending from a common date class
 public class ShortDateModel {
     /** Year, Month order */
     public static String YM = "YM";
@@ -20,6 +21,7 @@ public class ShortDateModel {
     /** To Year, Month */
     private static String END = "END";
 
+    private String eraStart, eraEnd;
     private int yearStart, yearEnd;
     private String monthStart, monthEnd;
     private boolean isInterval;
@@ -32,27 +34,40 @@ public class ShortDateModel {
 
     // TODO: "instituit in decembrie 1915 - desfiintat in 1973"
     private void setDateModel(String value, String order) {
-        String[] intervalValues = value.trim()
+        String preparedValue = value
+                .replaceAll(TimespanRegex.CHRISTUM_AD, Constants.EMPTY_VALUE_PLACEHOLDER)
+                .replaceAll(TimespanRegex.CHRISTUM_BC, Constants.EMPTY_VALUE_PLACEHOLDER)
+                .trim();
+        String[] intervalValues = preparedValue
                 .split(ShortDateRegex.REGEX_DATE_INTERVAL_SEPARATOR);
 
         if (intervalValues.length == 2) {
             setIsInterval(true);
-            // Set the end date before the start one in order to store the year if we need
+            // Set the end date before the start one to store the year
+            // in order to use it as a end year and start year too
+            setEra(value, END);
             setDate(intervalValues[1], order, END);
+            setEra(value, START);
             setDate(intervalValues[0], order, START);
         } else {
             setIsInterval(false);
+            setEra(value, START);
             setDate(value, order, START);
         }
     }
 
     @Override
     public String toString() {
-        String start = yearStart + Constants.URL_SEPARATOR + monthStart;
+        String start = yearStart
+                + Constants.URL_SEPARATOR + monthStart
+                + Constants.URL_SEPARATOR + getLinkEra(eraStart);
 
         if (isInterval) {
-            String end = yearEnd + Constants.URL_SEPARATOR + monthEnd;
-            return start + Constants.INTERVAL_SEPARATOR + end;
+            String end = yearEnd
+                    + Constants.URL_SEPARATOR + monthEnd
+                    + Constants.URL_SEPARATOR + getLinkEra(eraEnd);
+
+            return start + TimespanRegex.INTERVAL_SEPARATOR + end;
         }
 
         return start;
@@ -73,6 +88,25 @@ public class ShortDateModel {
             setYear(year, position);
             setMonth(month, position);
         }
+    }
+
+    private String getLinkEra(String value) {
+        return value.contains(TimespanRegex.CHRISTUM_BC)
+                ? "BC"
+                : "AD";
+    }
+
+    private String getEra(String value) {
+        return value.contains(TimespanRegex.CHRISTUM_BC)
+                ? TimespanRegex.CHRISTUM_BC
+                : TimespanRegex.CHRISTUM_AD;
+    }
+
+    private void setEra(String value, String position) {
+        if (position.equals(START))
+            this.eraStart = getEra(value);
+        else if (position.equals(END))
+            this.eraEnd = getEra(value);
     }
 
     private void setYear(int year, String position) {

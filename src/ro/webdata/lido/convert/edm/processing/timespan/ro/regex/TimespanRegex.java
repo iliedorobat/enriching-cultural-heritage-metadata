@@ -4,41 +4,58 @@ package ro.webdata.lido.convert.edm.processing.timespan.ro.regex;
  * By using the <b>[?<=sentence]</b> construction, it will be matched
  * any text after "sentence" ("sentence" is a word as example).
  */
+//TODO: check "sec. xviii; (gema: sec. i e.n.)"
 public class TimespanRegex {
     public static final String REGEX_OR = "|";
+    public static final String INTERVAL_SEPARATOR = "__TO__";
+    public static final String CHRISTUM_AD = "__AD__";
+    public static final String CHRISTUM_BC = "__BC__";
+    public static final String AD_BC_OPTIONAL = "("
+                + "[ ]*" + "(" + CHRISTUM_BC + REGEX_OR + CHRISTUM_AD + ")"
+            + "){0,1}";
+
     public static final String REGEX_PUNCTUATION = "[\\.,;\\?!\\- ]";
     public static final String REGEX_PUNCTUATION_UNLIMITED = REGEX_PUNCTUATION + "*";
     public static final String REGEX_INTERVAL_DELIMITER = "([ ]*-[ ]*)";
     public static final String REGEX_DATE_INTERVAL_SEPARATOR = "([ ]+-[ ]+)";
     public static final String REGEX_DATE_SEPARATOR = "[\\./\\- ]+";
+    /**
+     * Regex for marking the start of the text
+     */
     public static final String TEXT_START =
             "("
                 + "?<=" + "("
                     + "^" + REGEX_OR + "\\A" + REGEX_OR + "[\\.,;\\?!\\-( ]+"
                 + ")"
             + ")";
+    /**
+     * Regex for marking the end of the text
+     */
     public static final String TEXT_END =
             "("
                 + "?=" + "("
                     + "$" + REGEX_OR + "\\z" + REGEX_OR + "[\\.,;\\?!\\-) ]+"
                 + ")"
             + ")";
-    public static final String CHRISTUM_NOTATION = "(" + "[adip][\\. ]*(ch[r]*|hr)[\\. ]*" + ")";
-    public static final String CHRISTUM_SUFFIX_NOTATION = "([ ]*" + CHRISTUM_NOTATION + ")*";
+    /**
+     * Regex for all possible values for Christum notation<br/>
+     * E.g.: "ch"; "ch."; "chr"; "chr."; "hr"; "hr."
+     */
+    private static final String REGEX_CHRISTUM = "(ch[r]{0,1}|hr|c)[\\. ]*";
 
-    private static final String CHR_NOTATION = "(ch[r]*|hr)[\\. ]*";
-    //TODO: replace CHRISTUM_NOTATION
     // Anno Domini (After Christ)
     public static final String AGE_AD = TEXT_START + "("
-                + "(" + "e.n[\\.]{0,1}" + ")"
-                + REGEX_OR + "(" + "[dp][\\. ]*" + CHR_NOTATION + ")"
+                + "(" + "e[\\.]{0,1}n[\\.]{0,1}" + ")"
+                + REGEX_OR + "(" + "[dp][\\. ]*" + REGEX_CHRISTUM + ")"
             + ")" + TEXT_END;
-    //TODO: replace CHRISTUM_NOTATION
+
     // Before Christ
     public static final String AGE_BC = TEXT_START + "("
                 + "i.hr."
-                + REGEX_OR + "(" + "[ai][\\. ]*" + CHR_NOTATION + ")"
+                + REGEX_OR + "(" + "i[\\.]{0,1}e[\\.]{0,1}n[\\.]{0,1}" + ")"
+                + REGEX_OR + "(" + "[abi][\\. ]*" + REGEX_CHRISTUM + ")"
             + ")" + TEXT_END;
+    private static final String CHRISTUM_NOTATION = "(" + CHRISTUM_AD + REGEX_OR + CHRISTUM_BC + ")";
 
     public static final String MONTHS_RO =
             "("
@@ -100,7 +117,9 @@ public class TimespanRegex {
                 + TEXT_START + "(jumatatea|(mij[\\w]*)|mj\\.)" + TEXT_END
             + ")";
 
-    /** First Quarter = Beginning of... */
+    /**
+     * First Quarter = Beginning of...
+     * */
     public static final String FIRST_QUARTER =
             "("
                 + TEXT_START + "("
@@ -125,7 +144,9 @@ public class TimespanRegex {
                     + REGEX_OR + "(al treilea sfert al)"
                 + ")" + TEXT_END
             + ")";
-    /** Last Quarter = End of... */
+    /**
+     * Last Quarter = End of...
+     * */
     public static final String FORTH_QUARTER =
             "("
                 + TEXT_START + "("

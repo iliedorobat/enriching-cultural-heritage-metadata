@@ -7,8 +7,9 @@ public class InaccurateRegex {
     private static final String REGEX_INTERVAL_DELIMITER = TimespanRegex.REGEX_INTERVAL_DELIMITER;
     private static final String REGEX_PUNCTUATION_UNLIMITED = TimespanRegex.REGEX_PUNCTUATION_UNLIMITED;
 
-    private static final String CHRISTUM_NOTATION = TimespanRegex.CHRISTUM_NOTATION;
-    private static final String CHRISTUM_SUFFIX_NOTATION = TimespanRegex.CHRISTUM_SUFFIX_NOTATION;
+    //TODO: use the TimespanRegex.CHRISTUM_NOTATION
+    private static final String CHRISTUM_NOTATION = "(" + "[adip][\\. ]*(ch[r]*|hr)[\\. ]*" + ")";
+    private static final String CHRISTUM_SUFFIX_NOTATION = "([ ]*" + CHRISTUM_NOTATION + ")*";
     //TODO: check if the additional "[" affects the TEXT_START from TimespanRegex
     private static final String TEXT_START =
             "("

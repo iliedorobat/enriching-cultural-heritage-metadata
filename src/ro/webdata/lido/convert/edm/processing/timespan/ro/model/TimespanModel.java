@@ -1,5 +1,7 @@
 package ro.webdata.lido.convert.edm.processing.timespan.ro.model;
 
+import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.TimespanRegex;
+
 import java.util.ArrayList;
 
 public class TimespanModel {

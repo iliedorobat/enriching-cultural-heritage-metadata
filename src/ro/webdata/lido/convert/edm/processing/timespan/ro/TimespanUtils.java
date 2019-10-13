@@ -6,15 +6,14 @@ import ro.webdata.lido.convert.edm.processing.timespan.ro.model.TimespanModel;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.model.InaccurateModel;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.model.date.FullDateModel;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.model.date.ShortDateModel;
-import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.AgeRegex;
-import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.InaccurateRegex;
-import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.UnknownRegex;
+import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.*;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.FullDateRegex;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.ShortDateRegex;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -33,10 +32,15 @@ public class TimespanUtils {
     private static final String CHR_MATCHING_GROUP = "(chr)([ \\.]+|\\z)";
 
     /**
-     * TODO: doc
-     * 1. Map every unknown value in order to clear the list by junk elements
-     * 2. Map every date-like value
-     * 3. Map every age-like value (epoch)
+     * TODO: doc<br/>
+     * In the matching process the first matched value need to be the interval type,
+     * followed by the ordinal values, respecting the following order:
+     * <ol>
+     *     <li>Map every unknown value in order to clear the list by junk elements</li>
+     *     <li>Map every date-like value</li>
+     *     <li>Map every age-like value (epoch)</li>
+     *     <li>Map every century and millennium age-like value</li>
+     * </ol>
      * @param filePath
      */
     public static void read(String filePath) {
@@ -46,23 +50,34 @@ public class TimespanUtils {
 
             // used for testing
             String test = "s:17;a:1622;l:12;z:30";
-            test = "20 i.e.n";
+            test = "nov. 375 - aug. 378 __BC__ ";
 //            br = new BufferedReader(new StringReader(test));
             String readLine;
 
             while ((readLine = br.readLine()) != null) {
                 if (readLine.length() > 0) {
-                    timespanModel = new TimespanModel(StringUtils.stripAccents(readLine));
+                    String value = StringUtils.stripAccents(readLine)
+                            .replaceAll(TimespanRegex.AGE_BC, TimespanRegex.CHRISTUM_BC)
+                            .replaceAll(TimespanRegex.AGE_AD, TimespanRegex.CHRISTUM_AD);
 
-                    timespanModel = getMatchedValues(timespanModel, UnknownRegex.UNKNOWN, null);
+                    timespanModel = new TimespanModel(value);
+
+//                    timespanModel = getMatchedValues(timespanModel, UnknownRegex.UNKNOWN, null);
                     timespanModel = getMatchedValues(timespanModel, FullDateRegex.DATE_DMY_INTERVAL, null);
                     timespanModel = getMatchedValues(timespanModel, FullDateRegex.DATE_YMD_INTERVAL, null);
                     timespanModel = getMatchedValues(timespanModel, ShortDateRegex.DATE_MY_INTERVAL, null);
                     timespanModel = getMatchedValues(timespanModel, FullDateRegex.DATE_DMY_OPTIONS, null);
                     timespanModel = getMatchedValues(timespanModel, FullDateRegex.DATE_YMD_OPTIONS, null);
                     timespanModel = getMatchedValues(timespanModel, ShortDateRegex.DATE_MY_OPTIONS, null);
-                    timespanModel = getMatchedValues(timespanModel, AgeRegex.AGE_OPTIONS, null);
+//                    timespanModel = getMatchedValues(timespanModel, AgeRegex.AGE_OPTIONS, null);
 //                    timespanModel.clearTimespanList();
+//
+//                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.CENTURY_INTERVAL, null);
+//                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.CENTURY_OPTIONS, null);
+//                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.MILLENNIUM_INTERVAL, null);
+//                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.MILLENNIUM_OPTIONS, null);
+//                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.OTHER_ROMAN_INTERVAL, null);
+//                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.OTHER_ROMAN_OPTIONS, null);
 
 //                    timespanModel = getMatchedValues(timespanModel, InaccurateRegex.AFTER, InaccurateModel.AFTER);
 //                    timespanModel = getMatchedValues(timespanModel, InaccurateRegex.BEFORE, InaccurateModel.BEFORE);
@@ -70,13 +85,6 @@ public class TimespanUtils {
 //                    timespanModel = getMatchedValues(timespanModel, InaccurateRegex.APPROX_AGES_INTERVAL, InaccurateModel.APPROXIMATE);
 //                    timespanModel = getMatchedValues(timespanModel, InaccurateRegex.APPROX_AGES_OPTIONS, InaccurateModel.APPROXIMATE);
 
-//                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.CENTURY_INTERVAL, null);
-//                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.CENTURY_OPTIONS, null);
-//                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.MILLENNIUM_INTERVAL, null);
-//                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.MILLENNIUM_OPTIONS, null);
-//                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.OTHER_ROMAN_INTERVAL, null);
-//                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.OTHER_ROMAN_OPTIONS, null);
-//
                     if (timespanModel.getTimespanList().size() > 0)
                         System.out.println(timespanModel.getTimespanList());
                 }
@@ -173,8 +181,11 @@ public class TimespanUtils {
 //            case TimespanRegex.CENTURY_OPTIONS:
 //            case TimespanRegex.MILLENNIUM_INTERVAL:
 //            case TimespanRegex.MILLENNIUM_OPTIONS:
-//            case TimespanRegex.OTHER_ROMAN_INTERVAL:
-//            case TimespanRegex.OTHER_ROMAN_OPTIONS:
+//            case TimePeriodRegex.OTHER_ROMAN_INTERVAL:
+//            case TimePeriodRegex.OTHER_ROMAN_OPTIONS:
+//                return value
+//                        .replaceAll(TimespanRegex.AGE_AD, TimespanRegex.CHRISTUM_AD)
+//                        .replaceAll(TimespanRegex.AGE_BC, TimespanRegex.CHRISTUM_BC);
 //                return value.replaceAll(MIJ_REPLACEMENT, MIJ);
             case UnknownRegex.UNKNOWN:
             default:
