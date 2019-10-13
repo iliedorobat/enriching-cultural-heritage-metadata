@@ -37,8 +37,8 @@ public class TimespanUtils {
      * <ol>
      *     <li>Map every unknown value in order to clear the list by junk elements</li>
      *     <li>Map every date-like value</li>
-     *     <li>Map every age-like value (epoch)</li>
      *     <li>Map every century and millennium age-like value</li>
+     *     <li>Map every epoch-like value</li>
      * </ol>
      * @param filePath
      */
@@ -59,21 +59,23 @@ public class TimespanUtils {
 
                     timespanModel = new TimespanModel(value);
                     timespanModel = getMatchedValues(timespanModel, UnknownRegex.UNKNOWN, null);
+
                     timespanModel = getMatchedValues(timespanModel, FullDateRegex.DATE_DMY_INTERVAL, null);
                     timespanModel = getMatchedValues(timespanModel, FullDateRegex.DATE_YMD_INTERVAL, null);
                     timespanModel = getMatchedValues(timespanModel, ShortDateRegex.DATE_MY_INTERVAL, null);
                     timespanModel = getMatchedValues(timespanModel, FullDateRegex.DATE_DMY_OPTIONS, null);
                     timespanModel = getMatchedValues(timespanModel, FullDateRegex.DATE_YMD_OPTIONS, null);
                     timespanModel = getMatchedValues(timespanModel, ShortDateRegex.DATE_MY_OPTIONS, null);
-//                    timespanModel = getMatchedValues(timespanModel, AgeRegex.AGE_OPTIONS, null);
-//                    timespanModel.clearTimespanList();
-//
+
+                    timespanModel.clearTimespanList();
+
 //                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.CENTURY_INTERVAL, null);
 //                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.CENTURY_OPTIONS, null);
 //                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.MILLENNIUM_INTERVAL, null);
 //                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.MILLENNIUM_OPTIONS, null);
 //                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.OTHER_ROMAN_INTERVAL, null);
 //                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.OTHER_ROMAN_OPTIONS, null);
+                    timespanModel = getMatchedValues(timespanModel, AgeRegex.AGE_OPTIONS, null);
 
 //                    timespanModel = getMatchedValues(timespanModel, InaccurateRegex.AFTER, InaccurateModel.AFTER);
 //                    timespanModel = getMatchedValues(timespanModel, InaccurateRegex.BEFORE, InaccurateModel.BEFORE);
@@ -186,6 +188,7 @@ public class TimespanUtils {
 //                        .replaceAll(TimespanRegex.AGE_AD, TimespanRegex.CHRISTUM_AD)
 //                        .replaceAll(TimespanRegex.AGE_BC, TimespanRegex.CHRISTUM_BC);
 //                return value.replaceAll(MIJ_REPLACEMENT, MIJ);
+            case AgeRegex.AGE_OPTIONS:
             case UnknownRegex.UNKNOWN:
             default:
                 return value;
