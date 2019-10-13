@@ -1,6 +1,7 @@
 package ro.webdata.lido.convert.edm.processing.timespan.ro;
 
 import org.apache.commons.lang3.StringUtils;
+import ro.webdata.lido.convert.edm.common.constants.Constants;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.model.YearIntervalModel;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.model.TimespanModel;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.model.InaccurateModel;
@@ -19,8 +20,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TimespanUtils {
-    private static final String EMPTY_STRING = "";
-
     private static final String LEA = "lea";
     private static final String LEA_REPLACEMENT = "##LEA##";
     private static final String MIJ = "mij";
@@ -50,19 +49,16 @@ public class TimespanUtils {
 
             // used for testing
             String test = "s:17;a:1622;l:12;z:30";
-            test = "nov. 375 - aug. 378 __BC__ ";
+            test = "17 nov. 375-9 aug. 378 a.chr.";
 //            br = new BufferedReader(new StringReader(test));
             String readLine;
 
             while ((readLine = br.readLine()) != null) {
                 if (readLine.length() > 0) {
-                    String value = StringUtils.stripAccents(readLine)
-                            .replaceAll(TimespanRegex.AGE_BC, TimespanRegex.CHRISTUM_BC)
-                            .replaceAll(TimespanRegex.AGE_AD, TimespanRegex.CHRISTUM_AD);
+                    String value = StringUtils.stripAccents(readLine);
 
                     timespanModel = new TimespanModel(value);
-
-//                    timespanModel = getMatchedValues(timespanModel, UnknownRegex.UNKNOWN, null);
+                    timespanModel = getMatchedValues(timespanModel, UnknownRegex.UNKNOWN, null);
                     timespanModel = getMatchedValues(timespanModel, FullDateRegex.DATE_DMY_INTERVAL, null);
                     timespanModel = getMatchedValues(timespanModel, FullDateRegex.DATE_YMD_INTERVAL, null);
                     timespanModel = getMatchedValues(timespanModel, ShortDateRegex.DATE_MY_INTERVAL, null);
@@ -97,7 +93,10 @@ public class TimespanUtils {
     private static TimespanModel getMatchedValues(TimespanModel timespanModel, String regex, String flag) {
         String initialValue = timespanModel.getResidualValue();
         ArrayList<String> matchedList = timespanModel.getTimespanList();
-        String residualValue = initialValue.replaceAll(regex, EMPTY_STRING);
+        String residualValue = initialValue
+                .replaceAll(TimespanRegex.AGE_BC, TimespanRegex.CHRISTUM_BC)
+                .replaceAll(TimespanRegex.AGE_AD, TimespanRegex.CHRISTUM_AD)
+                .replaceAll(regex, Constants.EMPTY_VALUE_PLACEHOLDER);
 
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(initialValue);

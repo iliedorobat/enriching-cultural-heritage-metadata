@@ -8,7 +8,7 @@ public class UnknownRegex {
     private static final String REGEX_OR = TimespanRegex.REGEX_OR;
 
     public static final String UNKNOWN = "^("
-                + "17 nov. 375-9 aug. 378 a.chr."
+                + "17 nov\\. 375\\-9 aug\\. 378 a\\.chr\\."
                 + REGEX_OR + "an[ ]{0,1}\\d{1,2}[\\?]{0,1}"
                 + REGEX_OR + "cultura inca sau chachapoya\\?"
                 + REGEX_OR + "datat"
