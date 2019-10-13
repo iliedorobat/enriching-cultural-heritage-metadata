@@ -7,10 +7,8 @@ package ro.webdata.lido.convert.edm.processing.timespan.ro.regex;
 public class TimespanRegex {
     public static final String REGEX_OR = "|";
     public static final String REGEX_PUNCTUATION = "[\\.,;\\?!\\- ]";
-    public static final String REGEX_PUNCTUATION_UNLIMITED = "[\\.,;\\?!\\- ]*";
+    public static final String REGEX_PUNCTUATION_UNLIMITED = REGEX_PUNCTUATION + "*";
     public static final String REGEX_INTERVAL_DELIMITER = "([ ]*-[ ]*)";
-    //TODO: check
-//    private static final String REGEX_INTERVAL_DELIMITER = TimespanRegex.REGEX_INTERVAL_DELIMITER;
     public static final String REGEX_DATE_INTERVAL_SEPARATOR = "([ ]+-[ ]+)";
     public static final String REGEX_DATE_SEPARATOR = "[\\./\\- ]+";
     public static final String TEXT_START =

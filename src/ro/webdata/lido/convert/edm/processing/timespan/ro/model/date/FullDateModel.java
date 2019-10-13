@@ -30,7 +30,6 @@ public class FullDateModel {
 
     //TODO: "s:17;a:1622;l:12;z:30"
     //TODO: "17/29 octombrie 1893"
-    //TODO: "17 nov. 375-9 aug. 378 a.chr."
     private void setDateModel(String value, String order) {
         String[] intervalValues = value.trim()
                 .split(FullDateRegex.REGEX_DATE_INTERVAL_SEPARATOR);

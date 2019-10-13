@@ -2,6 +2,10 @@ package ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date;
 
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.TimespanRegex;
 
+/**
+ * Regular expressions for those time intervals that are stored
+ * as a date (having just a year and a month)
+ */
 public class ShortDateRegex {
     // REGEX_DATE_INTERVAL_SEPARATOR needs to be "([ ]*-[ ]*)" !!!
     public static final String REGEX_DATE_INTERVAL_SEPARATOR = TimespanRegex.REGEX_INTERVAL_DELIMITER;
@@ -10,7 +14,7 @@ public class ShortDateRegex {
     private static final String TEXT_START = TimespanRegex.TEXT_START;
     private static final String TEXT_END = TimespanRegex.TEXT_END;
 
-    // d{3,} allows us to avoid taking the month-day pattern (E.g.: "noiembrie 22")
+    // d{3,} allows us to avoid the month-day pattern (E.g.: "noiembrie 22")
     private static final String SHORT_DATE_MY_TEXT = "(" + MONTHS_RO + "[ ]+\\d{3,}" + ")";
 
     private static final String DATE_SHORT_MY_START_OPTIONS = "(" + TEXT_START + SHORT_DATE_MY_TEXT + ")";

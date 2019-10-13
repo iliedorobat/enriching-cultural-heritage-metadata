@@ -1,13 +1,15 @@
 package ro.webdata.lido.convert.edm.processing.timespan.ro.regex;
 
 /**
- * Regular expressions for timespan stored as an unknown time period
+ * Regular expressions for those time intervals that are stored
+ * as an unknown time period
  */
 public class UnknownRegex {
     private static final String REGEX_OR = TimespanRegex.REGEX_OR;
 
     public static final String UNKNOWN = "^("
-                + "an[ ]{0,1}\\d{1,2}[\\?]{0,1}"
+                + "17 nov. 375-9 aug. 378 a.chr."
+                + REGEX_OR + "an[ ]{0,1}\\d{1,2}[\\?]{0,1}"
                 + REGEX_OR + "cultura inca sau chachapoya\\?"
                 + REGEX_OR + "datat"
                 + REGEX_OR + "disparuta din uz si din zona; existenta in muzee"

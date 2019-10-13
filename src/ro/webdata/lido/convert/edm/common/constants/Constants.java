@@ -3,7 +3,7 @@ package ro.webdata.lido.convert.edm.common.constants;
 public class Constants {
     public static final char[] CHAR_DELIMITER = new char[]{' '};
     public static final String URL_SEPARATOR = "/";
-    public static final String INTERVAL_SEPARATOR = "#TO#";
+    public static final String INTERVAL_SEPARATOR = "__TO__";
 
     public static final String LABEL = "label";
     public static final String LANGUAGE = "language";

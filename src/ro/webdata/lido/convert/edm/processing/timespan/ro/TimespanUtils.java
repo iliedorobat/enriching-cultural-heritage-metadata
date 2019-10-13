@@ -8,7 +8,6 @@ import ro.webdata.lido.convert.edm.processing.timespan.ro.model.date.FullDateMod
 import ro.webdata.lido.convert.edm.processing.timespan.ro.model.date.ShortDateModel;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.AgeRegex;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.InaccurateRegex;
-import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.TimePeriodRegex;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.UnknownRegex;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.FullDateRegex;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.ShortDateRegex;
@@ -16,7 +15,6 @@ import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.ShortDateRe
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -36,7 +34,9 @@ public class TimespanUtils {
 
     /**
      * TODO: doc
-     * 1. Map every unknown value in order to clear the list by junk
+     * 1. Map every unknown value in order to clear the list by junk elements
+     * 2. Map every date-like value
+     * 3. Map every age-like value (epoch)
      * @param filePath
      */
     public static void read(String filePath) {
@@ -47,35 +47,35 @@ public class TimespanUtils {
             // used for testing
             String test = "s:17;a:1622;l:12;z:30";
             test = "20 i.e.n";
-            br = new BufferedReader(new StringReader(test));
+//            br = new BufferedReader(new StringReader(test));
             String readLine;
 
             while ((readLine = br.readLine()) != null) {
                 if (readLine.length() > 0) {
                     timespanModel = new TimespanModel(StringUtils.stripAccents(readLine));
 
-//                    timespanModel = getMatchedValues(timespanModel, UnknownRegex.UNKNOWN, null);
+                    timespanModel = getMatchedValues(timespanModel, UnknownRegex.UNKNOWN, null);
+                    timespanModel = getMatchedValues(timespanModel, FullDateRegex.DATE_DMY_INTERVAL, null);
+                    timespanModel = getMatchedValues(timespanModel, FullDateRegex.DATE_YMD_INTERVAL, null);
+                    timespanModel = getMatchedValues(timespanModel, ShortDateRegex.DATE_MY_INTERVAL, null);
+                    timespanModel = getMatchedValues(timespanModel, FullDateRegex.DATE_DMY_OPTIONS, null);
+                    timespanModel = getMatchedValues(timespanModel, FullDateRegex.DATE_YMD_OPTIONS, null);
+                    timespanModel = getMatchedValues(timespanModel, ShortDateRegex.DATE_MY_OPTIONS, null);
+                    timespanModel = getMatchedValues(timespanModel, AgeRegex.AGE_OPTIONS, null);
+//                    timespanModel.clearTimespanList();
+
 //                    timespanModel = getMatchedValues(timespanModel, InaccurateRegex.AFTER, InaccurateModel.AFTER);
 //                    timespanModel = getMatchedValues(timespanModel, InaccurateRegex.BEFORE, InaccurateModel.BEFORE);
 //                    timespanModel = getMatchedValues(timespanModel, InaccurateRegex.DATELESS, InaccurateModel.UNDATED);
 //                    timespanModel = getMatchedValues(timespanModel, InaccurateRegex.APPROX_AGES_INTERVAL, InaccurateModel.APPROXIMATE);
 //                    timespanModel = getMatchedValues(timespanModel, InaccurateRegex.APPROX_AGES_OPTIONS, InaccurateModel.APPROXIMATE);
-//
-//                    timespanModel = getMatchedValues(timespanModel, FullDateRegex.DATE_DMY_INTERVAL, null);
-//                    timespanModel = getMatchedValues(timespanModel, FullDateRegex.DATE_YMD_INTERVAL, null);
-//                    timespanModel = getMatchedValues(timespanModel, ShortDateRegex.DATE_MY_INTERVAL, null);
-//                    timespanModel = getMatchedValues(timespanModel, FullDateRegex.DATE_DMY_OPTIONS, null);
-//                    timespanModel = getMatchedValues(timespanModel, FullDateRegex.DATE_YMD_OPTIONS, null);
-//                    timespanModel = getMatchedValues(timespanModel, ShortDateRegex.DATE_MY_OPTIONS, null);
-//                    timespanModel = getMatchedValues(timespanModel, AgeRegex.ERA_OPTIONS, null);
-//
-                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.CENTURY_INTERVAL, null);
-                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.CENTURY_OPTIONS, null);
-                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.MILLENNIUM_INTERVAL, null);
-                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.MILLENNIUM_OPTIONS, null);
+
+//                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.CENTURY_INTERVAL, null);
+//                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.CENTURY_OPTIONS, null);
+//                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.MILLENNIUM_INTERVAL, null);
+//                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.MILLENNIUM_OPTIONS, null);
 //                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.OTHER_ROMAN_INTERVAL, null);
-                    timespanModel.clearTimespanList();
-                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.OTHER_ROMAN_OPTIONS, null);
+//                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.OTHER_ROMAN_OPTIONS, null);
 //
                     if (timespanModel.getTimespanList().size() > 0)
                         System.out.println(timespanModel.getTimespanList());
