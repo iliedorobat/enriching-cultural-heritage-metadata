@@ -67,15 +67,15 @@ public class TimespanUtils {
                     timespanModel = getMatchedValues(timespanModel, FullDateRegex.DATE_YMD_OPTIONS, null);
                     timespanModel = getMatchedValues(timespanModel, ShortDateRegex.DATE_MY_OPTIONS, null);
 
-                    timespanModel.clearTimespanList();
-
-//                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.CENTURY_INTERVAL, null);
-//                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.CENTURY_OPTIONS, null);
-//                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.MILLENNIUM_INTERVAL, null);
-//                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.MILLENNIUM_OPTIONS, null);
-//                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.OTHER_ROMAN_INTERVAL, null);
-//                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.OTHER_ROMAN_OPTIONS, null);
+                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.CENTURY_INTERVAL, null);
+                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.CENTURY_OPTIONS, null);
+                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.MILLENNIUM_INTERVAL, null);
+                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.MILLENNIUM_OPTIONS, null);
+                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.OTHER_ROMAN_INTERVAL, null);
+                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.OTHER_ROMAN_OPTIONS, null);
                     timespanModel = getMatchedValues(timespanModel, AgeRegex.AGE_OPTIONS, null);
+
+                    timespanModel.clearTimespanList();
 
 //                    timespanModel = getMatchedValues(timespanModel, InaccurateRegex.AFTER, InaccurateModel.AFTER);
 //                    timespanModel = getMatchedValues(timespanModel, InaccurateRegex.BEFORE, InaccurateModel.BEFORE);

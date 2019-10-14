@@ -60,18 +60,19 @@ public class TimespanAnalysis {
                 FullDateRegex.DATE_DMY_OPTIONS,
                 FullDateRegex.DATE_YMD_OPTIONS,
                 ShortDateRegex.DATE_MY_OPTIONS,
-                AgeRegex.AGE_OPTIONS,
-                InaccurateRegex.AFTER,
-                InaccurateRegex.BEFORE,
-                InaccurateRegex.DATELESS,
-                InaccurateRegex.APPROX_AGES_INTERVAL,
-                InaccurateRegex.APPROX_AGES_OPTIONS,
                 TimePeriodRegex.CENTURY_INTERVAL,
                 TimePeriodRegex.CENTURY_OPTIONS,
                 TimePeriodRegex.MILLENNIUM_INTERVAL,
                 TimePeriodRegex.MILLENNIUM_OPTIONS,
                 TimePeriodRegex.OTHER_ROMAN_INTERVAL,
-                TimePeriodRegex.OTHER_ROMAN_OPTIONS
+                TimePeriodRegex.OTHER_ROMAN_OPTIONS,
+                AgeRegex.AGE_OPTIONS,
+
+                InaccurateRegex.AFTER,
+                InaccurateRegex.BEFORE,
+                InaccurateRegex.DATELESS,
+                InaccurateRegex.APPROX_AGES_INTERVAL,
+                InaccurateRegex.APPROX_AGES_OPTIONS
         };
 
         try {

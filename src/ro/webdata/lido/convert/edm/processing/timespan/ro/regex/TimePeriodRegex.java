@@ -1,7 +1,9 @@
 package ro.webdata.lido.convert.edm.processing.timespan.ro.regex;
 
-//TODO: add exception: "1908 d"
-//TODO: add exception for christum notation ("100 i.chr.")
+/**
+ * Regular expressions for those time intervals that are stored
+ * as ages (centuries and millenniums)
+ */
 public class TimePeriodRegex {
     private static final String REGEX_OR = TimespanRegex.REGEX_OR;
     private static final String REGEX_PUNCTUATION_UNLIMITED = TimespanRegex.REGEX_PUNCTUATION_UNLIMITED;
@@ -102,8 +104,9 @@ public class TimePeriodRegex {
     private static final String MILLENNIUM_ARABIC_SECOND_QUARTER = SECOND_QUARTER + REGEX_PUNCTUATION_UNLIMITED + MILLENNIUM_ARABIC;
     private static final String MILLENNIUM_ARABIC_THIRD_QUARTER = THIRD_QUARTER + REGEX_PUNCTUATION_UNLIMITED + MILLENNIUM_ARABIC;
     private static final String MILLENNIUM_ARABIC_FORTH_QUARTER = FORTH_QUARTER + REGEX_PUNCTUATION_UNLIMITED + MILLENNIUM_ARABIC;
-    private static final String MILLENNIUM_ARABIC_OPTIONS = "("
-            + "(" + MILLENNIUM_ARABIC_FIRST_HALF + ")"
+    private static final String MILLENNIUM_ARABIC_OPTIONS =
+            "("
+                + "(" + MILLENNIUM_ARABIC_FIRST_HALF + ")"
                 + REGEX_OR + "(" + MILLENNIUM_ARABIC_SECOND_HALF + ")"
                 + REGEX_OR + "(" + MILLENNIUM_ARABIC_MIDDLE_OF + ")"
                 + REGEX_OR + "(" + MILLENNIUM_ARABIC_FIRST_QUARTER + ")"
@@ -133,7 +136,9 @@ public class TimePeriodRegex {
                 + REGEX_OR + "(" + OTHER_ROMAN_SECOND_QUARTER + ")"
                 + REGEX_OR + "(" + OTHER_ROMAN_THIRD_QUARTER + ")"
                 + REGEX_OR + "(" + OTHER_ROMAN_FORTH_QUARTER + ")"
-                + REGEX_OR + "(" + TEXT_START + AGES_ROMAN_NOTATION + ")"
+                    // we can not treat the case of simple ages because it's not possible
+                    // to handle cases as "6 mai, v leat 7230 (1722)", "grupa a iv-a" etc.
+//                + REGEX_OR + "(" + TEXT_START + AGES_ROMAN_NOTATION + TEXT_END + ")"
             + ")";
     public static final String OTHER_ROMAN_INTERVAL = OTHER_ROMAN_OPTIONS + REGEX_INTERVAL_DELIMITER
             + "(" +  OTHER_ROMAN_OPTIONS + REGEX_OR + AGES_ROMAN_NOTATION + ")";
