@@ -4,7 +4,11 @@ import ro.webdata.lido.convert.edm.common.constants.Constants;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.TimespanRegex;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.LongDateRegex;
 
-//TODO: "s:17;a:1622;l:12;z:30"
+/**
+ * Regular expressions for those time intervals that are stored
+ * as a "long" date (having a century, a year, a month and a day)<br/>
+ * E.g.: "s:17;a:1622;l:12;z:30"
+ */
 public class LongDateModel {
     private static final String SUFFIX_CENTURY = "s:";
     private static final String SUFFIX_YEAR = "a:";
@@ -65,20 +69,28 @@ public class LongDateModel {
     }
 
     private void setCentury(String value) {
-        this.century = value.replaceAll(SUFFIX_CENTURY, Constants.EMPTY_VALUE_PLACEHOLDER);
+        this.century = value
+                .replaceAll(SUFFIX_CENTURY, Constants.EMPTY_VALUE_PLACEHOLDER)
+                .trim();
     }
 
     private void setYear(String value) {
-        String yearStr = value.replaceAll(SUFFIX_YEAR, Constants.EMPTY_VALUE_PLACEHOLDER);
+        String yearStr = value
+                .replaceAll(SUFFIX_YEAR, Constants.EMPTY_VALUE_PLACEHOLDER)
+                .trim();
         this.year = Integer.parseInt(yearStr);
     }
 
     private void setMonth(String value) {
-        this.month = value.replaceAll(SUFFIX_MONTH, Constants.EMPTY_VALUE_PLACEHOLDER);
+        this.month = value
+                .replaceAll(SUFFIX_MONTH, Constants.EMPTY_VALUE_PLACEHOLDER)
+                .trim();
     }
 
     private void setDay(String value) {
-        String dayStr = value.replaceAll(SUFFIX_DAY, Constants.EMPTY_VALUE_PLACEHOLDER);
+        String dayStr = value
+                .replaceAll(SUFFIX_DAY, Constants.EMPTY_VALUE_PLACEHOLDER)
+                .trim();
         this.day = Integer.parseInt(dayStr);
     }
 }
