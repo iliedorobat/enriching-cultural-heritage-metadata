@@ -6,9 +6,11 @@ import ro.webdata.lido.convert.edm.processing.timespan.ro.model.YearIntervalMode
 import ro.webdata.lido.convert.edm.processing.timespan.ro.model.TimespanModel;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.model.InaccurateModel;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.model.date.DateModel;
+import ro.webdata.lido.convert.edm.processing.timespan.ro.model.date.LongDateModel;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.model.date.ShortDateModel;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.*;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.DateRegex;
+import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.LongDateRegex;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.ShortDateRegex;
 
 import java.io.BufferedReader;
@@ -65,6 +67,7 @@ public class TimespanUtils {
                     timespanModel = getMatchedValues(timespanModel, DateRegex.DATE_DMY_OPTIONS, null);
                     timespanModel = getMatchedValues(timespanModel, DateRegex.DATE_YMD_OPTIONS, null);
                     timespanModel = getMatchedValues(timespanModel, ShortDateRegex.DATE_MY_OPTIONS, null);
+                    timespanModel = getMatchedValues(timespanModel, LongDateRegex.LONG_DATE_OPTIONS, null);
 
                     timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.CENTURY_INTERVAL, null);
                     timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.CENTURY_OPTIONS, null);
@@ -131,6 +134,7 @@ public class TimespanUtils {
     private static String prepareDateTime(String value, String regex, String flag) {
         DateModel dateModel;
         ShortDateModel shortDateModel;
+        LongDateModel longDateModel;
 
         switch (regex) {
             case DateRegex.DATE_DMY_INTERVAL:
@@ -145,6 +149,9 @@ public class TimespanUtils {
             case ShortDateRegex.DATE_MY_OPTIONS:
                 shortDateModel = new ShortDateModel(value, ShortDateModel.MY);
                 return shortDateModel.toString();
+            case LongDateRegex.LONG_DATE_OPTIONS:
+                longDateModel = new LongDateModel(value);
+                return longDateModel.toString();
             default:
                 return value;
         }

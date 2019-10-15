@@ -33,7 +33,6 @@ public class DateModel {
         setDateModel(value, order);
     }
 
-    //TODO: "s:17;a:1622;l:12;z:30"
     //TODO: "17/29 octombrie 1893"
     private void setDateModel(String value, String order) {
         String preparedValue = value

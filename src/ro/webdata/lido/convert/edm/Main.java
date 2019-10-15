@@ -11,9 +11,10 @@ import ro.webdata.lido.convert.edm.common.TextUtils;
 import ro.webdata.lido.convert.edm.common.constants.FileConstants;
 import ro.webdata.lido.convert.edm.common.constants.NSConstants;
 import ro.webdata.lido.convert.edm.core.LidoWrapProcessing;
-import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.FullDateRegex;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.TimespanAnalysis;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.TimespanUtils;
+import ro.webdata.lido.convert.edm.processing.timespan.ro.model.date.LongDateModel;
+import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.TimespanRegex;
 import ro.webdata.lido.convert.edm.vocabulary.EDM;
 import ro.webdata.lido.convert.edm.vocabulary.ORE;
 
@@ -43,20 +44,20 @@ public class Main {
         boolean PLAY = true;
 //        // 1.
 //        TimespanAnalysis.write(fileNames, FileConstatnts.OUTPUT_FILE_TIMESPAN);
-        if (PLAY)
+        if (!PLAY)
             TimespanUtils.read(FileConstants.OUTPUT_FILE_TIMESPAN);
 
-        if (!PLAY)
+        if (PLAY)
             TimespanAnalysis.check(FileConstants.OUTPUT_FILE_TIMESPAN);
 
         if (!PLAY) {
-            String str = "1914, aprilie 3";
+            String str = "1914, aprilie 3 ";
 //            str = "1914 aprilie 3";
 //            String replaced = str.replaceAll("mij", "MIJ").replaceAll("lea", "LEA");
 //            replaced = StringUtils.stripAccents(replaced);
             String replaced = StringUtils.stripAccents(str);
 
-            Pattern pattern = Pattern.compile(FullDateRegex.DATE_YMD_OPTIONS);
+            Pattern pattern = Pattern.compile("\\d");
             Matcher matcher = pattern.matcher(replaced);
             while (matcher.find()) {
                 String matched = matcher.group();

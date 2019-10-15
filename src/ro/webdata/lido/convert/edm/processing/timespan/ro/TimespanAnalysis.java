@@ -8,6 +8,7 @@ import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.UnknownRegex;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.DateRegex;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.TimePeriodRegex;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.InaccurateRegex;
+import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.LongDateRegex;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.ShortDateRegex;
 import ro.webdata.lido.parser.core.ParserDAO;
 import ro.webdata.lido.parser.core.ParserDAOImpl;
@@ -60,6 +61,7 @@ public class TimespanAnalysis {
                 DateRegex.DATE_DMY_OPTIONS,
                 DateRegex.DATE_YMD_OPTIONS,
                 ShortDateRegex.DATE_MY_OPTIONS,
+                LongDateRegex.LONG_DATE_OPTIONS,
                 TimePeriodRegex.CENTURY_INTERVAL,
                 TimePeriodRegex.CENTURY_OPTIONS,
                 TimePeriodRegex.MILLENNIUM_INTERVAL,
