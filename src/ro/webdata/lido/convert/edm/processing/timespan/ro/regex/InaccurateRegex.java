@@ -1,6 +1,6 @@
 package ro.webdata.lido.convert.edm.processing.timespan.ro.regex;
 
-import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.FullDateRegex;
+import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.DateRegex;
 
 public class InaccurateRegex {
     private static final String REGEX_OR = TimespanRegex.REGEX_OR;
@@ -43,8 +43,8 @@ public class InaccurateRegex {
 
     public static final String AFTER = TEXT_START + "("
                 + "(dupa|post|postum)[ ]*("
-                    + FullDateRegex.DATE_DMY_OPTIONS
-                    + REGEX_OR + FullDateRegex.DATE_YMD_OPTIONS
+                    + DateRegex.DATE_DMY_OPTIONS
+                    + REGEX_OR + DateRegex.DATE_YMD_OPTIONS
                     + REGEX_OR + "("
                         + TEXT_START + "\\d{1,4}" + CHRISTUM_SUFFIX_NOTATION + TEXT_END
                     + ")"

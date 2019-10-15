@@ -5,7 +5,7 @@ import ro.webdata.lido.convert.edm.common.TextUtils;
 import ro.webdata.lido.convert.edm.common.constants.FileConstants;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.AgeRegex;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.UnknownRegex;
-import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.FullDateRegex;
+import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.DateRegex;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.TimePeriodRegex;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.InaccurateRegex;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.ShortDateRegex;
@@ -54,11 +54,11 @@ public class TimespanAnalysis {
         //TODO:
         String[] list = {
                 UnknownRegex.UNKNOWN,
-                FullDateRegex.DATE_DMY_INTERVAL,
-                FullDateRegex.DATE_YMD_INTERVAL,
+                DateRegex.DATE_DMY_INTERVAL,
+                DateRegex.DATE_YMD_INTERVAL,
                 ShortDateRegex.DATE_MY_INTERVAL,
-                FullDateRegex.DATE_DMY_OPTIONS,
-                FullDateRegex.DATE_YMD_OPTIONS,
+                DateRegex.DATE_DMY_OPTIONS,
+                DateRegex.DATE_YMD_OPTIONS,
                 ShortDateRegex.DATE_MY_OPTIONS,
                 TimePeriodRegex.CENTURY_INTERVAL,
                 TimePeriodRegex.CENTURY_OPTIONS,

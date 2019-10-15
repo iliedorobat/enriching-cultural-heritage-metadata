@@ -5,16 +5,15 @@ import ro.webdata.lido.convert.edm.common.constants.Constants;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.model.YearIntervalModel;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.model.TimespanModel;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.model.InaccurateModel;
-import ro.webdata.lido.convert.edm.processing.timespan.ro.model.date.FullDateModel;
+import ro.webdata.lido.convert.edm.processing.timespan.ro.model.date.DateModel;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.model.date.ShortDateModel;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.*;
-import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.FullDateRegex;
+import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.DateRegex;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.ShortDateRegex;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -60,11 +59,11 @@ public class TimespanUtils {
                     timespanModel = new TimespanModel(value);
                     timespanModel = getMatchedValues(timespanModel, UnknownRegex.UNKNOWN, null);
 
-                    timespanModel = getMatchedValues(timespanModel, FullDateRegex.DATE_DMY_INTERVAL, null);
-                    timespanModel = getMatchedValues(timespanModel, FullDateRegex.DATE_YMD_INTERVAL, null);
+                    timespanModel = getMatchedValues(timespanModel, DateRegex.DATE_DMY_INTERVAL, null);
+                    timespanModel = getMatchedValues(timespanModel, DateRegex.DATE_YMD_INTERVAL, null);
                     timespanModel = getMatchedValues(timespanModel, ShortDateRegex.DATE_MY_INTERVAL, null);
-                    timespanModel = getMatchedValues(timespanModel, FullDateRegex.DATE_DMY_OPTIONS, null);
-                    timespanModel = getMatchedValues(timespanModel, FullDateRegex.DATE_YMD_OPTIONS, null);
+                    timespanModel = getMatchedValues(timespanModel, DateRegex.DATE_DMY_OPTIONS, null);
+                    timespanModel = getMatchedValues(timespanModel, DateRegex.DATE_YMD_OPTIONS, null);
                     timespanModel = getMatchedValues(timespanModel, ShortDateRegex.DATE_MY_OPTIONS, null);
 
                     timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.CENTURY_INTERVAL, null);
@@ -130,18 +129,18 @@ public class TimespanUtils {
      * @return The formatted value
      */
     private static String prepareDateTime(String value, String regex, String flag) {
-        FullDateModel fullDateModel;
+        DateModel dateModel;
         ShortDateModel shortDateModel;
 
         switch (regex) {
-            case FullDateRegex.DATE_DMY_INTERVAL:
-            case FullDateRegex.DATE_DMY_OPTIONS:
-                fullDateModel = new FullDateModel(value, FullDateModel.DMY);
-                return fullDateModel.toString();
-            case FullDateRegex.DATE_YMD_INTERVAL:
-            case FullDateRegex.DATE_YMD_OPTIONS:
-                fullDateModel = new FullDateModel(value, FullDateModel.YMD);
-                return fullDateModel.toString();
+            case DateRegex.DATE_DMY_INTERVAL:
+            case DateRegex.DATE_DMY_OPTIONS:
+                dateModel = new DateModel(value, DateModel.DMY);
+                return dateModel.toString();
+            case DateRegex.DATE_YMD_INTERVAL:
+            case DateRegex.DATE_YMD_OPTIONS:
+                dateModel = new DateModel(value, DateModel.YMD);
+                return dateModel.toString();
             case ShortDateRegex.DATE_MY_INTERVAL:
             case ShortDateRegex.DATE_MY_OPTIONS:
                 shortDateModel = new ShortDateModel(value, ShortDateModel.MY);

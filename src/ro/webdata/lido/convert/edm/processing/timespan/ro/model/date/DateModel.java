@@ -4,13 +4,13 @@ import ro.webdata.lido.convert.edm.common.DateUtils;
 import ro.webdata.lido.convert.edm.common.PrintMessages;
 import ro.webdata.lido.convert.edm.common.constants.Constants;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.TimespanRegex;
-import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.FullDateRegex;
+import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.DateRegex;
 
 /**
  * Used for date presented as day-month-year or year-month-day
  */
 //TODO: extending from a common date class
-public class FullDateModel {
+public class DateModel {
     /** Year, Month, Day order */
     public static String YMD = "YMD";
     /** Day, Month, Year order */
@@ -27,9 +27,9 @@ public class FullDateModel {
     private int dayStart, dayEnd;
     private boolean isInterval;
 
-    private FullDateModel() {}
+    private DateModel() {}
 
-    public FullDateModel(String value, String order) {
+    public DateModel(String value, String order) {
         setDateModel(value, order);
     }
 
@@ -41,7 +41,7 @@ public class FullDateModel {
                 .replaceAll(TimespanRegex.CHRISTUM_BC, Constants.EMPTY_VALUE_PLACEHOLDER)
                 .trim();
         String[] intervalValues = preparedValue
-                .split(FullDateRegex.REGEX_DATE_INTERVAL_SEPARATOR);
+                .split(DateRegex.REGEX_DATE_INTERVAL_SEPARATOR);
 
         if (intervalValues.length == 2) {
             setIsInterval(true);

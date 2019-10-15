@@ -6,7 +6,7 @@ import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.TimespanRegex;
  * Regular expressions for those time intervals that are stored
  * as a date (having a year, a month and a day)
  */
-public class FullDateRegex {
+public class DateRegex {
     // REGEX_DATE_INTERVAL_SEPARATOR needs to be "([ ]+-[ ]+)"
     public static final String REGEX_DATE_INTERVAL_SEPARATOR = TimespanRegex.REGEX_DATE_INTERVAL_SEPARATOR;
     private static final String REGEX_OR = TimespanRegex.REGEX_OR;
