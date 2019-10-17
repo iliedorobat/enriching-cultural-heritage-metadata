@@ -17,8 +17,7 @@ public class ShortDateRegex {
 
     // d{3,} allows us to avoid the month-day pattern (E.g.: "noiembrie 22")
     private static final String SHORT_DATE_MY_TEXT = "("
-                + MONTHS_RO + "[ ]+\\d{3,}"
-                + AD_BC_OPTIONAL
+                + MONTHS_RO + "[ ]+\\d{3,}" + AD_BC_OPTIONAL
             + ")";
 
     private static final String DATE_SHORT_MY_START_OPTIONS = "(" + TEXT_START + SHORT_DATE_MY_TEXT + ")";

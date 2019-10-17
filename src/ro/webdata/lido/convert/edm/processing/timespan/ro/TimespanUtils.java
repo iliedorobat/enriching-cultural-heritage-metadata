@@ -4,7 +4,8 @@ import org.apache.commons.lang3.StringUtils;
 import ro.webdata.lido.convert.edm.common.constants.Constants;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.model.YearIntervalModel;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.model.TimespanModel;
-import ro.webdata.lido.convert.edm.processing.timespan.ro.model.InaccurateModel;
+import ro.webdata.lido.convert.edm.processing.timespan.ro.model.imprecise.DatelessModel;
+import ro.webdata.lido.convert.edm.processing.timespan.ro.model.imprecise.InaccurateYearModel;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.model.date.DateModel;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.model.date.LongDateModel;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.model.date.ShortDateModel;
@@ -12,10 +13,13 @@ import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.*;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.DateRegex;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.LongDateRegex;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.ShortDateRegex;
+import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.imprecise.DatelessRegex;
+import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.imprecise.InaccurateYearRegex;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -49,9 +53,9 @@ public class TimespanUtils {
             BufferedReader br = new BufferedReader(new FileReader(filePath));
 
             // used for testing
-            String test = "s:17;a:1622;l:12;z:30";
-            test = "17 nov. 375-9 aug. 378 a.chr.";
-//            br = new BufferedReader(new StringReader(test));
+            String test = "după 29 aprilie 1616";
+            test = "post 330-320 a.chr.";
+            br = new BufferedReader(new StringReader(test));
             String readLine;
 
             while ((readLine = br.readLine()) != null) {
@@ -76,14 +80,15 @@ public class TimespanUtils {
                     timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.OTHER_ROMAN_INTERVAL, null);
                     timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.OTHER_ROMAN_OPTIONS, null);
                     timespanModel = getMatchedValues(timespanModel, AgeRegex.AGE_OPTIONS, null);
-
-                    timespanModel.clearTimespanList();
-
-//                    timespanModel = getMatchedValues(timespanModel, InaccurateRegex.AFTER, InaccurateModel.AFTER);
-//                    timespanModel = getMatchedValues(timespanModel, InaccurateRegex.BEFORE, InaccurateModel.BEFORE);
-//                    timespanModel = getMatchedValues(timespanModel, InaccurateRegex.DATELESS, InaccurateModel.UNDATED);
-//                    timespanModel = getMatchedValues(timespanModel, InaccurateRegex.APPROX_AGES_INTERVAL, InaccurateModel.APPROXIMATE);
-//                    timespanModel = getMatchedValues(timespanModel, InaccurateRegex.APPROX_AGES_OPTIONS, InaccurateModel.APPROXIMATE);
+//
+                    timespanModel = getMatchedValues(timespanModel, DatelessRegex.DATELESS, null);
+                    timespanModel = getMatchedValues(timespanModel, InaccurateYearRegex.AFTER_INTERVAL, InaccurateYearModel.AFTER);
+                    timespanModel = getMatchedValues(timespanModel, InaccurateYearRegex.BEFORE_INTERVAL, InaccurateYearModel.BEFORE);
+                    timespanModel = getMatchedValues(timespanModel, InaccurateYearRegex.APPROX_AGES_INTERVAL, InaccurateYearModel.APPROXIMATE);
+                    timespanModel = getMatchedValues(timespanModel, InaccurateYearRegex.AFTER, InaccurateYearModel.AFTER);
+                    timespanModel = getMatchedValues(timespanModel, InaccurateYearRegex.BEFORE, InaccurateYearModel.BEFORE);
+                    timespanModel = getMatchedValues(timespanModel, InaccurateYearRegex.APPROX_AGES_OPTIONS, InaccurateYearModel.APPROXIMATE);
+//                    timespanModel.clearTimespanList();
 
                     if (timespanModel.getTimespanList().size() > 0)
                         System.out.println(timespanModel.getTimespanList());
@@ -95,17 +100,25 @@ public class TimespanUtils {
     }
 
     private static TimespanModel getMatchedValues(TimespanModel timespanModel, String regex, String flag) {
-        String initialValue = timespanModel.getResidualValue();
+        String initialValue = timespanModel.getResidualValue()
+                .replaceAll(TimespanRegex.AGE_BC, TimespanRegex.CHRISTUM_BC)
+                .replaceAll(TimespanRegex.AGE_AD, TimespanRegex.CHRISTUM_AD);
+
+        // Particular logic to add a space before and after the interval delimiter
+        if (initialValue.equals("17 nov. 375-9 aug. 378 __BC__")) {
+            initialValue = "17 nov. 375 - 9 aug. 378 __BC__";
+        }
+
         ArrayList<String> matchedList = timespanModel.getTimespanList();
         String residualValue = initialValue
-                .replaceAll(TimespanRegex.AGE_BC, TimespanRegex.CHRISTUM_BC)
-                .replaceAll(TimespanRegex.AGE_AD, TimespanRegex.CHRISTUM_AD)
                 .replaceAll(regex, Constants.EMPTY_VALUE_PLACEHOLDER);
 
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(initialValue);
+//        System.out.println("initialValue: " + initialValue);
 
         while (matcher.find()) {
+//            System.out.println("matcher: " + matcher.group());
             // String prepared = prepareTimePeriod(prepared, regex);
             //TODO: check
             String prepared = prepareDateTime(matcher.group(), regex, flag);
@@ -159,7 +172,8 @@ public class TimespanUtils {
 
     private static String prepareAges(String value, String regex, String flag) {
         YearIntervalModel yearIntervalModel;
-        InaccurateModel inaccurateModel;
+        DatelessModel datelessModel;
+        InaccurateYearModel inaccurateYearModel;
 
         switch (regex) {
 //            case TimespanRegex.AGES_4_INTERVAL:
@@ -170,13 +184,17 @@ public class TimespanUtils {
 //            case TimespanRegex.AGES_APPROX:
 //            case TimespanRegex.AGES_1_4_UNCERTAIN:
 //            case TimespanRegex.AGES_1_4_CHRISTUM_GROUP:
-            case InaccurateRegex.AFTER:
-            case InaccurateRegex.BEFORE:
-            case InaccurateRegex.DATELESS:
-            case InaccurateRegex.APPROX_AGES_INTERVAL:
-            case InaccurateRegex.APPROX_AGES_OPTIONS:
-                inaccurateModel = new InaccurateModel(value, flag);
-                return inaccurateModel.toString();
+            case InaccurateYearRegex.AFTER_INTERVAL:
+            case InaccurateYearRegex.BEFORE_INTERVAL:
+            case InaccurateYearRegex.APPROX_AGES_INTERVAL:
+            case InaccurateYearRegex.AFTER:
+            case InaccurateYearRegex.BEFORE:
+            case InaccurateYearRegex.APPROX_AGES_OPTIONS:
+                inaccurateYearModel = new InaccurateYearModel(value, flag);
+                return inaccurateYearModel.toString();
+            case DatelessRegex.DATELESS:
+                datelessModel = new DatelessModel(value);
+                return datelessModel.toString();
             default:
                 return value;
         }
@@ -202,7 +220,49 @@ public class TimespanUtils {
     }
 
 
+    /**
+     * Map the prepared era value to simple name.
+     * The prepared era value is the original era value which
+     * has been processed as following:
+     * <ul>
+     *     <li>era that is matching with TimespanRegex.CHRISTUM_AD will be mapped to "AD"</li>
+     *     <li>era that is matching with TimespanRegex.CHRISTUM_BC will be mapped to "BC"</li>
+     * </ul>
+     * @param value The input value
+     * @return "AD" ord "BC"
+     */
+    public static String getEraName(String value) {
+        return value.contains(TimespanRegex.CHRISTUM_BC)
+                ? "BC"
+                : "AD";
+    }
 
+    /**
+     * Extract the era from the prepared value.
+     * The prepared value is the original value for which
+     * era has been processed as following:
+     * <ul>
+     *     <li>all values that are matching with TimespanRegex.AGE_AD will be mapped to TimespanRegex.CHRISTUM_AD</li>
+     *     <li>all values that are matching with TimespanRegex.AGE_BC will be mapped to TimespanRegex.CHRISTUM_BC</li>
+     * </ul>
+     * @param value The input value
+     * @return "__AD__" or "__BC__"
+     */
+    public static String getEraPlaceholder(String value) {
+        return value.contains(TimespanRegex.CHRISTUM_BC)
+                ? TimespanRegex.CHRISTUM_BC
+                : TimespanRegex.CHRISTUM_AD;
+    }
 
-
+    /**
+     * Remove the Christum notation ("__AD__" and "__BC__")
+     * @param value The input value
+     * @return The value without Christum notation
+     */
+    public static String clearChristumNotation(String value) {
+        return value
+                .replaceAll(TimespanRegex.CHRISTUM_BC, Constants.EMPTY_VALUE_PLACEHOLDER)
+                .replaceAll(TimespanRegex.CHRISTUM_AD, Constants.EMPTY_VALUE_PLACEHOLDER)
+                .trim();
+    }
 }

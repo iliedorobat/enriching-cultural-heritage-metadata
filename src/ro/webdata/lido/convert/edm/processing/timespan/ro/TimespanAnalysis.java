@@ -7,7 +7,8 @@ import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.AgeRegex;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.UnknownRegex;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.DateRegex;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.TimePeriodRegex;
-import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.InaccurateRegex;
+import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.imprecise.DatelessRegex;
+import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.imprecise.InaccurateYearRegex;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.LongDateRegex;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.ShortDateRegex;
 import ro.webdata.lido.parser.core.ParserDAO;
@@ -70,11 +71,13 @@ public class TimespanAnalysis {
                 TimePeriodRegex.OTHER_ROMAN_OPTIONS,
                 AgeRegex.AGE_OPTIONS,
 
-                InaccurateRegex.AFTER,
-                InaccurateRegex.BEFORE,
-                InaccurateRegex.DATELESS,
-                InaccurateRegex.APPROX_AGES_INTERVAL,
-                InaccurateRegex.APPROX_AGES_OPTIONS
+                DatelessRegex.DATELESS,
+                InaccurateYearRegex.AFTER_INTERVAL,
+                InaccurateYearRegex.BEFORE_INTERVAL,
+                InaccurateYearRegex.APPROX_AGES_INTERVAL,
+                InaccurateYearRegex.AFTER,
+                InaccurateYearRegex.BEFORE,
+                InaccurateYearRegex.APPROX_AGES_OPTIONS
         };
 
         try {

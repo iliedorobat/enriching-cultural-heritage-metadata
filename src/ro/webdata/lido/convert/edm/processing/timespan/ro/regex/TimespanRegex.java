@@ -25,7 +25,7 @@ public class TimespanRegex {
     public static final String TEXT_START =
             "("
                 + "?<=" + "("
-                    + "^" + REGEX_OR + "\\A" + REGEX_OR + "[\\.,;\\?!\\-( ]+"
+                    + "^" + REGEX_OR + "\\A" + REGEX_OR + "[\\.,;\\?!\\-(\\[ ]+"
                 + ")"
             + ")";
     /**
@@ -34,7 +34,7 @@ public class TimespanRegex {
     public static final String TEXT_END =
             "("
                 + "?=" + "("
-                    + "$" + REGEX_OR + "\\z" + REGEX_OR + "[\\.,;\\?!\\-) ]+"
+                    + "$" + REGEX_OR + "\\z" + REGEX_OR + "[\\.,;\\?!\\-)\\] ]+"
                 + ")"
             + ")";
     /**

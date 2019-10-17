@@ -15,8 +15,7 @@ public class DateUtils {
      * @return The prepared value
      */
     public static String prepareDate(String value) {
-        return value.trim()
-                .replaceAll(", ", " ");
+        return value.replaceAll(", ", " ").trim();
     }
 
     /**

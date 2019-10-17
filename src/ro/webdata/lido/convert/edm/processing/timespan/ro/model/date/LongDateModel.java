@@ -1,12 +1,12 @@
 package ro.webdata.lido.convert.edm.processing.timespan.ro.model.date;
 
 import ro.webdata.lido.convert.edm.common.constants.Constants;
-import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.TimespanRegex;
+import ro.webdata.lido.convert.edm.processing.timespan.ro.TimespanUtils;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.LongDateRegex;
 
 /**
- * Regular expressions for those time intervals that are stored
- * as a "long" date (having a century, a year, a month and a day)<br/>
+ * Used for those time intervals that are stored as a "long" date
+ * (having a century, a year, a month and a day)<br/>
  * E.g.: "s:17;a:1622;l:12;z:30"
  */
 public class LongDateModel {
@@ -24,10 +24,7 @@ public class LongDateModel {
     private LongDateModel() {}
 
     public LongDateModel(String value) {
-        String preparedValue = value
-                .replaceAll(TimespanRegex.CHRISTUM_AD, Constants.EMPTY_VALUE_PLACEHOLDER)
-                .replaceAll(TimespanRegex.CHRISTUM_BC, Constants.EMPTY_VALUE_PLACEHOLDER)
-                .trim();
+        String preparedValue = TimespanUtils.clearChristumNotation(value);
         String[] values = preparedValue.split(LongDateRegex.DATE_SEPARATOR);
 
         for (int i = 0; i < values.length; i++) {
@@ -49,23 +46,20 @@ public class LongDateModel {
         return year
                 + Constants.URL_SEPARATOR + month
                 + Constants.URL_SEPARATOR + day
-                + Constants.URL_SEPARATOR + era;
+                + Constants.URL_SEPARATOR + TimespanUtils.getEraName(era);
     }
 
     public String getEra() {
-        return "secolul " + century + " " + era;
+        return "century " + century + " " + TimespanUtils.getEraName(era);
     }
 
     @Override
     public String toString() {
-        return getEra() + " | " + getDate();
+        return getEra() + " ### " + getDate();
     }
 
     private void setEra(String value) {
-        if (value.contains(TimespanRegex.CHRISTUM_BC))
-            this.era = "BC";
-        else
-            this.era = "AD";
+        this.era = TimespanUtils.getEraPlaceholder(value);
     }
 
     private void setCentury(String value) {
