@@ -19,6 +19,7 @@ import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.imprecise.Inaccu
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -52,7 +53,7 @@ public class TimespanUtils {
             BufferedReader br = new BufferedReader(new FileReader(filePath));
 
             // used for testing
-            String test = "1400__AD__-1000 ";
+            String test = "1070 – 332 __BC__";
 //            br = new BufferedReader(new StringReader(test));
             String readLine;
 
@@ -86,9 +87,10 @@ public class TimespanUtils {
                     timespanModel = getMatchedValues(timespanModel, InaccurateYearRegex.AFTER, TimeUtils.AFTER_PLACEHOLDER);
                     timespanModel = getMatchedValues(timespanModel, InaccurateYearRegex.BEFORE, TimeUtils.BEFORE_PLACEHOLDER);
                     timespanModel = getMatchedValues(timespanModel, InaccurateYearRegex.APPROX_AGES_OPTIONS, TimeUtils.APPROXIMATE_PLACEHOLDER);
-                    timespanModel.clearTimespanList();
 
-                    timespanModel = getMatchedValues(timespanModel, YearRegex.YEAR_4_BRACKETS_INTERVAL, null);
+                    timespanModel.clearTimespanList();
+                    timespanModel = getMatchedValues(timespanModel, YearRegex.YEAR_3_4_DIGITS_INTERVAL, null);
+                    timespanModel = getMatchedValues(timespanModel, YearRegex.YEAR_3_4_DIGITS_OPTIONS, null);
 
                     if (timespanModel.getTimespanList().size() > 0)
                         System.out.println(timespanModel.getTimespanList());
@@ -186,7 +188,8 @@ public class TimespanUtils {
             case DatelessRegex.DATELESS:
                 datelessModel = new DatelessModel(value);
                 return datelessModel.toString();
-            case YearRegex.YEAR_4_BRACKETS_INTERVAL:
+            case YearRegex.YEAR_3_4_DIGITS_INTERVAL:
+            case YearRegex.YEAR_3_4_DIGITS_OPTIONS:
                 yearModel = new YearModel(value);
                 return yearModel.toString();
             default:

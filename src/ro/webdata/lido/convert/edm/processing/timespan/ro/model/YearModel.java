@@ -15,6 +15,8 @@ public class YearModel extends TimeModel {
         setYearModel(value);
     }
 
+    //TODO: "anul 13=1800/1801"
+    //TODO: "110/109 a. chr."
     private void setYearModel(String value) {
         String[] intervalValues = value.split(TimespanRegex.REGEX_INTERVAL_DELIMITER);
 

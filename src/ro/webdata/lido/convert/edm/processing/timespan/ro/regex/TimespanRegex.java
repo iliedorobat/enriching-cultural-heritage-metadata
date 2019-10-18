@@ -17,8 +17,10 @@ public class TimespanRegex {
 
     public static final String REGEX_PUNCTUATION = "[\\.,;\\?!\\- ]";
     public static final String REGEX_PUNCTUATION_UNLIMITED = REGEX_PUNCTUATION + "*";
-    public static final String REGEX_INTERVAL_DELIMITER = "([ ]*-[ ]*)";
-    public static final String REGEX_DATE_INTERVAL_SEPARATOR = "([ ]+-[ ]+)";
+    // "-" is different char from "–" !!!
+    public static final String REGEX_INTERVAL_DELIMITER = "([ ]*[\\-\\–][ ]*)";
+    // "-" is different char from "–" !!!
+    public static final String REGEX_DATE_INTERVAL_SEPARATOR = "([ ]+[\\-\\–][ ]+)";
     public static final String REGEX_DATE_SEPARATOR = "[\\./\\- ]+";
     /**
      * Regex for marking the start of the text
