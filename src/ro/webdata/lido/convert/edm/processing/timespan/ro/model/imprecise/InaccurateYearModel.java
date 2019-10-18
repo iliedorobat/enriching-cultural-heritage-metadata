@@ -2,7 +2,7 @@ package ro.webdata.lido.convert.edm.processing.timespan.ro.model.imprecise;
 
 import ro.webdata.lido.convert.edm.common.PrintMessages;
 import ro.webdata.lido.convert.edm.common.constants.Constants;
-import ro.webdata.lido.convert.edm.processing.timespan.ro.TimespanUtils;
+import ro.webdata.lido.convert.edm.processing.timespan.ro.TimeUtils;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.TimespanRegex;
 
 public class InaccurateYearModel {
@@ -11,11 +11,6 @@ public class InaccurateYearModel {
     public static final String APPROXIMATE = "APPROXIMATE";
 
     private static final String REGEX_NON_DIGIT = "[^\\d]";
-
-    /** From date */
-    private static String START = "START";
-    /** To date */
-    private static String END = "END";
 
     private String flag;
     private String eraStart, eraEnd;
@@ -33,22 +28,22 @@ public class InaccurateYearModel {
         String[] intervalValues = value.split(intervalSeparator);
 
         if (intervalValues.length == 2) {
-            String startValue = TimespanUtils.clearChristumNotation(intervalValues[0]);
-            String endValue = TimespanUtils.clearChristumNotation(intervalValues[1]);
+            String startValue = TimeUtils.clearChristumNotation(intervalValues[0]);
+            String endValue = TimeUtils.clearChristumNotation(intervalValues[1]);
 
             setIsInterval(true);
             // Set the end date before the start one to store the year
             // in order to use it as a end year and start year too
-            setEra(intervalValues[1], END);
-            setDate(endValue, END);
-            setEra(intervalValues[0], START);
-            setDate(startValue, START);
+            setEra(intervalValues[1], TimeUtils.END);
+            setDate(endValue, TimeUtils.END);
+            setEra(intervalValues[0], TimeUtils.START);
+            setDate(startValue, TimeUtils.START);
         } else {
-            String preparedValue = TimespanUtils.clearChristumNotation(value);
+            String preparedValue = TimeUtils.clearChristumNotation(value);
 
             setIsInterval(false);
-            setEra(value, START);
-            setDate(preparedValue, START);
+            setEra(value, TimeUtils.START);
+            setDate(preparedValue, TimeUtils.START);
         }
 
         setFlag(flag);
@@ -64,10 +59,10 @@ public class InaccurateYearModel {
 
     @Override
     public String toString() {
-        String start = flag + " " + yearStart + " " + TimespanUtils.getEraName(eraStart);
+        String start = flag + " " + yearStart + " " + TimeUtils.getEraLabel(eraStart);
 
 //        if (isInterval) {
-//            String end = yearEnd + " " + TimespanUtils.getEraName(eraEnd);
+//            String end = yearEnd + " " + TimeUtils.getEraName(eraEnd);
 //            return start + TimespanRegex.INTERVAL_SEPARATOR + end;
 //        }
 
@@ -75,23 +70,23 @@ public class InaccurateYearModel {
     }
 
     private void setEra(String value, String position) {
-        if (position.equals(START)) {
-            if (!value.contains(TimespanRegex.CHRISTUM_BC) && this.eraEnd != null)
-                this.eraStart = TimespanUtils.getEraPlaceholder(this.eraEnd);
+        if (position.equals(TimeUtils.START)) {
+            if (!value.contains(TimeUtils.CHRISTUM_BC_NAME) && this.eraEnd != null)
+                this.eraStart = TimeUtils.getEraName(this.eraEnd);
             else
-                this.eraStart = TimespanUtils.getEraPlaceholder(value);
-        } else if (position.equals(END)) {
-            this.eraEnd = TimespanUtils.getEraPlaceholder(value);
+                this.eraStart = TimeUtils.getEraName(value);
+        } else if (position.equals(TimeUtils.END)) {
+            this.eraEnd = TimeUtils.getEraName(value);
         }
     }
 
     private void setYear(int year, String position) {
-        if (position.equals(START)) {
-            if (year > Constants.LAST_UPDATE_YEAR && eraStart.equals(TimespanRegex.CHRISTUM_AD))
+        if (position.equals(TimeUtils.START)) {
+            if (year > Constants.LAST_UPDATE_YEAR && eraStart.equals(TimeUtils.CHRISTUM_AD_NAME))
                 PrintMessages.printTooBigYear(year);
             this.yearStart = year;
-        } else if (position.equals(END)) {
-            if (year > Constants.LAST_UPDATE_YEAR && eraStart.equals(TimespanRegex.CHRISTUM_AD))
+        } else if (position.equals(TimeUtils.END)) {
+            if (year > Constants.LAST_UPDATE_YEAR && eraStart.equals(TimeUtils.CHRISTUM_AD_NAME))
                 PrintMessages.printTooBigYear(year);
             this.yearEnd = year;
         }

@@ -3,9 +3,8 @@ package ro.webdata.lido.convert.edm.processing.timespan.ro.model.date;
 import ro.webdata.lido.convert.edm.common.DateUtils;
 import ro.webdata.lido.convert.edm.common.PrintMessages;
 import ro.webdata.lido.convert.edm.common.constants.Constants;
-import ro.webdata.lido.convert.edm.processing.timespan.ro.TimespanUtils;
+import ro.webdata.lido.convert.edm.processing.timespan.ro.TimeUtils;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.TimespanRegex;
-import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.DateRegex;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.ShortDateRegex;
 
 /**
@@ -17,11 +16,6 @@ public class ShortDateModel {
     public static String YM = "YM";
     /** Month, Year order */
     public static String MY = "MY";
-
-    /** From Year, Month */
-    private static String START = "START";
-    /** To Year, Month */
-    private static String END = "END";
 
     private String eraStart, eraEnd;
     private int yearStart, yearEnd;
@@ -39,22 +33,22 @@ public class ShortDateModel {
         String[] intervalValues = value.split(intervalSeparator);
 
         if (intervalValues.length == 2) {
-            String startValue = TimespanUtils.clearChristumNotation(intervalValues[0]);
-            String endValue = TimespanUtils.clearChristumNotation(intervalValues[1]);
+            String startValue = TimeUtils.clearChristumNotation(intervalValues[0]);
+            String endValue = TimeUtils.clearChristumNotation(intervalValues[1]);
 
             setIsInterval(true);
             // Set the end date before the start one to store the year
             // in order to use it as a end year and start year too
-            setEra(intervalValues[1], END);
-            setDate(endValue, order, END);
-            setEra(intervalValues[0], START);
-            setDate(startValue, order, START);
+            setEra(intervalValues[1], TimeUtils.END);
+            setDate(endValue, order, TimeUtils.END);
+            setEra(intervalValues[0], TimeUtils.START);
+            setDate(startValue, order, TimeUtils.START);
         } else {
-            String preparedValue = TimespanUtils.clearChristumNotation(value);
+            String preparedValue = TimeUtils.clearChristumNotation(value);
 
             setIsInterval(false);
-            setEra(value, START);
-            setDate(preparedValue, order, START);
+            setEra(value, TimeUtils.START);
+            setDate(preparedValue, order, TimeUtils.START);
         }
     }
 
@@ -62,14 +56,14 @@ public class ShortDateModel {
     public String toString() {
         String start = yearStart
                 + Constants.URL_SEPARATOR + monthStart
-                + Constants.URL_SEPARATOR + TimespanUtils.getEraName(eraStart);
+                + Constants.URL_SEPARATOR + TimeUtils.getEraLabel(eraStart);
 
         if (isInterval) {
             String end = yearEnd
                     + Constants.URL_SEPARATOR + monthEnd
-                    + Constants.URL_SEPARATOR + TimespanUtils.getEraName(eraEnd);
+                    + Constants.URL_SEPARATOR + TimeUtils.getEraLabel(eraEnd);
 
-            return start + TimespanRegex.INTERVAL_SEPARATOR + end;
+            return start + TimeUtils.INTERVAL_SEPARATOR + end;
         }
 
         return start;
@@ -82,7 +76,7 @@ public class ShortDateModel {
         if (order.equals(MY)) {
             // For cases similar with "septembrie - octombrie 1919" we need to extract
             // the startYear from the section that stores the endYear
-            int year = position.equals(START) && values.length == 1
+            int year = position.equals(TimeUtils.START) && values.length == 1
                     ? yearEnd
                     : Integer.parseInt(values[1]);
             String month = DateUtils.getMonthName(values[0].trim());
@@ -93,32 +87,32 @@ public class ShortDateModel {
     }
 
     private void setEra(String value, String position) {
-        if (position.equals(START)) {
-            if (!value.contains(TimespanRegex.CHRISTUM_BC) && this.eraEnd != null)
-                this.eraStart = TimespanUtils.getEraPlaceholder(this.eraEnd);
+        if (position.equals(TimeUtils.START)) {
+            if (!value.contains(TimeUtils.CHRISTUM_BC_NAME) && this.eraEnd != null)
+                this.eraStart = TimeUtils.getEraName(this.eraEnd);
             else
-                this.eraStart = TimespanUtils.getEraPlaceholder(value);
-        } else if (position.equals(END)) {
-            this.eraEnd = TimespanUtils.getEraPlaceholder(value);
+                this.eraStart = TimeUtils.getEraName(value);
+        } else if (position.equals(TimeUtils.END)) {
+            this.eraEnd = TimeUtils.getEraName(value);
         }
     }
 
     private void setYear(int year, String position) {
-        if (position.equals(START)) {
-            if (year > Constants.LAST_UPDATE_YEAR && eraStart.equals(TimespanRegex.CHRISTUM_AD))
+        if (position.equals(TimeUtils.START)) {
+            if (year > Constants.LAST_UPDATE_YEAR && eraStart.equals(TimeUtils.CHRISTUM_AD_NAME))
                 PrintMessages.printTooBigYear(year);
             this.yearStart = year;
-        } else if (position.equals(END)) {
-            if (year > Constants.LAST_UPDATE_YEAR && eraStart.equals(TimespanRegex.CHRISTUM_AD))
+        } else if (position.equals(TimeUtils.END)) {
+            if (year > Constants.LAST_UPDATE_YEAR && eraStart.equals(TimeUtils.CHRISTUM_AD_NAME))
                 PrintMessages.printTooBigYear(year);
             this.yearEnd = year;
         }
     }
 
     private void setMonth(String month, String position) {
-        if (position.equals(START))
+        if (position.equals(TimeUtils.START))
             this.monthStart = month;
-        else if (position.equals(END))
+        else if (position.equals(TimeUtils.END))
             this.monthEnd = month;
     }
 

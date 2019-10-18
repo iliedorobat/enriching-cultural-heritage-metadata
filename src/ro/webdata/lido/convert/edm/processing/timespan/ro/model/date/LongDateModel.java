@@ -1,7 +1,7 @@
 package ro.webdata.lido.convert.edm.processing.timespan.ro.model.date;
 
 import ro.webdata.lido.convert.edm.common.constants.Constants;
-import ro.webdata.lido.convert.edm.processing.timespan.ro.TimespanUtils;
+import ro.webdata.lido.convert.edm.processing.timespan.ro.TimeUtils;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.LongDateRegex;
 
 /**
@@ -24,7 +24,7 @@ public class LongDateModel {
     private LongDateModel() {}
 
     public LongDateModel(String value) {
-        String preparedValue = TimespanUtils.clearChristumNotation(value);
+        String preparedValue = TimeUtils.clearChristumNotation(value);
         String[] values = preparedValue.split(LongDateRegex.DATE_SEPARATOR);
 
         for (int i = 0; i < values.length; i++) {
@@ -46,11 +46,11 @@ public class LongDateModel {
         return year
                 + Constants.URL_SEPARATOR + month
                 + Constants.URL_SEPARATOR + day
-                + Constants.URL_SEPARATOR + TimespanUtils.getEraName(era);
+                + Constants.URL_SEPARATOR + TimeUtils.getEraLabel(era);
     }
 
     public String getEra() {
-        return "century " + century + " " + TimespanUtils.getEraName(era);
+        return "century " + century + " " + TimeUtils.getEraLabel(era);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class LongDateModel {
     }
 
     private void setEra(String value) {
-        this.era = TimespanUtils.getEraPlaceholder(value);
+        this.era = TimeUtils.getEraName(value);
     }
 
     private void setCentury(String value) {

@@ -1,5 +1,7 @@
 package ro.webdata.lido.convert.edm.processing.timespan.ro.regex;
 
+import ro.webdata.lido.convert.edm.processing.timespan.ro.TimeUtils;
+
 /**
  * By using the <b>[?<=sentence]</b> construction, it will be matched
  * any text after "sentence" ("sentence" is a word as example).
@@ -7,11 +9,10 @@ package ro.webdata.lido.convert.edm.processing.timespan.ro.regex;
 //TODO: check "sec. xviii; (gema: sec. i e.n.)"
 public class TimespanRegex {
     public static final String REGEX_OR = "|";
-    public static final String INTERVAL_SEPARATOR = "__TO__";
-    public static final String CHRISTUM_AD = "__AD__";
-    public static final String CHRISTUM_BC = "__BC__";
+    private static final String CHRISTUM_AD_NAME = TimeUtils.CHRISTUM_AD_NAME;
+    private static final String CHRISTUM_BC_NAME = TimeUtils.CHRISTUM_BC_NAME;
     public static final String AD_BC_OPTIONAL = "("
-                + "[ ]*" + "(" + CHRISTUM_BC + REGEX_OR + CHRISTUM_AD + ")"
+                + "[ ]*" + "(" + CHRISTUM_BC_NAME + REGEX_OR + CHRISTUM_AD_NAME + ")"
             + "){0,1}";
 
     public static final String REGEX_PUNCTUATION = "[\\.,;\\?!\\- ]";
@@ -55,7 +56,7 @@ public class TimespanRegex {
                 + REGEX_OR + "(" + "i[\\.]{0,1}e[\\.]{0,1}n[\\.]{0,1}" + ")"
                 + REGEX_OR + "(" + "[abi][\\. ]*" + REGEX_CHRISTUM + ")"
             + ")" + TEXT_END;
-    private static final String CHRISTUM_NOTATION = "(" + CHRISTUM_AD + REGEX_OR + CHRISTUM_BC + ")";
+    private static final String CHRISTUM_NOTATION = "(" + CHRISTUM_AD_NAME + REGEX_OR + CHRISTUM_BC_NAME + ")";
 
     public static final String MONTHS_RO =
             "("
