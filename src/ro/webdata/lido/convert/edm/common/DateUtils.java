@@ -9,13 +9,13 @@ public class DateUtils {
     private DateUtils() {}
 
     /**
-     * Trim the value and replace all sequences of ", " with simple space " "
+     * Trim the value and replace all commas (",") with an empty placeholder ("")
      * (used for cases similar with "1914, aprilie 3")
      * @param value The original value
      * @return The prepared value
      */
     public static String prepareDate(String value) {
-        return value.replaceAll(", ", " ").trim();
+        return value.replaceAll(",", Constants.EMPTY_VALUE_PLACEHOLDER).trim();
     }
 
     /**

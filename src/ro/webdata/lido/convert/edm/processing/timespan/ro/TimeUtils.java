@@ -3,15 +3,30 @@ package ro.webdata.lido.convert.edm.processing.timespan.ro;
 import ro.webdata.lido.convert.edm.common.constants.Constants;
 
 public class TimeUtils {
+    // Labels
     public static final String CHRISTUM_AD_LABEL = "AD";
     public static final String CHRISTUM_BC_LABEL = "BC";
-    public static final String CHRISTUM_AD_NAME = "__AD__";
-    public static final String CHRISTUM_BC_NAME = "__BC__";
+
+    // Placeholders
+    public static final String AFTER_PLACEHOLDER = "POST";
+    public static final String APPROXIMATE_PLACEHOLDER = "APPROXIMATE";
+    public static final String BEFORE_PLACEHOLDER = "ANTE";
+    public static final String CHRISTUM_AD_PLACEHOLDER = "__AD__";
+    public static final String CHRISTUM_BC_PLACEHOLDER = "__BC__";
     public static final String INTERVAL_SEPARATOR = " __TO__ ";
     /** From date */
-    public static String START = "START";
+    public static String START_PLACEHOLDER = "START";
     /** To date */
-    public static String END = "END";
+    public static String END_PLACEHOLDER = "END";
+    /** Year, Month, Day order */
+    public static String YMD_PLACEHOLDER = "YMD";
+    /** Day, Month, Year order */
+    public static String DMY_PLACEHOLDER = "DMY";
+    /** Year, Month order */
+    public static String YM_PLACEHOLDER = "YM";
+    /** Month, Year order */
+    public static String MY_PLACEHOLDER = "MY";
+
 
     /**
      * Map the prepared era value to simple name.
@@ -25,7 +40,7 @@ public class TimeUtils {
      * @return "AD" or "BC"
      */
     public static String getEraLabel(String value) {
-        return value.contains(CHRISTUM_BC_NAME)
+        return value.contains(CHRISTUM_BC_PLACEHOLDER)
                 ? CHRISTUM_BC_LABEL
                 : CHRISTUM_AD_LABEL;
     }
@@ -42,9 +57,9 @@ public class TimeUtils {
      * @return "__AD__" or "__BC__"
      */
     public static String getEraName(String value) {
-        return value.contains(CHRISTUM_BC_NAME)
-                ? CHRISTUM_BC_NAME
-                : CHRISTUM_AD_NAME;
+        return value.contains(CHRISTUM_BC_PLACEHOLDER)
+                ? CHRISTUM_BC_PLACEHOLDER
+                : CHRISTUM_AD_PLACEHOLDER;
     }
 
     /**
@@ -54,8 +69,8 @@ public class TimeUtils {
      */
     public static String clearChristumNotation(String value) {
         return value
-                .replaceAll(CHRISTUM_BC_NAME, Constants.EMPTY_VALUE_PLACEHOLDER)
-                .replaceAll(CHRISTUM_AD_NAME, Constants.EMPTY_VALUE_PLACEHOLDER)
+                .replaceAll(CHRISTUM_BC_PLACEHOLDER, Constants.EMPTY_VALUE_PLACEHOLDER)
+                .replaceAll(CHRISTUM_AD_PLACEHOLDER, Constants.EMPTY_VALUE_PLACEHOLDER)
                 .trim();
     }
 }

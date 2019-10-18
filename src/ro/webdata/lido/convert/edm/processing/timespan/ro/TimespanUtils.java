@@ -9,10 +9,7 @@ import ro.webdata.lido.convert.edm.processing.timespan.ro.model.date.LongDateMod
 import ro.webdata.lido.convert.edm.processing.timespan.ro.model.date.ShortDateModel;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.model.imprecise.DatelessModel;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.model.imprecise.InaccurateYearModel;
-import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.AgeRegex;
-import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.TimespanRegex;
-import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.UnknownRegex;
-import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.YearRegex;
+import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.*;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.DateRegex;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.LongDateRegex;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.ShortDateRegex;
@@ -22,7 +19,6 @@ import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.imprecise.Inaccu
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -65,31 +61,31 @@ public class TimespanUtils {
                     String value = StringUtils.stripAccents(readLine);
 
                     timespanModel = new TimespanModel(value);
-//                    timespanModel = getMatchedValues(timespanModel, UnknownRegex.UNKNOWN, null);
-//
-//                    timespanModel = getMatchedValues(timespanModel, DateRegex.DATE_DMY_INTERVAL, null);
-//                    timespanModel = getMatchedValues(timespanModel, DateRegex.DATE_YMD_INTERVAL, null);
-//                    timespanModel = getMatchedValues(timespanModel, ShortDateRegex.DATE_MY_INTERVAL, null);
-//                    timespanModel = getMatchedValues(timespanModel, DateRegex.DATE_DMY_OPTIONS, null);
-//                    timespanModel = getMatchedValues(timespanModel, DateRegex.DATE_YMD_OPTIONS, null);
-//                    timespanModel = getMatchedValues(timespanModel, ShortDateRegex.DATE_MY_OPTIONS, null);
-//                    timespanModel = getMatchedValues(timespanModel, LongDateRegex.LONG_DATE_OPTIONS, null);
-//
+                    timespanModel = getMatchedValues(timespanModel, UnknownRegex.UNKNOWN, null);
+
+                    timespanModel = getMatchedValues(timespanModel, DateRegex.DATE_DMY_INTERVAL, null);
+                    timespanModel = getMatchedValues(timespanModel, DateRegex.DATE_YMD_INTERVAL, null);
+                    timespanModel = getMatchedValues(timespanModel, ShortDateRegex.DATE_MY_INTERVAL, null);
+                    timespanModel = getMatchedValues(timespanModel, DateRegex.DATE_DMY_OPTIONS, null);
+                    timespanModel = getMatchedValues(timespanModel, DateRegex.DATE_YMD_OPTIONS, null);
+                    timespanModel = getMatchedValues(timespanModel, ShortDateRegex.DATE_MY_OPTIONS, null);
+                    timespanModel = getMatchedValues(timespanModel, LongDateRegex.LONG_DATE_OPTIONS, null);
+
 //                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.CENTURY_INTERVAL, null);
 //                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.CENTURY_OPTIONS, null);
 //                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.MILLENNIUM_INTERVAL, null);
 //                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.MILLENNIUM_OPTIONS, null);
 //                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.OTHER_ROMAN_INTERVAL, null);
 //                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.OTHER_ROMAN_OPTIONS, null);
-//                    timespanModel = getMatchedValues(timespanModel, AgeRegex.AGE_OPTIONS, null);
+                    timespanModel = getMatchedValues(timespanModel, AgeRegex.AGE_OPTIONS, null);
 
                     timespanModel = getMatchedValues(timespanModel, DatelessRegex.DATELESS, null);
-                    timespanModel = getMatchedValues(timespanModel, InaccurateYearRegex.AFTER_INTERVAL, InaccurateYearModel.AFTER);
-                    timespanModel = getMatchedValues(timespanModel, InaccurateYearRegex.BEFORE_INTERVAL, InaccurateYearModel.BEFORE);
-                    timespanModel = getMatchedValues(timespanModel, InaccurateYearRegex.APPROX_AGES_INTERVAL, InaccurateYearModel.APPROXIMATE);
-                    timespanModel = getMatchedValues(timespanModel, InaccurateYearRegex.AFTER, InaccurateYearModel.AFTER);
-                    timespanModel = getMatchedValues(timespanModel, InaccurateYearRegex.BEFORE, InaccurateYearModel.BEFORE);
-                    timespanModel = getMatchedValues(timespanModel, InaccurateYearRegex.APPROX_AGES_OPTIONS, InaccurateYearModel.APPROXIMATE);
+                    timespanModel = getMatchedValues(timespanModel, InaccurateYearRegex.AFTER_INTERVAL, TimeUtils.AFTER_PLACEHOLDER);
+                    timespanModel = getMatchedValues(timespanModel, InaccurateYearRegex.BEFORE_INTERVAL, TimeUtils.BEFORE_PLACEHOLDER);
+                    timespanModel = getMatchedValues(timespanModel, InaccurateYearRegex.APPROX_AGES_INTERVAL, TimeUtils.APPROXIMATE_PLACEHOLDER);
+                    timespanModel = getMatchedValues(timespanModel, InaccurateYearRegex.AFTER, TimeUtils.AFTER_PLACEHOLDER);
+                    timespanModel = getMatchedValues(timespanModel, InaccurateYearRegex.BEFORE, TimeUtils.BEFORE_PLACEHOLDER);
+                    timespanModel = getMatchedValues(timespanModel, InaccurateYearRegex.APPROX_AGES_OPTIONS, TimeUtils.APPROXIMATE_PLACEHOLDER);
                     timespanModel.clearTimespanList();
 
                     timespanModel = getMatchedValues(timespanModel, YearRegex.YEAR_4_BRACKETS_INTERVAL, null);
@@ -105,8 +101,8 @@ public class TimespanUtils {
 
     private static TimespanModel getMatchedValues(TimespanModel timespanModel, String regex, String flag) {
         String initialValue = timespanModel.getResidualValue()
-                .replaceAll(TimespanRegex.AGE_BC, TimeUtils.CHRISTUM_BC_NAME)
-                .replaceAll(TimespanRegex.AGE_AD, TimeUtils.CHRISTUM_AD_NAME);
+                .replaceAll(TimespanRegex.AGE_BC, TimeUtils.CHRISTUM_BC_PLACEHOLDER)
+                .replaceAll(TimespanRegex.AGE_AD, TimeUtils.CHRISTUM_AD_PLACEHOLDER);
 
         // Particular logic to add a space before and after the interval delimiter
         if (initialValue.equals("17 nov. 375-9 aug. 378 __BC__")) {
@@ -155,15 +151,15 @@ public class TimespanUtils {
         switch (regex) {
             case DateRegex.DATE_DMY_INTERVAL:
             case DateRegex.DATE_DMY_OPTIONS:
-                dateModel = new DateModel(value, DateModel.DMY);
+                dateModel = new DateModel(value, TimeUtils.DMY_PLACEHOLDER);
                 return dateModel.toString();
             case DateRegex.DATE_YMD_INTERVAL:
             case DateRegex.DATE_YMD_OPTIONS:
-                dateModel = new DateModel(value, DateModel.YMD);
+                dateModel = new DateModel(value, TimeUtils.YMD_PLACEHOLDER);
                 return dateModel.toString();
             case ShortDateRegex.DATE_MY_INTERVAL:
             case ShortDateRegex.DATE_MY_OPTIONS:
-                shortDateModel = new ShortDateModel(value, ShortDateModel.MY);
+                shortDateModel = new ShortDateModel(value, TimeUtils.MY_PLACEHOLDER);
                 return shortDateModel.toString();
             case LongDateRegex.LONG_DATE_OPTIONS:
                 longDateModel = new LongDateModel(value);

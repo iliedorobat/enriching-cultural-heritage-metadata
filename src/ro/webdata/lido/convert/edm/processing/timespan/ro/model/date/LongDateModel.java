@@ -6,10 +6,11 @@ import ro.webdata.lido.convert.edm.processing.timespan.ro.regex.date.LongDateReg
 
 /**
  * Used for those time intervals that are stored as a "long" date
- * (having a century, a year, a month and a day)<br/>
+ * format (having a century, a year, a month and a day)<br/>
  * E.g.: "s:17;a:1622;l:12;z:30"
  */
 public class LongDateModel {
+    private static final String DATE_SEPARATOR = " ## ";
     private static final String SUFFIX_CENTURY = "s:";
     private static final String SUFFIX_YEAR = "a:";
     private static final String SUFFIX_MONTH = "l:";
@@ -27,9 +28,8 @@ public class LongDateModel {
         String preparedValue = TimeUtils.clearChristumNotation(value);
         String[] values = preparedValue.split(LongDateRegex.DATE_SEPARATOR);
 
-        for (int i = 0; i < values.length; i++) {
-            String str = values[i];
-
+        setEra(value);
+        for (String str : values) {
             if (str.contains(SUFFIX_CENTURY))
                 setCentury(str);
             else if (str.contains(SUFFIX_YEAR))
@@ -39,7 +39,6 @@ public class LongDateModel {
             else if (str.contains(SUFFIX_DAY))
                 setDay(str);
         }
-        setEra(value);
     }
 
     public String getDate() {
@@ -55,7 +54,7 @@ public class LongDateModel {
 
     @Override
     public String toString() {
-        return getEra() + " ### " + getDate();
+        return getEra() + DATE_SEPARATOR + getDate();
     }
 
     private void setEra(String value) {

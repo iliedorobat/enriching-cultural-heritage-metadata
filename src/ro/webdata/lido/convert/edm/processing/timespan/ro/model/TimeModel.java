@@ -1,39 +1,66 @@
 package ro.webdata.lido.convert.edm.processing.timespan.ro.model;
 
+import ro.webdata.lido.convert.edm.common.PrintMessages;
+import ro.webdata.lido.convert.edm.common.constants.Constants;
 import ro.webdata.lido.convert.edm.processing.timespan.ro.TimeUtils;
 
 public class TimeModel {
-    String eraStart, eraEnd;
-    int yearStart, yearEnd;
-    boolean isInterval = false;
+    protected String eraStart, eraEnd;
+    protected int yearStart, yearEnd;
+    protected String monthStart, monthEnd;
+    protected int dayStart, dayEnd;
+    protected boolean isInterval = false;
 
     //TODO: add this getter for all the date models
-    void setEra(String value, String position) {
-        if (position.equals(TimeUtils.START)) {
-            boolean containsEra = value.contains(TimeUtils.CHRISTUM_BC_NAME)
-                    || value.contains(TimeUtils.CHRISTUM_AD_NAME);
+    protected void setEra(String value, String position) {
+        if (position.equals(TimeUtils.START_PLACEHOLDER)) {
+            boolean containsEra = value.contains(TimeUtils.CHRISTUM_BC_PLACEHOLDER)
+                    || value.contains(TimeUtils.CHRISTUM_AD_PLACEHOLDER);
             this.eraStart = !containsEra && this.eraEnd != null
                     ? TimeUtils.getEraName(this.eraEnd)
                     : TimeUtils.getEraName(value);
-        } else if (position.equals(TimeUtils.END)) {
+        } else if (position.equals(TimeUtils.END_PLACEHOLDER)) {
             this.eraEnd = TimeUtils.getEraName(value);
         }
     }
 
-    void setYear(String value, String position) {
+    protected void setYear(String yearStr, String position) {
         try {
-            int year = Integer.parseInt(value);
+            int year = Integer.parseInt(yearStr.trim());
 
-            if (position.equals(TimeUtils.START))
+            if (position.equals(TimeUtils.START_PLACEHOLDER))
                 this.yearStart = year;
-            else if (position.equals(TimeUtils.END))
+            else if (position.equals(TimeUtils.END_PLACEHOLDER))
                 this.yearEnd = year;
+
+            if (year > Constants.LAST_UPDATE_YEAR && eraStart.equals(TimeUtils.CHRISTUM_AD_PLACEHOLDER))
+                PrintMessages.printTooBigYear(year);
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
     }
 
-    void setIsInterval(boolean isInterval) {
+    protected void setMonth(String month, String position) {
+        if (position.equals(TimeUtils.START_PLACEHOLDER))
+            this.monthStart = month;
+        else if (position.equals(TimeUtils.END_PLACEHOLDER))
+            this.monthEnd = month;
+    }
+
+    protected void setDay(String dayStr, String position) {
+        try {
+            int day = Integer.parseInt(dayStr);
+
+            if (position.equals(TimeUtils.START_PLACEHOLDER))
+                this.dayStart = day;
+            else if (position.equals(TimeUtils.END_PLACEHOLDER))
+                this.dayEnd = day;
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+    }
+
+    protected void setIsInterval(boolean isInterval) {
         this.isInterval = isInterval;
     }
 }
