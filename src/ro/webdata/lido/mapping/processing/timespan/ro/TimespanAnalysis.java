@@ -36,7 +36,7 @@ public class TimespanAnalysis {
     private static ParserDAO parserDAO = new ParserDAOImpl();
 
     /**
-     * Extract the timespan from LIDO files<br/>
+     * Extract all the timespan values from LIDO files<br/>
      * <b>Used in the analysis process</b>
      * @param fileNames The list of LIDO file name
      * @param filePath The full path for the output file
@@ -46,17 +46,18 @@ public class TimespanAnalysis {
         Set<String> list = extractTimespan(fileNames);
 
         for (String string : list) {
-            writer.append(string);
-            writer.append("\n");
+            writer.append(string)
+                    .append("\n");
         }
 
         TextUtils.write(writer, filePath);
     }
 
     public static void check(String filePath) {
-        //TODO:
+        // The order is crucial !!!
         String[] list = {
                 UnknownRegex.UNKNOWN,
+
                 DateRegex.DATE_DMY_INTERVAL,
                 DateRegex.DATE_YMD_INTERVAL,
                 ShortDateRegex.DATE_MY_INTERVAL,
@@ -64,6 +65,7 @@ public class TimespanAnalysis {
                 DateRegex.DATE_YMD_OPTIONS,
                 ShortDateRegex.DATE_MY_OPTIONS,
                 LongDateRegex.LONG_DATE_OPTIONS,
+
                 TimePeriodRegex.CENTURY_INTERVAL,
                 TimePeriodRegex.CENTURY_OPTIONS,
                 TimePeriodRegex.MILLENNIUM_INTERVAL,
@@ -79,8 +81,13 @@ public class TimespanAnalysis {
                 InaccurateYearRegex.AFTER,
                 InaccurateYearRegex.BEFORE,
                 InaccurateYearRegex.APPROX_AGES_OPTIONS,
+
                 YearRegex.YEAR_3_4_DIGITS_INTERVAL,
-                YearRegex.YEAR_3_4_DIGITS_OPTIONS
+                YearRegex.YEAR_3_4_DIGITS_SPECIAL_INTERVAL,
+                YearRegex.YEAR_3_4_DIGITS_OPTIONS,
+                YearRegex.YEAR_2_DIGITS_INTERVAL,
+                YearRegex.YEAR_2_DIGITS_OPTIONS,
+                YearRegex.UNKNOWN_YEARS
         };
 
         try {
@@ -95,7 +102,7 @@ public class TimespanAnalysis {
                 }
             }
         } catch (IOException e) {
-
+            e.printStackTrace();
         }
     }
 
@@ -159,10 +166,10 @@ public class TimespanAnalysis {
     }
 
     /**
-     * Check if the input value is matching at least one of the regex from the list
+     * Check if the input value is matching at least one of the regexes from the list
      * @param value The input value
      * @param regexList The matching regex list
-     * @return
+     * @return true/false
      */
     private static boolean isMatching(String value, String[] regexList) {
         boolean output = false;
@@ -178,12 +185,13 @@ public class TimespanAnalysis {
      * Check if the input value is matching the regex
      * @param value The input value
      * @param regex The matching regex
-     * @return
+     * @return true/false
      */
     private static boolean isMatching(String value, String regex) {
-        String matchedValue = StringUtils.stripAccents(value);
+        String preparedValue = StringUtils.stripAccents(value);
+        preparedValue = TimeSanitizeUtils.sanitizeValue(preparedValue, regex);
         Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(matchedValue);
+        Matcher matcher = pattern.matcher(preparedValue);
 
         while (matcher.find()) {
             return true;

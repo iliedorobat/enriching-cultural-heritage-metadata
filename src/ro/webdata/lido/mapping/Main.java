@@ -40,30 +40,13 @@ public class Main {
 
     public static void main(String[] args) {
         boolean PLAY = true;
-//        // 1.
-//        TimespanAnalysis.write(fileNames, FileConstatnts.OUTPUT_FILE_TIMESPAN);
-        if (!PLAY)
+//        // 1. Write to the disc all unique timespan values
+//        TimespanAnalysis.write(fileNames, FileConstants.OUTPUT_FILE_TIMESPAN);
+        if (PLAY)
             TimespanUtils.read(FileConstants.OUTPUT_FILE_TIMESPAN);
 
-        if (PLAY)
+        if (!PLAY)
             TimespanAnalysis.check(FileConstants.OUTPUT_FILE_TIMESPAN);
-
-        if (!PLAY) {
-            String str = "1914, aprilie 3 ";
-//            str = "1914 aprilie 3";
-//            String replaced = str.replaceAll("mij", "MIJ").replaceAll("lea", "LEA");
-//            replaced = StringUtils.stripAccents(replaced);
-            String replaced = StringUtils.stripAccents(str);
-
-            Pattern pattern = Pattern.compile("\\d");
-            Matcher matcher = pattern.matcher(replaced);
-            while (matcher.find()) {
-                String matched = matcher.group();
-                System.out.println("matched: \"" + matched + "\"");
-            }
-//            System.err.println("didn't match: " + string);
-        }
-
 
         Model model = ModelFactory.createDefaultModel();
         model.setNsPrefix("dc", DC_11.getURI());

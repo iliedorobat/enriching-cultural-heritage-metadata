@@ -3,39 +3,39 @@ package ro.webdata.lido.mapping.processing.timespan.ro;
 import ro.webdata.lido.mapping.common.constants.Constants;
 
 public class TimeUtils {
-    // Labels
+    /** "Anno Domini" label */
     public static final String CHRISTUM_AD_LABEL = "AD";
+    /** "Before Christ" label */
     public static final String CHRISTUM_BC_LABEL = "BC";
 
-    // Placeholders
-    public static final String AFTER_PLACEHOLDER = "POST";
+    /** Approximate date placeholder */
     public static final String APPROXIMATE_PLACEHOLDER = "APPROXIMATE";
-    public static final String BEFORE_PLACEHOLDER = "ANTE";
+    /** Unknown date placeholder */
+    public static final String UNKNOWN_DATE_PLACEHOLDER = "UNKNOWN";
+    /** "Anno Domini" placeholder */
     public static final String CHRISTUM_AD_PLACEHOLDER = "__AD__";
+    /** "Before Christ" placeholder */
     public static final String CHRISTUM_BC_PLACEHOLDER = "__BC__";
-    public static final String INTERVAL_SEPARATOR = " __TO__ ";
-    /** From date */
+    /** Placeholder used to separate two dates from an interval */
+    public static final String INTERVAL_SEPARATOR_PLACEHOLDER = " __TO__ ";
+    /** "from date" placeholder */
     public static String START_PLACEHOLDER = "START";
-    /** To date */
+    /** "to date" placeholder */
     public static String END_PLACEHOLDER = "END";
-    /** Year, Month, Day order */
+    /** "year, month, day" pattern placeholder */
     public static String YMD_PLACEHOLDER = "YMD";
-    /** Day, Month, Year order */
+    /** "day, month, year" pattern placeholder */
     public static String DMY_PLACEHOLDER = "DMY";
-    /** Year, Month order */
+    /** "year, month" pattern placeholder */
     public static String YM_PLACEHOLDER = "YM";
-    /** Month, Year order */
+    /** "month, year" pattern placeholder */
     public static String MY_PLACEHOLDER = "MY";
 
 
     /**
-     * Map the prepared era value to simple name.
-     * The prepared era value is the original era value which
-     * has been processed as following:
-     * <ul>
-     *     <li>era that is matching with TimespanRegex.CHRISTUM_AD will be mapped to "AD"</li>
-     *     <li>era that is matching with TimespanRegex.CHRISTUM_BC will be mapped to "BC"</li>
-     * </ul>
+     * Map the era name to era label.<br/>
+     * The era name is the original era value which has been
+     * processed by using <b>getEraName</b> method
      * @param value The input value
      * @return "AD" or "BC"
      */
@@ -46,12 +46,12 @@ public class TimeUtils {
     }
 
     /**
-     * Extract the era from the prepared value.
+     * Extract the era from the prepared value.<br/>
      * The prepared value is the original value for which
      * era has been processed as following:
      * <ul>
-     *     <li>all values that are matching with TimespanRegex.AGE_AD will be mapped to TimespanRegex.CHRISTUM_AD</li>
-     *     <li>all values that are matching with TimespanRegex.AGE_BC will be mapped to TimespanRegex.CHRISTUM_BC</li>
+     *     <li>era which are matching to TimespanRegex.AGE_BC will be mapped to CHRISTUM_BC_PLACEHOLDER</li>
+     *     <li>era which are matching to TimespanRegex.AGE_AD will be mapped to CHRISTUM_AD_PLACEHOLDER</li>
      * </ul>
      * @param value The input value
      * @return "__AD__" or "__BC__"

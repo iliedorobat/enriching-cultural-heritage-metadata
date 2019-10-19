@@ -25,10 +25,12 @@ public class TimespanRegex {
     /**
      * Regex for marking the start of the text
      */
+    // TODO: evaluate the impact of adding the "=" sign (needed
+    //  for the case of YEAR_3_4_DIGITS_SPECIAL_INTERVAL
     public static final String TEXT_START =
             "("
                 + "?<=" + "("
-                    + "^" + REGEX_OR + "\\A" + REGEX_OR + "[\\.,;\\?!\\-(\\[ ]+"
+                    + "^" + REGEX_OR + "\\A" + REGEX_OR + "[\\.,;\\?!\\-(\\[= ]+"
                 + ")"
             + ")";
     /**

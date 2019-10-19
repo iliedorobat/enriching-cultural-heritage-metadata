@@ -9,10 +9,7 @@ import ro.webdata.lido.mapping.processing.timespan.ro.model.date.LongDateModel;
 import ro.webdata.lido.mapping.processing.timespan.ro.model.date.ShortDateModel;
 import ro.webdata.lido.mapping.processing.timespan.ro.model.imprecise.DatelessModel;
 import ro.webdata.lido.mapping.processing.timespan.ro.model.imprecise.InaccurateYearModel;
-import ro.webdata.lido.mapping.processing.timespan.ro.regex.AgeRegex;
-import ro.webdata.lido.mapping.processing.timespan.ro.regex.TimespanRegex;
-import ro.webdata.lido.mapping.processing.timespan.ro.regex.UnknownRegex;
-import ro.webdata.lido.mapping.processing.timespan.ro.regex.YearRegex;
+import ro.webdata.lido.mapping.processing.timespan.ro.regex.*;
 import ro.webdata.lido.mapping.processing.timespan.ro.regex.date.DateRegex;
 import ro.webdata.lido.mapping.processing.timespan.ro.regex.date.LongDateRegex;
 import ro.webdata.lido.mapping.processing.timespan.ro.regex.date.ShortDateRegex;
@@ -22,21 +19,12 @@ import ro.webdata.lido.mapping.processing.timespan.ro.regex.imprecise.Inaccurate
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TimespanUtils {
-    private static final String LEA = "lea";
-    private static final String LEA_REPLACEMENT = "##LEA##";
-    private static final String MIJ = "mij";
-    private static final String MIJ_REPLACEMENT = "##HALF##";
-
-    private static final String URL_SEPARATOR = "/";
-    private static final String A_MATCHING_GROUP = "([ ]+a[ \\.]+)";
-    private static final String P_MATCHING_GROUP = "([ ]+p[ \\.]+)";
-    private static final String CHR_MATCHING_GROUP = "(chr)([ \\.]+|\\z)";
-
     /**
      * TODO: doc<br/>
      * In the matching process the first matched value need to be the interval type,
@@ -55,8 +43,8 @@ public class TimespanUtils {
             BufferedReader br = new BufferedReader(new FileReader(filePath));
 
             // used for testing
-            String test = "1070 – 332 __BC__";
-//            br = new BufferedReader(new StringReader(test));
+            String test = "2 a.chr - 14 p.chr";
+            br = new BufferedReader(new StringReader(test));
             String readLine;
 
             while ((readLine = br.readLine()) != null) {
@@ -64,7 +52,7 @@ public class TimespanUtils {
                     String value = StringUtils.stripAccents(readLine);
 
                     timespanModel = new TimespanModel(value);
-                    timespanModel = getMatchedValues(timespanModel, UnknownRegex.UNKNOWN, null);
+                    timespanModel = getMatchedValues(timespanModel, UnknownRegex.UNKNOWN, TimeUtils.UNKNOWN_DATE_PLACEHOLDER);
 
                     timespanModel = getMatchedValues(timespanModel, DateRegex.DATE_DMY_INTERVAL, null);
                     timespanModel = getMatchedValues(timespanModel, DateRegex.DATE_YMD_INTERVAL, null);
@@ -74,44 +62,47 @@ public class TimespanUtils {
                     timespanModel = getMatchedValues(timespanModel, ShortDateRegex.DATE_MY_OPTIONS, null);
                     timespanModel = getMatchedValues(timespanModel, LongDateRegex.LONG_DATE_OPTIONS, null);
 
-//                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.CENTURY_INTERVAL, null);
-//                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.CENTURY_OPTIONS, null);
-//                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.MILLENNIUM_INTERVAL, null);
-//                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.MILLENNIUM_OPTIONS, null);
-//                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.OTHER_ROMAN_INTERVAL, null);
-//                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.OTHER_ROMAN_OPTIONS, null);
+                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.CENTURY_INTERVAL, null);
+                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.CENTURY_OPTIONS, null);
+                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.MILLENNIUM_INTERVAL, null);
+                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.MILLENNIUM_OPTIONS, null);
+                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.OTHER_ROMAN_INTERVAL, null);
+                    timespanModel = getMatchedValues(timespanModel, TimePeriodRegex.OTHER_ROMAN_OPTIONS, null);
                     timespanModel = getMatchedValues(timespanModel, AgeRegex.AGE_OPTIONS, null);
 
                     timespanModel = getMatchedValues(timespanModel, DatelessRegex.DATELESS, null);
-                    timespanModel = getMatchedValues(timespanModel, InaccurateYearRegex.AFTER_INTERVAL, TimeUtils.AFTER_PLACEHOLDER);
-                    timespanModel = getMatchedValues(timespanModel, InaccurateYearRegex.BEFORE_INTERVAL, TimeUtils.BEFORE_PLACEHOLDER);
+                    timespanModel = getMatchedValues(timespanModel, InaccurateYearRegex.AFTER_INTERVAL, TimeUtils.CHRISTUM_AD_LABEL);
+                    timespanModel = getMatchedValues(timespanModel, InaccurateYearRegex.BEFORE_INTERVAL, TimeUtils.CHRISTUM_BC_LABEL);
                     timespanModel = getMatchedValues(timespanModel, InaccurateYearRegex.APPROX_AGES_INTERVAL, TimeUtils.APPROXIMATE_PLACEHOLDER);
-                    timespanModel = getMatchedValues(timespanModel, InaccurateYearRegex.AFTER, TimeUtils.AFTER_PLACEHOLDER);
-                    timespanModel = getMatchedValues(timespanModel, InaccurateYearRegex.BEFORE, TimeUtils.BEFORE_PLACEHOLDER);
+                    timespanModel = getMatchedValues(timespanModel, InaccurateYearRegex.AFTER, TimeUtils.CHRISTUM_AD_LABEL);
+                    timespanModel = getMatchedValues(timespanModel, InaccurateYearRegex.BEFORE, TimeUtils.CHRISTUM_BC_LABEL);
                     timespanModel = getMatchedValues(timespanModel, InaccurateYearRegex.APPROX_AGES_OPTIONS, TimeUtils.APPROXIMATE_PLACEHOLDER);
 
-                    timespanModel.clearTimespanList();
+                    // Firstly, the years consisting of 3 - 4 digits need to be processed
                     timespanModel = getMatchedValues(timespanModel, YearRegex.YEAR_3_4_DIGITS_INTERVAL, null);
+                    timespanModel = getMatchedValues(timespanModel, YearRegex.YEAR_3_4_DIGITS_SPECIAL_INTERVAL, null);
                     timespanModel = getMatchedValues(timespanModel, YearRegex.YEAR_3_4_DIGITS_OPTIONS, null);
+                    // Secondly, the years consisting of 2 digits need to be processed
+                    timespanModel = getMatchedValues(timespanModel, YearRegex.YEAR_2_DIGITS_INTERVAL, null);
+                    timespanModel = getMatchedValues(timespanModel, YearRegex.YEAR_2_DIGITS_OPTIONS, null);
+                    // This call need to be made after all the years processing !!!
+                    timespanModel = getMatchedValues(timespanModel, YearRegex.UNKNOWN_YEARS, TimeUtils.UNKNOWN_DATE_PLACEHOLDER);
 
                     if (timespanModel.getTimespanList().size() > 0)
                         System.out.println(timespanModel.getTimespanList());
                 }
             }
         } catch (IOException e) {
-
+            e.printStackTrace();
         }
     }
 
+    //TODO: "2 a.chr - 14 p.chr"
     private static TimespanModel getMatchedValues(TimespanModel timespanModel, String regex, String flag) {
-        String initialValue = timespanModel.getResidualValue()
+        String initialValue = timespanModel.getResidualValue();
+        initialValue = TimeSanitizeUtils.sanitizeValue(initialValue, regex)
                 .replaceAll(TimespanRegex.AGE_BC, TimeUtils.CHRISTUM_BC_PLACEHOLDER)
                 .replaceAll(TimespanRegex.AGE_AD, TimeUtils.CHRISTUM_AD_PLACEHOLDER);
-
-        // Particular logic to add a space before and after the interval delimiter
-        if (initialValue.equals("17 nov. 375-9 aug. 378 __BC__")) {
-            initialValue = "17 nov. 375 - 9 aug. 378 __BC__";
-        }
 
         ArrayList<String> matchedList = timespanModel.getTimespanList();
         String residualValue = initialValue
@@ -119,14 +110,14 @@ public class TimespanUtils {
 
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(initialValue);
-//        System.out.println("initialValue: " + initialValue);
 
         while (matcher.find()) {
-            // String prepared = prepareTimePeriod(prepared, regex);
-            //TODO: check
-            String prepared = prepareDateTime(matcher.group(), regex, flag);
-            prepared = prepareAges(prepared, regex, flag);
-            prepared = prepareTimePeriod(prepared, regex, flag);
+            String prepared = prepareValue(matcher.group(), regex, flag);
+            System.out.println("matcher.group(): " + matcher.group());
+            System.out.println("prepared: " + prepared);
+            System.out.println("initialValue: " + initialValue);
+            System.out.println("residualValue: " + residualValue);
+            System.out.println();
 //            matchedList.add(prepared);
             matchedList.add("prepared: \"" + prepared + "\"     initialValue: \"" + initialValue + "\"");
         }
@@ -134,23 +125,36 @@ public class TimespanUtils {
         return new TimespanModel(matchedList, residualValue.trim());
     }
 
-    //TODO: consolidate prepareDateTime & prepareAges & prepareTimePeriod
-    private static String prepareValue(String value, String regex) {
-        return null;
+    /**
+     * Format date-like, year-like, centuries and millenniums values
+     * @param value The original value
+     * @param regex A regular expression
+     * @param flag An optional value used to differentiate special cases
+     * @return The formatted value
+     */
+    private static String prepareValue(String value, String regex, String flag) {
+        if (flag != null && flag.equals(TimeUtils.UNKNOWN_DATE_PLACEHOLDER)) {
+            return value
+                    .replaceAll(regex, Constants.EMPTY_VALUE_PLACEHOLDER)
+                    .trim();
+        }
+
+        String prepared = prepareDateTime(value, regex, flag);
+        prepared = prepareAges(prepared, regex, flag);
+        prepared = prepareTimePeriod(prepared, regex, flag);
+
+        return prepared;
     }
 
     /**
-     * If the value is a date-like, format it using a unique standard (year/month/day),
-     * else, return the original value
+     * Format the date-like value
      * @param value The original value
-     * @param regex A regular expression used for matching
-     * @param flag An optional value used to differentiate some cases
+     * @param regex A regular expression
+     * @param flag An optional value used to differentiate special cases
      * @return The formatted value
      */
     private static String prepareDateTime(String value, String regex, String flag) {
         DateModel dateModel;
-        ShortDateModel shortDateModel;
-        LongDateModel longDateModel;
 
         switch (regex) {
             case DateRegex.DATE_DMY_INTERVAL:
@@ -163,43 +167,57 @@ public class TimespanUtils {
                 return dateModel.toString();
             case ShortDateRegex.DATE_MY_INTERVAL:
             case ShortDateRegex.DATE_MY_OPTIONS:
-                shortDateModel = new ShortDateModel(value, TimeUtils.MY_PLACEHOLDER);
+                ShortDateModel shortDateModel = new ShortDateModel(value, TimeUtils.MY_PLACEHOLDER);
                 return shortDateModel.toString();
             case LongDateRegex.LONG_DATE_OPTIONS:
-                longDateModel = new LongDateModel(value);
+                LongDateModel longDateModel = new LongDateModel(value);
                 return longDateModel.toString();
             default:
                 return value;
         }
     }
 
+    /**
+     * Format the year-like value
+     * @param value The original value
+     * @param regex A regular expression
+     * @param flag An optional value used to differentiate special cases
+     * @return The formatted value
+     */
     private static String prepareAges(String value, String regex, String flag) {
-        InaccurateYearModel inaccurateYearModel;
-        DatelessModel datelessModel;
-        YearModel yearModel;
-
         switch (regex) {
-            case InaccurateYearRegex.AFTER_INTERVAL:
-            case InaccurateYearRegex.BEFORE_INTERVAL:
-            case InaccurateYearRegex.APPROX_AGES_INTERVAL:
             case InaccurateYearRegex.AFTER:
-            case InaccurateYearRegex.BEFORE:
+            case InaccurateYearRegex.AFTER_INTERVAL:
+            case InaccurateYearRegex.APPROX_AGES_INTERVAL:
             case InaccurateYearRegex.APPROX_AGES_OPTIONS:
-                inaccurateYearModel = new InaccurateYearModel(value, flag);
+            case InaccurateYearRegex.BEFORE:
+            case InaccurateYearRegex.BEFORE_INTERVAL:
+                InaccurateYearModel inaccurateYearModel = new InaccurateYearModel(value, flag);
                 return inaccurateYearModel.toString();
             case DatelessRegex.DATELESS:
-                datelessModel = new DatelessModel(value);
+                DatelessModel datelessModel = new DatelessModel(value);
                 return datelessModel.toString();
+            case YearRegex.YEAR_2_DIGITS_INTERVAL:
+            case YearRegex.YEAR_2_DIGITS_OPTIONS:
             case YearRegex.YEAR_3_4_DIGITS_INTERVAL:
+            case YearRegex.YEAR_3_4_DIGITS_SPECIAL_INTERVAL:
             case YearRegex.YEAR_3_4_DIGITS_OPTIONS:
-                yearModel = new YearModel(value);
+                YearModel yearModel = new YearModel(value);
                 return yearModel.toString();
             default:
                 return value;
         }
     }
 
+    /**
+     * Format centuries and millenniums
+     * @param value The original value
+     * @param regex A regular expression
+     * @param flag An optional value used to differentiate special cases
+     * @return The formatted value
+     */
     private static String prepareTimePeriod(String value, String regex, String flag) {
+        //TODO:
         switch (regex) {
 //            case TimespanRegex.CENTURY_INTERVAL:
 //            case TimespanRegex.CENTURY_OPTIONS:

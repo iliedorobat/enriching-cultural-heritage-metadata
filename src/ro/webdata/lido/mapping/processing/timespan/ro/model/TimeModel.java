@@ -11,7 +11,6 @@ public class TimeModel {
     protected int dayStart, dayEnd;
     protected boolean isInterval = false;
 
-    //TODO: add this getter for all the date models
     protected void setEra(String value, String position) {
         if (position.equals(TimeUtils.START_PLACEHOLDER)) {
             boolean containsEra = value.contains(TimeUtils.CHRISTUM_BC_PLACEHOLDER)

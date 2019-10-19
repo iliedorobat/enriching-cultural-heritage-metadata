@@ -53,7 +53,7 @@ public class ShortDateModel extends TimeModel {
                     + Constants.URL_SEPARATOR + monthEnd
                     + Constants.URL_SEPARATOR + TimeUtils.getEraLabel(eraEnd);
 
-            return start + TimeUtils.INTERVAL_SEPARATOR + end;
+            return start + TimeUtils.INTERVAL_SEPARATOR_PLACEHOLDER + end;
         }
 
         return start;

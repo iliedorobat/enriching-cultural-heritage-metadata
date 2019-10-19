@@ -55,7 +55,7 @@ public class DateModel extends TimeModel {
                     + Constants.URL_SEPARATOR + dayEnd
                     + Constants.URL_SEPARATOR + TimeUtils.getEraLabel(eraEnd);
 
-            return start + TimeUtils.INTERVAL_SEPARATOR + end;
+            return start + TimeUtils.INTERVAL_SEPARATOR_PLACEHOLDER + end;
         }
 
         return start;

@@ -15,10 +15,10 @@ public class YearModel extends TimeModel {
         setYearModel(value);
     }
 
-    //TODO: "anul 13=1800/1801"
-    //TODO: "110/109 a. chr."
     private void setYearModel(String value) {
-        String[] intervalValues = value.split(TimespanRegex.REGEX_INTERVAL_DELIMITER);
+        // used for cases similar with "anul 13=1800/1801" or with "110/109 a. chr."
+        String preparedValue = value.replaceAll("/", " - ");
+        String[] intervalValues = preparedValue.split(TimespanRegex.REGEX_INTERVAL_DELIMITER);
 
         if (intervalValues.length == 2) {
             setIsInterval(true);
@@ -47,7 +47,7 @@ public class YearModel extends TimeModel {
         if (isInterval) {
             String end = this.yearEnd
                     + Constants.URL_SEPARATOR + TimeUtils.getEraLabel(this.eraEnd);
-            return start + TimeUtils.INTERVAL_SEPARATOR + end;
+            return start + TimeUtils.INTERVAL_SEPARATOR_PLACEHOLDER + end;
         }
 
         return start;

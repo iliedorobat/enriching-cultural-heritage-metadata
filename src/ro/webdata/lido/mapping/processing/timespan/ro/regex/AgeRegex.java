@@ -35,6 +35,9 @@ public class AgeRegex {
     private static final String ROMAN_EMPIRE_AGE = TEXT_START + "romana" + TEXT_END;
     /** http://dbpedia.org/page/Nerva–Antonine_dynasty */
     private static final String NERVA_ANTONINE_DYNASTY = TEXT_START + "(antoninian[\\w]*|hadrian)" + TEXT_END;
+    /** http://dbpedia.org/page/Renaissance */
+    //TODO: check "69 p.chr./renaștere"
+    private static final String RENAISSANCE = TEXT_START + "renastere" + TEXT_END;
     /** http://dbpedia.org/page/French_Consulate */
     private static final String FRENCH_CONSULATE_AGE = TEXT_START + "perioada consulatului francez" + TEXT_END;
 
@@ -43,7 +46,7 @@ public class AgeRegex {
     /** http://dbpedia.org/page/Interwar_period */
     private static final String INTERWAR_PERIOD = TEXT_START + "interbelica" + TEXT_END;
     /** http://dbpedia.org/page/World_War_II */
-    private static final String WW_II_PERIOD = TEXT_START + "al doilea razboi mondial" + TEXT_END;
+    private static final String WW_II_PERIOD = TEXT_START + "al (doilea|ii-lea) razboi mondial" + TEXT_END;
 
     public static final String AGE_OPTIONS = "(" + PLEISTOCENE_AGE + ")"
                 + REGEX_OR + "(" + MESOLITHIC_AGE + ")"
@@ -57,6 +60,7 @@ public class AgeRegex {
                 + REGEX_OR + "(" + PTOLEMAIC_DYNASTY + ")"
                 + REGEX_OR + "(" + ROMAN_EMPIRE_AGE + ")"
                 + REGEX_OR + "(" + NERVA_ANTONINE_DYNASTY + ")"
+                + REGEX_OR + "(" + RENAISSANCE + ")"
                 + REGEX_OR + "(" + FRENCH_CONSULATE_AGE + ")"
                 + REGEX_OR + "(" + WW_I_PERIOD + ")"
                 + REGEX_OR + "(" + INTERWAR_PERIOD + ")"
