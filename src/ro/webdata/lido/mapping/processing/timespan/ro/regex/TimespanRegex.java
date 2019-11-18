@@ -91,7 +91,10 @@ public class TimespanRegex {
                     + REGEX_PUNCTUATION_UNLIMITED + CHRISTUM_NOTATION
                 + "){0,1}"
             + ")";
-    private static final String AGES_ROMAN_GROUP = "(" + TEXT_START + "[ivxlcdm]+" + TEXT_END + ")";
+    private static final String AGES_ROMAN_GROUP = CASE_INSENSITIVE
+            + "("
+                + TEXT_START + "[ivxlcdm]+" + TEXT_END
+            + ")";
     public static final String AGES_ROMAN_NOTATION =
             "("
                 + AGES_ROMAN_GROUP + "([- ]*lea){0,1}"
