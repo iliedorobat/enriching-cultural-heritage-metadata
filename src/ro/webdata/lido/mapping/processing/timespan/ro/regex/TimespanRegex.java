@@ -9,6 +9,7 @@ import ro.webdata.lido.mapping.processing.timespan.ro.TimeUtils;
 //TODO: check "sec. xviii; (gema: sec. i e.n.)"
 public class TimespanRegex {
     public static final String REGEX_OR = "|";
+    private static final String CASE_INSENSITIVE = "(?i)";
     private static final String CHRISTUM_AD_NAME = TimeUtils.CHRISTUM_AD_PLACEHOLDER;
     private static final String CHRISTUM_BC_NAME = TimeUtils.CHRISTUM_BC_PLACEHOLDER;
     public static final String AD_BC_OPTIONAL = "("
@@ -49,13 +50,17 @@ public class TimespanRegex {
     private static final String REGEX_CHRISTUM = "(ch[r]{0,1}|hr|c)[\\. ]*";
 
     // Anno Domini (After Christ)
-    public static final String AGE_AD = TEXT_START + "("
+    public static final String AGE_AD = TEXT_START
+            + CASE_INSENSITIVE
+            + "("
                 + "(" + "e[\\.]{0,1}n[\\.]{0,1}" + ")"
                 + REGEX_OR + "(" + "[dp][\\. ]*" + REGEX_CHRISTUM + ")"
             + ")" + TEXT_END;
 
     // Before Christ
-    public static final String AGE_BC = TEXT_START + "("
+    public static final String AGE_BC = TEXT_START
+            + CASE_INSENSITIVE
+            + "("
                 + "i.hr."
                 + REGEX_OR + "(" + "i[\\.]{0,1}e[\\.]{0,1}n[\\.]{0,1}" + ")"
                 + REGEX_OR + "(" + "[abi][\\. ]*" + REGEX_CHRISTUM + ")"
