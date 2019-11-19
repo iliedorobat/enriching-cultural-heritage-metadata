@@ -9,7 +9,7 @@ import ro.webdata.lido.mapping.processing.timespan.ro.TimeUtils;
 //TODO: check "sec. xviii; (gema: sec. i e.n.)"
 public class TimespanRegex {
     public static final String REGEX_OR = "|";
-    private static final String CASE_INSENSITIVE = "(?i)";
+    public static final String CASE_INSENSITIVE = "(?i)";
     private static final String CHRISTUM_AD_NAME = TimeUtils.CHRISTUM_AD_PLACEHOLDER;
     private static final String CHRISTUM_BC_NAME = TimeUtils.CHRISTUM_BC_PLACEHOLDER;
     public static final String AD_BC_OPTIONAL = "("
@@ -53,34 +53,34 @@ public class TimespanRegex {
     public static final String AGE_AD = TEXT_START
             + CASE_INSENSITIVE
             + "("
-                + "(" + "e[\\.]{0,1}n[\\.]{0,1}" + ")"
-                + REGEX_OR + "(" + "[dp][\\. ]*" + REGEX_CHRISTUM + ")"
+                + "(" + "e[\\.]{0,1}n[\\.]{0,1}" + ")" + REGEX_OR
+                + "(" + "[dp][\\. ]*" + REGEX_CHRISTUM + ")"
             + ")" + TEXT_END;
 
     // Before Christ
     public static final String AGE_BC = TEXT_START
             + CASE_INSENSITIVE
             + "("
-                + "i.hr."
-                + REGEX_OR + "(" + "i[\\.]{0,1}e[\\.]{0,1}n[\\.]{0,1}" + ")"
-                + REGEX_OR + "(" + "[abi][\\. ]*" + REGEX_CHRISTUM + ")"
+                + "i.hr." + REGEX_OR
+                + "(" + "i[\\.]{0,1}e[\\.]{0,1}n[\\.]{0,1}" + ")" + REGEX_OR
+                + "(" + "[abi][\\. ]*" + REGEX_CHRISTUM + ")"
             + ")" + TEXT_END;
     private static final String CHRISTUM_NOTATION = "(" + CHRISTUM_AD_NAME + REGEX_OR + CHRISTUM_BC_NAME + ")";
 
     public static final String MONTHS_RO =
             "("
-                + "ianuarie" + REGEX_OR + "ian[\\.]"
-                + REGEX_OR + "februarie" + REGEX_OR + "fevruarie" + REGEX_OR + "feb[\\.]"
-                + REGEX_OR + "martie" + REGEX_OR + "mart[\\.]"
-                + REGEX_OR + "aprilie" + REGEX_OR + "apr[\\.]"
-                + REGEX_OR + "mai"
-                + REGEX_OR + "iunie" + REGEX_OR + "iumie" + REGEX_OR + "iun[\\.]"
-                + REGEX_OR + "iulie" + REGEX_OR + "iul[\\.]"
-                + REGEX_OR + "august" + REGEX_OR + "aug[\\.]"
-                + REGEX_OR + "septembrie" + REGEX_OR + "sept[\\.]"
-                + REGEX_OR + "octombrie" + REGEX_OR + "0ctombrie" + REGEX_OR + "oct[\\.]"
-                + REGEX_OR + "noiembrie" + REGEX_OR + "noimbrie" + REGEX_OR + "nov[\\.]"
-                + REGEX_OR + "decembrie" + REGEX_OR + "decembre" + REGEX_OR + "dec[\\.]"
+                + "ianuarie" + REGEX_OR + "ian[\\.]" + REGEX_OR
+                + "februarie" + REGEX_OR + "fevruarie" + REGEX_OR + "feb[\\.]" + REGEX_OR
+                + "martie" + REGEX_OR + "mart[\\.]" + REGEX_OR
+                + "aprilie" + REGEX_OR + "apr[\\.]" + REGEX_OR
+                + "mai" + REGEX_OR
+                + "iunie" + REGEX_OR + "iumie" + REGEX_OR + "iun[\\.]" + REGEX_OR
+                + "iulie" + REGEX_OR + "iul[\\.]" + REGEX_OR
+                + "august" + REGEX_OR + "aug[\\.]" + REGEX_OR
+                + "septembrie" + REGEX_OR + "sept[\\.]" + REGEX_OR
+                + "octombrie" + REGEX_OR + "0ctombrie" + REGEX_OR + "oct[\\.]" + REGEX_OR
+                + "noiembrie" + REGEX_OR + "noimbrie" + REGEX_OR + "nov[\\.]" + REGEX_OR
+                + "decembrie" + REGEX_OR + "decembre" + REGEX_OR + "dec[\\.]"
             + ")";
 
     private static final String AGES_ARABIC_GROUP = "(" + TEXT_START + "\\d+" + TEXT_END + ")";
@@ -91,12 +91,11 @@ public class TimespanRegex {
                     + REGEX_PUNCTUATION_UNLIMITED + CHRISTUM_NOTATION
                 + "){0,1}"
             + ")";
-    private static final String AGES_ROMAN_GROUP = CASE_INSENSITIVE
-            + "("
+    private static final String AGES_ROMAN_GROUP = "("
                 + TEXT_START + "[ivxlcdm]+" + TEXT_END
             + ")";
-    public static final String AGES_ROMAN_NOTATION =
-            "("
+    public static final String AGES_ROMAN_NOTATION = CASE_INSENSITIVE
+            + "("
                 + AGES_ROMAN_GROUP + "([- ]*lea){0,1}"
                 + "("
                     + REGEX_PUNCTUATION_UNLIMITED + CHRISTUM_NOTATION
@@ -113,16 +112,16 @@ public class TimespanRegex {
     public static final String FIRST_HALF =
             "("
                 + TEXT_START + "("
-                    + "(1/2)"
-                    + REGEX_OR + "(½)"
-                    + REGEX_OR + "(" + FIRST_HALF_STRING_REGEX + REGEX_A_AL_POSTFIX + ")"
+                    + "(1/2)" + REGEX_OR
+                    + "(½)" + REGEX_OR
+                    + "(" + FIRST_HALF_STRING_REGEX + REGEX_A_AL_POSTFIX + ")"
                 + ")" + TEXT_END
             + ")";
     public static final String SECOND_HALF =
             "("
                 + TEXT_START + "("
-                    + "(2/2)"
-                    + REGEX_OR + "(" + SECOND_HALF_STRING_REGEX + REGEX_A_AL_POSTFIX + ")"
+                    + "(2/2)" + REGEX_OR
+                    + "(" + SECOND_HALF_STRING_REGEX + REGEX_A_AL_POSTFIX + ")"
                 + ")" + TEXT_END
             + ")";
     public static final String MIDDLE_OF =
@@ -136,25 +135,25 @@ public class TimespanRegex {
     public static final String FIRST_QUARTER =
             "("
                 + TEXT_START + "("
-                    + "(1/4)"
-                    + REGEX_OR + "(¼)"
-                    + REGEX_OR + "(" + "(inc[\\w]*)" + "([\\. ]*de){0,1}" + ")"
-                    + REGEX_OR + "(" + "primul[ ]+sfert" + "([ ]+a[l]{0,1}){0,1}" + ")"
+                    + "(1/4)" + REGEX_OR
+                    + "(¼)" + REGEX_OR
+                    + "(" + "(inc[\\w]*)" + "([\\. ]*de){0,1}" + ")" + REGEX_OR
+                    + "(" + "primul[ ]+sfert" + "([ ]+a[l]{0,1}){0,1}" + ")"
                 + ")" + TEXT_END
             + ")";
     public static final String SECOND_QUARTER =
             "("
                 + TEXT_START + "("
-                    + "(2/4)"
-                    + REGEX_OR + "(al doile[a]{0,1} sfert al)"
+                    + "(2/4)" + REGEX_OR
+                    + "(al doile[a]{0,1} sfert al)"
                 + ")" + TEXT_END
             + ")";
     public static final String THIRD_QUARTER =
             "("
                 + TEXT_START + "("
-                    + "(3/4)"
-                    + REGEX_OR + "(¾)"
-                    + REGEX_OR + "(al treilea sfert al)"
+                    + "(3/4)" + REGEX_OR
+                    + "(¾)" + REGEX_OR
+                    + "(al treilea sfert al)"
                 + ")" + TEXT_END
             + ")";
     /**
@@ -163,9 +162,9 @@ public class TimespanRegex {
     public static final String FORTH_QUARTER =
             "("
                 + TEXT_START + "("
-                    + "(4/4)"
-                    + REGEX_OR + "(" + "(ultimul[ ]+sfert)" + "([ ]+(a[l]{0,1}|de)*){0,1}" + ")"
-                    + REGEX_OR + "(" + "(sf[^(ert)][\\w]*)" + "([\\. ]de){0,1}" + ")"
+                    + "(4/4)" + REGEX_OR
+                    + "(" + "(ultimul[ ]+sfert)" + "([ ]+(a[l]{0,1}|de)*){0,1}" + ")" + REGEX_OR
+                    + "(" + "(sf[^(ert)][\\w]*)" + "([\\. ]de){0,1}" + ")"
                 + ")"
             + ")";
 }

@@ -14,24 +14,33 @@ public class InaccurateYearRegex {
 
     private static final String APPROX_AGES_GROUP =
             "("
-                + "(" + "(catre|probabil|aprox[\\.]*|aproximativ([ ]anii)*|c[a]{0,1}[\\.]{0,1}|cca[\\.]*|circa)[ ]*\\d+" + ")"
+                + "("
+                    + "("
+                        + "catre" + REGEX_OR
+                        + "probabil" + REGEX_OR
+                        + "aprox[\\.]*" + REGEX_OR
+                        + "aproximativ([ ]anii)*" + REGEX_OR
+                        + "c[a]{0,1}[\\.]{0,1}" + REGEX_OR
+                        + "cca[\\.]*" + REGEX_OR
+                        + "circa)[ ]*\\d+"
+                    + ")"
                 + "(" + REGEX_PUNCTUATION_UNLIMITED + AD_BC_OPTIONAL + ")*"
             + ")";
 
     public static final String APPROX_AGES_OPTIONS = TEXT_START + APPROX_AGES_GROUP + TEXT_END;
     public static final String APPROX_AGES_INTERVAL = TEXT_START + APPROX_AGES_OPTIONS + REGEX_INTERVAL_DELIMITER
             + "("
-                + APPROX_AGES_OPTIONS   // usual cases as "[c. 250-c. 225 a.chr.]"
-                + REGEX_OR + "("        // cases as "[c. 260-230]"
+                + APPROX_AGES_OPTIONS + REGEX_OR    // usual cases as "[c. 250-c. 225 a.chr.]"
+                + "("                               // cases as "[c. 260-230]"
                     + "\\d{0,4}" + AD_BC_OPTIONAL
                 + ")"
             + ")"
             + TEXT_END;
 
     private static final String DATE = "("
-                + DateRegex.DATE_DMY_OPTIONS
-                + REGEX_OR + DateRegex.DATE_YMD_OPTIONS
-                + REGEX_OR + "("
+                + DateRegex.DATE_DMY_OPTIONS + REGEX_OR
+                + DateRegex.DATE_YMD_OPTIONS  + REGEX_OR
+                + "("
                     + TEXT_START + "\\d{1,4}" + AD_BC_OPTIONAL + TEXT_END
                 + ")"
             + ")";
@@ -47,7 +56,9 @@ public class InaccurateYearRegex {
      */
     public static final String AFTER = TEXT_START + "("
                 + "("
-                    + "dupa" + REGEX_OR + "post" + REGEX_OR + "postum"
+                    + "dupa" + REGEX_OR
+                    + "post" + REGEX_OR
+                    + "postum"
                 + ")" + "[ ]*"
                 + DATE
             + ")" + TEXT_END;
@@ -65,7 +76,9 @@ public class InaccurateYearRegex {
      */
     public static final String BEFORE = TEXT_START + "("
                 + "("
-                    + "ante" + REGEX_OR + "anterior[ ]*lui" + REGEX_OR + "inainte[ ]*de"
+                    + "ante" + REGEX_OR
+                    + "anterior[ ]*lui" + REGEX_OR
+                    + "inainte[ ]*de"
                 + ")" + "[ ]*"
                 + DATE
             + ")" + TEXT_END;

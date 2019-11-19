@@ -28,7 +28,9 @@ public class DatelessRegex {
      */
     private static final String UNDATED = "("
                 + ".*("
-                    + "nedatat"+ REGEX_OR + "nedatabil" + REGEX_OR + "nu[ ]*are"
+                    + "nedatat"+ REGEX_OR
+                    + "nedatabil" + REGEX_OR
+                    + "nu[ ]*are"
                 + ").*"
             + ")";
 
@@ -40,7 +42,9 @@ public class DatelessRegex {
      */
     private static final String WITHOUT_AGE = "("
                 + ".*("
-                    + "(fara[ ]*an)" + REGEX_OR + "(f\\.[ ]*an)" + REGEX_OR + "(f\\.a)"
+                    + "(fara[ ]*an)" + REGEX_OR
+                    + "(f\\.[ ]*an)" + REGEX_OR
+                    + "(f\\.a)"
                 + ")"
             + ")";
 
@@ -53,7 +57,9 @@ public class DatelessRegex {
      */
     private static final String WITHOUT_DATE = "("
                 + "("
-                    + "(fara[ ]*data)" + REGEX_OR + "(f\\.[ ]*data)" + REGEX_OR + "(f\\.d)"
+                    + "(fara[ ]*data)" + REGEX_OR
+                    + "(f\\.[ ]*data)" + REGEX_OR
+                    + "(f\\.d)"
                 + ")"
             + ").*";
 
@@ -70,10 +76,11 @@ public class DatelessRegex {
      *     <li>"1861 f.d"</li>
      * </ul>
      */
-    public static final String DATELESS = "("
-                + MODEL_X
-                + REGEX_OR + UNDATED
-                + REGEX_OR + WITHOUT_AGE
-                + REGEX_OR + WITHOUT_DATE
+    public static final String DATELESS = TimespanRegex.CASE_INSENSITIVE
+            + "("
+                + MODEL_X + REGEX_OR
+                + UNDATED + REGEX_OR
+                + WITHOUT_AGE + REGEX_OR
+                + WITHOUT_DATE
             + ")";
 }

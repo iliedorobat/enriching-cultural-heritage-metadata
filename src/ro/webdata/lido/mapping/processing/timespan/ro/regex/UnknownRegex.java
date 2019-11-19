@@ -7,7 +7,8 @@ package ro.webdata.lido.mapping.processing.timespan.ro.regex;
 public class UnknownRegex {
     private static final String REGEX_OR = TimespanRegex.REGEX_OR;
 
-    public static final String UNKNOWN = "^("
+    public static final String UNKNOWN = TimespanRegex.CASE_INSENSITIVE
+            + "^("
                 + "-"
                 + REGEX_OR + "4/4 sec\\."
                 + REGEX_OR + "17 nov\\. 375\\-9 aug\\. 378 a\\.chr\\."
