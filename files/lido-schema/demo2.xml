@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lido:lidoWrap xmlns:lido="http://www.lido-schema.org"
+               xsi:schemaLocation="lido http://www.lido-schema.org/schema/v1.0/lido-v1.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <lido:lido>
+        <lido:lidoRecID
+                lido:type="CIMEC">1C87F3F41F4241819A042E4300889582</lido:lidoRecID>
+        <lido:category>
+            <lido:conceptID
+                    lido:type="CIDOC-CRM">E22_Man-Made_Object</lido:conceptID>
+            <lido:term
+                    xml:lang="ro">artefact</lido:term>
+            <lido:term
+                    xml:lang="en">man-made object</lido:term>
+        </lido:category>
+        <lido:descriptiveMetadata
+                xml:lang="ro">
+            <lido:objectClassificationWrap>
+                <lido:objectWorkTypeWrap>
+                    <lido:objectWorkType>
+                        <lido:term
+                                xml:lang="ro">Statuetă antropomorfă</lido:term>
+                    </lido:objectWorkType>
+                    <lido:objectWorkType>
+                        <lido:term
+                                xml:lang="ro">Cap antropomorf</lido:term>
+                    </lido:objectWorkType>
+                </lido:objectWorkTypeWrap>
+                <lido:classificationWrap>
+                    <lido:classification
+                            lido:type="europeana:type">
+                        <lido:term
+                                xml:lang="en">IMAGE</lido:term>
+                    </lido:classification>
+                    <lido:classification>
+                        <lido:term
+                                xml:lang="ro">arheologie</lido:term>
+                        <lido:term
+                                xml:lang="en">archaeology</lido:term>
+                    </lido:classification>
+                    <lido:classification>
+                        <lido:term
+                                xml:lang="ro">Ceramică</lido:term>
+                    </lido:classification>
+                </lido:classificationWrap>
+            </lido:objectClassificationWrap>
+            <lido:objectIdentificationWrap>
+                <lido:titleWrap>
+                    <lido:titleSet>
+                        <lido:appellationValue
+                                xml:lang="ro"
+                                lido:pref="preferred">Cap antropomorf</lido:appellationValue>
+                    </lido:titleSet>
+                </lido:titleWrap>
+                <lido:repositoryWrap>
+                    <lido:repositorySet>
+                        <lido:repositoryName>
+                            <lido:legalBodyID
+                                    lido:type="CIMEC">6971500</lido:legalBodyID>
+                            <lido:legalBodyName>
+                                <lido:appellationValue>Muzeul Județean Teleorman - ALEXANDRIA</lido:appellationValue>
+                            </lido:legalBodyName>
+                        </lido:repositoryName>
+                        <lido:workID
+                                lido:type="inventory number">27274</lido:workID>
+                    </lido:repositorySet>
+                </lido:repositoryWrap>
+                <lido:displayStateEditionWrap>
+                    <lido:displayState
+                            xml:lang="ro">foarte bună</lido:displayState>
+                </lido:displayStateEditionWrap>
+                <lido:objectDescriptionWrap>
+                    <lido:objectDescriptionSet
+                            lido:type="overall description">
+                        <lido:descriptiveNoteValue
+                                xml:lang="ro">Cap antropomorf, de culoare cenușie. Are formă discoidală, cu nasul reliefat și gura redată printr-o linie incizată. Lobii urechilor nu au perforații. Nu prezintă alte detalii anatomice ale feței. Gâtul este cilindric, scurt, fără decor.</lido:descriptiveNoteValue>
+                    </lido:objectDescriptionSet>
+                </lido:objectDescriptionWrap>
+                <lido:objectMeasurementsWrap>
+                    <lido:objectMeasurementsSet>
+                        <lido:displayObjectMeasurements
+                                xml:lang="ro"
+                                lido:label="weight">7,82 g</lido:displayObjectMeasurements>
+                        <lido:displayObjectMeasurements
+                                xml:lang="ro"
+                                lido:label="width">25,7 mm</lido:displayObjectMeasurements>
+                        <lido:displayObjectMeasurements
+                                xml:lang="ro"
+                                lido:label="thickness">15,3 mm</lido:displayObjectMeasurements>
+                        <lido:displayObjectMeasurements
+                                xml:lang="ro"
+                                lido:label="height">28,6 mm</lido:displayObjectMeasurements>
+                    </lido:objectMeasurementsSet>
+                </lido:objectMeasurementsWrap>
+            </lido:objectIdentificationWrap>
+            <lido:eventWrap>
+                <lido:eventSet>
+                    <lido:event>
+                        <lido:eventType>
+                            <lido:term
+                                    xml:lang="en">Production</lido:term>
+                        </lido:eventType>
+                        <lido:culture>
+                            <lido:term
+                                    xml:lang="en">culture: Gumelnița</lido:term>
+                            <lido:term
+                                    xml:lang="ro">cultură: Gumelnița</lido:term>
+                        </lido:culture>
+                        <lido:eventDate>
+                            <lido:displayDate>1650</lido:displayDate>
+                        </lido:eventDate>
+                        <lido:periodName>
+                            <lido:term
+                                    xml:lang="ro">Eneolitic</lido:term>
+                        </lido:periodName>
+                    </lido:event>
+                </lido:eventSet>
+                <lido:eventSet>
+                    <lido:event>
+                        <lido:eventType>
+                            <lido:term
+                                    xml:lang="en">Finding</lido:term>
+                        </lido:eventType>
+                        <lido:eventActor>
+                            <lido:actorInRole>
+                                <lido:actor>
+                                    <lido:nameActorSet>
+                                        <lido:appellationValue>Andreescu Radian</lido:appellationValue>
+                                    </lido:nameActorSet>
+                                </lido:actor>
+                                <lido:roleActor>
+                                    <lido:term
+                                            xml:lang="en">discoverer</lido:term>
+                                    <lido:term
+                                            xml:lang="ro">descoperitor</lido:term>
+                                </lido:roleActor>
+                            </lido:actorInRole>
+                        </lido:eventActor>
+                        <lido:eventDate>
+                            <lido:displayDate>post 1672 - 1674</lido:displayDate>
+                        </lido:eventDate>
+                        <lido:eventPlace>
+                            <lido:place
+                                    lido:politicalEntity="point">
+                                <lido:namePlaceSet>
+                                    <lido:appellationValue>Măgurice</lido:appellationValue>
+                                </lido:namePlaceSet>
+                                <lido:partOfPlace
+                                        lido:politicalEntity="locality">
+                                    <lido:namePlaceSet>
+                                        <lido:appellationValue>VITANESTI</lido:appellationValue>
+                                    </lido:namePlaceSet>
+                                    <lido:partOfPlace
+                                            lido:politicalEntity="commune">
+                                        <lido:namePlaceSet>
+                                            <lido:appellationValue>VITĂNEȘTI</lido:appellationValue>
+                                        </lido:namePlaceSet>
+                                        <lido:partOfPlace
+                                                lido:politicalEntity="county">
+                                            <lido:namePlaceSet>
+                                                <lido:appellationValue>Teleorman</lido:appellationValue>
+                                            </lido:namePlaceSet>
+                                            <lido:partOfPlace
+                                                    lido:politicalEntity="region">
+                                                <lido:namePlaceSet>
+                                                    <lido:appellationValue>Muntenia</lido:appellationValue>
+                                                </lido:namePlaceSet>
+                                                <lido:partOfPlace
+                                                        lido:politicalEntity="country">
+                                                    <lido:namePlaceSet>
+                                                        <lido:appellationValue>România</lido:appellationValue>
+                                                    </lido:namePlaceSet>
+                                                </lido:partOfPlace>
+                                            </lido:partOfPlace>
+                                        </lido:partOfPlace>
+                                    </lido:partOfPlace>
+                                </lido:partOfPlace>
+                            </lido:place>
+                        </lido:eventPlace>
+                        <lido:eventDescriptionSet
+                                lido:type="discovery context">
+                            <lido:descriptiveNoteValue
+                                    xml:lang="ro">Săpătură sistematică</lido:descriptiveNoteValue>
+                        </lido:eventDescriptionSet>
+                    </lido:event>
+                </lido:eventSet>
+            </lido:eventWrap>
+        </lido:descriptiveMetadata>
+        <lido:administrativeMetadata
+                xml:lang="ro">
+            <lido:recordWrap>
+                <lido:recordID
+                        lido:type="GUID">1C87F3F41F4241819A042E4300889582</lido:recordID>
+                <lido:recordType>
+                    <lido:term
+                            xml:lang="en">item</lido:term>
+                </lido:recordType>
+                <lido:recordSource
+                        lido:type="europeana:dataProvider">
+                    <lido:legalBodyName>
+                        <lido:appellationValue
+                                xml:lang="ro">Institutul Național al Patrimoniului</lido:appellationValue>
+                    </lido:legalBodyName>
+                    <lido:legalBodyWeblink>http://www.patrimoniu.ro</lido:legalBodyWeblink>
+                </lido:recordSource>
+                <lido:recordRights>
+                    <lido:rightsType>
+                        <lido:term
+                                xml:lang="en">CC0</lido:term>
+                    </lido:rightsType>
+                </lido:recordRights>
+                <lido:recordInfoSet>
+                    <lido:recordInfoLink
+                            lido:formatResource="text/html">http://clasate.cimec.ro/detaliu.asp?k=1C87F3F41F4241819A042E4300889582</lido:recordInfoLink>
+                    <lido:recordMetadataDate
+                            lido:type="creation date">2010-02-01 / Mirea, Pavel</lido:recordMetadataDate>
+                    <lido:recordMetadataDate
+                            lido:type="validation date">2010-02-10 / Andreescu, Radian</lido:recordMetadataDate>
+                </lido:recordInfoSet>
+            </lido:recordWrap>
+            <lido:resourceWrap>
+                <lido:resourceSet>
+                    <lido:resourceRepresentation
+                            lido:type="image_thumb">
+                        <lido:linkResource>http://clasate.cimec.ro/medium/ARH_6971500_922-2.jpg</lido:linkResource>
+                    </lido:resourceRepresentation>
+                    <lido:rightsResource>
+                        <lido:rightsType>
+                            <lido:term
+                                    lido:addedSearchTerm="no"
+                                    lido:pref="preferred">http://www.europeana.eu/rights/rr-f/</lido:term>
+                        </lido:rightsType>
+                    </lido:rightsResource>
+                </lido:resourceSet>
+            </lido:resourceWrap>
+        </lido:administrativeMetadata>
+    </lido:lido>
+</lido:lidoWrap>

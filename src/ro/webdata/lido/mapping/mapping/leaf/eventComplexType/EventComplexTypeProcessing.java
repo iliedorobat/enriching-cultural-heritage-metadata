@@ -29,7 +29,7 @@ public class EventComplexTypeProcessing {
                 model, providedCHO, event.getEventType());
         ArrayList<ArrayList<Resource>> actorsList = eventActorProcessing.generateActorsList(
                 model, event.getEventActor());
-        Resource eventDateResource = eventDateProcessing.generateEventDate(
+        ArrayList<Resource> eventDateResourceList = eventDateProcessing.generateEventDate(
                 model, providedCHO, event.getEventDate());
         ArrayList<Resource> eventPlaceList = eventPlaceProcessing.generateEventPlaceList(
                 model, providedCHO, event.getEventPlace());
@@ -39,13 +39,13 @@ public class EventComplexTypeProcessing {
         //TODO: add a new property "edm:timePeriod" (extending "skos:note") for storing
         // the original data related to "edm:occuredAt"
 //        PropertyUtils.createSubProperty(model, "timePeriod", SKOS.note);
-        resourceEvent.addProperty(EDM.occurredAt, eventDateResource);
         providedCHO.addProperty(EDM.wasPresentAt, resourceEvent);
 
         addActors(resourceEvent, actorsList);
         addCulture(resourceEvent, cultureList);
         addEvents(resourceEvent, eventPlaceList);
         addMaterials(resourceEvent, eventMaterialsList);
+        addTimespan(resourceEvent, eventDateResourceList);
     }
 
     private void addActors(Resource resourceEvent, ArrayList<ArrayList<Resource>> actorsList) {
@@ -77,6 +77,13 @@ public class EventComplexTypeProcessing {
         for (int i = 0; i < eventMaterialsList.size(); i++) {
             Resource eventMaterial = eventMaterialsList.get(i);
             resourceEvent.addProperty(EDM.isRelatedTo, eventMaterial);
+        }
+    }
+
+    private void addTimespan(Resource resourceEvent, ArrayList<Resource> eventDateResourceList) {
+        for (int i = 0; i < eventDateResourceList.size(); i++) {
+            Resource eventDateResource = eventDateResourceList.get(i);
+            resourceEvent.addProperty(EDM.occurredAt, eventDateResource);
         }
     }
 }
