@@ -37,15 +37,16 @@ public class Request {
     /**
      * Get the status code of the HTTP request
      * @param connection The connection object
+     * @address The http address
      * @return The status code
      */
-    public static Integer statusCode(HttpURLConnection connection) {
-        Integer code = null;
+    public static int statusCode(HttpURLConnection connection, String address) {
+        int code = 408;
 
         try {
             code = connection.getResponseCode();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Read timed out: " + address);
         }
 
         return code;

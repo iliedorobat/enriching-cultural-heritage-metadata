@@ -1,7 +1,5 @@
 package ro.webdata.lido.mapping.processing.timespan.ro.regex;
 
-import java.sql.Time;
-
 /**
  * Regular expressions for those time intervals that are stored
  * as ages (centuries and millenniums)
@@ -131,31 +129,31 @@ public class TimePeriodRegex {
 
     // OTHER TIME PERIOD (ROMAN NOTATION)
     // Treating cases as "1/2 xix", "2/2 vi a. chr." etc. (there is missing the "century" word)
-    private static final String OTHER_ROMAN_FIRST_HALF = FIRST_HALF + REGEX_PUNCTUATION_UNLIMITED + AGES_ROMAN_NOTATION;
-    private static final String OTHER_ROMAN_SECOND_HALF = SECOND_HALF + REGEX_PUNCTUATION_UNLIMITED + AGES_ROMAN_NOTATION;
-    private static final String OTHER_ROMAN_MIDDLE_OF = MIDDLE_OF + REGEX_PUNCTUATION_UNLIMITED + AGES_ROMAN_NOTATION;
-    private static final String OTHER_ROMAN_FIRST_QUARTER = FIRST_QUARTER + REGEX_PUNCTUATION_UNLIMITED + AGES_ROMAN_NOTATION;
-    private static final String OTHER_ROMAN_SECOND_QUARTER = SECOND_QUARTER + REGEX_PUNCTUATION_UNLIMITED + AGES_ROMAN_NOTATION;
-    private static final String OTHER_ROMAN_THIRD_QUARTER = THIRD_QUARTER + REGEX_PUNCTUATION_UNLIMITED + AGES_ROMAN_NOTATION;
-    private static final String OTHER_ROMAN_FORTH_QUARTER = FORTH_QUARTER + REGEX_PUNCTUATION_UNLIMITED + AGES_ROMAN_NOTATION;
-    public static final String OTHER_ROMAN_OPTIONS =
+    private static final String OTHER_CENTURY_ROMAN_FIRST_HALF = FIRST_HALF + REGEX_PUNCTUATION_UNLIMITED + AGES_ROMAN_NOTATION;
+    private static final String OTHER_CENTURY_ROMAN_SECOND_HALF = SECOND_HALF + REGEX_PUNCTUATION_UNLIMITED + AGES_ROMAN_NOTATION;
+    private static final String OTHER_CENTURY_ROMAN_MIDDLE_OF = MIDDLE_OF + REGEX_PUNCTUATION_UNLIMITED + AGES_ROMAN_NOTATION;
+    private static final String OTHER_CENTURY_ROMAN_FIRST_QUARTER = FIRST_QUARTER + REGEX_PUNCTUATION_UNLIMITED + AGES_ROMAN_NOTATION;
+    private static final String OTHER_CENTURY_ROMAN_SECOND_QUARTER = SECOND_QUARTER + REGEX_PUNCTUATION_UNLIMITED + AGES_ROMAN_NOTATION;
+    private static final String OTHER_CENTURY_ROMAN_THIRD_QUARTER = THIRD_QUARTER + REGEX_PUNCTUATION_UNLIMITED + AGES_ROMAN_NOTATION;
+    private static final String OTHER_CENTURY_ROMAN_FORTH_QUARTER = FORTH_QUARTER + REGEX_PUNCTUATION_UNLIMITED + AGES_ROMAN_NOTATION;
+    public static final String OTHER_CENTURY_ROMAN_OPTIONS =
             "("
-                + "(" + OTHER_ROMAN_FIRST_HALF + ")"
-                + REGEX_OR + "(" + OTHER_ROMAN_SECOND_HALF + ")"
-                + REGEX_OR + "(" + OTHER_ROMAN_MIDDLE_OF + ")"
-                + REGEX_OR + "(" + OTHER_ROMAN_FIRST_QUARTER + ")"
-                + REGEX_OR + "(" + OTHER_ROMAN_SECOND_QUARTER + ")"
-                + REGEX_OR + "(" + OTHER_ROMAN_THIRD_QUARTER + ")"
-                + REGEX_OR + "(" + OTHER_ROMAN_FORTH_QUARTER + ")"
+                + "(" + OTHER_CENTURY_ROMAN_FIRST_HALF + ")"
+                + REGEX_OR + "(" + OTHER_CENTURY_ROMAN_SECOND_HALF + ")"
+                + REGEX_OR + "(" + OTHER_CENTURY_ROMAN_MIDDLE_OF + ")"
+                + REGEX_OR + "(" + OTHER_CENTURY_ROMAN_FIRST_QUARTER + ")"
+                + REGEX_OR + "(" + OTHER_CENTURY_ROMAN_SECOND_QUARTER + ")"
+                + REGEX_OR + "(" + OTHER_CENTURY_ROMAN_THIRD_QUARTER + ")"
+                + REGEX_OR + "(" + OTHER_CENTURY_ROMAN_FORTH_QUARTER + ")"
                     // we can not treat the case of simple ages because it's not possible
                     // to handle cases as "6 mai, v leat 7230 (1722)", "grupa a iv-a" etc.
 //                + REGEX_OR + "(" + TEXT_START + AGES_ROMAN_NOTATION + TEXT_END + ")"
             + ")";
-    public static final String OTHER_ROMAN_INTERVAL = CASE_INSENSITIVE
+    public static final String OTHER_CENTURY_ROMAN_INTERVAL = CASE_INSENSITIVE
             + "("
-                + OTHER_ROMAN_OPTIONS
+                + OTHER_CENTURY_ROMAN_OPTIONS
                 + REGEX_INTERVAL_DELIMITER
-                + "(" +  OTHER_ROMAN_OPTIONS + REGEX_OR + AGES_ROMAN_NOTATION + ")"
+                + "(" + OTHER_CENTURY_ROMAN_OPTIONS + REGEX_OR + AGES_ROMAN_NOTATION + ")"
             + ")";
 
     public static final String CENTURY_OPTIONS = CASE_INSENSITIVE

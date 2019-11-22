@@ -1,25 +1,30 @@
 package ro.webdata.lido.mapping.processing.timespan.ro.model.date;
 
+import ro.webdata.lido.mapping.common.CollectionUtils;
 import ro.webdata.lido.mapping.common.DateUtils;
-import ro.webdata.lido.mapping.common.constants.Constants;
 import ro.webdata.lido.mapping.processing.timespan.ro.TimeUtils;
-import ro.webdata.lido.mapping.processing.timespan.ro.model.TimeModel;
+import ro.webdata.lido.mapping.processing.timespan.ro.model.TimePeriodModel;
 import ro.webdata.lido.mapping.processing.timespan.ro.regex.TimespanRegex;
 import ro.webdata.lido.mapping.processing.timespan.ro.regex.date.DateRegex;
 
+import java.util.TreeSet;
+
 /**
- * Used for date presented as day-month-year or year-month-day format
+ * Used for date presented as day-month-year or year-month-day format.<br/>
+ * E.g.:<br/>
+ *      * DMY: "14 ianuarie 1497", "21/01/1916", "01.11.1668", "1.09.1607"<br/>
+ *      * YMD: "1974-05-05", "1891 decembrie 07", "1738, MAI, 4"
  */
-public class DateModel extends TimeModel {
+public class DateModel extends TimePeriodModel {
     private DateModel() {}
 
     public DateModel(String value, String order) {
-        setDateModel(value, order, DateRegex.REGEX_DATE_INTERVAL_SEPARATOR);
+        setDateModel(value, order);
     }
 
     //TODO: "17/29 octombrie 1893"
-    private void setDateModel(String value, String order, String intervalSeparator) {
-        String[] intervalValues = value.split(intervalSeparator);
+    private void setDateModel(String value, String order) {
+        String[] intervalValues = value.split(DateRegex.REGEX_DATE_INTERVAL_SEPARATOR);
 
         if (intervalValues.length == 2) {
             setIsInterval(true);
@@ -37,28 +42,18 @@ public class DateModel extends TimeModel {
         } else {
             String preparedValue = TimeUtils.clearChristumNotation(value);
 
+            setEra(value, TimeUtils.END_PLACEHOLDER);
             setEra(value, TimeUtils.START_PLACEHOLDER);
+
+            setDate(preparedValue, order, TimeUtils.END_PLACEHOLDER);
             setDate(preparedValue, order, TimeUtils.START_PLACEHOLDER);
         }
     }
 
     @Override
     public String toString() {
-        String start = yearStart
-                + Constants.URL_SEPARATOR + monthStart
-                + Constants.URL_SEPARATOR + dayStart
-                + Constants.URL_SEPARATOR + TimeUtils.getEraLabel(eraStart);
-
-        if (isInterval) {
-            String end = yearEnd
-                    + Constants.URL_SEPARATOR + monthEnd
-                    + Constants.URL_SEPARATOR + dayEnd
-                    + Constants.URL_SEPARATOR + TimeUtils.getEraLabel(eraEnd);
-
-            return start + TimeUtils.INTERVAL_SEPARATOR_PLACEHOLDER + end;
-        }
-
-        return start;
+        TreeSet<String> centurySet = getCenturySet();
+        return CollectionUtils.treeSetToDbpediaString(centurySet);
     }
 
     // values.length == 4 if the month name is abbreviated (E.g.: "aug.")
@@ -77,6 +72,7 @@ public class DateModel extends TimeModel {
             day = values.length == 4 ? values[3] : values[2];
         }
 
+        setCentury(year, position);
         setYear(year, position);
         setMonth(month, position);
         setDay(day, position);

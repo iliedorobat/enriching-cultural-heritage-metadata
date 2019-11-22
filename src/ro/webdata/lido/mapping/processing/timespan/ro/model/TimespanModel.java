@@ -1,28 +1,30 @@
 package ro.webdata.lido.mapping.processing.timespan.ro.model;
 
-import java.util.ArrayList;
+import ro.webdata.lido.mapping.common.constants.Constants;
+
+import java.util.TreeSet;
 
 public class TimespanModel {
-    private ArrayList<String> timespanList = new ArrayList<>();
-    private String residualValue = "";
+    private TreeSet<String> timespanList = new TreeSet<>();
+    private String residualValue = Constants.EMPTY_VALUE_PLACEHOLDER;
 
-    private TimespanModel() {}
+    public TimespanModel() {}
 
     public TimespanModel(String value) {
         setResidualValue(value);
     }
 
-    public TimespanModel(ArrayList<String> list, String value) {
-        setTimespanList(list);
+    public TimespanModel(TreeSet<String> treeSet, String value) {
+        setTimespanSet(treeSet);
         setResidualValue(value);
     }
 
     //FIXME: make it private
-    public void clearTimespanList() {
-        this.timespanList = new ArrayList<>();
+    public void clearTimespanSet() {
+        this.timespanList.clear();
     }
 
-    public ArrayList<String> getTimespanList() {
+    public TreeSet<String> getTimespanSet() {
         return timespanList;
     }
 
@@ -30,7 +32,7 @@ public class TimespanModel {
         return residualValue;
     }
 
-    private void setTimespanList(ArrayList<String> timespanList) {
+    private void setTimespanSet(TreeSet<String> timespanList) {
         this.timespanList = timespanList;
     }
 

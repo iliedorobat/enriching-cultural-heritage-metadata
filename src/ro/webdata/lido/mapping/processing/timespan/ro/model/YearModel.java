@@ -1,11 +1,12 @@
 package ro.webdata.lido.mapping.processing.timespan.ro.model;
 
-import ro.webdata.lido.mapping.common.constants.Constants;
+import ro.webdata.lido.mapping.common.CollectionUtils;
 import ro.webdata.lido.mapping.processing.timespan.ro.TimeUtils;
 import ro.webdata.lido.mapping.processing.timespan.ro.regex.TimespanRegex;
 
-//TODO: check if ageFromValue <= ageToValue (if not, make it CHRISTUM_ANTE)
-public class YearModel extends TimeModel {
+import java.util.TreeSet;
+
+public class YearModel extends TimePeriodModel {
     // Used to separate the minus sign from the dash separator "-2 - -14 p.chr"; "-2 p.chr - -14 p.chr"
     private static final String REGEX_AGE_SEPARATOR = "(?<=[\\w\\W&&[^ -]])[ ]*-[ ]*";
 
@@ -29,27 +30,27 @@ public class YearModel extends TimeModel {
             setEra(intervalValues[1], TimeUtils.END_PLACEHOLDER);
             setEra(intervalValues[0], TimeUtils.START_PLACEHOLDER);
 
-            setYear(endYear, TimeUtils.END_PLACEHOLDER);
-            setYear(startYear, TimeUtils.START_PLACEHOLDER);
+            setDate(endYear, TimeUtils.END_PLACEHOLDER);
+            setDate(startYear, TimeUtils.START_PLACEHOLDER);
         } else {
-            String year = TimeUtils.clearChristumNotation(intervalValues[0]);
+            String yearValue = TimeUtils.clearChristumNotation(preparedValue);
 
-            setEra(intervalValues[0], TimeUtils.START_PLACEHOLDER);
-            setYear(year, TimeUtils.START_PLACEHOLDER);
+            setEra(preparedValue, TimeUtils.END_PLACEHOLDER);
+            setEra(preparedValue, TimeUtils.START_PLACEHOLDER);
+
+            setDate(yearValue, TimeUtils.END_PLACEHOLDER);
+            setDate(yearValue, TimeUtils.START_PLACEHOLDER);
         }
     }
 
     @Override
     public String toString() {
-        String start = this.yearStart
-                + Constants.URL_SEPARATOR + TimeUtils.getEraLabel(this.eraStart);
+        TreeSet<String> centurySet = getCenturySet();
+        return CollectionUtils.treeSetToDbpediaString(centurySet);
+    }
 
-        if (isInterval) {
-            String end = this.yearEnd
-                    + Constants.URL_SEPARATOR + TimeUtils.getEraLabel(this.eraEnd);
-            return start + TimeUtils.INTERVAL_SEPARATOR_PLACEHOLDER + end;
-        }
-
-        return start;
+    private void setDate(String year, String position) {
+        setCentury(year, position);
+        setYear(year, position);
     }
 }

@@ -83,27 +83,29 @@ public class TimespanRegex {
                 + "decembrie" + REGEX_OR + "decembre" + REGEX_OR + "dec[\\.]"
             + ")";
 
-    private static final String AGES_ARABIC_GROUP = "(" + TEXT_START + "\\d+" + TEXT_END + ")";
-    public static final String AGES_ARABIC_NOTATION =
-            "("
-                + AGES_ARABIC_GROUP + "([- ]*lea){0,1}"
+    public static final String AGES_GROUP_SUFFIX = "([- ]*lea){0,1}";
+    public static final String AGES_ARABIC_GROUP = "(" + TEXT_START + "\\d+" + TEXT_END + ")";
+    public static final String AGES_ARABIC_NOTATION = "("
+                + AGES_ARABIC_GROUP
+                + AGES_GROUP_SUFFIX
                 + "("
                     + REGEX_PUNCTUATION_UNLIMITED + CHRISTUM_NOTATION
                 + "){0,1}"
             + ")";
-    private static final String AGES_ROMAN_GROUP = "("
+    public static final String AGES_ROMAN_GROUP = "("
                 + TEXT_START + "[ivxlcdm]+" + TEXT_END
             + ")";
     public static final String AGES_ROMAN_NOTATION = CASE_INSENSITIVE
             + "("
-                + AGES_ROMAN_GROUP + "([- ]*lea){0,1}"
+                + AGES_ROMAN_GROUP
+                + AGES_GROUP_SUFFIX
                 + "("
                     + REGEX_PUNCTUATION_UNLIMITED + CHRISTUM_NOTATION
                 + "){0,1}"
             + ")";
 
-    public static final String CENTURY_NOTATION = "(" +  "(sec[\\w]*)([\\., ]+al[\\. ]+)*" + ")";
-    public static final String MILLENNIUM_NOTATION = "(" + "(mil[\\w]*)([\\. ]+al[ ]+)*" + ")";
+    public static final String CENTURY_NOTATION = "(" +  "(sec[\\w]*)([\\., ]+(al[\\. ]+){0,1})*" + ")";
+    public static final String MILLENNIUM_NOTATION = "(" + "(mil[\\w]*)([\\. ]+(al[ ]+){0,1})*" + ")";
 
     private static final String FIRST_HALF_STRING_REGEX = "(" + "prim[a]*[\\. ]+(jum|part)" + ")";
     private static final String SECOND_HALF_STRING_REGEX =  "(" + "a[ ]+(doua|(ii[-a]*))[\\. ]+(jum|part)" + ")";

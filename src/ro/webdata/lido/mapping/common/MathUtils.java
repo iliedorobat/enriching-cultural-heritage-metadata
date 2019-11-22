@@ -1,5 +1,7 @@
 package ro.webdata.lido.mapping.common;
 
+import ro.webdata.lido.mapping.common.constants.Constants;
+
 import java.util.*;
 
 public class MathUtils {
@@ -34,7 +36,7 @@ public class MathUtils {
 
     // https://rekinyz.wordpress.com/2015/01/27/convert-roman-numerals-to-arabic-numerals-and-vice-versa-with-java/
     public static String intToRoman(int num) {
-        StringBuilder roman = new StringBuilder("");
+        StringBuilder roman = new StringBuilder(Constants.EMPTY_VALUE_PLACEHOLDER);
 
         for (Integer i: arabicMap.keySet()) {
             for (int j = 1; j <= num / i; j++) {
@@ -47,20 +49,34 @@ public class MathUtils {
     }
 
     // https://rekinyz.wordpress.com/2015/01/27/convert-roman-numerals-to-arabic-numerals-and-vice-versa-with-java/
-    public static int romanToInt(String s) {
+    public static int romanToInt(String string) {
+        String romanChar = string.toLowerCase();
         int sum = 0;
-        int len = s.length() - 1;
+        int len = romanChar.length() - 1;
 
         for (int i = 0; i < len; i++) {
-            if (romanMap.get(s.charAt(i)) < romanMap.get(s.charAt(i + 1))) {
-                sum -= romanMap.get(s.charAt(i));
+            if (romanMap.get(romanChar.charAt(i)) < romanMap.get(romanChar.charAt(i + 1))) {
+                sum -= romanMap.get(romanChar.charAt(i));
             } else {
-                sum += romanMap.get(s.charAt(i));
+                sum += romanMap.get(romanChar.charAt(i));
             }
         }
 
-        sum += romanMap.get(s.charAt(len));
+        sum += romanMap.get(romanChar.charAt(len));
 
         return sum;
+    }
+
+    // https://stackoverflow.com/questions/6810336/is-there-a-way-in-java-to-convert-an-integer-to-its-ordinal
+    public static String getOrdinal(int value) {
+        String[] suffixes = new String[] { "th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th" };
+        switch (value % 100) {
+            case 11:
+            case 12:
+            case 13:
+                return value + "th";
+            default:
+                return value + suffixes[value % 10];
+        }
     }
 }

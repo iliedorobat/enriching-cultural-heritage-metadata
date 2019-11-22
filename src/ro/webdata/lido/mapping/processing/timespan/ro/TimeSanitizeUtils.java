@@ -1,7 +1,6 @@
 package ro.webdata.lido.mapping.processing.timespan.ro;
 
 import ro.webdata.lido.mapping.common.constants.Constants;
-import ro.webdata.lido.mapping.processing.timespan.ro.regex.TimespanRegex;
 import ro.webdata.lido.mapping.processing.timespan.ro.regex.YearRegex;
 
 public class TimeSanitizeUtils {

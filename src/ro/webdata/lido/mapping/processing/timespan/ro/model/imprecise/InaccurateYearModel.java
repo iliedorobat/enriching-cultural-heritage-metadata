@@ -1,24 +1,25 @@
 package ro.webdata.lido.mapping.processing.timespan.ro.model.imprecise;
 
+import ro.webdata.lido.mapping.common.CollectionUtils;
 import ro.webdata.lido.mapping.common.constants.Constants;
 import ro.webdata.lido.mapping.processing.timespan.ro.TimeUtils;
-import ro.webdata.lido.mapping.processing.timespan.ro.model.TimeModel;
+import ro.webdata.lido.mapping.processing.timespan.ro.model.TimePeriodModel;
 import ro.webdata.lido.mapping.processing.timespan.ro.regex.TimespanRegex;
 
-public class InaccurateYearModel extends TimeModel {
-    private static final String REGEX_NON_DIGIT = "[^\\d]";
+import java.util.TreeSet;
 
-    private String flag;
+//TODO: find a way to store the detail for inaccurate time periods (after, before, approx.)
+public class InaccurateYearModel extends TimePeriodModel {
+    private static final String REGEX_NON_DIGIT = "[^\\d]";
 
     private InaccurateYearModel() {}
 
-    //TODO: check for date, century, millennium or ages
-    public InaccurateYearModel(String value, String flag) {
-        setDateModel(value, flag, TimespanRegex.REGEX_INTERVAL_DELIMITER);
+    public InaccurateYearModel(String value) {
+        setDateModel(value);
     }
 
-    private void setDateModel(String value, String flag, String intervalSeparator) {
-        String[] intervalValues = value.split(intervalSeparator);
+    private void setDateModel(String value) {
+        String[] intervalValues = value.split(TimespanRegex.REGEX_INTERVAL_DELIMITER);
 
         if (intervalValues.length == 2) {
             setIsInterval(true);
@@ -29,41 +30,33 @@ public class InaccurateYearModel extends TimeModel {
             String endValue = TimeUtils.clearChristumNotation(intervalValues[1]);
 
             setEra(intervalValues[1], TimeUtils.END_PLACEHOLDER);
-            setDate(endValue, TimeUtils.END_PLACEHOLDER);
-
             setEra(intervalValues[0], TimeUtils.START_PLACEHOLDER);
+
+            setDate(endValue, TimeUtils.END_PLACEHOLDER);
             setDate(startValue, TimeUtils.START_PLACEHOLDER);
         } else {
             String preparedValue = TimeUtils.clearChristumNotation(value);
 
-            setIsInterval(false);
+            setEra(value, TimeUtils.END_PLACEHOLDER);
             setEra(value, TimeUtils.START_PLACEHOLDER);
+
+            setDate(preparedValue, TimeUtils.END_PLACEHOLDER);
             setDate(preparedValue, TimeUtils.START_PLACEHOLDER);
         }
+    }
 
-        setFlag(flag);
+    @Override
+    public String toString() {
+        TreeSet<String> centurySet = getCenturySet();
+        return CollectionUtils.treeSetToDbpediaString(centurySet);
     }
 
     //TODO: "dupa 29 aprilie 1616"; "dupa 10 mai 1903"
     private void setDate(String value, String position) {
         String year = value
                 .replaceAll(REGEX_NON_DIGIT, Constants.EMPTY_VALUE_PLACEHOLDER);
+
+        setCentury(year, position);
         setYear(year, position);
-    }
-
-    @Override
-    public String toString() {
-        String start = flag + " " + yearStart + " " + TimeUtils.getEraLabel(eraStart);
-
-//        if (isInterval) {
-//            String end = yearEnd + " " + TimeUtils.getEraName(eraEnd);
-//            return start + TimespanRegex.INTERVAL_SEPARATOR + end;
-//        }
-
-        return start;
-    }
-
-    private void setFlag(String flag) {
-        this.flag = flag;
     }
 }

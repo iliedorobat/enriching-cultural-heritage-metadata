@@ -3,23 +3,25 @@ package ro.webdata.lido.mapping.processing.timespan.ro.model.date;
 import ro.webdata.lido.mapping.common.DateUtils;
 import ro.webdata.lido.mapping.common.constants.Constants;
 import ro.webdata.lido.mapping.processing.timespan.ro.TimeUtils;
-import ro.webdata.lido.mapping.processing.timespan.ro.model.TimeModel;
+import ro.webdata.lido.mapping.processing.timespan.ro.model.TimePeriodModel;
 import ro.webdata.lido.mapping.processing.timespan.ro.regex.TimespanRegex;
 import ro.webdata.lido.mapping.processing.timespan.ro.regex.date.ShortDateRegex;
 
 /**
- * Used for date presented as month-year format
+ * Used for date presented as month-year format<br/>
+ * E.g.:<br/>
+ *      * MY: "octombrie 1639", "ianuarie 632", "septembrie - octombrie 1919"
  */
-public class ShortDateModel extends TimeModel {
+public class ShortDateModel extends TimePeriodModel {
     private ShortDateModel() {}
 
     public ShortDateModel(String value, String order) {
-        setDateModel(value, order, ShortDateRegex.REGEX_DATE_INTERVAL_SEPARATOR);
+        setDateModel(value, order);
     }
 
     // TODO: "instituit in decembrie 1915 - desfiintat in 1973"
-    private void setDateModel(String value, String order, String intervalSeparator) {
-        String[] intervalValues = value.split(intervalSeparator);
+    private void setDateModel(String value, String order) {
+        String[] intervalValues = value.split(ShortDateRegex.REGEX_DATE_INTERVAL_SEPARATOR);
 
         if (intervalValues.length == 2) {
             setIsInterval(true);
@@ -37,21 +39,24 @@ public class ShortDateModel extends TimeModel {
         } else {
             String preparedValue = TimeUtils.clearChristumNotation(value);
 
+            setEra(value, TimeUtils.END_PLACEHOLDER);
             setEra(value, TimeUtils.START_PLACEHOLDER);
+
+            setDate(preparedValue, order, TimeUtils.END_PLACEHOLDER);
             setDate(preparedValue, order, TimeUtils.START_PLACEHOLDER);
         }
     }
 
     @Override
     public String toString() {
-        String start = yearStart
-                + Constants.URL_SEPARATOR + monthStart
-                + Constants.URL_SEPARATOR + TimeUtils.getEraLabel(eraStart);
+        String start = this.yearStart
+                + Constants.URL_SEPARATOR + this.monthStart
+                + Constants.URL_SEPARATOR + TimeUtils.getEraLabel(this.eraStart);
 
-        if (isInterval) {
-            String end = yearEnd
-                    + Constants.URL_SEPARATOR + monthEnd
-                    + Constants.URL_SEPARATOR + TimeUtils.getEraLabel(eraEnd);
+        if (this.isInterval) {
+            String end = this.yearEnd
+                    + Constants.URL_SEPARATOR + this.monthEnd
+                    + Constants.URL_SEPARATOR + TimeUtils.getEraLabel(this.eraEnd);
 
             return start + TimeUtils.INTERVAL_SEPARATOR_PLACEHOLDER + end;
         }
@@ -71,6 +76,7 @@ public class ShortDateModel extends TimeModel {
                     : values[1];
             String month = DateUtils.getMonthName(values[0].trim());
 
+            setCentury(year, position);
             setYear(year, position);
             setMonth(month, position);
         }

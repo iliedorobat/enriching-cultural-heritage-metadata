@@ -1,8 +1,13 @@
 package ro.webdata.lido.mapping.processing.timespan.ro.model.date;
 
+import ro.webdata.lido.mapping.common.CollectionUtils;
+import ro.webdata.lido.mapping.common.DateUtils;
+import ro.webdata.lido.mapping.common.MathUtils;
 import ro.webdata.lido.mapping.common.constants.Constants;
 import ro.webdata.lido.mapping.processing.timespan.ro.TimeUtils;
 import ro.webdata.lido.mapping.processing.timespan.ro.regex.date.LongDateRegex;
+
+import java.util.TreeSet;
 
 /**
  * Used for those time intervals that are stored as a "long" date
@@ -10,15 +15,14 @@ import ro.webdata.lido.mapping.processing.timespan.ro.regex.date.LongDateRegex;
  * E.g.: "s:17;a:1622;l:12;z:30"
  */
 public class LongDateModel {
-    private static final String DATE_SEPARATOR = " ## ";
     private static final String SUFFIX_CENTURY = "s:";
     private static final String SUFFIX_YEAR = "a:";
     private static final String SUFFIX_MONTH = "l:";
     private static final String SUFFIX_DAY = "z:";
 
     private String era;
-    private String century;
-    private int year;
+    private Integer century;
+    private Integer year;
     private String month;
     private int day;
 
@@ -30,6 +34,7 @@ public class LongDateModel {
 
         setEra(value);
         for (String str : values) {
+            str = str.toLowerCase();
             if (str.contains(SUFFIX_CENTURY))
                 setCentury(str);
             else if (str.contains(SUFFIX_YEAR))
@@ -41,20 +46,20 @@ public class LongDateModel {
         }
     }
 
-    public String getDate() {
-        return year
-                + Constants.URL_SEPARATOR + month
-                + Constants.URL_SEPARATOR + day
-                + Constants.URL_SEPARATOR + TimeUtils.getEraLabel(era);
-    }
-
-    public String getEra() {
-        return "century " + century + " " + TimeUtils.getEraLabel(era);
-    }
-
     @Override
     public String toString() {
-        return getEra() + DATE_SEPARATOR + getDate();
+        TreeSet<String> centurySet = getCenturySet();
+        return CollectionUtils.treeSetToDbpediaString(centurySet);
+    }
+
+    private TreeSet<String> getCenturySet() {
+        TreeSet<String> centurySet = new TreeSet<>();
+
+        String centuryDbpedia = MathUtils.getOrdinal(this.century)
+                + Constants.CENTURY_PLACEHOLDER;
+        centurySet.add(centuryDbpedia);
+
+        return centurySet;
     }
 
     private void setEra(String value) {
@@ -62,28 +67,42 @@ public class LongDateModel {
     }
 
     private void setCentury(String value) {
-        this.century = value
+        String centuryStr = value
                 .replaceAll(SUFFIX_CENTURY, Constants.EMPTY_VALUE_PLACEHOLDER)
                 .trim();
+        try {
+            this.century = Integer.parseInt(centuryStr);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
     }
 
     private void setYear(String value) {
         String yearStr = value
                 .replaceAll(SUFFIX_YEAR, Constants.EMPTY_VALUE_PLACEHOLDER)
                 .trim();
-        this.year = Integer.parseInt(yearStr);
+        try {
+            this.year = Integer.parseInt(yearStr);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
     }
 
     private void setMonth(String value) {
-        this.month = value
+        String month = value
                 .replaceAll(SUFFIX_MONTH, Constants.EMPTY_VALUE_PLACEHOLDER)
                 .trim();
+        this.month = DateUtils.getMonthName(month);
     }
 
     private void setDay(String value) {
         String dayStr = value
                 .replaceAll(SUFFIX_DAY, Constants.EMPTY_VALUE_PLACEHOLDER)
                 .trim();
-        this.day = Integer.parseInt(dayStr);
+        try {
+            this.day = Integer.parseInt(dayStr);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
     }
 }

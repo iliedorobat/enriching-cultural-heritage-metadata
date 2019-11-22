@@ -12,10 +12,10 @@ public class RequestUtils {
      * @param address The URI
      * @return The status code
      */
-    public static Integer httpGetStatusCode(String address) {
+    public static int httpGetStatusCode(String address) {
         HttpURLConnection connection = Request.sendGet(address);
         connection.disconnect();
-        return Request.statusCode(connection);
+        return Request.statusCode(connection, address);
     }
 
     /**
@@ -35,14 +35,14 @@ public class RequestUtils {
      * @return True if DBPedia has defined the passed object name, otherwise return false
      */
     public static boolean isValidDBPedia(String objectName) {
-        Integer statusCode = httpGetStatusCode(
+        int statusCode = httpGetStatusCode(
                 ResourceUtils.generateDBPediaURI(objectName)
         );
         int prefix = statusCode / 100;
 
         //TODO:
 //        try {
-//            TimeUnit.SECONDS.sleep(1);
+//            TimeUnit.SECONDS.sleep(100);
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }

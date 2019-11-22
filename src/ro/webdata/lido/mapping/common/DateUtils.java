@@ -9,8 +9,8 @@ public class DateUtils {
     private DateUtils() {}
 
     /**
-     * Trim the value and replace all commas (",") with an empty placeholder ("")
-     * (used for cases similar with "1914, aprilie 3")
+     * Trim the value and replace all commas (",") with an empty placeholder ("").<br/>
+     * This pre-processing is used for cases similar with "1914, aprilie 3".
      * @param value The original value
      * @return The prepared value
      */
@@ -69,7 +69,10 @@ public class DateUtils {
      * @return The month number
      */
     private static int mapMonthToNumber(String month) {
-        String value = month.replaceAll("\\.", "").trim();
+        String value = month
+                .replaceAll("\\.", Constants.EMPTY_VALUE_PLACEHOLDER)
+                .toLowerCase()
+                .trim();
 
         switch (value) {
             case "ianuarie":

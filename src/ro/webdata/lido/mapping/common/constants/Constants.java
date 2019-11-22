@@ -4,6 +4,8 @@ public class Constants {
     public static final char[] CHAR_DELIMITER = new char[]{' '};
     public static final String URL_SEPARATOR = "/";
     public static final String EMPTY_VALUE_PLACEHOLDER = "";
+    public static final String CENTURY_PLACEHOLDER = "_century";
+    public static final String MILLENNIUM_PLACEHOLDER = "_millennium";
 
     public static final String LABEL = "label";
     public static final String LANGUAGE = "language";
