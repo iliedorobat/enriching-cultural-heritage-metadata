@@ -33,7 +33,7 @@ public class LidoWrapProcessing {
         PrintMessages.printOperation(EnvConst.OPERATION_START, fullPath);
         LidoWrap lidoWrap = parserDAO.parseLidoFile(fullPath);
 
-        //TODO: change in the parser module from "getLido" to "getLidoList"
+        //TODO: change in the LIDO Parser component the "getLido" method name to "getLidoList"
         for (int i = 0; i < lidoWrap.getLido().size(); i++) {
             Lido lido = lidoWrap.getLido().get(i);
 
