@@ -23,6 +23,8 @@ public class FileConstants {
     public static final String OUTPUT_FILE_PATH = WORKSPACE_DIR + FILE_SEPARATOR + "files";
     public static final String OUTPUT_FILE_FULL_PATH = OUTPUT_FILE_PATH + FILE_SEPARATOR + "output"
             + FILE_SEPARATOR + "dataset" + RDF_FILE_EXTENSION;
+    public static final String OUTPUT_DEMO_FILE_FULL_PATH = OUTPUT_FILE_PATH + FILE_SEPARATOR + "output"
+            + FILE_SEPARATOR + FILE_NAME_DEMO + RDF_FILE_EXTENSION;
     public static final String OUTPUT_FILE_TIMESPAN = OUTPUT_FILE_PATH + FILE_SEPARATOR + "data-processing"
             + FILE_SEPARATOR + "timespan-original.txt";
 

@@ -77,7 +77,7 @@ public class Main {
         String filePath = FileConstants.FILE_PATH + FileConstants.FILE_SEPARATOR
                 + FileConstants.FILE_NAME_DEMO + FileConstants.XML_FILE_EXTENSION;
         lidoWrapProcessing.processing(model, filePath);
-        writeRDFGraph(model, FileConstants.OUTPUT_FILE_FULL_PATH);
+        writeRDFGraph(model, FileConstants.OUTPUT_DEMO_FILE_FULL_PATH);
     }
 
     private static void writeRDFGraph(Model model, String outputFilePath) {
