@@ -1,24 +1,21 @@
 package ro.webdata.lido.mapping;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.sparql.vocabulary.FOAF;
 import org.apache.jena.vocabulary.DCTerms;
 import org.apache.jena.vocabulary.DC_11;
 import org.apache.jena.vocabulary.SKOS;
+import ro.webdata.lido.mapping.common.PrintMessages;
 import ro.webdata.lido.mapping.common.TextUtils;
+import ro.webdata.lido.mapping.common.constants.EnvConst;
 import ro.webdata.lido.mapping.common.constants.FileConstants;
 import ro.webdata.lido.mapping.common.constants.NSConstants;
 import ro.webdata.lido.mapping.core.LidoWrapProcessing;
-import ro.webdata.lido.mapping.processing.timespan.ro.TimespanAnalysis;
-import ro.webdata.lido.mapping.processing.timespan.ro.TimespanUtils;
 import ro.webdata.lido.mapping.vocabulary.EDM;
 import ro.webdata.lido.mapping.vocabulary.ORE;
 
 import java.io.StringWriter;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Main {
     private static final String SYNTAX = "RDF/XML";
@@ -39,14 +36,16 @@ public class Main {
     };
 
     public static void main(String[] args) {
-        boolean PLAY = true;
 //        // 1. Write to the disc all unique timespan values
 //        TimespanAnalysis.write(fileNames, FileConstants.OUTPUT_FILE_TIMESPAN);
-        if (PLAY)
-            TimespanUtils.read(FileConstants.OUTPUT_FILE_TIMESPAN);
 
-        if (!PLAY)
-            TimespanAnalysis.check(FileConstants.OUTPUT_FILE_TIMESPAN);
+//        //TODO: remove
+//        boolean PLAY = true;
+//        if (PLAY)
+//            TimespanUtils.read(FileConstants.OUTPUT_FILE_TIMESPAN);
+//
+//        if (!PLAY)
+//            TimespanAnalysis.check(FileConstants.OUTPUT_FILE_TIMESPAN);
 
         Model model = ModelFactory.createDefaultModel();
         model.setNsPrefix("dc", DC_11.getURI());
@@ -57,26 +56,34 @@ public class Main {
         model.setNsPrefix("skos", SKOS.getURI());
         model.setNsPrefix("openData", NSConstants.NS_REPO_PROPERTY + FileConstants.FILE_SEPARATOR);
 
-//        System.out.println(EnvConst.OPERATION_START);
-//        if (!EnvConst.IS_DEMO) run(model);
-//        else runDemo(model);
-//        PrintMessages.printOperation(EnvConst.OPERATION_FINISH);
+        System.out.println(EnvConst.OPERATION_START);
+        if (!EnvConst.IS_DEMO) run(model);
+        else runDemo(model);
+        PrintMessages.printOperation(EnvConst.OPERATION_FINISH);
     }
 
     //---------------------- Real Scenario ---------------------- //
     private static void run(Model model) {
         for (int i = 0; i < fileNames.length; i++) {
-            String filePath = FileConstants.FILE_PATH + FileConstants.FILE_SEPARATOR + fileNames[i] + FileConstants.FILE_EXTENSION;
+            String filePath = FileConstants.FILE_PATH + FileConstants.FILE_SEPARATOR + fileNames[i] + FileConstants.XML_FILE_EXTENSION;
             lidoWrapProcessing.processing(model, filePath);
+
+            String outputPath = FileConstants.OUTPUT_FILE_PATH
+                    + FileConstants.FILE_SEPARATOR
+                    + "output"
+                    + FileConstants.FILE_SEPARATOR
+                    + fileNames[i]
+                    + FileConstants.RDF_FILE_EXTENSION;
+            writeRDFGraph(model, outputPath);
         }
-        writeRDFGraph(model, FileConstants.OUTPUT_FILE_FULL_PATH);
+//        writeRDFGraph(model, FileConstants.OUTPUT_FILE_FULL_PATH);
     }
 
     //---------------------- DEMO Scenario ---------------------- //
     private static void runDemo(Model model) {
         // The demo file is found in: files/lido-schema/inp-clasate-arheologie-2014-02-02.xml
         String filePath = FileConstants.FILE_PATH + FileConstants.FILE_SEPARATOR
-                + FileConstants.FILE_NAME_DEMO + FileConstants.FILE_EXTENSION;
+                + FileConstants.FILE_NAME_DEMO + FileConstants.XML_FILE_EXTENSION;
         lidoWrapProcessing.processing(model, filePath);
         writeRDFGraph(model, FileConstants.OUTPUT_FILE_FULL_PATH);
     }

@@ -36,8 +36,6 @@ public class EventComplexTypeProcessing {
         ArrayList<Resource> eventMaterialsList = eventMaterialsTechProcessing.addEventMaterialsTechList(
                 model, providedCHO, event.getEventMaterialsTech());
 
-        //TODO: add a new property "edm:timePeriod" (extending "skos:note") for storing
-        // the original data related to "edm:occuredAt"
 //        PropertyUtils.createSubProperty(model, "timePeriod", SKOS.note);
         providedCHO.addProperty(EDM.wasPresentAt, resourceEvent);
 
@@ -45,6 +43,8 @@ public class EventComplexTypeProcessing {
         addCulture(resourceEvent, cultureList);
         addEvents(resourceEvent, eventPlaceList);
         addMaterials(resourceEvent, eventMaterialsList);
+        //TODO: add a new property "edm:timePeriod" (extending "skos:note") for storing
+        // the original data related to "edm:occuredAt"
         addTimespan(resourceEvent, eventDateResourceList);
     }
 

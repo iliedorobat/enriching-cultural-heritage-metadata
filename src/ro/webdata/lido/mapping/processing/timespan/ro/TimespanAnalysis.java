@@ -131,7 +131,7 @@ public class TimespanAnalysis {
 
         for (int count = 0; count < fileNames.length; count++) {
             String filePath = FileConstants.FILE_PATH + FileConstants.FILE_SEPARATOR
-                    + fileNames[count] + FileConstants.FILE_EXTENSION;
+                    + fileNames[count] + FileConstants.XML_FILE_EXTENSION;
             addTimespan(filePath, list);
         }
 
