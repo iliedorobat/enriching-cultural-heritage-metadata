@@ -4,6 +4,7 @@ import ro.webdata.lido.translator.common.constants.Constants;
 
 import java.util.*;
 
+// see: http://math.hws.edu/eck/cs124/javanotes3/c9/ex-9-3-answer.html
 public class MathUtils {
     private MathUtils() {}
 
@@ -49,6 +50,7 @@ public class MathUtils {
     }
 
     // https://rekinyz.wordpress.com/2015/01/27/convert-roman-numerals-to-arabic-numerals-and-vice-versa-with-java/
+    //TODO: check the logic for big numbers as "XIC"
     public static int romanToInt(String string) {
         String romanChar = string.toLowerCase();
         int sum = 0;
