@@ -14,9 +14,21 @@ public class PrintMessages {
             System.out.println(operation + ": " + fullPath);
     }
 
+    public static void printTooBigCentury(String operation, String position, int century) {
+        System.err.println(operation + ": " + "The " + position + " century " + century
+                + " is higher than the last century the data has been updated ("
+                + Constants.LAST_UPDATE_CENTURY + ")!");
+    }
+
+    public static void printTooBigMillennium(String operation, String position, int millennium) {
+        System.err.println(operation + ": " + "The " + position + " millennium " + millennium
+                + " is higher than the last millennium the data has been updated ("
+                + Constants.LAST_UPDATE_MILLENNIUM + ")!");
+    }
+
     public static void printTooBigYear(String operation, String position, int year) {
         System.err.println(operation + ": " + "The " + position + " year " + year
-                + " is higher than the last year the data was updated ("
+                + " is higher than the last year the data has been updated ("
                 + Constants.LAST_UPDATE_YEAR + ")!");
     }
 

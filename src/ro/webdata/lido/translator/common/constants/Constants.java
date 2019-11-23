@@ -20,6 +20,8 @@ public class Constants {
      * FIXME: change the main language if you need
      */
     public static final String LANG_MAIN = LANG_RO;
+    public static final int LAST_UPDATE_CENTURY = 21;
+    public static final int LAST_UPDATE_MILLENNIUM = 3;
     public static final int LAST_UPDATE_YEAR = 2014;
     public static final String UNKNOWN_MONTH = "Unknown";
 

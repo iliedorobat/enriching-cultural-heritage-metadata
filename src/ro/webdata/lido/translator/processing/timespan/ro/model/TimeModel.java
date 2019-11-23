@@ -26,10 +26,19 @@ public class TimeModel {
     }
 
     protected void setMillennium(Integer millennium, String position) {
+        Integer millenniumStart = millennium;
+        Integer millenniumEnd = millennium;
+
+        if (millennium > Constants.LAST_UPDATE_MILLENNIUM && eraStart.equals(TimeUtils.CHRISTUM_AD_PLACEHOLDER)) {
+            PrintMessages.printTooBigMillennium("setting millennium", position, millennium);
+            millenniumStart = null;
+            millenniumEnd = null;
+        }
+
         if (position.equals(TimeUtils.START_PLACEHOLDER))
-            this.millenniumStart = millennium;
+            this.millenniumStart = millenniumStart;
         else if (position.equals(TimeUtils.END_PLACEHOLDER))
-            this.millenniumEnd = millennium;
+            this.millenniumEnd = millenniumEnd;
     }
 
     protected void setCentury(String yearStr, String position) {
@@ -47,10 +56,19 @@ public class TimeModel {
     }
 
     protected void setCentury(Integer century, String position) {
+        Integer centuryStart = century;
+        Integer centuryEnd = century;
+
+        if (century > Constants.LAST_UPDATE_CENTURY && eraStart.equals(TimeUtils.CHRISTUM_AD_PLACEHOLDER)) {
+            PrintMessages.printTooBigCentury("setting century", position, century);
+            centuryStart = null;
+            centuryEnd = null;
+        }
+
         if (position.equals(TimeUtils.START_PLACEHOLDER))
-            this.centuryStart = century;
+            this.centuryStart = centuryStart;
         else if (position.equals(TimeUtils.END_PLACEHOLDER))
-            this.centuryEnd = century;
+            this.centuryEnd = centuryEnd;
     }
 
     protected void setYear(String yearStr, String position) {
