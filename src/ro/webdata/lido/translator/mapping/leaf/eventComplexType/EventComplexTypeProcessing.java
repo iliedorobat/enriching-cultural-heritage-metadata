@@ -61,7 +61,8 @@ public class EventComplexTypeProcessing {
     private void addCulture(Resource resourceEvent, ArrayList<Literal> cultureList) {
         for (int i = 0; i < cultureList.size(); i++) {
             Literal culture = cultureList.get(i);
-            resourceEvent.addProperty(EDM.hasType, culture);
+            //TODO: create a concept for culture
+            resourceEvent.addProperty(EDM.isRelatedTo, culture);
         }
     }
 
