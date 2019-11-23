@@ -67,16 +67,8 @@ public class Main {
         for (int i = 0; i < fileNames.length; i++) {
             String filePath = FileConstants.FILE_PATH + FileConstants.FILE_SEPARATOR + fileNames[i] + FileConstants.XML_FILE_EXTENSION;
             lidoWrapProcessing.processing(model, filePath);
-
-            String outputPath = FileConstants.OUTPUT_FILE_PATH
-                    + FileConstants.FILE_SEPARATOR
-                    + "output"
-                    + FileConstants.FILE_SEPARATOR
-                    + fileNames[i]
-                    + FileConstants.RDF_FILE_EXTENSION;
-            writeRDFGraph(model, outputPath);
         }
-//        writeRDFGraph(model, FileConstants.OUTPUT_FILE_FULL_PATH);
+        writeRDFGraph(model, FileConstants.OUTPUT_FILE_FULL_PATH);
     }
 
     //---------------------- DEMO Scenario ---------------------- //
