@@ -57,13 +57,15 @@ public class EventTypeProcessing {
 
             //TODO: subClass of Constants.NS_REPO_RESOURCE_EVENT + Constants.FILE_SEPARATOR + TextUtils.sanitizeString(eventName)
             if (termLang.equals(eventLang) || eventLang == null) {
-                String eventName = term.getText();
+                String eventType = TextUtils.sanitizeString(term.getText());
                 Resource resource = model.createResource(
                         NSConstants.NS_REPO_RESOURCE_EVENT
-                        + FileConstants.FILE_SEPARATOR + TextUtils.sanitizeString(eventName)
+                        + FileConstants.FILE_SEPARATOR + eventType
                         + FileConstants.FILE_SEPARATOR + choUri.substring(index)
                 );
                 resource.addProperty(RDF.type, EDM.Event);
+                //TODO: create a concept for the event type
+                resource.addProperty(EDM.hasType, eventType);
                 return resource;
             }
         }
