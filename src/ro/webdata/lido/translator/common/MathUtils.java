@@ -50,21 +50,31 @@ public class MathUtils {
     }
 
     // https://rekinyz.wordpress.com/2015/01/27/convert-roman-numerals-to-arabic-numerals-and-vice-versa-with-java/
-    //TODO: check the logic for big numbers as "XIC"
-    public static int romanToInt(String string) {
+    public static Integer romanToInt(String string) {
         String romanChar = string.toLowerCase();
+        int length = romanChar.length() - 1;
         int sum = 0;
-        int len = romanChar.length() - 1;
 
-        for (int i = 0; i < len; i++) {
-            if (romanMap.get(romanChar.charAt(i)) < romanMap.get(romanChar.charAt(i + 1))) {
-                sum -= romanMap.get(romanChar.charAt(i));
+        for (int i = 0; i < length; i++) {
+            int crrValue = romanMap.get(romanChar.charAt(i));
+            int nextValue = romanMap.get(romanChar.charAt(i + 1));
+
+            if (crrValue < nextValue) {
+                // The roman numbers are built from left to right, but short roman numbers
+                // are build based on "V" and "X" characters are build from right to left.
+                // So, for the case of the rest of roman characters, the roman number is
+                // INCORRECT if it's build from right to left.
+                // E.g.: "XIC" (89) is incorrect. The correct number is "LXXXIX" (89).
+                if (nextValue > 10) {
+                    return null;
+                }
+                sum -= crrValue;
             } else {
-                sum += romanMap.get(romanChar.charAt(i));
+                sum += crrValue;
             }
         }
 
-        sum += romanMap.get(romanChar.charAt(len));
+        sum += romanMap.get(romanChar.charAt(length));
 
         return sum;
     }

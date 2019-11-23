@@ -130,8 +130,8 @@ public class TimePeriodModel extends TimeModel {
     private void pushSameAd(
             String eraStart,
             String eraEnd,
-            int timeStart,
-            int timeEnd,
+            Integer timeStart,
+            Integer timeEnd,
             String timePlaceholder,
             TreeSet<String> timeSet
     ) {
@@ -167,8 +167,8 @@ public class TimePeriodModel extends TimeModel {
     private void pushSameBc(
             String eraStart,
             String eraEnd,
-            int timeStart,
-            int timeEnd,
+            Integer timeStart,
+            Integer timeEnd,
             String timePlaceholder,
             TreeSet<String> timeSet
     ) {
@@ -189,8 +189,8 @@ public class TimePeriodModel extends TimeModel {
     private void pushBcAd(
             String eraStart,
             String eraEnd,
-            int timeStart,
-            int timeEnd,
+            Integer timeStart,
+            Integer timeEnd,
             String timePlaceholder,
             TreeSet<String> timeSet
     ) {
@@ -224,8 +224,8 @@ public class TimePeriodModel extends TimeModel {
     private void pushAdBc(
             String eraStart,
             String eraEnd,
-            int timeStart,
-            int timeEnd,
+            Integer timeStart,
+            Integer timeEnd,
             String timePlaceholder,
             TreeSet<String> timeSet
     ) {

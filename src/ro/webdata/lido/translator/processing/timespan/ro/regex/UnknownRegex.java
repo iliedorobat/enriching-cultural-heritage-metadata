@@ -11,7 +11,6 @@ public class UnknownRegex {
             + "^("
                 + "-"
                 + REGEX_OR + "4/4 sec\\."
-                + REGEX_OR + "4/4 sec\\. XIC"
                 + REGEX_OR + "17 nov\\. 375\\-9 aug\\. 378 a\\.chr\\."
                 + REGEX_OR + "1884 martie 28/aprilie 09"
                 + REGEX_OR + "189-45"
