@@ -35,14 +35,13 @@ public class TextUtils {
     }
 
     /**
-     * Replace all multiple spaces and brackets and dots with an underscore "_"
+     * Replace all non-alphanumeric characters with underscore ("_").
      * @param value The input value
      * @return The formatted value
      */
-    //TODO: replace all special characters
     public static String sanitizeString(String value) {
-        String regex = "[ \\.\\[\\]]+";
-        String replacement = "_";
+        String regex = "(?U)[^\\p{Alnum}]+";
+        String replacement = Constants.UNDERSCORE_PLACEHOLDER;
         return value.replaceAll(regex, replacement);
     }
 
