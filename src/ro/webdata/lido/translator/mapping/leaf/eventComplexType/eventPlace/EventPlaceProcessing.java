@@ -7,6 +7,7 @@ import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.SKOS;
 import ro.webdata.lido.translator.common.ResourceUtils;
+import ro.webdata.lido.translator.common.TextUtils;
 import ro.webdata.lido.translator.common.constants.Constants;
 import ro.webdata.lido.translator.common.constants.NSConstants;
 import ro.webdata.lido.translator.common.constants.PlaceConstants;

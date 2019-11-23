@@ -32,7 +32,7 @@ public class EventMaterialsTechProcessing {
                 Resource resource = model.createResource(
                         NSConstants.NS_REPO_RESOURCE
                         + FileConstants.FILE_SEPARATOR + TextUtils.sanitizeString(TextUtils.toCamelCase(label))
-                        + FileConstants.FILE_SEPARATOR + TextUtils.sanitizeString(TextUtils.toCamelCase(text))
+                        + FileConstants.FILE_SEPARATOR + TextUtils.sanitizeString(text)
                 );
                 resource.addProperty(RDF.type, SKOS.Concept);
                 resource.addProperty(SKOS.prefLabel, literal);
