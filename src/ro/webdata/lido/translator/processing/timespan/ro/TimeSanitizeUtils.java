@@ -135,6 +135,10 @@ public class TimeSanitizeUtils {
                 return "2/2 sec. xix";
             case "xi - ix a.hr.":
                 return "sec. xi - sec. ix a.hr.";
+            case "sec. -4 - -2":
+                return "sec. 4 - 2 a.ch.";
+            case "sec. -7 - -5":
+                return "sec. 7 - 5 a.ch.";
             case "inc. sex. xx":
                 return "inceputul sec. xx";
             case "3/4 ec. xix":

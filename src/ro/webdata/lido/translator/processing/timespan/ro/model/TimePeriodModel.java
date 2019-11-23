@@ -23,7 +23,7 @@ public class TimePeriodModel extends TimeModel {
             TimespanRegex.CASE_INSENSITIVE + TimespanRegex.THIRD_QUARTER,
             TimespanRegex.CASE_INSENSITIVE + TimespanRegex.FORTH_QUARTER,
             TimespanRegex.CASE_INSENSITIVE + TimespanRegex.AGES_GROUP_SUFFIX,
-            TimespanRegex.REGEX_PUNCTUATION_UNLIMITED
+            "[\\.,;\\?!\\p{Space}]*"
     };
 
     /**
