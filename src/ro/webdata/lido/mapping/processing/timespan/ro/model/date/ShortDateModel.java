@@ -1,11 +1,14 @@
 package ro.webdata.lido.mapping.processing.timespan.ro.model.date;
 
+import ro.webdata.lido.mapping.common.CollectionUtils;
 import ro.webdata.lido.mapping.common.DateUtils;
 import ro.webdata.lido.mapping.common.constants.Constants;
 import ro.webdata.lido.mapping.processing.timespan.ro.TimeUtils;
 import ro.webdata.lido.mapping.processing.timespan.ro.model.TimePeriodModel;
 import ro.webdata.lido.mapping.processing.timespan.ro.regex.TimespanRegex;
 import ro.webdata.lido.mapping.processing.timespan.ro.regex.date.ShortDateRegex;
+
+import java.util.TreeSet;
 
 /**
  * Used for date presented as month-year format<br/>
@@ -49,19 +52,8 @@ public class ShortDateModel extends TimePeriodModel {
 
     @Override
     public String toString() {
-        String start = this.yearStart
-                + Constants.URL_SEPARATOR + this.monthStart
-                + Constants.URL_SEPARATOR + TimeUtils.getEraLabel(this.eraStart);
-
-        if (this.isInterval) {
-            String end = this.yearEnd
-                    + Constants.URL_SEPARATOR + this.monthEnd
-                    + Constants.URL_SEPARATOR + TimeUtils.getEraLabel(this.eraEnd);
-
-            return start + TimeUtils.INTERVAL_SEPARATOR_PLACEHOLDER + end;
-        }
-
-        return start;
+        TreeSet<String> centurySet = getCenturySet();
+        return CollectionUtils.treeSetToDbpediaString(centurySet);
     }
 
     private void setDate(String value, String order, String position) {
