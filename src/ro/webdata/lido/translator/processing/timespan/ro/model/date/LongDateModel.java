@@ -56,7 +56,7 @@ public class LongDateModel {
         TreeSet<String> centurySet = new TreeSet<>();
 
         String centuryDbpedia = MathUtils.getOrdinal(this.century)
-                + Constants.CENTURY_PLACEHOLDER;
+                + Constants.DBPEDIA_CENTURY_PLACEHOLDER;
         centurySet.add(centuryDbpedia);
 
         return centurySet;

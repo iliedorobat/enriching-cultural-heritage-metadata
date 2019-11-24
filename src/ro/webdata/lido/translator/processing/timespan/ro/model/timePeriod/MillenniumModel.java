@@ -44,7 +44,10 @@ public class MillenniumModel extends TimePeriodModel {
 
     @Override
     public String toString() {
-        TreeSet<String> centurySet = getMillenniumSet();
+//        TreeSet<String> millenniumSet = getMillenniumSet();
+//        return CollectionUtils.treeSetToDbpediaString(millenniumSet);
+
+        TreeSet<String> centurySet = getCenturySet();
         return CollectionUtils.treeSetToDbpediaString(centurySet);
     }
 

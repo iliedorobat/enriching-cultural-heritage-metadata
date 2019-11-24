@@ -3,6 +3,7 @@ package ro.webdata.lido.translator.common.constants;
 public class NSConstants {
     private static final String CC_LICENSES_LINK = "http://creativecommons.org";
     private static final String RIGHTS_LICENSES_LINK = "http://rightsstatements.org";
+    private static final String URL_SEPARATOR = "/";
 
     // https://pro.europeana.eu/page/available-rights-statements
     public static final String[] LICENSES_NAME = {
@@ -49,6 +50,10 @@ public class NSConstants {
     public static final String NS_REPO_RESOURCE_PLACE = NS_REPO_RESOURCE + LINK_ID_PLACE;
     public static final String NS_REPO_RESOURCE_TIMESPAN = NS_REPO_RESOURCE + LINK_ID_TIMESPAN;
     public static final String NS_REPO_RESOURCE_TIMESPAN_UNKNOWN = NS_REPO_RESOURCE_TIMESPAN + "/unknown";
+    public static final String NS_REPO_RESOURCE_TIMESPAN_UNKNOWN_CENTURY = NS_REPO_RESOURCE_TIMESPAN_UNKNOWN
+            + URL_SEPARATOR + Constants.CENTURY_PLACEHOLDER;
+    public static final String NS_REPO_RESOURCE_TIMESPAN_UNKNOWN_MILLENNIUM = NS_REPO_RESOURCE_TIMESPAN_UNKNOWN
+            + URL_SEPARATOR + Constants.MILLENNIUM_PLACEHOLDER;
 
     public static final String NS_DBPEDIA_PAGE = "http://dbpedia.org/page/";
     public static final String NS_DBPEDIA_PROPERTY = "http://dbpedia.org/property/";

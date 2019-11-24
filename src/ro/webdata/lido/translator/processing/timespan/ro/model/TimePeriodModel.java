@@ -81,12 +81,12 @@ public class TimePeriodModel extends TimeModel {
         TreeSet<String> centurySet = new TreeSet<>();
 
         if (this.centuryStart != null && this.centuryEnd != null) {
-            pushSameBc(this.eraStart, this.eraEnd, this.centuryStart, this.centuryEnd, Constants.CENTURY_PLACEHOLDER, centurySet);
-            pushSameAd(this.eraStart, this.eraEnd, this.centuryStart, this.centuryEnd, Constants.CENTURY_PLACEHOLDER, centurySet);
-            pushBcAd(this.eraStart, this.eraEnd, this.centuryStart, this.centuryEnd, Constants.CENTURY_PLACEHOLDER, centurySet);
-            pushAdBc(this.eraStart, this.eraEnd, this.centuryStart, this.centuryEnd, Constants.CENTURY_PLACEHOLDER, centurySet);
+            pushSameBc(this.eraStart, this.eraEnd, this.centuryStart, this.centuryEnd, Constants.DBPEDIA_CENTURY_PLACEHOLDER, centurySet);
+            pushSameAd(this.eraStart, this.eraEnd, this.centuryStart, this.centuryEnd, Constants.DBPEDIA_CENTURY_PLACEHOLDER, centurySet);
+            pushBcAd(this.eraStart, this.eraEnd, this.centuryStart, this.centuryEnd, Constants.DBPEDIA_CENTURY_PLACEHOLDER, centurySet);
+            pushAdBc(this.eraStart, this.eraEnd, this.centuryStart, this.centuryEnd, Constants.DBPEDIA_CENTURY_PLACEHOLDER, centurySet);
         } else {
-            pushUnknown(centurySet);
+            pushUnknownCentury(centurySet);
         }
 
         return centurySet;
@@ -96,19 +96,23 @@ public class TimePeriodModel extends TimeModel {
         TreeSet<String> millenniumSet = new TreeSet<>();
 
         if (this.millenniumStart != null && this.millenniumEnd != null) {
-            pushSameBc(this.eraStart, this.eraEnd, this.millenniumStart, this.millenniumEnd, Constants.MILLENNIUM_PLACEHOLDER, millenniumSet);
-            pushSameAd(this.eraStart, this.eraEnd, this.millenniumStart, this.millenniumEnd, Constants.MILLENNIUM_PLACEHOLDER, millenniumSet);
-            pushBcAd(this.eraStart, this.eraEnd, this.millenniumStart, this.millenniumEnd, Constants.MILLENNIUM_PLACEHOLDER, millenniumSet);
-            pushAdBc(this.eraStart, this.eraEnd, this.millenniumStart, this.millenniumEnd, Constants.MILLENNIUM_PLACEHOLDER, millenniumSet);
+            pushSameBc(this.eraStart, this.eraEnd, this.millenniumStart, this.millenniumEnd, Constants.DBPEDIA_MILLENNIUM_PLACEHOLDER, millenniumSet);
+            pushSameAd(this.eraStart, this.eraEnd, this.millenniumStart, this.millenniumEnd, Constants.DBPEDIA_MILLENNIUM_PLACEHOLDER, millenniumSet);
+            pushBcAd(this.eraStart, this.eraEnd, this.millenniumStart, this.millenniumEnd, Constants.DBPEDIA_MILLENNIUM_PLACEHOLDER, millenniumSet);
+            pushAdBc(this.eraStart, this.eraEnd, this.millenniumStart, this.millenniumEnd, Constants.DBPEDIA_MILLENNIUM_PLACEHOLDER, millenniumSet);
         } else {
-            pushUnknown(millenniumSet);
+            pushUnknownMillennium(millenniumSet);
         }
 
         return millenniumSet;
     }
 
-    private void pushUnknown(TreeSet<String> timeSet) {
-        timeSet.add(NSConstants.NS_REPO_RESOURCE_TIMESPAN_UNKNOWN);
+    private void pushUnknownCentury(TreeSet<String> timeSet) {
+        timeSet.add(NSConstants.NS_REPO_RESOURCE_TIMESPAN_UNKNOWN_CENTURY);
+    }
+
+    private void pushUnknownMillennium(TreeSet<String> timeSet) {
+        timeSet.add(NSConstants.NS_REPO_RESOURCE_TIMESPAN_UNKNOWN_MILLENNIUM);
     }
 
     /**
@@ -180,7 +184,8 @@ public class TimePeriodModel extends TimeModel {
             for (int timePeriod = start; timePeriod >= end; timePeriod--) {
                 String timeDbpedia = MathUtils.getOrdinal(timePeriod)
                         + timePlaceholder
-                        + "_" + TimeUtils.CHRISTUM_BC_LABEL;
+                        + Constants.UNDERSCORE_PLACEHOLDER
+                        + TimeUtils.CHRISTUM_BC_LABEL;
                 timeSet.add(timeDbpedia);
             }
         }

@@ -2,11 +2,12 @@ package ro.webdata.lido.translator.common.constants;
 
 public class Constants {
     public static final char[] CHAR_DELIMITER = new char[]{' '};
-    public static final String URL_SEPARATOR = "/";
     public static final String EMPTY_VALUE_PLACEHOLDER = "";
     public static final String UNDERSCORE_PLACEHOLDER = "_";
-    public static final String CENTURY_PLACEHOLDER = UNDERSCORE_PLACEHOLDER + "century";
-    public static final String MILLENNIUM_PLACEHOLDER = UNDERSCORE_PLACEHOLDER + "millennium";
+    public static final String CENTURY_PLACEHOLDER = "century";
+    public static final String MILLENNIUM_PLACEHOLDER = "millennium";
+    public static final String DBPEDIA_CENTURY_PLACEHOLDER = UNDERSCORE_PLACEHOLDER + CENTURY_PLACEHOLDER;
+    public static final String DBPEDIA_MILLENNIUM_PLACEHOLDER = UNDERSCORE_PLACEHOLDER + MILLENNIUM_PLACEHOLDER;
 
     public static final String LABEL = "label";
     public static final String LANGUAGE = "language";

@@ -16,9 +16,13 @@ public class AgeModel {
 
     @Override
     public String toString() {
-        TreeSet<String> ageSet = new TreeSet<>();
-        ageSet.add(this.age);
-        return CollectionUtils.treeSetToDbpediaString(ageSet);
+//        TreeSet<String> ageSet = new TreeSet<>();
+//        ageSet.add(this.age);
+//        return CollectionUtils.treeSetToDbpediaString(ageSet);
+
+        // The ThreeSet is empty because the entry doesn't have a year or a century
+        TreeSet<String> centurySet = new TreeSet<>();
+        return CollectionUtils.treeSetToDbpediaString(centurySet);
     }
 
     private String mapAge(String age, String regex) {
