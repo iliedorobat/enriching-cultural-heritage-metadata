@@ -1,2 +1,2 @@
-# eCHM: Enriching the cultural heritage metadata using EDM conceptual model
-Translating the cultural heritage LIDO dataset into Linked Data using EDM conceptual model
+# eHeritage: Enriching The Digital Representation of The Cultural Heritage Through EDM Event-Centric Approach
+Translating the Cultural Heritage LIDO dataset into Linked Data using EDM conceptual model
