@@ -12,12 +12,12 @@ import ro.webdata.lido.translator.common.constants.Constants;
 import ro.webdata.lido.translator.common.constants.NSConstants;
 import ro.webdata.lido.translator.common.constants.PlaceConstants;
 import ro.webdata.lido.translator.vocabulary.EDM;
-import ro.webdata.lido.parser.core.complex.placeComplexType.PlaceComplexType;
-import ro.webdata.lido.parser.core.leaf.appellationValue.AppellationValue;
-import ro.webdata.lido.parser.core.leaf.eventPlace.EventPlace;
-import ro.webdata.lido.parser.core.leaf.partOfPlace.PartOfPlace;
-import ro.webdata.lido.parser.core.leaf.place.Place;
-import ro.webdata.lido.parser.core.set.namePlaceSet.NamePlaceSet;
+import ro.webdata.parser.xml.lido.core.complex.placeComplexType.PlaceComplexType;
+import ro.webdata.parser.xml.lido.core.leaf.appellationValue.AppellationValue;
+import ro.webdata.parser.xml.lido.core.leaf.eventPlace.EventPlace;
+import ro.webdata.parser.xml.lido.core.leaf.partOfPlace.PartOfPlace;
+import ro.webdata.parser.xml.lido.core.leaf.place.Place;
+import ro.webdata.parser.xml.lido.core.set.namePlaceSet.NamePlaceSet;
 
 import java.util.*;
 

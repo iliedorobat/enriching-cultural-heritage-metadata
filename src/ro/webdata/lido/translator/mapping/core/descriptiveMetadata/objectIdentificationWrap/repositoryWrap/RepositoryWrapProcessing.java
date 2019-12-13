@@ -5,10 +5,10 @@ import org.apache.jena.rdf.model.Resource;
 import ro.webdata.lido.translator.mapping.leaf.LegalBodyRefComplexTypeProcessing;
 import ro.webdata.lido.translator.mapping.leaf.WorkIDProcessing;
 import ro.webdata.lido.translator.vocabulary.EDM;
-import ro.webdata.lido.parser.core.leaf.repositoryName.RepositoryName;
-import ro.webdata.lido.parser.core.leaf.workID.WorkID;
-import ro.webdata.lido.parser.core.set.repositorySet.RepositorySet;
-import ro.webdata.lido.parser.core.wrap.repositoryWrap.RepositoryWrap;
+import ro.webdata.parser.xml.lido.core.leaf.repositoryName.RepositoryName;
+import ro.webdata.parser.xml.lido.core.leaf.workID.WorkID;
+import ro.webdata.parser.xml.lido.core.set.repositorySet.RepositorySet;
+import ro.webdata.parser.xml.lido.core.wrap.repositoryWrap.RepositoryWrap;
 
 import java.util.ArrayList;
 

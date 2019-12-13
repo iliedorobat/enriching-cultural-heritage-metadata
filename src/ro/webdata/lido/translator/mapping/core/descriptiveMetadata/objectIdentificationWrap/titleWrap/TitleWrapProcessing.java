@@ -3,8 +3,8 @@ package ro.webdata.lido.translator.mapping.core.descriptiveMetadata.objectIdenti
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import ro.webdata.lido.translator.mapping.leaf.AppellationComplexTypeProcessing;
-import ro.webdata.lido.parser.core.set.titleSet.TitleSet;
-import ro.webdata.lido.parser.core.wrap.titleWrap.TitleWrap;
+import ro.webdata.parser.xml.lido.core.set.titleSet.TitleSet;
+import ro.webdata.parser.xml.lido.core.wrap.titleWrap.TitleWrap;
 
 import java.util.ArrayList;
 

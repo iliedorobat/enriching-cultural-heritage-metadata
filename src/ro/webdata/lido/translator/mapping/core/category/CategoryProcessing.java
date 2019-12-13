@@ -3,8 +3,8 @@ package ro.webdata.lido.translator.mapping.core.category;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DC_11;
-import ro.webdata.lido.parser.core.leaf.category.Category;
-import ro.webdata.lido.parser.core.leaf.term.Term;
+import ro.webdata.parser.xml.lido.core.leaf.category.Category;
+import ro.webdata.parser.xml.lido.core.leaf.term.Term;
 
 import java.util.ArrayList;
 

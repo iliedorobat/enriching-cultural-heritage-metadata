@@ -9,7 +9,7 @@ import ro.webdata.lido.translator.common.ResourceUtils;
 import ro.webdata.lido.translator.common.TextUtils;
 import ro.webdata.lido.translator.common.constants.*;
 import ro.webdata.lido.translator.vocabulary.EDM2;
-import ro.webdata.lido.parser.core.leaf.recordSource.RecordSource;
+import ro.webdata.parser.xml.lido.core.leaf.recordSource.RecordSource;
 
 import java.util.ArrayList;
 

@@ -6,8 +6,8 @@ import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DCTerms;
 import org.apache.jena.vocabulary.DC_11;
 import ro.webdata.lido.translator.common.constants.Constants;
-import ro.webdata.lido.parser.core.complex.appellationComplexType.AppellationComplexType;
-import ro.webdata.lido.parser.core.leaf.appellationValue.AppellationValue;
+import ro.webdata.parser.xml.lido.core.complex.appellationComplexType.AppellationComplexType;
+import ro.webdata.parser.xml.lido.core.leaf.appellationValue.AppellationValue;
 
 import java.util.ArrayList;
 import java.util.HashMap;

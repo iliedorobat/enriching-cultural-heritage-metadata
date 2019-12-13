@@ -4,9 +4,9 @@ import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DC_11;
-import ro.webdata.lido.parser.core.leaf.objectWorkType.ObjectWorkType;
-import ro.webdata.lido.parser.core.leaf.term.Term;
-import ro.webdata.lido.parser.core.wrap.objectWorkTypeWrap.ObjectWorkTypeWrap;
+import ro.webdata.parser.xml.lido.core.leaf.objectWorkType.ObjectWorkType;
+import ro.webdata.parser.xml.lido.core.leaf.term.Term;
+import ro.webdata.parser.xml.lido.core.wrap.objectWorkTypeWrap.ObjectWorkTypeWrap;
 
 import java.util.ArrayList;
 

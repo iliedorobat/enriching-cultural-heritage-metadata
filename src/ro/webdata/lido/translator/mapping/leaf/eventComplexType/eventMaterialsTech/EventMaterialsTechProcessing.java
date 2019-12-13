@@ -8,8 +8,8 @@ import org.apache.jena.vocabulary.SKOS;
 import ro.webdata.lido.translator.common.TextUtils;
 import ro.webdata.lido.translator.common.constants.FileConstants;
 import ro.webdata.lido.translator.common.constants.NSConstants;
-import ro.webdata.lido.parser.core.leaf.displayMaterialsTech.DisplayMaterialsTech;
-import ro.webdata.lido.parser.core.leaf.eventMaterialsTech.EventMaterialsTech;
+import ro.webdata.parser.xml.lido.core.leaf.displayMaterialsTech.DisplayMaterialsTech;
+import ro.webdata.parser.xml.lido.core.leaf.eventMaterialsTech.EventMaterialsTech;
 
 import java.util.ArrayList;
 

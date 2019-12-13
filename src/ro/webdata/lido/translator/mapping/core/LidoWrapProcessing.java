@@ -11,14 +11,14 @@ import ro.webdata.lido.translator.mapping.core.category.CategoryProcessing;
 import ro.webdata.lido.translator.mapping.core.descriptiveMetadata.DescriptiveMetadataProcessing;
 import ro.webdata.lido.translator.mapping.core.lidoRecID.LidoRecIDProcessing;
 import ro.webdata.lido.translator.vocabulary.EDM;
-import ro.webdata.lido.parser.core.ParserDAO;
-import ro.webdata.lido.parser.core.ParserDAOImpl;
-import ro.webdata.lido.parser.core.leaf.administrativeMetadata.AdministrativeMetadata;
-import ro.webdata.lido.parser.core.leaf.category.Category;
-import ro.webdata.lido.parser.core.leaf.descriptiveMetadata.DescriptiveMetadata;
-import ro.webdata.lido.parser.core.leaf.lido.Lido;
-import ro.webdata.lido.parser.core.leaf.lidoRecID.LidoRecID;
-import ro.webdata.lido.parser.core.wrap.lidoWrap.LidoWrap;
+import ro.webdata.parser.xml.lido.core.ParserDAO;
+import ro.webdata.parser.xml.lido.core.ParserDAOImpl;
+import ro.webdata.parser.xml.lido.core.leaf.administrativeMetadata.AdministrativeMetadata;
+import ro.webdata.parser.xml.lido.core.leaf.category.Category;
+import ro.webdata.parser.xml.lido.core.leaf.descriptiveMetadata.DescriptiveMetadata;
+import ro.webdata.parser.xml.lido.core.leaf.lido.Lido;
+import ro.webdata.parser.xml.lido.core.leaf.lidoRecID.LidoRecID;
+import ro.webdata.parser.xml.lido.core.wrap.lidoWrap.LidoWrap;
 
 import java.util.ArrayList;
 

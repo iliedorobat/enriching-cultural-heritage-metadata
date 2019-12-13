@@ -6,7 +6,7 @@ import ro.webdata.lido.translator.common.ResourceUtils;
 import ro.webdata.lido.translator.mapping.leaf.RecordRightsProcessing;
 import ro.webdata.lido.translator.mapping.leaf.RecordSourceProcessing;
 import ro.webdata.lido.translator.vocabulary.EDM;
-import ro.webdata.lido.parser.core.wrap.recordWrap.RecordWrap;
+import ro.webdata.parser.xml.lido.core.wrap.recordWrap.RecordWrap;
 
 public class RecordWrapProcessing {
     private static RecordSourceProcessing recordSourceProcessing = new RecordSourceProcessing();

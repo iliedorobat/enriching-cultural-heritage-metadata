@@ -3,9 +3,9 @@ package ro.webdata.lido.translator.mapping.core.descriptiveMetadata.eventWrap;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import ro.webdata.lido.translator.mapping.leaf.eventComplexType.EventComplexTypeProcessing;
-import ro.webdata.lido.parser.core.leaf.event.Event;
-import ro.webdata.lido.parser.core.set.eventSet.EventSet;
-import ro.webdata.lido.parser.core.wrap.eventWrap.EventWrap;
+import ro.webdata.parser.xml.lido.core.leaf.event.Event;
+import ro.webdata.parser.xml.lido.core.set.eventSet.EventSet;
+import ro.webdata.parser.xml.lido.core.wrap.eventWrap.EventWrap;
 
 import java.util.ArrayList;
 

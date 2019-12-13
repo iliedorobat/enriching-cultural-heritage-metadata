@@ -10,7 +10,7 @@ import ro.webdata.lido.translator.mapping.leaf.eventComplexType.culture.CultureP
 import ro.webdata.lido.translator.mapping.leaf.eventComplexType.eventActor.EventActorProcessing;
 import ro.webdata.lido.translator.mapping.leaf.eventComplexType.eventMaterialsTech.EventMaterialsTechProcessing;
 import ro.webdata.lido.translator.vocabulary.EDM;
-import ro.webdata.lido.parser.core.leaf.event.Event;
+import ro.webdata.parser.xml.lido.core.leaf.event.Event;
 
 import java.util.ArrayList;
 

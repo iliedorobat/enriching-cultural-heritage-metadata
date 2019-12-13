@@ -7,7 +7,7 @@ import ro.webdata.lido.translator.mapping.core.descriptiveMetadata.objectIdentif
 import ro.webdata.lido.translator.mapping.core.descriptiveMetadata.objectIdentificationWrap.objectMeasurementsWrap.ObjectMeasurementsWrapProcessing;
 import ro.webdata.lido.translator.mapping.core.descriptiveMetadata.objectIdentificationWrap.repositoryWrap.RepositoryWrapProcessing;
 import ro.webdata.lido.translator.mapping.core.descriptiveMetadata.objectIdentificationWrap.titleWrap.TitleWrapProcessing;
-import ro.webdata.lido.parser.core.wrap.objectIdentificationWrap.ObjectIdentificationWrap;
+import ro.webdata.parser.xml.lido.core.wrap.objectIdentificationWrap.ObjectIdentificationWrap;
 
 public class ObjectIdentificationWrapProcessing {
     /**

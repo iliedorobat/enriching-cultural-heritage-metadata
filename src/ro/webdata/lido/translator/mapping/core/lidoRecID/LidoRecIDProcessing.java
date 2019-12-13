@@ -1,7 +1,7 @@
 package ro.webdata.lido.translator.mapping.core.lidoRecID;
 
 import ro.webdata.lido.translator.common.constants.FileConstants;
-import ro.webdata.lido.parser.core.leaf.lidoRecID.LidoRecID;
+import ro.webdata.parser.xml.lido.core.leaf.lidoRecID.LidoRecID;
 
 import java.util.ArrayList;
 

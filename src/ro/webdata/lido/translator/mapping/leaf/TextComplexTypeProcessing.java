@@ -7,9 +7,9 @@ import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DC_11;
 import ro.webdata.lido.translator.common.PropertyUtils;
 import ro.webdata.lido.translator.common.TextUtils;
-import ro.webdata.lido.parser.core.attribute.LidoType;
-import ro.webdata.lido.parser.core.complex.textComplexType.TextComplexType;
-import ro.webdata.lido.parser.core.leaf.displayObjectMeasurements.DisplayObjectMeasurements;
+import ro.webdata.parser.xml.lido.core.attribute.LidoType;
+import ro.webdata.parser.xml.lido.core.complex.textComplexType.TextComplexType;
+import ro.webdata.parser.xml.lido.core.leaf.displayObjectMeasurements.DisplayObjectMeasurements;
 
 public class TextComplexTypeProcessing {
     /**

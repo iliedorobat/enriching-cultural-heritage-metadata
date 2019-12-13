@@ -5,7 +5,7 @@ import org.apache.jena.rdf.model.Resource;
 import ro.webdata.lido.translator.mapping.core.descriptiveMetadata.eventWrap.EventWrapProcessing;
 import ro.webdata.lido.translator.mapping.core.descriptiveMetadata.objectClassificationWrap.ObjectClassificationWrapProcessing;
 import ro.webdata.lido.translator.mapping.core.descriptiveMetadata.objectIdentificationWrap.ObjectIdentificationWrapProcessing;
-import ro.webdata.lido.parser.core.leaf.descriptiveMetadata.DescriptiveMetadata;
+import ro.webdata.parser.xml.lido.core.leaf.descriptiveMetadata.DescriptiveMetadata;
 
 public class DescriptiveMetadataProcessing {
     private static ObjectClassificationWrapProcessing objectClassificationWrapProcessing = new ObjectClassificationWrapProcessing();

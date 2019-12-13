@@ -1,8 +1,8 @@
 package ro.webdata.lido.translator.mapping.leaf;
 
 import ro.webdata.lido.translator.common.constants.FileConstants;
-import ro.webdata.lido.parser.core.leaf.recordID.RecordID;
-import ro.webdata.lido.parser.core.wrap.recordWrap.RecordWrap;
+import ro.webdata.parser.xml.lido.core.leaf.recordID.RecordID;
+import ro.webdata.parser.xml.lido.core.wrap.recordWrap.RecordWrap;
 
 import java.util.ArrayList;
 

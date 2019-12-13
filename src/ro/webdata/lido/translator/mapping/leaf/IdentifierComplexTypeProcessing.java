@@ -6,7 +6,7 @@ import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DC_11;
 import ro.webdata.lido.translator.common.constants.Constants;
 import ro.webdata.lido.translator.common.constants.LIDOConstants;
-import ro.webdata.lido.parser.core.complex.identifierComplexType.IdentifierComplexType;
+import ro.webdata.parser.xml.lido.core.complex.identifierComplexType.IdentifierComplexType;
 
 import java.util.ArrayList;
 

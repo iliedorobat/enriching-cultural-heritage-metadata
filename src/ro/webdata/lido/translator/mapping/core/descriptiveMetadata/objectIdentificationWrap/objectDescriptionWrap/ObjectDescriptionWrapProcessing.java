@@ -3,10 +3,10 @@ package ro.webdata.lido.translator.mapping.core.descriptiveMetadata.objectIdenti
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import ro.webdata.lido.translator.mapping.leaf.TextComplexTypeProcessing;
-import ro.webdata.lido.parser.core.attribute.LidoType;
-import ro.webdata.lido.parser.core.leaf.descriptiveNoteValue.DescriptiveNoteValue;
-import ro.webdata.lido.parser.core.set.objectDescriptionSet.ObjectDescriptionSet;
-import ro.webdata.lido.parser.core.wrap.objectDescriptionWrap.ObjectDescriptionWrap;
+import ro.webdata.parser.xml.lido.core.attribute.LidoType;
+import ro.webdata.parser.xml.lido.core.leaf.descriptiveNoteValue.DescriptiveNoteValue;
+import ro.webdata.parser.xml.lido.core.set.objectDescriptionSet.ObjectDescriptionSet;
+import ro.webdata.parser.xml.lido.core.wrap.objectDescriptionWrap.ObjectDescriptionWrap;
 
 import java.util.ArrayList;
 

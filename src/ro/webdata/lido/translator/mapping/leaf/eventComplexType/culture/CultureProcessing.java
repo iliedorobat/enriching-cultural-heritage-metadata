@@ -3,8 +3,8 @@ package ro.webdata.lido.translator.mapping.leaf.eventComplexType.culture;
 import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
-import ro.webdata.lido.parser.core.leaf.culture.Culture;
-import ro.webdata.lido.parser.core.leaf.term.Term;
+import ro.webdata.parser.xml.lido.core.leaf.culture.Culture;
+import ro.webdata.parser.xml.lido.core.leaf.term.Term;
 
 import java.util.ArrayList;
 

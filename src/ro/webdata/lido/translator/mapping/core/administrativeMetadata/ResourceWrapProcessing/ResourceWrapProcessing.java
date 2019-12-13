@@ -5,13 +5,13 @@ import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DC_11;
 import org.apache.jena.vocabulary.RDF;
 import ro.webdata.lido.translator.vocabulary.EDM;
-import ro.webdata.lido.parser.core.leaf.linkResource.LinkResource;
-import ro.webdata.lido.parser.core.leaf.resourceRepresentation.ResourceRepresentation;
-import ro.webdata.lido.parser.core.leaf.rightsResource.RightsResource;
-import ro.webdata.lido.parser.core.leaf.rightsType.RightsType;
-import ro.webdata.lido.parser.core.leaf.term.Term;
-import ro.webdata.lido.parser.core.set.resourceSet.ResourceSet;
-import ro.webdata.lido.parser.core.wrap.resourceWrap.ResourceWrap;
+import ro.webdata.parser.xml.lido.core.leaf.linkResource.LinkResource;
+import ro.webdata.parser.xml.lido.core.leaf.resourceRepresentation.ResourceRepresentation;
+import ro.webdata.parser.xml.lido.core.leaf.rightsResource.RightsResource;
+import ro.webdata.parser.xml.lido.core.leaf.rightsType.RightsType;
+import ro.webdata.parser.xml.lido.core.leaf.term.Term;
+import ro.webdata.parser.xml.lido.core.set.resourceSet.ResourceSet;
+import ro.webdata.parser.xml.lido.core.wrap.resourceWrap.ResourceWrap;
 
 import java.util.ArrayList;
 

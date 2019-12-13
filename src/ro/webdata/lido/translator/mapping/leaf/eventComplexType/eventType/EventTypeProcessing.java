@@ -8,8 +8,8 @@ import ro.webdata.lido.translator.common.constants.Constants;
 import ro.webdata.lido.translator.common.constants.FileConstants;
 import ro.webdata.lido.translator.common.constants.NSConstants;
 import ro.webdata.lido.translator.vocabulary.EDM;
-import ro.webdata.lido.parser.core.leaf.eventType.EventType;
-import ro.webdata.lido.parser.core.leaf.term.Term;
+import ro.webdata.parser.xml.lido.core.leaf.eventType.EventType;
+import ro.webdata.parser.xml.lido.core.leaf.term.Term;
 
 import java.util.ArrayList;
 

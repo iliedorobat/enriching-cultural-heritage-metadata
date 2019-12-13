@@ -8,9 +8,9 @@ import ro.webdata.lido.translator.mapping.core.administrativeMetadata.RecordWrap
 import ro.webdata.lido.translator.mapping.core.administrativeMetadata.ResourceWrapProcessing.ResourceWrapProcessing;
 import ro.webdata.lido.translator.mapping.leaf.RecordIDProcessing;
 import ro.webdata.lido.translator.vocabulary.ORE;
-import ro.webdata.lido.parser.core.leaf.administrativeMetadata.AdministrativeMetadata;
-import ro.webdata.lido.parser.core.wrap.recordWrap.RecordWrap;
-import ro.webdata.lido.parser.core.wrap.resourceWrap.ResourceWrap;
+import ro.webdata.parser.xml.lido.core.leaf.administrativeMetadata.AdministrativeMetadata;
+import ro.webdata.parser.xml.lido.core.wrap.recordWrap.RecordWrap;
+import ro.webdata.parser.xml.lido.core.wrap.resourceWrap.ResourceWrap;
 
 public class AdministrativeMetadataProcessing {
     private RecordIDProcessing recordIDProcessing = new RecordIDProcessing();

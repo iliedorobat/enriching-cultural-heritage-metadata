@@ -12,14 +12,14 @@ import ro.webdata.lido.translator.processing.timespan.ro.regex.imprecise.Dateles
 import ro.webdata.lido.translator.processing.timespan.ro.regex.imprecise.InaccurateYearRegex;
 import ro.webdata.lido.translator.processing.timespan.ro.regex.date.LongDateRegex;
 import ro.webdata.lido.translator.processing.timespan.ro.regex.date.ShortDateRegex;
-import ro.webdata.lido.parser.core.ParserDAO;
-import ro.webdata.lido.parser.core.ParserDAOImpl;
-import ro.webdata.lido.parser.core.leaf.descriptiveMetadata.DescriptiveMetadata;
-import ro.webdata.lido.parser.core.leaf.displayDate.DisplayDate;
-import ro.webdata.lido.parser.core.leaf.eventDate.EventDate;
-import ro.webdata.lido.parser.core.leaf.lido.Lido;
-import ro.webdata.lido.parser.core.set.eventSet.EventSet;
-import ro.webdata.lido.parser.core.wrap.lidoWrap.LidoWrap;
+import ro.webdata.parser.xml.lido.core.ParserDAO;
+import ro.webdata.parser.xml.lido.core.ParserDAOImpl;
+import ro.webdata.parser.xml.lido.core.leaf.descriptiveMetadata.DescriptiveMetadata;
+import ro.webdata.parser.xml.lido.core.leaf.displayDate.DisplayDate;
+import ro.webdata.parser.xml.lido.core.leaf.eventDate.EventDate;
+import ro.webdata.parser.xml.lido.core.leaf.lido.Lido;
+import ro.webdata.parser.xml.lido.core.set.eventSet.EventSet;
+import ro.webdata.parser.xml.lido.core.wrap.lidoWrap.LidoWrap;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

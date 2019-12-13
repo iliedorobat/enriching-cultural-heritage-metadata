@@ -3,9 +3,9 @@ package ro.webdata.lido.translator.mapping.leaf;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import ro.webdata.lido.translator.common.constants.NSConstants;
-import ro.webdata.lido.parser.core.leaf.recordRights.RecordRights;
-import ro.webdata.lido.parser.core.leaf.rightsType.RightsType;
-import ro.webdata.lido.parser.core.leaf.term.Term;
+import ro.webdata.parser.xml.lido.core.leaf.recordRights.RecordRights;
+import ro.webdata.parser.xml.lido.core.leaf.rightsType.RightsType;
+import ro.webdata.parser.xml.lido.core.leaf.term.Term;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -6,7 +6,7 @@ import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DC_11;
 import ro.webdata.lido.translator.common.PropertyUtils;
-import ro.webdata.lido.parser.core.leaf.workID.WorkID;
+import ro.webdata.parser.xml.lido.core.leaf.workID.WorkID;
 
 import java.util.ArrayList;
 

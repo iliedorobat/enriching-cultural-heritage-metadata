@@ -9,9 +9,9 @@ import ro.webdata.lido.translator.common.Validators;
 import ro.webdata.lido.translator.common.constants.EDMConstants;
 import ro.webdata.lido.translator.common.constants.LIDOConstants;
 import ro.webdata.lido.translator.vocabulary.EDM;
-import ro.webdata.lido.parser.core.leaf.classification.Classification;
-import ro.webdata.lido.parser.core.leaf.term.Term;
-import ro.webdata.lido.parser.core.wrap.classificationWrap.ClassificationWrap;
+import ro.webdata.parser.xml.lido.core.leaf.classification.Classification;
+import ro.webdata.parser.xml.lido.core.leaf.term.Term;
+import ro.webdata.parser.xml.lido.core.wrap.classificationWrap.ClassificationWrap;
 
 import java.util.ArrayList;
 

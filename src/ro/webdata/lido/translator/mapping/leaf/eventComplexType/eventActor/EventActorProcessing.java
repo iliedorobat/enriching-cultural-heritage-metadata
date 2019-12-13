@@ -12,14 +12,14 @@ import ro.webdata.lido.translator.common.constants.Constants;
 import ro.webdata.lido.translator.common.constants.FileConstants;
 import ro.webdata.lido.translator.common.constants.NSConstants;
 import ro.webdata.lido.translator.vocabulary.EDM;
-import ro.webdata.lido.parser.core.leaf.actor.Actor;
-import ro.webdata.lido.parser.core.leaf.actorID.ActorID;
-import ro.webdata.lido.parser.core.leaf.actorInRole.ActorInRole;
-import ro.webdata.lido.parser.core.leaf.appellationValue.AppellationValue;
-import ro.webdata.lido.parser.core.leaf.eventActor.EventActor;
-import ro.webdata.lido.parser.core.leaf.roleActor.RoleActor;
-import ro.webdata.lido.parser.core.leaf.term.Term;
-import ro.webdata.lido.parser.core.set.nameActorSet.NameActorSet;
+import ro.webdata.parser.xml.lido.core.leaf.actor.Actor;
+import ro.webdata.parser.xml.lido.core.leaf.actorID.ActorID;
+import ro.webdata.parser.xml.lido.core.leaf.actorInRole.ActorInRole;
+import ro.webdata.parser.xml.lido.core.leaf.appellationValue.AppellationValue;
+import ro.webdata.parser.xml.lido.core.leaf.eventActor.EventActor;
+import ro.webdata.parser.xml.lido.core.leaf.roleActor.RoleActor;
+import ro.webdata.parser.xml.lido.core.leaf.term.Term;
+import ro.webdata.parser.xml.lido.core.set.nameActorSet.NameActorSet;
 
 import java.util.ArrayList;
 

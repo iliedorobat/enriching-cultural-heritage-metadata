@@ -11,11 +11,11 @@ import ro.webdata.lido.translator.common.TextUtils;
 import ro.webdata.lido.translator.common.constants.Constants;
 import ro.webdata.lido.translator.common.constants.FileConstants;
 import ro.webdata.lido.translator.common.constants.NSConstants;
-import ro.webdata.lido.parser.core.complex.legalBodyRefComplexType.LegalBodyRefComplexType;
-import ro.webdata.lido.parser.core.leaf.appellationValue.AppellationValue;
-import ro.webdata.lido.parser.core.leaf.legalBodyID.LegalBodyID;
-import ro.webdata.lido.parser.core.leaf.legalBodyName.LegalBodyName;
-import ro.webdata.lido.parser.core.leaf.legalBodyWeblink.LegalBodyWeblink;
+import ro.webdata.parser.xml.lido.core.complex.legalBodyRefComplexType.LegalBodyRefComplexType;
+import ro.webdata.parser.xml.lido.core.leaf.appellationValue.AppellationValue;
+import ro.webdata.parser.xml.lido.core.leaf.legalBodyID.LegalBodyID;
+import ro.webdata.parser.xml.lido.core.leaf.legalBodyName.LegalBodyName;
+import ro.webdata.parser.xml.lido.core.leaf.legalBodyWeblink.LegalBodyWeblink;
 
 import java.util.ArrayList;
 

@@ -5,8 +5,8 @@ import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.RDF;
 import ro.webdata.lido.translator.processing.timespan.ro.TimespanUtils;
 import ro.webdata.lido.translator.vocabulary.EDM;
-import ro.webdata.lido.parser.core.leaf.displayDate.DisplayDate;
-import ro.webdata.lido.parser.core.leaf.eventDate.EventDate;
+import ro.webdata.parser.xml.lido.core.leaf.displayDate.DisplayDate;
+import ro.webdata.parser.xml.lido.core.leaf.eventDate.EventDate;
 
 import java.util.ArrayList;
 import java.util.TreeSet;

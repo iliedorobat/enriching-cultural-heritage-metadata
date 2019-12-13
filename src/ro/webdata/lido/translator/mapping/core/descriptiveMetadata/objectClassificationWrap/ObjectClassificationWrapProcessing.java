@@ -4,7 +4,7 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import ro.webdata.lido.translator.mapping.core.descriptiveMetadata.objectClassificationWrap.classificationWrap.ClassificationProcessing;
 import ro.webdata.lido.translator.mapping.core.descriptiveMetadata.objectClassificationWrap.objectWorkTypeWrap.ObjectWorkTypeWrapProcessing;
-import ro.webdata.lido.parser.core.wrap.objectClassificationWrap.ObjectClassificationWrap;
+import ro.webdata.parser.xml.lido.core.wrap.objectClassificationWrap.ObjectClassificationWrap;
 
 public class ObjectClassificationWrapProcessing {
     /**
