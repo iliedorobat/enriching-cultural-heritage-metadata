@@ -5,12 +5,11 @@ import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.sparql.vocabulary.FOAF;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.SKOS;
+import ro.webdata.parser.xml.lido.core.leaf.recordSource.RecordSource;
 import ro.webdata.translator.edm.approach.event.lido.common.ResourceUtils;
 import ro.webdata.translator.edm.approach.event.lido.common.TextUtils;
-import ro.webdata.lido.translator.common.constants.*;
 import ro.webdata.translator.edm.approach.event.lido.common.constants.*;
 import ro.webdata.translator.edm.approach.event.lido.vocabulary.EDM2;
-import ro.webdata.parser.xml.lido.core.leaf.recordSource.RecordSource;
 
 import java.util.ArrayList;
 
