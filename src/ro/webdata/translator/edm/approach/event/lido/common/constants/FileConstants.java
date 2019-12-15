@@ -6,8 +6,8 @@ public class FileConstants {
     public static final String FILE_SEPARATOR = System.getProperty("file.separator");
     public static final String WORKSPACE_DIR = System.getProperty("user.dir");
 
-//    public static final String FILE_PATH = WORKSPACE_DIR + FILE_SEPARATOR + "files/lido-schema";
-    public static final String FILE_PATH = "files/lido-schema";
+//    public static final String FILE_PATH = WORKSPACE_DIR + FILE_SEPARATOR + "files/lido-files";
+    public static final String FILE_PATH = "files/lido-files";
     public static final String FILE_NAME_ARHEOLOGIE = "inp-clasate-arheologie-2014-02-02";
     public static final String FILE_NAME_ARTA = "inp-clasate-arta-2014-02-02";
     public static final String FILE_NAME_ARTE_DECO = "inp-clasate-arte-decorative-2014-02-02";
