@@ -1,10 +1,11 @@
 package ro.webdata.common.constants;
 
 public class FileConstants {
-    public static final String FILE_EXTENSION_CSV = ".csv";
-    public static final String FILE_EXTENSION_RDF = ".rdf";
-    public static final String FILE_EXTENSION_TXT = ".txt";
-    public static final String FILE_EXTENSION_XML = ".xml";
+    public static final String FILE_EXTENSION_CSV = "csv";
+    public static final String FILE_EXTENSION_RDF = "rdf";
+    public static final String FILE_EXTENSION_TXT = "txt";
+    public static final String FILE_EXTENSION_XML = "xml";
+    public static final String FILE_EXTENSION_SEPARATOR = ".";
     public static final String FILE_SEPARATOR = System.getProperty("file.separator");
     public static final String WORKSPACE_DIR = System.getProperty("user.dir");
 

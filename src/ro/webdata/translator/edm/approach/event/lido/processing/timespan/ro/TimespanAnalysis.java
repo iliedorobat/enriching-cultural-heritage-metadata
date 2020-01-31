@@ -130,8 +130,9 @@ public class TimespanAnalysis {
         Set<String> list = new HashSet<>();
 
         for (int count = 0; count < fileNames.length; count++) {
-            String filePath = FileConstants.PATH_INPUT_LIDO_DIR + FileConstants.FILE_SEPARATOR
-                    + fileNames[count] + FileConstants.FILE_EXTENSION_XML;
+            String filePath = FileConstants.PATH_INPUT_LIDO_DIR
+                    + FileConstants.FILE_SEPARATOR + fileNames[count]
+                    + FileConstants.FILE_EXTENSION_SEPARATOR + FileConstants.FILE_EXTENSION_XML;
             addTimespan(filePath, list);
         }
 

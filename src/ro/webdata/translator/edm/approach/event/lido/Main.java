@@ -75,10 +75,14 @@ public class Main {
     private static void run() {
         for (int i = 0; i < fileNames.length; i++) {
             Model model = createDataModel();
-            String filePath = FileConstants.PATH_INPUT_LIDO_DIR + FileConstants.FILE_SEPARATOR + fileNames[i] + FileConstants.FILE_EXTENSION_XML;
+            String filePath = FileConstants.PATH_INPUT_LIDO_DIR
+                    + FileConstants.FILE_SEPARATOR + fileNames[i]
+                    + FileConstants.FILE_EXTENSION_SEPARATOR + FileConstants.FILE_EXTENSION_XML;
             lidoWrapProcessing.processing(model, filePath);
 
-            String outputPath = FileConstants.PATH_OUTPUT_LIDO_DIR + FileConstants.FILE_SEPARATOR + fileNames[i] + FileConstants.FILE_EXTENSION_RDF;
+            String outputPath = FileConstants.PATH_OUTPUT_LIDO_DIR
+                    + FileConstants.FILE_SEPARATOR + fileNames[i]
+                    + FileConstants.FILE_EXTENSION_SEPARATOR + FileConstants.FILE_EXTENSION_RDF;
             writeRDFGraph(model, outputPath);
         }
     }
@@ -87,8 +91,9 @@ public class Main {
     private static void runDemo() {
         Model model = createDataModel();
         // The demo file is found in: files/lido-schema/inp-clasate-arheologie-2014-02-02.xml
-        String filePath = FileConstants.PATH_INPUT_LIDO_DIR + FileConstants.FILE_SEPARATOR
-                + FileConstants.FILE_NAME_DEMO + FileConstants.FILE_EXTENSION_XML;
+        String filePath = FileConstants.PATH_INPUT_LIDO_DIR
+                + FileConstants.FILE_SEPARATOR + FileConstants.FILE_NAME_DEMO
+                + FileConstants.FILE_EXTENSION_SEPARATOR + FileConstants.FILE_EXTENSION_XML;
         lidoWrapProcessing.processing(model, filePath);
         writeRDFGraph(model, FileConstants.PATH_OUTPUT_DEMO_FILE);
     }
