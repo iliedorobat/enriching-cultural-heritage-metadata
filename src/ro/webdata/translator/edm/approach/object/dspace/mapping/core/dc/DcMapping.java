@@ -13,11 +13,11 @@ import java.util.Map;
 public class DcMapping {
     public static void processing(Model model, Resource providedCHO, HashMap<String, ArrayList<DcValue>> dcValueMap) {
         for (Map.Entry<String, ArrayList<DcValue>> entry : dcValueMap.entrySet()) {
-            addCHOProperties(model, providedCHO, entry.getValue());
+            dcValueProcessing(model, providedCHO, entry.getValue());
         }
     }
 
-    private static void addCHOProperties(Model model, Resource providedCHO, ArrayList<DcValue> dcValueList) {
+    private static void dcValueProcessing(Model model, Resource providedCHO, ArrayList<DcValue> dcValueList) {
         for (DcValue dcValue : dcValueList) {
             String elementName = dcValue.getElement().getValue();
 
