@@ -1,16 +1,17 @@
-package ro.webdata.translator.edm.approach.object.dspace.mapping.core.record;
+package ro.webdata.translator.edm.approach.object.dspace.mapping.core.dc.record;
 
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DC_11;
+import ro.webdata.common.constants.TextUtils;
 import ro.webdata.parser.xml.dspace.core.attribute.record.BasicRecord;
+import ro.webdata.parser.xml.dspace.core.attribute.record.FormatRecord;
 import ro.webdata.parser.xml.dspace.core.leaf.dcValue.DcValue;
 import ro.webdata.translator.edm.approach.object.dspace.common.PrintMessages;
 import ro.webdata.translator.edm.approach.object.dspace.common.constants.EnvConstants;
 
-public class RightsMapping {
-    private static final String REFINEMENT_HOLDER = "holder";
-    private static final String SCHEME_URI = "uri";
+public class FormatMapping {
+    private static final String REFINEMENT_MIMETYPE = "mimetype";
 
     public static void processing(Model model, Resource providedCHO, DcValue dcValue) {
         String language = dcValue.getLanguage().getValue();
@@ -20,9 +21,14 @@ public class RightsMapping {
         switch (qualifier) {
             case BasicRecord.EMPTY:
             case BasicRecord.NONE:
-            case REFINEMENT_HOLDER:
-            case SCHEME_URI:
-                providedCHO.addProperty(DC_11.rights, value, language);
+            case FormatRecord.REFINEMENT_EXTENT:
+            case FormatRecord.REFINEMENT_MEDIUM:
+            case REFINEMENT_MIMETYPE:
+                providedCHO.addProperty(DC_11.format, value, language);
+                break;
+            case FormatRecord.SCHEME_MEDIUM_IMT:
+                value = TextUtils.attachesSchemaToValue(qualifier, value);
+                providedCHO.addProperty(DC_11.format, value, language);
                 break;
             default:
                 PrintMessages.elementWarning(EnvConstants.OPERATION_MAPPING, providedCHO, dcValue);

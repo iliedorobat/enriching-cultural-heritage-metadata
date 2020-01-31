@@ -1,16 +1,16 @@
-package ro.webdata.translator.edm.approach.object.dspace.mapping.core;
+package ro.webdata.translator.edm.approach.object.dspace.mapping.core.dc;
 
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import ro.webdata.parser.xml.dspace.core.attribute.record.*;
 import ro.webdata.parser.xml.dspace.core.leaf.dcValue.DcValue;
-import ro.webdata.translator.edm.approach.object.dspace.mapping.core.record.*;
+import ro.webdata.translator.edm.approach.object.dspace.mapping.core.dc.record.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DcValueMapping {
+public class DcMapping {
     public static void processing(Model model, Resource providedCHO, HashMap<String, ArrayList<DcValue>> dcValueMap) {
         for (Map.Entry<String, ArrayList<DcValue>> entry : dcValueMap.entrySet()) {
             addCHOProperties(model, providedCHO, entry.getValue());
@@ -25,7 +25,9 @@ public class DcValueMapping {
                 case ContributorRecord.ELEMENT:
                     ContributorMapping.processing(model, providedCHO, dcValue);
                     break;
-                //TODO: case CoverageRecord.ELEMENT: break;
+                case CoverageRecord.ELEMENT:
+                    CoverageMapping.processing(model, providedCHO, dcValue);
+                    break;
                 case CreatorRecord.ELEMENT:
                     CreatorMapping.processing(model, providedCHO, dcValue);
                     break;
@@ -35,15 +37,21 @@ public class DcValueMapping {
                 case DescriptionRecord.ELEMENT:
                     DescriptionMapping.processing(model, providedCHO, dcValue);
                     break;
-                //TODO: case FormatRecord.ELEMENT: break; // EDM.type => EDMConstants.EDM_TYPES
-                //TODO: case IdentifierRecord.ELEMENT: break;
+                case FormatRecord.ELEMENT:
+                    FormatMapping.processing(model, providedCHO, dcValue);
+                    break;
+                case IdentifierRecord.ELEMENT:
+                    IdentifierMapping.processing(model, providedCHO, dcValue);
+                    break;
                 case LanguageRecord.ELEMENT:
                     LanguageMapping.processing(model, providedCHO, dcValue);
                     break;
                 case PublisherRecord.ELEMENT:
                     PublisherMapping.processing(model, providedCHO, dcValue);
                     break;
-                //TODO: case RelationRecord.ELEMENT: break;
+                case RelationRecord.ELEMENT:
+                    RelationMapping.processing(model, providedCHO, dcValue);
+                    break;
                 case RightsRecord.ELEMENT:
                     RightsMapping.processing(model, providedCHO, dcValue);
                     break;
@@ -53,7 +61,6 @@ public class DcValueMapping {
                 case SubjectRecord.ELEMENT:
                     SubjectMapping.processing(model, providedCHO, dcValue);
                     break;
-                //TODO: case ThumbRecord.ELEMENT: break;
                 case TitleRecord.ELEMENT:
                     TitleMapping.processing(model, providedCHO, dcValue);
                     break;

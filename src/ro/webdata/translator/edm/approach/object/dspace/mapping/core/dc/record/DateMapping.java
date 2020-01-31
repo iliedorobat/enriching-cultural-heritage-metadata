@@ -1,4 +1,4 @@
-package ro.webdata.translator.edm.approach.object.dspace.mapping.core.record;
+package ro.webdata.translator.edm.approach.object.dspace.mapping.core.dc.record;
 
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
@@ -6,17 +6,15 @@ import org.apache.jena.vocabulary.DCTerms;
 import org.apache.jena.vocabulary.DC_11;
 import ro.webdata.common.constants.TextUtils;
 import ro.webdata.parser.xml.dspace.core.attribute.record.BasicRecord;
-import ro.webdata.parser.xml.dspace.core.attribute.record.DescriptionRecord;
+import ro.webdata.parser.xml.dspace.core.attribute.record.DateRecord;
 import ro.webdata.parser.xml.dspace.core.leaf.dcValue.DcValue;
 import ro.webdata.translator.edm.approach.object.dspace.common.PrintMessages;
 import ro.webdata.translator.edm.approach.object.dspace.common.constants.EnvConstants;
 
-public class DescriptionMapping {
-    private static final String REFINEMENT_SPONSORSHIP = "sponsorship";
-    private static final String REFINEMENT_STATEMENT_OF_RESPONSIBILITY = "statementofresponsibility";
-    private static final String REFINEMENT_VERSION = "version";
-    private static final String REFINEMENT_PROVENANCE = "provenance";
-    private static final String SCHEME_URI = "uri";
+public class DateMapping {
+    private static final String REFINEMENT_ACCESSIONED = "accessioned";
+    private static final String REFINEMENT_COPYRIGHT = "copyright";
+    private static final String REFINEMENT_UPDATED = "updated";
 
     public static void processing(Model model, Resource providedCHO, DcValue dcValue) {
         String language = dcValue.getLanguage().getValue();
@@ -26,21 +24,24 @@ public class DescriptionMapping {
         switch (qualifier) {
             case BasicRecord.EMPTY:
             case BasicRecord.NONE:
-            case DescriptionRecord.REFINEMENT_ABSTRACT:
-            case REFINEMENT_SPONSORSHIP:
-            case REFINEMENT_STATEMENT_OF_RESPONSIBILITY:
-            case REFINEMENT_VERSION:
-                providedCHO.addProperty(DC_11.description, value, language);
+            case DateRecord.REFINEMENT_AVAILABLE:
+            case DateRecord.REFINEMENT_MODIFIED:
+            case DateRecord.REFINEMENT_VALID:
+            case REFINEMENT_ACCESSIONED:
+            case REFINEMENT_COPYRIGHT:
+            case REFINEMENT_UPDATED:
+                providedCHO.addProperty(DC_11.date, value, language);
                 break;
-            case DescriptionRecord.REFINEMENT_TABLE_OF_CONTENTS:
-                providedCHO.addProperty(DCTerms.tableOfContents, value, language);
+            case DateRecord.REFINEMENT_CREATED:
+                providedCHO.addProperty(DCTerms.created, value, language);
                 break;
-            case REFINEMENT_PROVENANCE:
-                providedCHO.addProperty(DCTerms.provenance, value, language);
+            case DateRecord.REFINEMENT_ISSUED:
+                providedCHO.addProperty(DCTerms.issued, value, language);
                 break;
-            case SCHEME_URI:
+            case DateRecord.SCHEME_TEMPORAL_DCMI_PERIOD:
+            case DateRecord.SCHEME_TEMPORAL_W3C_DTF:
                 value = TextUtils.attachesSchemaToValue(qualifier, value);
-                providedCHO.addProperty(DC_11.description, value);
+                providedCHO.addProperty(DC_11.date, value, language);
                 break;
             default:
                 PrintMessages.elementWarning(EnvConstants.OPERATION_MAPPING, providedCHO, dcValue);

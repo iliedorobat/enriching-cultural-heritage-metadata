@@ -1,15 +1,16 @@
-package ro.webdata.translator.edm.approach.object.dspace.mapping.core.record;
+package ro.webdata.translator.edm.approach.object.dspace.mapping.core.dc.record;
 
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
-import org.apache.jena.vocabulary.DC_11;
+import ro.webdata.common.constants.TextUtils;
 import ro.webdata.parser.xml.dspace.core.attribute.record.BasicRecord;
-import ro.webdata.parser.xml.dspace.core.attribute.record.SourceRecord;
+import ro.webdata.parser.xml.dspace.core.attribute.record.TypeRecord;
 import ro.webdata.parser.xml.dspace.core.leaf.dcValue.DcValue;
+import ro.webdata.translator.edm.approach.event.lido.vocabulary.EDM;
 import ro.webdata.translator.edm.approach.object.dspace.common.PrintMessages;
 import ro.webdata.translator.edm.approach.object.dspace.common.constants.EnvConstants;
 
-public class SourceMapping {
+public class TypeMapping {
     public static void processing(Model model, Resource providedCHO, DcValue dcValue) {
         String language = dcValue.getLanguage().getValue();
         String qualifier = dcValue.getQualifier().getValue();
@@ -18,8 +19,11 @@ public class SourceMapping {
         switch (qualifier) {
             case BasicRecord.EMPTY:
             case BasicRecord.NONE:
-            case SourceRecord.SCHEME_URI:
-                providedCHO.addProperty(DC_11.source, value, language);
+                providedCHO.addProperty(EDM.hasType, value, language);
+                break;
+            case TypeRecord.SCHEME_DCMI_TYPE_VOCABULARY:
+                value = TextUtils.attachesSchemaToValue(qualifier, value);
+                providedCHO.addProperty(EDM.hasType, value, language);
                 break;
             default:
                 PrintMessages.elementWarning(EnvConstants.OPERATION_MAPPING, providedCHO, dcValue);

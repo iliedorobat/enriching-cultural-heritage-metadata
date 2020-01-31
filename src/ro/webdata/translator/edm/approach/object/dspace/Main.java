@@ -4,6 +4,7 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.sparql.vocabulary.FOAF;
+import org.apache.jena.util.ResourceUtils;
 import org.apache.jena.vocabulary.DCTerms;
 import org.apache.jena.vocabulary.DC_11;
 import org.apache.jena.vocabulary.RDF;
@@ -16,7 +17,7 @@ import ro.webdata.translator.edm.approach.event.lido.common.constants.NSConstant
 import ro.webdata.translator.edm.approach.event.lido.vocabulary.EDM;
 import ro.webdata.translator.edm.approach.event.lido.vocabulary.ORE;
 import ro.webdata.translator.edm.approach.object.dspace.common.constants.FileConstants;
-import ro.webdata.translator.edm.approach.object.dspace.mapping.core.DcValueMapping;
+import ro.webdata.translator.edm.approach.object.dspace.mapping.core.dc.DcMapping;
 
 import java.io.StringWriter;
 import java.util.ArrayList;
@@ -49,11 +50,23 @@ public class Main {
 //            }
 //        }
 
+        //TODO: EDM.type => EDMConstants.EDM_TYPES
         for (String path : PATH_LIST) {
             DcWrapper dcWrapper = Parser.parseDcXmlFile(path);
+            String schemaName = dcWrapper.getSchemaName();
+            Resource providedCHO = model.createResource()
+                    .addProperty(RDF.type, EDM.ProvidedCHO);
             HashMap<String, ArrayList<DcValue>> dcValueMap = dcWrapper.getDcValueMap();
-            Resource providedCHO = generateProvidedCHO(model, dcValueMap);
-            DcValueMapping.processing(model, providedCHO, dcValueMap);
+
+            switch (schemaName) {
+                case "dc":
+                    providedCHO = updateProvidedCHO(model, providedCHO, dcValueMap);
+                    DcMapping.processing(model, providedCHO, dcValueMap);
+                default:
+                    break;
+            }
+
+            System.out.println("uri: " + providedCHO.getURI());
         }
 
         writeRDFGraph(model, null);
@@ -70,19 +83,17 @@ public class Main {
                 .setNsPrefix("openData", NSConstants.NS_REPO_PROPERTY + FileConstants.FILE_SEPARATOR);
     }
 
-    private static Resource generateProvidedCHO(Model model, HashMap<String, ArrayList<DcValue>> dcValueMap) {
-        Resource providedCHO = null;
+    private static Resource updateProvidedCHO(Model model, Resource providedCHO, HashMap<String, ArrayList<DcValue>> dcValueMap) {
         ArrayList<DcValue> identifierList = dcValueMap.get(IdentifierRecord.ELEMENT);
 
         int index = 0;
-        while (providedCHO == null && index < identifierList.size()) {
+        while (index < identifierList.size()) {
             DcValue dcValue = identifierList.get(index);
             String qualifier = dcValue.getQualifier().getValue().toLowerCase();
 
             if (qualifier.equals("uri")) {
                 String uri = dcValue.getText();
-                providedCHO = model.createResource(uri);
-                providedCHO.addProperty(RDF.type, EDM.ProvidedCHO);
+                providedCHO = ResourceUtils.renameResource(providedCHO, uri);
             }
 
             index++;

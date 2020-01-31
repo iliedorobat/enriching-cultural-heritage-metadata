@@ -1,4 +1,4 @@
-package ro.webdata.translator.edm.approach.object.dspace.mapping.core.record;
+package ro.webdata.translator.edm.approach.object.dspace.mapping.core.dc.record;
 
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
