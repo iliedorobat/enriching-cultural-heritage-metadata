@@ -4,6 +4,7 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DCTerms;
 import org.apache.jena.vocabulary.DC_11;
+import ro.webdata.common.constants.TextUtils;
 import ro.webdata.parser.xml.dspace.core.attribute.record.BasicRecord;
 import ro.webdata.parser.xml.dspace.core.attribute.record.DescriptionRecord;
 import ro.webdata.parser.xml.dspace.core.leaf.dcValue.DcValue;
@@ -15,6 +16,7 @@ public class DescriptionMapping {
     private static final String REFINEMENT_STATEMENT_OF_RESPONSIBILITY = "statementofresponsibility";
     private static final String REFINEMENT_VERSION = "version";
     private static final String REFINEMENT_PROVENANCE = "provenance";
+    private static final String SCHEME_URI = "uri";
 
     public static void processing(Model model, Resource providedCHO, DcValue dcValue) {
         String language = dcValue.getLanguage().getValue();
@@ -35,6 +37,10 @@ public class DescriptionMapping {
                 break;
             case REFINEMENT_PROVENANCE:
                 providedCHO.addProperty(DCTerms.provenance, value, language);
+                break;
+            case SCHEME_URI:
+                value = TextUtils.attachesSchemaToValue(qualifier, value);
+                providedCHO.addProperty(DC_11.description, value);
                 break;
             default:
                 PrintMessages.elementWarning(EnvConstants.OPERATION_MAPPING, providedCHO, dcValue);

@@ -4,6 +4,7 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DCTerms;
 import org.apache.jena.vocabulary.DC_11;
+import ro.webdata.common.constants.TextUtils;
 import ro.webdata.parser.xml.dspace.core.attribute.record.BasicRecord;
 import ro.webdata.parser.xml.dspace.core.attribute.record.DateRecord;
 import ro.webdata.parser.xml.dspace.core.leaf.dcValue.DcValue;
@@ -35,6 +36,11 @@ public class DateMapping {
                 break;
             case DateRecord.REFINEMENT_ISSUED:
                 providedCHO.addProperty(DCTerms.issued, value);
+                break;
+            case DateRecord.SCHEME_TEMPORAL_DCMI_PERIOD:
+            case DateRecord.SCHEME_TEMPORAL_W3C_DTF:
+                value = TextUtils.attachesSchemaToValue(qualifier, value);
+                providedCHO.addProperty(DC_11.date, value);
                 break;
             default:
                 PrintMessages.elementWarning(EnvConstants.OPERATION_MAPPING, providedCHO, dcValue);

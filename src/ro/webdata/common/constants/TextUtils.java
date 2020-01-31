@@ -9,6 +9,10 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
 public class TextUtils {
+    public static String attachesSchemaToValue(String schema, String value) {
+        return "##" + schema + "## " + value;
+    }
+
     /**
      * Transform a literal value (e.g.: "wall@en") into a camel-case string
      * @param input The original input

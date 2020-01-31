@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DcValueProcessing {
+public class DcValueMapping {
     public static void processing(Model model, Resource providedCHO, HashMap<String, ArrayList<DcValue>> dcValueMap) {
         for (Map.Entry<String, ArrayList<DcValue>> entry : dcValueMap.entrySet()) {
             addCHOProperties(model, providedCHO, entry.getValue());

@@ -16,9 +16,8 @@ import ro.webdata.translator.edm.approach.event.lido.common.constants.NSConstant
 import ro.webdata.translator.edm.approach.event.lido.vocabulary.EDM;
 import ro.webdata.translator.edm.approach.event.lido.vocabulary.ORE;
 import ro.webdata.translator.edm.approach.object.dspace.common.constants.FileConstants;
-import ro.webdata.translator.edm.approach.object.dspace.mapping.core.DcValueProcessing;
+import ro.webdata.translator.edm.approach.object.dspace.mapping.core.DcValueMapping;
 
-import java.io.File;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -54,7 +53,7 @@ public class Main {
             DcWrapper dcWrapper = Parser.parseDcXmlFile(path);
             HashMap<String, ArrayList<DcValue>> dcValueMap = dcWrapper.getDcValueMap();
             Resource providedCHO = generateProvidedCHO(model, dcValueMap);
-            DcValueProcessing.processing(model, providedCHO, dcValueMap);
+            DcValueMapping.processing(model, providedCHO, dcValueMap);
         }
 
         writeRDFGraph(model, null);

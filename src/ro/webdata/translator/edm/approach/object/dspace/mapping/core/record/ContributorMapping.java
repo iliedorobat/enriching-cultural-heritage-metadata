@@ -19,6 +19,7 @@ public class ContributorMapping {
     private static final String REFINEMENT_AUTHOR = "author";
     private static final String REFINEMENT_EDITOR = "editor";
     private static final String REFINEMENT_ILLUSTRATOR = "illustrator";
+    private static final String REFINEMENT_OTHER = "other";
 
     public static void processing(Model model, Resource providedCHO, DcValue dcValue) {
         String language = dcValue.getLanguage().getValue();
@@ -32,6 +33,7 @@ public class ContributorMapping {
             case REFINEMENT_AUTHOR:
             case REFINEMENT_EDITOR:
             case REFINEMENT_ILLUSTRATOR:
+            case REFINEMENT_OTHER:
                 String contributorUri = ResourceUtils.generateURI(
                         NSConstants.SIMPLE_NS_REPO_RESOURCE, EDM.Agent, value
                 );
@@ -40,7 +42,9 @@ public class ContributorMapping {
                         .addProperty(RDF.type, EDM.Agent)
                         .addProperty(SKOS.prefLabel, value, language);
 
-                if (!qualifier.equals(BasicRecord.EMPTY) && !qualifier.equals(BasicRecord.NONE))
+                if (!qualifier.equals(BasicRecord.EMPTY)
+                        && !qualifier.equals(BasicRecord.NONE)
+                        && !qualifier.equals(REFINEMENT_OTHER))
                     contributor.addProperty(SKOS.note, qualifier, Constants.LANG_EN);
 
                 providedCHO.addProperty(DC_11.contributor, contributor);
