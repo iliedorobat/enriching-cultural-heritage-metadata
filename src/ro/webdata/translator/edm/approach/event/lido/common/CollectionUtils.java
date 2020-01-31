@@ -1,5 +1,6 @@
 package ro.webdata.translator.edm.approach.event.lido.common;
 
+import ro.webdata.translator.edm.approach.event.lido.common.constants.FileConstants;
 import ro.webdata.translator.edm.approach.event.lido.common.constants.NSConstants;
 
 import java.util.TreeSet;
@@ -16,7 +17,20 @@ public class CollectionUtils {
 
             if (!item.contains(NSConstants.NS_REPO_RESOURCE)) {
                 sb.append(NSConstants.NS_DBPEDIA_PAGE);
+                sb.append(FileConstants.FILE_SEPARATOR);
                 sb.append(item);
+
+                //TODO: check for possible bugs
+                /*
+                // OLD:
+                sb.append("http://dbpedia.org/page/");
+                sb.append(item);
+
+                // NEW:
+                sb.append("http://dbpedia.org/page");
+                sb.append("/");
+                sb.append(item);
+                 */
             } else {
                 sb.append(item);
             }

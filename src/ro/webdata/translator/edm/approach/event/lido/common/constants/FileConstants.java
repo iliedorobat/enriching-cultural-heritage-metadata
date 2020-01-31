@@ -1,13 +1,7 @@
 package ro.webdata.translator.edm.approach.event.lido.common.constants;
 
-public class FileConstants {
-    public static final String RDF_FILE_EXTENSION = ".rdf";
-    public static final String XML_FILE_EXTENSION = ".xml";
-    public static final String FILE_SEPARATOR = System.getProperty("file.separator");
-    public static final String WORKSPACE_DIR = System.getProperty("user.dir");
-
-//    public static final String FILE_PATH = WORKSPACE_DIR + FILE_SEPARATOR + "files/lido-files";
-    public static final String FILE_PATH = "files/lido-files";
+public class FileConstants extends ro.webdata.common.constants.FileConstants {
+    //TODO: automatically parse the "files/input/lido" files
     public static final String FILE_NAME_ARHEOLOGIE = "inp-clasate-arheologie-2014-02-02";
     public static final String FILE_NAME_ARTA = "inp-clasate-arta-2014-02-02";
     public static final String FILE_NAME_ARTE_DECO = "inp-clasate-arte-decorative-2014-02-02";
@@ -20,19 +14,11 @@ public class FileConstants {
     public static final String FILE_NAME_ST_NAT = "inp-clasate-stiintele-naturii-2014-02-03-7";
     public static final String FILE_NAME_DEMO = "demo3";
 
-    public static final String OUTPUT_FILE_PATH = WORKSPACE_DIR + FILE_SEPARATOR + "files";
-    public static final String OUTPUT_FILE_FULL_PATH = OUTPUT_FILE_PATH + FILE_SEPARATOR + "output"
-            + FILE_SEPARATOR + "dataset" + RDF_FILE_EXTENSION;
-    public static final String OUTPUT_DEMO_FILE_FULL_PATH = OUTPUT_FILE_PATH + FILE_SEPARATOR + "output"
-            + FILE_SEPARATOR + FILE_NAME_DEMO + RDF_FILE_EXTENSION;
-    public static final String OUTPUT_FILE_TIMESPAN = OUTPUT_FILE_PATH + FILE_SEPARATOR + "data-processing"
-            + FILE_SEPARATOR + "timespan-original.txt";
+    public static final String PATH_INPUT_LIDO_DIR = PATH_INPUT_DIR + FILE_SEPARATOR + "lido";
+    public static final String PATH_OUTPUT_LIDO_DIR = PATH_OUTPUT_DIR + FILE_SEPARATOR + "lido2edm";
 
-    //TODO: demo file name
-    //    public static final String TEST_FILE_NAME = "LIDO-Extended-Example.xml";
-    public static final String TEST_FILE_NAME = "test-item-istorie";
-    public static final String TEST_FILE_PATH = WORKSPACE_DIR + FILE_SEPARATOR + "files/testing";
-    public static final String TEST_FILE_FULL_PATH = TEST_FILE_PATH + FILE_SEPARATOR + TEST_FILE_NAME + XML_FILE_EXTENSION;
-    public static final String TEST_OUTPUT_FILE_FULL_PATH = TEST_FILE_PATH + FILE_SEPARATOR +
-            "output" + FILE_SEPARATOR + "test.rdf";
+    public static final String PATH_OUTPUT_DATASET_FILE = PATH_OUTPUT_LIDO_DIR + FILE_SEPARATOR + "dataset" + FILE_EXTENSION_RDF;
+    public static final String PATH_OUTPUT_DEMO_FILE = PATH_OUTPUT_LIDO_DIR + FILE_SEPARATOR + FILE_NAME_DEMO + FILE_EXTENSION_RDF;
+    public static final String PATH_OUTPUT_PROPERTIES_FILE = PATH_OUTPUT_LIDO_DIR + FILE_SEPARATOR + "properties" + FILE_EXTENSION_CSV;
+    public static final String PATH_OUTPUT_TIMESPAN_FILE = PATH_DATA_PROCESSING_DIR + FILE_SEPARATOR + "timespan" + FILE_EXTENSION_TXT;
 }

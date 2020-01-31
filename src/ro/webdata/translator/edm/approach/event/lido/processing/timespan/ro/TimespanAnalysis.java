@@ -1,7 +1,7 @@
 package ro.webdata.translator.edm.approach.event.lido.processing.timespan.ro;
 
 import org.apache.commons.lang3.StringUtils;
-import ro.webdata.translator.edm.approach.event.lido.common.TextUtils;
+import ro.webdata.common.utils.FileUtils;
 import ro.webdata.translator.edm.approach.event.lido.common.constants.FileConstants;
 import ro.webdata.translator.edm.approach.event.lido.processing.timespan.ro.regex.AgeRegex;
 import ro.webdata.translator.edm.approach.event.lido.processing.timespan.ro.regex.UnknownRegex;
@@ -50,7 +50,7 @@ public class TimespanAnalysis {
                     .append("\n");
         }
 
-        TextUtils.write(writer, filePath);
+        FileUtils.write(writer, filePath);
     }
 
     public static void check(String filePath) {
@@ -130,8 +130,8 @@ public class TimespanAnalysis {
         Set<String> list = new HashSet<>();
 
         for (int count = 0; count < fileNames.length; count++) {
-            String filePath = FileConstants.FILE_PATH + FileConstants.FILE_SEPARATOR
-                    + fileNames[count] + FileConstants.XML_FILE_EXTENSION;
+            String filePath = FileConstants.PATH_INPUT_LIDO_DIR + FileConstants.FILE_SEPARATOR
+                    + fileNames[count] + FileConstants.FILE_EXTENSION_XML;
             addTimespan(filePath, list);
         }
 

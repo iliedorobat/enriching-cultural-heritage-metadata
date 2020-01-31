@@ -6,14 +6,14 @@ import org.apache.jena.sparql.vocabulary.FOAF;
 import org.apache.jena.vocabulary.DC_11;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.SKOS;
+import ro.webdata.common.constants.TextUtils;
 import ro.webdata.translator.edm.approach.event.lido.common.constants.Constants;
 import ro.webdata.translator.edm.approach.event.lido.common.constants.EDMConstants;
-import ro.webdata.translator.edm.approach.event.lido.common.constants.FileConstants;
 import ro.webdata.translator.edm.approach.event.lido.common.constants.NSConstants;
 import ro.webdata.translator.edm.approach.event.lido.vocabulary.EDM;
 import ro.webdata.translator.edm.approach.event.lido.vocabulary.EDM2;
 
-public class ResourceUtils {
+public class ResourceUtils extends ro.webdata.common.utils.ResourceUtils {
     /**
      * Generate the Europeana Provider (the institution which Europeana is harvesting for data)
      * @param model The RDF graph
@@ -105,24 +105,5 @@ public class ResourceUtils {
     public static void addProviderCountry(Resource provider) {
         provider.addProperty(EDM.country, "Romania", Constants.LANG_EN);
         provider.addProperty(EDM.country, "România", Constants.LANG_RO);
-    }
-
-    /**
-     * Generate a URI based on the namespace
-     * @param namespace The namespace (see NSConstants)
-     * @param resourceName The name of resource (a country, a name, a concept etc.)
-     * @return The generated URI
-     */
-    public static String generateURI(String namespace, String resourceName) {
-        return namespace + FileConstants.FILE_SEPARATOR + TextUtils.sanitizeString(resourceName);
-    }
-
-    /**
-     * Generate an encoded URI using the DBPedia namespace
-     * @param resourceName The name of resource (a country, a name, a concept etc.)
-     * @return The DBPedia encoded URI
-     */
-    public static String generateDBPediaURI(String resourceName) {
-        return NSConstants.NS_DBPEDIA_PAGE + TextUtils.encodeURI(resourceName);
     }
 }

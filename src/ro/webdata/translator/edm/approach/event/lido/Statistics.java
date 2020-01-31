@@ -10,6 +10,9 @@ import ro.webdata.translator.edm.approach.event.lido.vocabulary.ORE;
 
 import java.util.*;
 
+/**
+ * @deprecated Needs to be updated...
+ */
 public class Statistics {
     private static final String FINDING_EVENT = "http://opendata.cs.pub.ro/resource/event/finding";
     private static final String PRODUCTION_EVENT = "http://opendata.cs.pub.ro/resource/event/production";
@@ -26,7 +29,7 @@ public class Statistics {
     private static final String ENGRAVER = "http://opendata.cs.pub.ro/resource/agent/engraver";
 
     public static void main(String[] args) {
-        System.out.println(FileConstants.OUTPUT_FILE_FULL_PATH);
+        System.out.println(FileConstants.PATH_OUTPUT_DATASET_FILE);
         Model model = ModelFactory.createDefaultModel();
         model.read("files/output/dataset.rdf");
 

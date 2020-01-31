@@ -2,7 +2,7 @@ package ro.webdata.translator.edm.approach.event.lido.processing.timespan.ro.mod
 
 import ro.webdata.translator.edm.approach.event.lido.common.CollectionUtils;
 import ro.webdata.translator.edm.approach.event.lido.common.DateUtils;
-import ro.webdata.translator.edm.approach.event.lido.common.MathUtils;
+import ro.webdata.common.utils.MathUtils;
 import ro.webdata.translator.edm.approach.event.lido.common.constants.Constants;
 import ro.webdata.translator.edm.approach.event.lido.processing.timespan.ro.TimeUtils;
 import ro.webdata.translator.edm.approach.event.lido.processing.timespan.ro.regex.date.LongDateRegex;

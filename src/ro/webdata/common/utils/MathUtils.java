@@ -1,4 +1,4 @@
-package ro.webdata.translator.edm.approach.event.lido.common;
+package ro.webdata.common.utils;
 
 import ro.webdata.translator.edm.approach.event.lido.common.constants.Constants;
 

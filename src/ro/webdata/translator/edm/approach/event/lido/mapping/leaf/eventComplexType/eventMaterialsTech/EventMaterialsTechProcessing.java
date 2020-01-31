@@ -5,7 +5,7 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.SKOS;
-import ro.webdata.translator.edm.approach.event.lido.common.TextUtils;
+import ro.webdata.common.constants.TextUtils;
 import ro.webdata.translator.edm.approach.event.lido.common.constants.FileConstants;
 import ro.webdata.translator.edm.approach.event.lido.common.constants.NSConstants;
 import ro.webdata.parser.xml.lido.core.leaf.displayMaterialsTech.DisplayMaterialsTech;

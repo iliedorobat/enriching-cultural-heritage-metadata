@@ -1,21 +1,21 @@
-package ro.webdata.translator.edm.approach.event.lido.common.http;
+package ro.webdata.common.http;
 
 import ro.webdata.translator.edm.approach.event.lido.common.ResourceUtils;
 
 import java.net.HttpURLConnection;
 
-public class RequestUtils {
-    private RequestUtils() {};
+public class HttpGet {
+    private HttpGet() {};
 
     /**
      * Get the status code of the HTTP request and close the connection
      * @param address The URI
      * @return The status code
      */
-    public static int httpGetStatusCode(String address) {
-        HttpURLConnection connection = Request.sendGet(address);
+    public static int getResponseCode(String address) {
+        HttpURLConnection connection = HttpConnection.sendGetRequest(address);
         connection.disconnect();
-        return Request.statusCode(connection, address);
+        return HttpConnection.getResponseCode(connection, address);
     }
 
     /**
@@ -23,10 +23,10 @@ public class RequestUtils {
      * @param address The URI
      * @return The content
      */
-    public static StringBuilder httpGetContent(String address) {
-        HttpURLConnection connection = Request.sendGet(address);
+    public static StringBuilder getResponseContent(String address) {
+        HttpURLConnection connection = HttpConnection.sendGetRequest(address);
         connection.disconnect();
-        return Request.content(connection);
+        return HttpConnection.getResponseContent(connection);
     }
 
     /**
@@ -35,7 +35,7 @@ public class RequestUtils {
      * @return True if DBPedia has defined the passed object name, otherwise return false
      */
     public static boolean isValidDBPedia(String objectName) {
-        int statusCode = httpGetStatusCode(
+        int statusCode = getResponseCode(
                 ResourceUtils.generateDBPediaURI(objectName)
         );
         int prefix = statusCode / 100;

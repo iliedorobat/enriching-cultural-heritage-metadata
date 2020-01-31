@@ -1,4 +1,4 @@
-package ro.webdata.translator.edm.approach.event.lido.common.http;
+package ro.webdata.common.http;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,22 +7,22 @@ import java.net.HttpURLConnection;
 import java.net.ProtocolException;
 import java.net.URL;
 
-public class Request {
+class HttpConnection {
     private static final String HTTP_GET = "GET";
     private static final int TIMEOUT = 5000;
 
-    private Request() {};
+    private HttpConnection() {};
 
     /**
-     * Establish a GET HTTP request
+     * Establish an GET HTTP request
      * @param address The URI
      * @return The connection object
      */
-    public static HttpURLConnection sendGet(String address) {
+    static HttpURLConnection sendGetRequest(String address) {
         HttpURLConnection connection = null;
 
         try {
-            connection = getConnection(address);
+            connection = initializeConnection(address);
             connection.setRequestMethod(HTTP_GET);
             connection.setRequestProperty("Content-Type", "application/json");
             connection.setConnectTimeout(TIMEOUT);
@@ -35,12 +35,12 @@ public class Request {
     }
 
     /**
-     * Get the status code of the HTTP request
+     * Get the response code for an HTTP request
      * @param connection The connection object
      * @address The http address
      * @return The status code
      */
-    public static int statusCode(HttpURLConnection connection, String address) {
+    static int getResponseCode(HttpURLConnection connection, String address) {
         int code = 408;
 
         try {
@@ -53,11 +53,11 @@ public class Request {
     }
 
     /**
-     * Get the content of the HTTP request
+     * Get the response content for an HTTP request
      * @param connection The connection object
      * @return The requested content
      */
-    public static StringBuilder content(HttpURLConnection connection) {
+    static StringBuilder getResponseContent(HttpURLConnection connection) {
         InputStreamReader is = null;
         BufferedReader br = null;
         StringBuilder response = null;
@@ -86,7 +86,7 @@ public class Request {
      * @param address The URI
      * @return The connection object
      */
-    private static HttpURLConnection getConnection(String address) {
+    private static HttpURLConnection initializeConnection(String address) {
         URL url = null;
         HttpURLConnection connection = null;
 

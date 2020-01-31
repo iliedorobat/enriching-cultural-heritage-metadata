@@ -227,7 +227,7 @@ public class EventPlaceProcessing {
 
         //TODO: add it back
 //        String dbpediaLink = ResourceUtils.generateDBPediaURI(placeName);
-//        if (RequestUtils.isValidDBPedia(placeName)) {
+//        if (HttpGet.isValidDBPedia(placeName)) {
 //            placeResource.addProperty(OWL2.sameAs, model.createResource(dbpediaLink));
 //        }
 

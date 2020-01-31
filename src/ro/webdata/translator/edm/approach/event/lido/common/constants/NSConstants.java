@@ -1,5 +1,6 @@
 package ro.webdata.translator.edm.approach.event.lido.common.constants;
 
+//TODO: move the NSConstants to "src.ro.webdata.common.constants"
 public class NSConstants {
     private static final String CC_LICENSES_LINK = "http://creativecommons.org";
     private static final String RIGHTS_LICENSES_LINK = "http://rightsstatements.org";
@@ -29,10 +30,16 @@ public class NSConstants {
 
     public static final String NS_LIDO = "http://www.lido-schema.org/schema/v1.0/lido-v1.0-schema-listing.html#";
     public static final String NS_REPO = "http://opendata.cs.pub.ro";
+    /** @deprecated */
     public static final String NS_REPO_PROPERTY = NS_REPO + FileConstants.FILE_SEPARATOR
             + "property" + FileConstants.FILE_SEPARATOR + Constants.LANG_MAIN;
+    /** @deprecated */
     public static final String NS_REPO_RESOURCE = NS_REPO + FileConstants.FILE_SEPARATOR
             + "resource" + FileConstants.FILE_SEPARATOR + Constants.LANG_MAIN;
+
+    public static final String SIMPLE_NS_REPO_PROPERTY = NS_REPO + FileConstants.FILE_SEPARATOR + "property";
+    public static final String SIMPLE_NS_REPO_RESOURCE = NS_REPO + FileConstants.FILE_SEPARATOR + "resource";
+
     public static final String LINK_ID_AGENT = "/agent";
     public static final String LINK_ID_AGGREGATION = "/aggregation";
     public static final String LINK_ID_CHO = "/cho";
@@ -55,6 +62,6 @@ public class NSConstants {
     public static final String NS_REPO_RESOURCE_TIMESPAN_UNKNOWN_MILLENNIUM = NS_REPO_RESOURCE_TIMESPAN_UNKNOWN
             + URL_SEPARATOR + Constants.MILLENNIUM_PLACEHOLDER;
 
-    public static final String NS_DBPEDIA_PAGE = "http://dbpedia.org/page/";
-    public static final String NS_DBPEDIA_PROPERTY = "http://dbpedia.org/property/";
+    public static final String NS_DBPEDIA_PAGE = "http://dbpedia.org/page";
+    public static final String NS_DBPEDIA_PROPERTY = "http://dbpedia.org/property";
 }

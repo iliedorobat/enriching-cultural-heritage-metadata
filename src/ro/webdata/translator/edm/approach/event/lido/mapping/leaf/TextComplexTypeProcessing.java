@@ -6,7 +6,7 @@ import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DC_11;
 import ro.webdata.translator.edm.approach.event.lido.common.PropertyUtils;
-import ro.webdata.translator.edm.approach.event.lido.common.TextUtils;
+import ro.webdata.common.constants.TextUtils;
 import ro.webdata.parser.xml.lido.core.attribute.LidoType;
 import ro.webdata.parser.xml.lido.core.complex.textComplexType.TextComplexType;
 import ro.webdata.parser.xml.lido.core.leaf.displayObjectMeasurements.DisplayObjectMeasurements;

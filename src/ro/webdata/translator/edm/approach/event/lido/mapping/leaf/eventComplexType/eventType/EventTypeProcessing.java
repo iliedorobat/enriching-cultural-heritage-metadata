@@ -3,7 +3,7 @@ package ro.webdata.translator.edm.approach.event.lido.mapping.leaf.eventComplexT
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.RDF;
-import ro.webdata.translator.edm.approach.event.lido.common.TextUtils;
+import ro.webdata.common.constants.TextUtils;
 import ro.webdata.translator.edm.approach.event.lido.common.constants.Constants;
 import ro.webdata.translator.edm.approach.event.lido.common.constants.FileConstants;
 import ro.webdata.translator.edm.approach.event.lido.common.constants.NSConstants;

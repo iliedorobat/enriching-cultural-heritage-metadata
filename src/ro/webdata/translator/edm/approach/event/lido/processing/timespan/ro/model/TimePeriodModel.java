@@ -1,6 +1,6 @@
 package ro.webdata.translator.edm.approach.event.lido.processing.timespan.ro.model;
 
-import ro.webdata.translator.edm.approach.event.lido.common.MathUtils;
+import ro.webdata.common.utils.MathUtils;
 import ro.webdata.translator.edm.approach.event.lido.common.constants.Constants;
 import ro.webdata.translator.edm.approach.event.lido.common.constants.NSConstants;
 import ro.webdata.translator.edm.approach.event.lido.processing.timespan.ro.TimeUtils;
