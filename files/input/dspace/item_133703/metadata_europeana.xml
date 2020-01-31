@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<dublin_core schema="europeana">
+  <dcvalue element="provider" qualifier="none" language="en_US">Biblioteca&#x20;Centrală&#x20;Universitară&#x20;&quot;Lucian&#x20;Blaga&quot;&#x20;Cluj-Napoca</dcvalue>
+  <dcvalue element="type" qualifier="none" language="en_US">TEXT</dcvalue>
+  <dcvalue element="unstored" qualifier="none" language="en_US">Biblioteca&#x20;Centrală&#x20;Universitară&#x20;&quot;Lucian&#x20;Blaga&quot;&#x20;Cluj-Napoca</dcvalue>
+</dublin_core>

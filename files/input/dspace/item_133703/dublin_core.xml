@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<dublin_core schema="dc">
+  <dcvalue element="date" qualifier="accessioned">2019-12-06T07:31:44Z</dcvalue>
+  <dcvalue element="date" qualifier="available">2019-12-06T07:31:44Z</dcvalue>
+  <dcvalue element="date" qualifier="issued">2019-12-06</dcvalue>
+  <dcvalue element="identifier" qualifier="other" language="en_US">http:&#x2F;&#x2F;dspace.bcucluj.ro&#x2F;image&#x2F;thumbs&#x2F;sindicatul.png</dcvalue>
+  <dcvalue element="identifier" qualifier="uri">http:&#x2F;&#x2F;dspace.bcucluj.ro&#x2F;handle&#x2F;123456789&#x2F;136613</dcvalue>
+  <dcvalue element="description" qualifier="none" language="en_US">Cluj,&#x20;1926.&#x20;-&#x20;&#x20;;&#x20;31&#x20;cm</dcvalue>
+  <dcvalue element="description" qualifier="provenance" language="en">Submitted&#x20;by&#x20;Róbert&#x20;Bodnár&#x20;(bodnar_robert@yahoo.com)&#x20;on&#x20;2019-12-06T07:31:44Z&#x0A;No.&#x20;of&#x20;bitstreams:&#x20;1&#x0A;BCUCLUJ_FP_RI435_1938.pdf:&#x20;5528719&#x20;bytes,&#x20;checksum:&#x20;1271569bc53d66d5636d36e5cc4a0133&#x20;(MD5)</dcvalue>
+  <dcvalue element="description" qualifier="provenance" language="en">Made&#x20;available&#x20;in&#x20;DSpace&#x20;on&#x20;2019-12-06T07:31:44Z&#x20;(GMT).&#x20;No.&#x20;of&#x20;bitstreams:&#x20;1&#x0A;BCUCLUJ_FP_RI435_1938.pdf:&#x20;5528719&#x20;bytes,&#x20;checksum:&#x20;1271569bc53d66d5636d36e5cc4a0133&#x20;(MD5)</dcvalue>
+  <dcvalue element="format" qualifier="none" language="en_US">PDF</dcvalue>
+  <dcvalue element="format" qualifier="medium" language="en_US">paper</dcvalue>
+  <dcvalue element="language" qualifier="iso" language="en_US">rum</dcvalue>
+  <dcvalue element="rights" qualifier="none" language="en_US">Public&#x20;domain</dcvalue>
+  <dcvalue element="subject" qualifier="none" language="en_US">Jurnalism</dcvalue>
+  <dcvalue element="subject" qualifier="none" language="en_US">Journalism</dcvalue>
+  <dcvalue element="title" qualifier="none" language="en_US">Sindicatul&#x20;presei&#x20;române&#x20;din&#x20;Ardeal&#x20;şi&#x20;Banat&#x20;:&#x20;activitatea&#x20;în&#x20;...</dcvalue>
+  <dcvalue element="type" qualifier="none" language="en_US">Issue</dcvalue>
+  <dcvalue element="rights" qualifier="holder" language="en_US">Biblioteca&#x20;Centrală&#x20;Universitară&#x20;&quot;Lucian&#x20;Blaga&quot;&#x20;Cluj-Napoca</dcvalue>
+</dublin_core>
