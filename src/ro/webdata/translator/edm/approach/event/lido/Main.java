@@ -7,6 +7,7 @@ import org.apache.jena.vocabulary.DCTerms;
 import org.apache.jena.vocabulary.DC_11;
 import org.apache.jena.vocabulary.SKOS;
 import ro.webdata.common.utils.FileUtils;
+import ro.webdata.common.utils.ModelUtils;
 import ro.webdata.translator.edm.approach.event.lido.common.PrintMessages;
 import ro.webdata.translator.edm.approach.event.lido.common.constants.EnvConst;
 import ro.webdata.translator.edm.approach.event.lido.common.constants.FileConstants;
@@ -19,9 +20,6 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    private static final String SYNTAX = "RDF/XML";
-//    public static final String SYNTAX = "turtle";
-//    private static final String SYNTAX = "N3";
     private static LidoWrapProcessing lidoWrapProcessing = new LidoWrapProcessing();
     private static String[] fileNames = {
             FileConstants.FILE_NAME_ARHEOLOGIE,
@@ -58,23 +56,10 @@ public class Main {
 //        test();
     }
 
-    private static Model createDataModel() {
-        Model model = ModelFactory.createDefaultModel();
-        model.setNsPrefix("dc", DC_11.getURI());
-        model.setNsPrefix("dcterms", DCTerms.getURI());
-        model.setNsPrefix("edm", EDM.getURI());
-        model.setNsPrefix("foaf", FOAF.getURI());
-        model.setNsPrefix("ore", ORE.getURI());
-        model.setNsPrefix("skos", SKOS.getURI());
-        model.setNsPrefix("openData", NSConstants.NS_REPO_PROPERTY + FileConstants.FILE_SEPARATOR);
-        model.setNsPrefix("dbpedia", "http://dbpedia.org/page/");
-        return model;
-    }
-
     //---------------------- Real Scenario ---------------------- //
     private static void run() {
         for (int i = 0; i < fileNames.length; i++) {
-            Model model = createDataModel();
+            Model model = ModelUtils.generateModel();
             String filePath = FileConstants.PATH_INPUT_LIDO_DIR
                     + FileConstants.FILE_SEPARATOR + fileNames[i]
                     + FileConstants.FILE_EXTENSION_SEPARATOR + FileConstants.FILE_EXTENSION_XML;
@@ -89,7 +74,7 @@ public class Main {
 
     //---------------------- DEMO Scenario ---------------------- //
     private static void runDemo() {
-        Model model = createDataModel();
+        Model model = ModelUtils.generateModel();
         // The demo file is found in: files/lido-schema/inp-clasate-arheologie-2014-02-02.xml
         String filePath = FileConstants.PATH_INPUT_LIDO_DIR
                 + FileConstants.FILE_SEPARATOR + FileConstants.FILE_NAME_DEMO
@@ -100,7 +85,7 @@ public class Main {
 
     private static void writeRDFGraph(Model model, String outputFilePath) {
         StringWriter writer = new StringWriter();
-        model.write(writer, SYNTAX);
+        model.write(writer, ModelUtils.SYNTAX_RDF_XML);
         FileUtils.write(writer, outputFilePath);
 //        String result = writer.toString();
 //        System.out.println(result);

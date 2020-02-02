@@ -35,7 +35,7 @@ public class ResourceUtils {
      * @return The DBPedia encoded URI
      */
     public static String generateDBPediaURI(String resourceName) {
-        return NSConstants.NS_DBPEDIA_PAGE
+        return NSConstants.NS_DBPEDIA_RESOURCE
                 + FileConstants.FILE_SEPARATOR
                 + TextUtils.encodeURI(resourceName);
     }

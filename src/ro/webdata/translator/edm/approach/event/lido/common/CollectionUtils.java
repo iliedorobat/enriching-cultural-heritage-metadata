@@ -16,7 +16,7 @@ public class CollectionUtils {
             String item = list[i].toString();
 
             if (!item.contains(NSConstants.NS_REPO_RESOURCE)) {
-                sb.append(NSConstants.NS_DBPEDIA_PAGE);
+                sb.append(NSConstants.NS_DBPEDIA_RESOURCE);
                 sb.append(FileConstants.FILE_SEPARATOR);
                 sb.append(item);
 

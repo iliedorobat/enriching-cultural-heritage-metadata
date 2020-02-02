@@ -4,7 +4,7 @@ package ro.webdata.translator.edm.approach.event.lido.common.constants;
 public class NSConstants {
     private static final String CC_LICENSES_LINK = "http://creativecommons.org";
     private static final String RIGHTS_LICENSES_LINK = "http://rightsstatements.org";
-    private static final String URL_SEPARATOR = "/";
+    public static final String URL_SEPARATOR = "/";
 
     // https://pro.europeana.eu/page/available-rights-statements
     public static final String[] LICENSES_NAME = {
@@ -62,6 +62,6 @@ public class NSConstants {
     public static final String NS_REPO_RESOURCE_TIMESPAN_UNKNOWN_MILLENNIUM = NS_REPO_RESOURCE_TIMESPAN_UNKNOWN
             + URL_SEPARATOR + Constants.MILLENNIUM_PLACEHOLDER;
 
-    public static final String NS_DBPEDIA_PAGE = "http://dbpedia.org/page";
+    public static final String NS_DBPEDIA_RESOURCE = "http://dbpedia.org/page";
     public static final String NS_DBPEDIA_PROPERTY = "http://dbpedia.org/property";
 }

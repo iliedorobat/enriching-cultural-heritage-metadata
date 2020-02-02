@@ -55,7 +55,7 @@ public class PropertyUtils {
             case "sex":
             case "weight":
             case "width":
-                return NSConstants.NS_DBPEDIA_PAGE;
+                return NSConstants.NS_DBPEDIA_RESOURCE;
             default:
                 return NSConstants.NS_REPO_PROPERTY;
         }

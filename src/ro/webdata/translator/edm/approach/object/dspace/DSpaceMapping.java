@@ -3,15 +3,14 @@ package ro.webdata.translator.edm.approach.object.dspace;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
-import org.apache.jena.util.ResourceUtils;
-import org.apache.jena.vocabulary.RDF;
 import ro.webdata.common.constants.FileConstants;
+import ro.webdata.common.constants.SchemaConstants;
 import ro.webdata.parser.xml.dspace.core.Parser;
-import ro.webdata.parser.xml.dspace.core.attribute.record.IdentifierRecord;
 import ro.webdata.parser.xml.dspace.core.leaf.dcValue.DcValue;
 import ro.webdata.parser.xml.dspace.core.wrapper.dc.DcWrapper;
-import ro.webdata.translator.edm.approach.event.lido.vocabulary.EDM;
+import ro.webdata.translator.edm.approach.object.dspace.common.utils.ProvidedCHOUtils;
 import ro.webdata.translator.edm.approach.object.dspace.mapping.core.dc.DcMapping;
+import ro.webdata.translator.edm.approach.object.dspace.mapping.core.europeana.EuropeanaMapping;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -31,36 +30,39 @@ public class DSpaceMapping {
      *              item2/
      *              ...
      *              itemN/
+     * @param model The RDF graph
      * @param dSpacePath The DSpace directory path (E.g.: FileConstants.PATH_INPUT_DSPACE_DIR)
      */
-    public static void dSpaceParser(Model model, String dSpacePath) {
+    public static void processing(Model model, String dSpacePath) {
         File dSpaceDirectory = new File(dSpacePath);
         File[] subDirectories = dSpaceDirectory.listFiles();
+        Resource providedCHO = ProvidedCHOUtils.dSpaceFileMapping(model, dSpacePath);
 
         if (subDirectories != null) {
             for (File subDirectory : subDirectories) {
-                dSpaceItemParser(model, subDirectory);
+                itemProcessing(model, providedCHO, subDirectory);
             }
         }
     }
 
-    private static void dSpaceItemParser(Model model, File subDirectory) {
+    private static void itemProcessing(Model model, Resource providedCHO, File subDirectory) {
         if (subDirectory.isDirectory()) {
             File[] files = subDirectory.listFiles();
 
             if (files != null) {
-                dSpaceFilesParser(model, files);
+                filesProcessing(model, providedCHO, files);
             }
+            //TODO: check if edm:type has been added; if not, extract the value from the file extension
         }
     }
 
-    private static void dSpaceFilesParser(Model model, File[] files) {
+    private static void filesProcessing(Model model, Resource providedCHO, File[] files) {
         for (File file : files) {
-            dSpaceFileMapping(model, file);
+            fileProcessing(model, providedCHO, file);
         }
     }
 
-    private static void dSpaceFileMapping(Model model, File file) {
+    private static void fileProcessing(Model model, Resource providedCHO, File file) {
         if (file.isFile()) {
             String fileName = file.getName();
             String extension = FilenameUtils.getExtension(fileName);
@@ -68,40 +70,19 @@ public class DSpaceMapping {
             if (extension.equals(FileConstants.FILE_EXTENSION_XML)) {
                 DcWrapper dcWrapper = Parser.parseDcXmlFile(file.getPath());
                 String schemaName = dcWrapper.getSchemaName();
-                Resource providedCHO = model.createResource()
-                        .addProperty(RDF.type, EDM.ProvidedCHO);
                 HashMap<String, ArrayList<DcValue>> dcValueMap = dcWrapper.getDcValueMap();
 
                 switch (schemaName) {
-                    case "dc":
-                        providedCHO = updateProvidedCHO(model, providedCHO, dcValueMap);
+                    case SchemaConstants.SCHEMA_DC:
                         DcMapping.processing(model, providedCHO, dcValueMap);
+                        break;
+                    case SchemaConstants.SCHEMA_EUROPEANA:
+                        EuropeanaMapping.processing(model, providedCHO, dcValueMap);
+                        break;
                     default:
                         break;
                 }
-
-                //TODO: "europeana" schema
-                System.out.println(fileName + " " + extension);
             }
         }
-    }
-
-    private static Resource updateProvidedCHO(Model model, Resource providedCHO, HashMap<String, ArrayList<DcValue>> dcValueMap) {
-        ArrayList<DcValue> identifierList = dcValueMap.get(IdentifierRecord.ELEMENT);
-
-        int index = 0;
-        while (index < identifierList.size()) {
-            DcValue dcValue = identifierList.get(index);
-            String qualifier = dcValue.getQualifier().getValue().toLowerCase();
-
-            if (qualifier.equals("uri")) {
-                String uri = dcValue.getText();
-                providedCHO = ResourceUtils.renameResource(providedCHO, uri);
-            }
-
-            index++;
-        }
-
-        return providedCHO;
     }
 }
