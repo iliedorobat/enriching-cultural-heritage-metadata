@@ -5,7 +5,7 @@ public class EnvConst {
      * Specify if the environment is set for a demo
      * FIXME: change as you need
      */
-    public static final boolean IS_DEMO = true;
+    public static final boolean IS_DEMO = false;
 
     public static final boolean CAPITALIZE_FIRST_LETTER = false;
     public static final boolean PRINT_OPERATION = true;
