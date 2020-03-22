@@ -3,11 +3,14 @@ package ro.webdata.translator.edm.approach.event.lido.mapping.leaf.eventComplexT
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.RDF;
+import ro.webdata.common.utils.FileUtils;
+import ro.webdata.translator.edm.approach.event.lido.common.constants.FileConstants;
 import ro.webdata.translator.edm.approach.event.lido.processing.timespan.ro.TimespanUtils;
 import ro.webdata.translator.edm.approach.event.lido.vocabulary.EDM;
 import ro.webdata.parser.xml.lido.core.leaf.displayDate.DisplayDate;
 import ro.webdata.parser.xml.lido.core.leaf.eventDate.EventDate;
 
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.TreeSet;
 
@@ -32,6 +35,14 @@ public class EventDateProcessing {
             DisplayDate displayDate = displayDateList.get(i);
             String text = displayDate.getText();
             TreeSet<String> timespanSet = TimespanUtils.getTimespanSet(text);
+
+            //TODO: remove
+            StringWriter sw = new StringWriter()
+                    .append(text)
+                    .append("|")
+                    .append(timespanSet.toString())
+                    .append("\n");
+            FileUtils.write(sw, FileConstants.PATH_OUTPUT_TIMESPAN_ANALYSIS_FILE, true);
 
             for (String timespan : timespanSet) {
                 eventDateResource = model.createResource(timespan);

@@ -67,6 +67,7 @@ public class DateUtils {
      * E.g.: "ianuarie" => 1
      * @param month The month name
      * @return The month number
+     * FIXME: add more values if you need
      */
     private static int mapMonthToNumber(String month) {
         String value = month
