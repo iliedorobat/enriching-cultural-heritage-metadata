@@ -1,5 +1,8 @@
 # eCHO: Enriching The Digital Representation of The Cultural Heritage Objects
 
+## Research items:
+TPDL 2019: [Enriching the Cultural Heritage Metadata Using Historical Events: A Graph-Based Representation](https://link.springer.com/chapter/10.1007/978-3-030-30760-8_30)
+
 ## Translating the Cultural Heritage metadata stored in LIDO format into Linked Data through the EDM event-centric approach
 
 ### The Application Location
