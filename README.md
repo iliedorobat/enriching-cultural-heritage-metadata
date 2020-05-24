@@ -1,4 +1,4 @@
-# eCHO: Enriching The Digital Representation of The Cultural Heritage Objects
+# eCHO: Enriching The Digital Representation of Cultural Heritage Objects
 
 ## Research items:
 TPDL 2019: [Enriching the Cultural Heritage Metadata Using Historical Events: A Graph-Based Representation](https://link.springer.com/chapter/10.1007/978-3-030-30760-8_30)
