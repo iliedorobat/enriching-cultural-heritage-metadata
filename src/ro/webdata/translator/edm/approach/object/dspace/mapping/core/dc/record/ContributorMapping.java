@@ -35,7 +35,7 @@ public class ContributorMapping {
             case REFINEMENT_ILLUSTRATOR:
             case REFINEMENT_OTHER:
                 String contributorUri = ResourceUtils.generateURI(
-                        NSConstants.SIMPLE_NS_REPO_RESOURCE, EDM.Agent, value
+                        NSConstants.NS_REPO_RESOURCE, EDM.Agent, value
                 );
                 Resource contributor = model
                         .createResource(contributorUri)

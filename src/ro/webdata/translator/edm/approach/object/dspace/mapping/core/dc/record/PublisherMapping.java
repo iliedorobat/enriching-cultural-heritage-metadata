@@ -18,7 +18,7 @@ public class PublisherMapping {
         String value = dcValue.getText();
 
         String publisherUri = ResourceUtils.generateURI(
-                NSConstants.SIMPLE_NS_REPO_RESOURCE, EDM.Agent, value
+                NSConstants.NS_REPO_RESOURCE, EDM.Agent, value
         );
         Resource publisher = model
                 .createResource(publisherUri)

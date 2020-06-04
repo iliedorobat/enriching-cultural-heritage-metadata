@@ -1,6 +1,5 @@
 package ro.webdata.translator.edm.approach.event.lido.common;
 
-import ro.webdata.translator.edm.approach.event.lido.common.constants.FileConstants;
 import ro.webdata.translator.edm.approach.event.lido.common.constants.NSConstants;
 
 import java.util.TreeSet;
@@ -17,7 +16,6 @@ public class CollectionUtils {
 
             if (!item.contains(NSConstants.NS_REPO_RESOURCE)) {
                 sb.append(NSConstants.NS_DBPEDIA_RESOURCE);
-                sb.append(FileConstants.FILE_SEPARATOR);
                 sb.append(item);
 
                 //TODO: check for possible bugs

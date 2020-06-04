@@ -8,10 +8,6 @@ import org.apache.jena.vocabulary.OWL2;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.SKOS;
 import ro.webdata.common.constants.TextUtils;
-import ro.webdata.translator.edm.approach.event.lido.common.constants.Constants;
-import ro.webdata.translator.edm.approach.event.lido.common.constants.FileConstants;
-import ro.webdata.translator.edm.approach.event.lido.common.constants.NSConstants;
-import ro.webdata.translator.edm.approach.event.lido.vocabulary.EDM;
 import ro.webdata.parser.xml.lido.core.leaf.actor.Actor;
 import ro.webdata.parser.xml.lido.core.leaf.actorID.ActorID;
 import ro.webdata.parser.xml.lido.core.leaf.actorInRole.ActorInRole;
@@ -20,6 +16,9 @@ import ro.webdata.parser.xml.lido.core.leaf.eventActor.EventActor;
 import ro.webdata.parser.xml.lido.core.leaf.roleActor.RoleActor;
 import ro.webdata.parser.xml.lido.core.leaf.term.Term;
 import ro.webdata.parser.xml.lido.core.set.nameActorSet.NameActorSet;
+import ro.webdata.translator.edm.approach.event.lido.common.constants.Constants;
+import ro.webdata.translator.edm.approach.event.lido.common.constants.NSConstants;
+import ro.webdata.translator.edm.approach.event.lido.vocabulary.EDM;
 
 import java.util.ArrayList;
 
@@ -93,9 +92,7 @@ public class EventActorProcessing {
             Literal literal = model.createLiteral(actorName);
 
             Resource actor = model.createResource(
-                    NSConstants.NS_REPO_RESOURCE_AGENT
-                    + FileConstants.FILE_SEPARATOR + role
-                    + FileConstants.FILE_SEPARATOR + TextUtils.sanitizeString(actorName)
+                    NSConstants.NS_REPO_RESOURCE_AGENT + TextUtils.sanitizeString(actorName)
             );
             actor.addProperty(RDF.type, EDM.Agent);
             actor.addProperty(FOAF.name, literal);

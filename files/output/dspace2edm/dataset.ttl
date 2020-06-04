@@ -1,0 +1,32 @@
+@prefix openData: <http://opendata.cs.pub.ro/property/ro/> .
+@prefix ore:   <http://www.openarchives.org/ore/terms/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix dbpedia: <http://dbpedia.org/page> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/elements/1.1/> .
+@prefix edm:   <http://www.europeana.eu/schemas/edm/> .
+
+<http://opendata.cs.pub.ro/resource/Agent/Biblioteca_Centrală_Universitară_Lucian_Blaga_Cluj_Napoca>
+        a               edm:Agent ;
+        skos:prefLabel  "Biblioteca Centrală Universitară \"Lucian Blaga\" Cluj-Napoca"@en_US .
+
+<http://dspace.bcucluj.ro/handle/123456789/136613/aggregation>
+        a                  ore:Aggregation ;
+        edm:aggregatedCHO  <http://dspace.bcucluj.ro/handle/123456789/136613> ;
+        edm:provider       <http://opendata.cs.pub.ro/resource/Agent/Biblioteca_Centrală_Universitară_Lucian_Blaga_Cluj_Napoca> .
+
+<http://dspace.bcucluj.ro/handle/123456789/136613>
+        a                   edm:ProvidedCHO ;
+        dc:date             "2019-12-06T07:31:44Z" ;
+        dc:description      "Cluj, 1926. -  ; 31 cm"@en_US ;
+        dc:format           "PDF"@en_US , "paper"@en_US ;
+        dc:identifier       "http://dspace.bcucluj.ro/handle/123456789/136613" , "http://dspace.bcucluj.ro/image/thumbs/sindicatul.png"@en_US ;
+        dc:language         "##iso## rum"@en_US ;
+        dc:rights           "Public domain"@en_US , "Biblioteca Centrală Universitară \"Lucian Blaga\" Cluj-Napoca"@en_US ;
+        dc:subject          "Journalism"@en_US , "Jurnalism"@en_US ;
+        dc:title            "Sindicatul presei române din Ardeal şi Banat : activitatea în ..."@en_US ;
+        dcterms:issued      "2019-12-06" ;
+        dcterms:provenance  "Made available in DSpace on 2019-12-06T07:31:44Z (GMT). No. of bitstreams: 1\nBCUCLUJ_FP_RI435_1938.pdf: 5528719 bytes, checksum: 1271569bc53d66d5636d36e5cc4a0133 (MD5)"@en , "Submitted by Róbert Bodnár (bodnar_robert@yahoo.com) on 2019-12-06T07:31:44Z\nNo. of bitstreams: 1\nBCUCLUJ_FP_RI435_1938.pdf: 5528719 bytes, checksum: 1271569bc53d66d5636d36e5cc4a0133 (MD5)"@en ;
+        edm:hasType         "Issue"@en_US ;
+        edm:type            "TEXT"@en .

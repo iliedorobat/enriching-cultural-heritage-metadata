@@ -13,7 +13,7 @@ public class ResourceUtils {
      * @return The generated URI
      */
     public static String generateURI(String namespace, String resourceName) {
-        return namespace + FileConstants.FILE_SEPARATOR + TextUtils.sanitizeString(resourceName);
+        return namespace + TextUtils.sanitizeString(resourceName);
     }
 
     /**
@@ -24,7 +24,7 @@ public class ResourceUtils {
      * @return The generated URI
      */
     public static String generateURI(String namespace, Resource resource, String resourceName) {
-        return namespace + FileConstants.FILE_SEPARATOR
+        return namespace
                 + resource.getLocalName() + FileConstants.FILE_SEPARATOR
                 + TextUtils.sanitizeString(resourceName);
     }
@@ -36,7 +36,6 @@ public class ResourceUtils {
      */
     public static String generateDBPediaURI(String resourceName) {
         return NSConstants.NS_DBPEDIA_RESOURCE
-                + FileConstants.FILE_SEPARATOR
                 + TextUtils.encodeURI(resourceName);
     }
 }

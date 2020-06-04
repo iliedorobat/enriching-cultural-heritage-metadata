@@ -8,14 +8,13 @@ import org.apache.jena.vocabulary.DC_11;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.SKOS;
 import ro.webdata.common.constants.TextUtils;
-import ro.webdata.translator.edm.approach.event.lido.common.constants.Constants;
-import ro.webdata.translator.edm.approach.event.lido.common.constants.FileConstants;
-import ro.webdata.translator.edm.approach.event.lido.common.constants.NSConstants;
 import ro.webdata.parser.xml.lido.core.complex.legalBodyRefComplexType.LegalBodyRefComplexType;
 import ro.webdata.parser.xml.lido.core.leaf.appellationValue.AppellationValue;
 import ro.webdata.parser.xml.lido.core.leaf.legalBodyID.LegalBodyID;
 import ro.webdata.parser.xml.lido.core.leaf.legalBodyName.LegalBodyName;
 import ro.webdata.parser.xml.lido.core.leaf.legalBodyWeblink.LegalBodyWeblink;
+import ro.webdata.translator.edm.approach.event.lido.common.constants.Constants;
+import ro.webdata.translator.edm.approach.event.lido.common.constants.NSConstants;
 
 import java.util.ArrayList;
 
@@ -31,8 +30,7 @@ public class LegalBodyRefComplexTypeProcessing {
 
             String name = getOrganizationName(legalBodyNameList);
             organization = model.createResource(
-                    NSConstants.NS_REPO_RESOURCE_ORGANIZATION
-                    + FileConstants.FILE_SEPARATOR + TextUtils.sanitizeString(name)
+                    NSConstants.NS_REPO_RESOURCE_ORGANIZATION + TextUtils.sanitizeString(name)
             );
             organization.addProperty(RDF.type, FOAF.Organization);
             addOrganizationIdentifier(model, organization, legalBodyIDList);
@@ -159,8 +157,7 @@ public class LegalBodyRefComplexTypeProcessing {
             }
 
             String name = getOrganizationName(legalBodyNameList);
-            return NSConstants.NS_REPO_RESOURCE_ORGANIZATION
-                    + FileConstants.FILE_SEPARATOR + TextUtils.sanitizeString(name);
+            return NSConstants.NS_REPO_RESOURCE_ORGANIZATION + TextUtils.sanitizeString(name);
         }
 
         return null;

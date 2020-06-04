@@ -59,8 +59,7 @@ public class EventTypeProcessing {
             if (termLang.equals(eventLang) || eventLang == null) {
                 String eventType = TextUtils.sanitizeString(term.getText());
                 Resource resource = model.createResource(
-                        NSConstants.NS_REPO_RESOURCE_EVENT
-                        + FileConstants.FILE_SEPARATOR + eventType
+                        NSConstants.NS_REPO_RESOURCE_EVENT + eventType
                         + FileConstants.FILE_SEPARATOR + choUri.substring(index)
                 );
                 resource.addProperty(RDF.type, EDM.Event);

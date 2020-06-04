@@ -9,7 +9,6 @@ import org.apache.jena.vocabulary.SKOS;
 import ro.webdata.translator.edm.approach.event.lido.common.constants.NSConstants;
 import ro.webdata.translator.edm.approach.event.lido.vocabulary.EDM;
 import ro.webdata.translator.edm.approach.event.lido.vocabulary.ORE;
-import ro.webdata.translator.edm.approach.object.dspace.common.constants.FileConstants;
 
 public class ModelUtils {
     public static final String SYNTAX_N3 = "N3";
@@ -23,7 +22,7 @@ public class ModelUtils {
                 .setNsPrefix("dcterms", DCTerms.getURI())
                 .setNsPrefix("edm", EDM.getURI())
                 .setNsPrefix("foaf", FOAF.getURI())
-                .setNsPrefix("openData", NSConstants.NS_REPO_PROPERTY + FileConstants.FILE_SEPARATOR)
+                .setNsPrefix("openData", NSConstants.NS_REPO_PROPERTY)
                 .setNsPrefix("ore", ORE.getURI())
                 .setNsPrefix("skos", SKOS.getURI());
     }

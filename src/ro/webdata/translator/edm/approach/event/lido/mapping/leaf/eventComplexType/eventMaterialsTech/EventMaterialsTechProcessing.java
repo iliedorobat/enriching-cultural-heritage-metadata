@@ -30,8 +30,7 @@ public class EventMaterialsTechProcessing {
 
                 Literal literal = model.createLiteral(text, lang);
                 Resource resource = model.createResource(
-                        NSConstants.NS_REPO_RESOURCE
-                        + FileConstants.FILE_SEPARATOR + TextUtils.sanitizeString(TextUtils.toCamelCase(label))
+                        NSConstants.NS_REPO_RESOURCE + TextUtils.sanitizeString(TextUtils.toCamelCase(label))
                         + FileConstants.FILE_SEPARATOR + TextUtils.sanitizeString(text)
                 );
                 resource.addProperty(RDF.type, SKOS.Concept);

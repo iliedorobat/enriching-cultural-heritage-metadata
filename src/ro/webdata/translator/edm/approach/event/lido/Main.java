@@ -1,6 +1,5 @@
 package ro.webdata.translator.edm.approach.event.lido;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.rdf.model.Model;
 import ro.webdata.common.utils.FileUtils;
 import ro.webdata.common.utils.ModelUtils;
@@ -9,8 +8,7 @@ import ro.webdata.translator.edm.approach.event.lido.common.constants.EnvConst;
 import ro.webdata.translator.edm.approach.event.lido.common.constants.FileConstants;
 import ro.webdata.translator.edm.approach.event.lido.mapping.core.LidoWrapProcessing;
 
-import java.io.*;
-import java.util.*;
+import java.io.StringWriter;
 
 public class Main {
     private static LidoWrapProcessing lidoWrapProcessing = new LidoWrapProcessing();

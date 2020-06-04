@@ -22,9 +22,7 @@ public class PropertyUtils {
     public static Property createSubProperty(Model model, String name, Property mainProperty) {
         String subPropertyName = TextUtils.prepareCamelCaseText(name);
         String namespace = prepareNamespace(subPropertyName);
-        Property subProperty = model.createProperty(
-                namespace + FileConstants.FILE_SEPARATOR + subPropertyName
-        );
+        Property subProperty = model.createProperty(namespace + subPropertyName);
         subProperty.addProperty(RDFS.subPropertyOf, mainProperty);
 
         //TODO: store the data into a buffer and write it on the disc only once

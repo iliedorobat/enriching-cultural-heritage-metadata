@@ -21,7 +21,7 @@ public class ResourceUtils extends ro.webdata.common.utils.ResourceUtils {
      */
     public static Resource generateProvider(Model model) {
         String providerLink = NSConstants.NS_REPO_RESOURCE_ORGANIZATION
-                + TextUtils.sanitizeString("/Politehnica University of Bucharest");
+                + TextUtils.sanitizeString("Politehnica University of Bucharest");
         Resource provider = model.createResource(providerLink);
         provider.addProperty(RDF.type, FOAF.Organization);
 
@@ -63,7 +63,7 @@ public class ResourceUtils extends ro.webdata.common.utils.ResourceUtils {
      */
     public static Resource generateIntermediateProvider(Model model) {
         String providerLink = NSConstants.NS_REPO_RESOURCE_ORGANIZATION
-                + TextUtils.sanitizeString("/Romanian Open Data Portal");
+                + TextUtils.sanitizeString("Romanian Open Data Portal");
         Resource provider = model.createResource(providerLink);
         provider.addProperty(RDF.type, FOAF.Organization);
 

@@ -32,8 +32,7 @@ public class RecordSourceProcessing {
             if (recordSourceType.equals(LIDOConstants.LIDO_TYPE_EUROPEANA_DATA_PROVIDER)) {
                 String providerName = legalBodyRefComplexTypeProcessing.getOrganizationName(recordSource.getLegalBodyName());
                 Resource dataProvider = model.createResource(
-                        NSConstants.NS_REPO_RESOURCE_ORGANIZATION
-                        + FileConstants.FILE_SEPARATOR + TextUtils.sanitizeString(providerName)
+                        NSConstants.NS_REPO_RESOURCE_ORGANIZATION + TextUtils.sanitizeString(providerName)
                 );
                 dataProvider.addProperty(RDF.type, FOAF.Organization);
 

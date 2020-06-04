@@ -18,7 +18,7 @@ public class CreatorMapping {
         String value = dcValue.getText();
 
         String creatorUri = ResourceUtils.generateURI(
-                NSConstants.SIMPLE_NS_REPO_RESOURCE, EDM.Agent, value
+                NSConstants.NS_REPO_RESOURCE, EDM.Agent, value
         );
         Resource contributor = model
                 .createResource(creatorUri)

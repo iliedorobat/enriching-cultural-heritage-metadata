@@ -22,7 +22,7 @@ public class ProviderMapping {
             case BasicRecord.EMPTY:
             case BasicRecord.NONE:
                 String providerUri = ResourceUtils.generateURI(
-                        NSConstants.SIMPLE_NS_REPO_RESOURCE, EDM.Agent, value
+                        NSConstants.NS_REPO_RESOURCE, EDM.Agent, value
                 );
 
                 Resource provider = model

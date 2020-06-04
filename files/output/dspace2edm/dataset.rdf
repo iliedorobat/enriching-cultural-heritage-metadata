@@ -8,7 +8,7 @@
     xmlns:dbpedia="http://dbpedia.org/page"
     xmlns:edm="http://www.europeana.eu/schemas/edm/"
     xmlns:foaf="http://xmlns.com/foaf/0.1/">
-  <ore:Aggregation rdf:about="http://dspace.bcucluj.ro/haopenData:displayStatendle/123456789/136613/aggregation">
+  <ore:Aggregation rdf:about="http://dspace.bcucluj.ro/handle/123456789/136613/aggregation">
     <edm:provider>
       <edm:Agent rdf:about="http://opendata.cs.pub.ro/resource/Agent/Biblioteca_Centrală_Universitară_Lucian_Blaga_Cluj_Napoca">
         <skos:prefLabel xml:lang="en_US">Biblioteca Centrală Universitară "Lucian Blaga" Cluj-Napoca</skos:prefLabel>
