@@ -7,7 +7,10 @@ import org.apache.jena.sparql.vocabulary.FOAF;
 import org.apache.jena.vocabulary.OWL2;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.SKOS;
-import ro.webdata.common.constants.TextUtils;
+import ro.webdata.echo.commons.Const;
+import ro.webdata.echo.commons.Text;
+import ro.webdata.echo.commons.graph.Namespace;
+import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.parser.xml.lido.core.leaf.actor.Actor;
 import ro.webdata.parser.xml.lido.core.leaf.actorID.ActorID;
 import ro.webdata.parser.xml.lido.core.leaf.actorInRole.ActorInRole;
@@ -16,9 +19,7 @@ import ro.webdata.parser.xml.lido.core.leaf.eventActor.EventActor;
 import ro.webdata.parser.xml.lido.core.leaf.roleActor.RoleActor;
 import ro.webdata.parser.xml.lido.core.leaf.term.Term;
 import ro.webdata.parser.xml.lido.core.set.nameActorSet.NameActorSet;
-import ro.webdata.translator.edm.approach.event.lido.common.constants.Constants;
-import ro.webdata.translator.edm.approach.event.lido.common.constants.NSConstants;
-import ro.webdata.translator.edm.approach.event.lido.vocabulary.EDM;
+import ro.webdata.translator.edm.approach.event.lido.commons.constants.Constants;
 
 import java.util.ArrayList;
 
@@ -92,7 +93,7 @@ public class EventActorProcessing {
             Literal literal = model.createLiteral(actorName);
 
             Resource actor = model.createResource(
-                    NSConstants.NS_REPO_RESOURCE_AGENT + TextUtils.sanitizeString(actorName)
+                    Namespace.NS_REPO_RESOURCE_AGENT + Text.sanitizeString(actorName)
             );
             actor.addProperty(RDF.type, EDM.Agent);
             actor.addProperty(FOAF.name, literal);
@@ -110,7 +111,7 @@ public class EventActorProcessing {
      * @return The actor role
      */
     private String getActorRole(ArrayList<RoleActor> roleActorList) {
-        String role = getActorRole(roleActorList, Constants.LANG_EN);
+        String role = getActorRole(roleActorList, Const.LANG_EN);
 
         if (role == null)
             role = getActorRole(roleActorList, Constants.LANG_MAIN);

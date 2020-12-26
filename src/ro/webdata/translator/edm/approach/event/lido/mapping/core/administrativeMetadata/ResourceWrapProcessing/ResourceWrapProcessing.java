@@ -4,7 +4,7 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DC_11;
 import org.apache.jena.vocabulary.RDF;
-import ro.webdata.translator.edm.approach.event.lido.vocabulary.EDM;
+import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.parser.xml.lido.core.leaf.linkResource.LinkResource;
 import ro.webdata.parser.xml.lido.core.leaf.resourceRepresentation.ResourceRepresentation;
 import ro.webdata.parser.xml.lido.core.leaf.rightsResource.RightsResource;

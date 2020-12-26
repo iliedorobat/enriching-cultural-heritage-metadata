@@ -2,11 +2,11 @@ package ro.webdata.translator.edm.approach.event.lido.mapping.core.administrativ
 
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
-import ro.webdata.translator.edm.approach.event.lido.common.ResourceUtils;
+import ro.webdata.echo.commons.graph.vocab.EDM;
+import ro.webdata.parser.xml.lido.core.wrap.recordWrap.RecordWrap;
+import ro.webdata.translator.edm.approach.event.lido.commons.ResourceUtils;
 import ro.webdata.translator.edm.approach.event.lido.mapping.leaf.RecordRightsProcessing;
 import ro.webdata.translator.edm.approach.event.lido.mapping.leaf.RecordSourceProcessing;
-import ro.webdata.translator.edm.approach.event.lido.vocabulary.EDM;
-import ro.webdata.parser.xml.lido.core.wrap.recordWrap.RecordWrap;
 
 public class RecordWrapProcessing {
     private static RecordSourceProcessing recordSourceProcessing = new RecordSourceProcessing();

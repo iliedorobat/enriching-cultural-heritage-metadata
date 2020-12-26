@@ -5,14 +5,13 @@ import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DC_11;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.SKOS;
+import ro.webdata.echo.commons.Const;
+import ro.webdata.echo.commons.graph.GraphResource;
+import ro.webdata.echo.commons.graph.Namespace;
+import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.parser.xml.dspace.core.attribute.record.BasicRecord;
 import ro.webdata.parser.xml.dspace.core.leaf.dcValue.DcValue;
-import ro.webdata.translator.edm.approach.event.lido.common.ResourceUtils;
-import ro.webdata.translator.edm.approach.event.lido.common.constants.Constants;
-import ro.webdata.translator.edm.approach.event.lido.common.constants.NSConstants;
-import ro.webdata.translator.edm.approach.event.lido.vocabulary.EDM;
-import ro.webdata.translator.edm.approach.object.dspace.common.PrintMessages;
-import ro.webdata.translator.edm.approach.object.dspace.common.constants.EnvConstants;
+import ro.webdata.translator.edm.approach.object.dspace.commons.PrintMessages;
 
 public class ContributorMapping {
     private static final String REFINEMENT_ADVISOR = "advisor";
@@ -34,8 +33,8 @@ public class ContributorMapping {
             case REFINEMENT_EDITOR:
             case REFINEMENT_ILLUSTRATOR:
             case REFINEMENT_OTHER:
-                String contributorUri = ResourceUtils.generateURI(
-                        NSConstants.NS_REPO_RESOURCE, EDM.Agent, value
+                String contributorUri = GraphResource.generateURI(
+                        Namespace.NS_REPO_RESOURCE, EDM.Agent, value
                 );
                 Resource contributor = model
                         .createResource(contributorUri)
@@ -45,12 +44,12 @@ public class ContributorMapping {
                 if (!qualifier.equals(BasicRecord.EMPTY)
                         && !qualifier.equals(BasicRecord.NONE)
                         && !qualifier.equals(REFINEMENT_OTHER))
-                    contributor.addProperty(SKOS.note, qualifier, Constants.LANG_EN);
+                    contributor.addProperty(SKOS.note, qualifier, Const.LANG_EN);
 
                 providedCHO.addProperty(DC_11.contributor, contributor);
                 break;
             default:
-                PrintMessages.elementWarning(EnvConstants.OPERATION_MAPPING, providedCHO, dcValue);
+                PrintMessages.elementWarning(Const.OPERATION_MAPPING, providedCHO, dcValue);
                 break;
         }
     }

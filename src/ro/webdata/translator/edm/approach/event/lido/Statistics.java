@@ -4,11 +4,13 @@ import org.apache.jena.rdf.model.*;
 import org.apache.jena.sparql.vocabulary.FOAF;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.SKOS;
-import ro.webdata.translator.edm.approach.event.lido.common.constants.FileConstants;
-import ro.webdata.translator.edm.approach.event.lido.vocabulary.EDM;
-import ro.webdata.translator.edm.approach.event.lido.vocabulary.ORE;
+import ro.webdata.echo.commons.graph.vocab.EDM;
+import ro.webdata.echo.commons.graph.vocab.ORE;
+import ro.webdata.translator.commons.FileConstants;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * @deprecated Needs to be updated...

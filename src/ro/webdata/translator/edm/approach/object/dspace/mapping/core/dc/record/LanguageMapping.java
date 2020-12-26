@@ -3,12 +3,12 @@ package ro.webdata.translator.edm.approach.object.dspace.mapping.core.dc.record;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DC_11;
-import ro.webdata.common.constants.TextUtils;
+import ro.webdata.echo.commons.Const;
+import ro.webdata.echo.commons.Text;
 import ro.webdata.parser.xml.dspace.core.attribute.record.BasicRecord;
 import ro.webdata.parser.xml.dspace.core.attribute.record.LanguageRecord;
 import ro.webdata.parser.xml.dspace.core.leaf.dcValue.DcValue;
-import ro.webdata.translator.edm.approach.object.dspace.common.PrintMessages;
-import ro.webdata.translator.edm.approach.object.dspace.common.constants.EnvConstants;
+import ro.webdata.translator.edm.approach.object.dspace.commons.PrintMessages;
 
 public class LanguageMapping {
     private static final String SCHEME_ISO = "iso";
@@ -28,11 +28,11 @@ public class LanguageMapping {
             case LanguageRecord.SCHEME_RFC_1766:
             case SCHEME_ISO:
             case SCHEME_RFC_3066:
-                value = TextUtils.attachesSchemaToValue(qualifier, value);
+                value = Text.attachesSchemaToValue(qualifier, value);
                 providedCHO.addProperty(DC_11.language, value, language);
                 break;
             default:
-                PrintMessages.elementWarning(EnvConstants.OPERATION_MAPPING, providedCHO, dcValue);
+                PrintMessages.elementWarning(Const.OPERATION_MAPPING, providedCHO, dcValue);
                 break;
         }
     }

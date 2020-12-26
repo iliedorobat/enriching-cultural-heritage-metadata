@@ -5,13 +5,13 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DC_11;
-import ro.webdata.translator.edm.approach.event.lido.common.Validators;
-import ro.webdata.translator.edm.approach.event.lido.common.constants.EDMConstants;
-import ro.webdata.translator.edm.approach.event.lido.common.constants.LIDOConstants;
-import ro.webdata.translator.edm.approach.event.lido.vocabulary.EDM;
+import ro.webdata.echo.commons.graph.vocab.EDM;
+import ro.webdata.echo.commons.graph.vocab.constraints.EDMType;
 import ro.webdata.parser.xml.lido.core.leaf.classification.Classification;
 import ro.webdata.parser.xml.lido.core.leaf.term.Term;
 import ro.webdata.parser.xml.lido.core.wrap.classificationWrap.ClassificationWrap;
+import ro.webdata.translator.edm.approach.event.lido.commons.Validators;
+import ro.webdata.translator.edm.approach.event.lido.commons.constants.LIDOType;
 
 import java.util.ArrayList;
 
@@ -56,10 +56,10 @@ public class ClassificationProcessing {
             Term term = termList.get(i);
             String lang = term.getLang().getLang();
 
-            if (type != null && type.equals(LIDOConstants.LIDO_TYPE_EUROPEANA_TYPE)) {
+            if (type != null && type.equals(LIDOType.EUROPEANA_TYPE)) {
                 addClassificationTerm(model, providedCHO, term, EDM.type);
 
-                if (type == EDMConstants.EDM_TYPE_TEXT)
+                if (type.equals(EDMType.VALUE_TEXT))
                     System.err.println(this.getClass().getName() + ":" +
                             "\nFor the TEXT type must be provided the \"dc:language\" property");
             } else {

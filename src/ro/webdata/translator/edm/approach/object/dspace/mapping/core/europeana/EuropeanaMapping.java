@@ -3,10 +3,10 @@ package ro.webdata.translator.edm.approach.object.dspace.mapping.core.europeana;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.RDF;
+import ro.webdata.echo.commons.graph.Namespace;
+import ro.webdata.echo.commons.graph.vocab.EDM;
+import ro.webdata.echo.commons.graph.vocab.ORE;
 import ro.webdata.parser.xml.dspace.core.leaf.dcValue.DcValue;
-import ro.webdata.translator.edm.approach.event.lido.common.constants.NSConstants;
-import ro.webdata.translator.edm.approach.event.lido.vocabulary.EDM;
-import ro.webdata.translator.edm.approach.event.lido.vocabulary.ORE;
 import ro.webdata.translator.edm.approach.object.dspace.mapping.core.europeana.record.IsShownAtMapping;
 import ro.webdata.translator.edm.approach.object.dspace.mapping.core.europeana.record.IsShownByMapping;
 import ro.webdata.translator.edm.approach.object.dspace.mapping.core.europeana.record.ProviderMapping;
@@ -68,7 +68,7 @@ public class EuropeanaMapping {
     private static Resource generateAggregation(Model model, Resource providedCHO) {
         Resource aggregation = null;
         String providedCHOUri = providedCHO.getURI();
-        String aggregationUri = providedCHOUri + NSConstants.LINK_ID_AGGREGATION;
+        String aggregationUri = providedCHOUri + Namespace.LINK_ID_AGGREGATION;
 
         aggregation = model.createResource(aggregationUri)
                 .addProperty(RDF.type, ORE.Aggregation)

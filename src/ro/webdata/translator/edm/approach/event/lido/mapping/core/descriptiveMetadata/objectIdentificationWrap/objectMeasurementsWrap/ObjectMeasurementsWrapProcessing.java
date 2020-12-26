@@ -13,6 +13,8 @@ public class ObjectMeasurementsWrapProcessing {
     private static TextComplexTypeProcessing textComplexTypeProcessing = new TextComplexTypeProcessing();
 
     /**
+     * TODO: http://dbpedia.org/page/Weight
+     * TODO: http://dbpedia.org/page/Diameter
      * Add measurements subProperties (<b>weight</b>, <b>diameter</b> etc.) to the provided CHO
      * @param model The RDF graph
      * @param providedCHO The CHO

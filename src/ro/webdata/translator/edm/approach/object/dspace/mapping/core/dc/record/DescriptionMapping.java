@@ -4,12 +4,12 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DCTerms;
 import org.apache.jena.vocabulary.DC_11;
-import ro.webdata.common.constants.TextUtils;
+import ro.webdata.echo.commons.Const;
+import ro.webdata.echo.commons.Text;
 import ro.webdata.parser.xml.dspace.core.attribute.record.BasicRecord;
 import ro.webdata.parser.xml.dspace.core.attribute.record.DescriptionRecord;
 import ro.webdata.parser.xml.dspace.core.leaf.dcValue.DcValue;
-import ro.webdata.translator.edm.approach.object.dspace.common.PrintMessages;
-import ro.webdata.translator.edm.approach.object.dspace.common.constants.EnvConstants;
+import ro.webdata.translator.edm.approach.object.dspace.commons.PrintMessages;
 
 public class DescriptionMapping {
     private static final String REFINEMENT_SPONSORSHIP = "sponsorship";
@@ -39,11 +39,11 @@ public class DescriptionMapping {
                 providedCHO.addProperty(DCTerms.provenance, value, language);
                 break;
             case SCHEME_URI:
-                value = TextUtils.attachesSchemaToValue(qualifier, value);
+                value = Text.attachesSchemaToValue(qualifier, value);
                 providedCHO.addProperty(DC_11.description, value, language);
                 break;
             default:
-                PrintMessages.elementWarning(EnvConstants.OPERATION_MAPPING, providedCHO, dcValue);
+                PrintMessages.elementWarning(Const.OPERATION_MAPPING, providedCHO, dcValue);
                 break;
         }
     }

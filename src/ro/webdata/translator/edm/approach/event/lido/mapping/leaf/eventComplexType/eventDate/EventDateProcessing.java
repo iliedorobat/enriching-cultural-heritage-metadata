@@ -3,12 +3,14 @@ package ro.webdata.translator.edm.approach.event.lido.mapping.leaf.eventComplexT
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.RDF;
-import ro.webdata.common.utils.FileUtils;
-import ro.webdata.translator.edm.approach.event.lido.common.constants.FileConstants;
-import ro.webdata.translator.edm.approach.event.lido.processing.timespan.ro.TimespanUtils;
-import ro.webdata.translator.edm.approach.event.lido.vocabulary.EDM;
+import ro.webdata.echo.commons.Const;
+import ro.webdata.echo.commons.File;
+import ro.webdata.echo.commons.graph.vocab.EDM;
+import ro.webdata.normalization.timespan.ro.TimespanUtils;
 import ro.webdata.parser.xml.lido.core.leaf.displayDate.DisplayDate;
 import ro.webdata.parser.xml.lido.core.leaf.eventDate.EventDate;
+import ro.webdata.translator.commons.FileConstants;
+import ro.webdata.translator.edm.approach.event.lido.commons.constants.Constants;
 
 import java.io.StringWriter;
 import java.util.ArrayList;
@@ -27,14 +29,20 @@ public class EventDateProcessing {
         ArrayList<Resource> eventDateResourceList = new ArrayList<>();
         Resource eventDateResource = null;
 
-        //TODO: remove this check when the LIDO Parser bug is fixed
+        //TODO: remove the validation when the LIDO Parser bug is fixed
         if (eventDate != null)
             displayDateList = eventDate.getDisplayDate();
 
         for (int i = 0; i < displayDateList.size(); i++) {
             DisplayDate displayDate = displayDateList.get(i);
             String text = displayDate.getText();
-            TreeSet<String> timespanSet = TimespanUtils.getTimespanSet(text);
+            TreeSet<String> timespanSet = new TreeSet<>();
+
+            // TODO: detecting the language tag
+            // FIXME: update as you need
+            if (Constants.LANG_MAIN.equals(Const.LANG_RO)) {
+                timespanSet = TimespanUtils.getTimespanSet(text);
+            }
 
             //TODO: remove
             StringWriter sw = new StringWriter()
@@ -42,13 +50,15 @@ public class EventDateProcessing {
                     .append("|")
                     .append(timespanSet.toString())
                     .append("\n");
-            FileUtils.write(sw, FileConstants.PATH_OUTPUT_TIMESPAN_ANALYSIS_FILE, true);
+            File.write(sw, FileConstants.PATH_OUTPUT_TIMESPAN_ANALYSIS_FILE, true);
 
             for (String timespan : timespanSet) {
                 eventDateResource = model.createResource(timespan);
                 eventDateResource.addProperty(RDF.type, EDM.TimeSpan);
                 eventDateResourceList.add(eventDateResource);
             }
+
+            // TODO: add the original value
         }
 
         return eventDateResourceList;

@@ -5,11 +5,11 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DC_11;
-import ro.webdata.translator.edm.approach.event.lido.common.PropertyUtils;
-import ro.webdata.common.constants.TextUtils;
+import ro.webdata.echo.commons.Text;
 import ro.webdata.parser.xml.lido.core.attribute.LidoType;
 import ro.webdata.parser.xml.lido.core.complex.textComplexType.TextComplexType;
 import ro.webdata.parser.xml.lido.core.leaf.displayObjectMeasurements.DisplayObjectMeasurements;
+import ro.webdata.translator.edm.approach.event.lido.commons.PropertyUtils;
 
 public class TextComplexTypeProcessing {
     /**
@@ -43,7 +43,7 @@ public class TextComplexTypeProcessing {
             Model model, Resource providedCHO, DisplayObjectMeasurements displayObjectMeasurements) {
         String text = displayObjectMeasurements.getText(),
                 type = displayObjectMeasurements.getLabel().getLabel(),
-                name = TextUtils.toCamelCase(type);
+                name = Text.toCamelCase(type);
 
         if (text != null) {
             Literal textLiteral = model.createLiteral(text);

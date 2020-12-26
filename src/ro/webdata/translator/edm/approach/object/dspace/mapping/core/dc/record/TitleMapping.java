@@ -4,11 +4,11 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DCTerms;
 import org.apache.jena.vocabulary.DC_11;
+import ro.webdata.echo.commons.Const;
 import ro.webdata.parser.xml.dspace.core.attribute.record.BasicRecord;
 import ro.webdata.parser.xml.dspace.core.attribute.record.TitleRecord;
 import ro.webdata.parser.xml.dspace.core.leaf.dcValue.DcValue;
-import ro.webdata.translator.edm.approach.object.dspace.common.PrintMessages;
-import ro.webdata.translator.edm.approach.object.dspace.common.constants.EnvConstants;
+import ro.webdata.translator.edm.approach.object.dspace.commons.PrintMessages;
 
 public class TitleMapping {
     public static void processing(Model model, Resource providedCHO, DcValue dcValue) {
@@ -25,7 +25,7 @@ public class TitleMapping {
                 providedCHO.addProperty(DCTerms.alternative, value, language);
                 break;
             default:
-                PrintMessages.elementWarning(EnvConstants.OPERATION_MAPPING, providedCHO, dcValue);
+                PrintMessages.elementWarning(Const.OPERATION_MAPPING, providedCHO, dcValue);
                 break;
         }
     }

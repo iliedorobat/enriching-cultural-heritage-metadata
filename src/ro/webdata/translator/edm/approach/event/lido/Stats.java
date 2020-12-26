@@ -1,11 +1,10 @@
 package ro.webdata.translator.edm.approach.event.lido;
 
-import ro.webdata.common.utils.FileUtils;
-import ro.webdata.translator.edm.approach.event.lido.common.PrintMessages;
-import ro.webdata.translator.edm.approach.event.lido.common.constants.EnvConst;
-import ro.webdata.translator.edm.approach.event.lido.common.constants.FileConstants;
-import ro.webdata.translator.edm.approach.event.lido.processing.timespan.ro.TimespanAnalysis;
-import ro.webdata.translator.edm.approach.event.lido.processing.timespan.ro.TimespanUtils;
+import ro.webdata.echo.commons.Const;
+import ro.webdata.echo.commons.File;
+import ro.webdata.echo.commons.Print;
+import ro.webdata.translator.commons.EnvConstants;
+import ro.webdata.translator.commons.FileConstants;
 
 import java.io.*;
 import java.util.*;
@@ -31,7 +30,7 @@ public class Stats {
 //        else          TimespanAnalysis.check(FileConstants.PATH_OUTPUT_TIMESPAN_FILE);
 //
 //        // 1. Write to disc all unique timespan values
-//        TimespanAnalysis.write(fileNames, FileConstants.PATH_OUTPUT_TIMESPAN_FILE);
+//        TimespanAnalysis.write(fileNames, FileConstants.PATH_OUTPUT_TIMESPAN_FILE, FileConstants.PATH_INPUT_LIDO_DIR);
 //
 //        // 2. Print the statistics of the new created properties
 //        printNewPropertiesStats();
@@ -69,14 +68,14 @@ public class Stats {
             sb.append(string).append("\n");
         }
 
-        String fileWriterName = FileConstants.PATH_DATA_PROCESSING_DIR + FileConstants.FILE_SEPARATOR + "timespan-analysis-cleaned.csv";
+        String fileWriterName = File.PATH_DATA_PROCESSING_DIR + File.FILE_SEPARATOR + "timespan-analysis-cleaned.csv";
         StringWriter writer = new StringWriter();
         writer.write(sb.toString());
-        FileUtils.write(writer, fileWriterName);
+        File.write(writer, fileWriterName);
     }
 
     private static void printNewPropertiesStats() {
-        System.out.println(EnvConst.OPERATION_START);
+        Print.operation(Const.OPERATION_START, EnvConstants.SHOULD_PRINT);
 
         HashSet<String> values = new HashSet<>();
         BufferedReader br = null;
@@ -118,6 +117,6 @@ public class Stats {
         System.out.println(total);
         System.out.println("------------------------------------");
 
-        PrintMessages.printOperation(EnvConst.OPERATION_FINISH);
+        Print.operation(Const.OPERATION_END, EnvConstants.SHOULD_PRINT);
     }
 }

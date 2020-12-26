@@ -5,9 +5,9 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.SKOS;
-import ro.webdata.common.constants.TextUtils;
-import ro.webdata.translator.edm.approach.event.lido.common.constants.FileConstants;
-import ro.webdata.translator.edm.approach.event.lido.common.constants.NSConstants;
+import ro.webdata.echo.commons.File;
+import ro.webdata.echo.commons.Text;
+import ro.webdata.echo.commons.graph.Namespace;
 import ro.webdata.parser.xml.lido.core.leaf.displayMaterialsTech.DisplayMaterialsTech;
 import ro.webdata.parser.xml.lido.core.leaf.eventMaterialsTech.EventMaterialsTech;
 
@@ -30,8 +30,8 @@ public class EventMaterialsTechProcessing {
 
                 Literal literal = model.createLiteral(text, lang);
                 Resource resource = model.createResource(
-                        NSConstants.NS_REPO_RESOURCE + TextUtils.sanitizeString(TextUtils.toCamelCase(label))
-                        + FileConstants.FILE_SEPARATOR + TextUtils.sanitizeString(text)
+                        Namespace.NS_REPO_RESOURCE + Text.sanitizeString(Text.toCamelCase(label))
+                        + File.FILE_SEPARATOR + Text.sanitizeString(text)
                 );
                 resource.addProperty(RDF.type, SKOS.Concept);
                 resource.addProperty(SKOS.prefLabel, literal);

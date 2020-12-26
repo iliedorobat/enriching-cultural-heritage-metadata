@@ -3,12 +3,11 @@ package ro.webdata.translator.edm.approach.object.dspace;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
-import ro.webdata.common.constants.FileConstants;
-import ro.webdata.common.constants.SchemaConstants;
+import ro.webdata.echo.commons.schema.Namespace;
 import ro.webdata.parser.xml.dspace.core.Parser;
 import ro.webdata.parser.xml.dspace.core.leaf.dcValue.DcValue;
 import ro.webdata.parser.xml.dspace.core.wrapper.dc.DcWrapper;
-import ro.webdata.translator.edm.approach.object.dspace.common.utils.ProvidedCHOUtils;
+import ro.webdata.translator.edm.approach.object.dspace.commons.ProvidedCHO;
 import ro.webdata.translator.edm.approach.object.dspace.mapping.core.dc.DcMapping;
 import ro.webdata.translator.edm.approach.object.dspace.mapping.core.europeana.EuropeanaMapping;
 
@@ -36,7 +35,7 @@ public class DSpaceMapping {
     public static void processing(Model model, String dSpacePath) {
         File dSpaceDirectory = new File(dSpacePath);
         File[] subDirectories = dSpaceDirectory.listFiles();
-        Resource providedCHO = ProvidedCHOUtils.dSpaceFileMapping(model, dSpacePath);
+        Resource providedCHO = ProvidedCHO.dSpaceFileMapping(model, dSpacePath);
 
         if (subDirectories != null) {
             for (File subDirectory : subDirectories) {
@@ -52,7 +51,7 @@ public class DSpaceMapping {
             if (files != null) {
                 filesProcessing(model, providedCHO, files);
             }
-            //TODO: check if edm:type has been added; if not, extract the value from the file extension
+            //TODO: check if edm:type was been added; if not, extract the value from the file extension
         }
     }
 
@@ -67,16 +66,16 @@ public class DSpaceMapping {
             String fileName = file.getName();
             String extension = FilenameUtils.getExtension(fileName);
 
-            if (extension.equals(FileConstants.FILE_EXTENSION_XML)) {
+            if (extension.equals(ro.webdata.echo.commons.File.EXTENSION_XML)) {
                 DcWrapper dcWrapper = Parser.parseDcXmlFile(file.getPath());
                 String schemaName = dcWrapper.getSchemaName();
                 HashMap<String, ArrayList<DcValue>> dcValueMap = dcWrapper.getDcValueMap();
 
                 switch (schemaName) {
-                    case SchemaConstants.SCHEMA_DC:
+                    case Namespace.DC:
                         DcMapping.processing(model, providedCHO, dcValueMap);
                         break;
-                    case SchemaConstants.SCHEMA_EUROPEANA:
+                    case Namespace.EUROPEANA:
                         EuropeanaMapping.processing(model, providedCHO, dcValueMap);
                         break;
                     default:

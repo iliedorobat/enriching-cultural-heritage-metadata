@@ -5,11 +5,11 @@ import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DC_11;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.SKOS;
+import ro.webdata.echo.commons.graph.GraphResource;
+import ro.webdata.echo.commons.graph.Namespace;
+import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.parser.xml.dspace.core.attribute.record.BasicRecord;
 import ro.webdata.parser.xml.dspace.core.leaf.dcValue.DcValue;
-import ro.webdata.translator.edm.approach.event.lido.common.ResourceUtils;
-import ro.webdata.translator.edm.approach.event.lido.common.constants.NSConstants;
-import ro.webdata.translator.edm.approach.event.lido.vocabulary.EDM;
 
 public class CreatorMapping {
     public static void processing(Model model, Resource providedCHO, DcValue dcValue) {
@@ -17,8 +17,8 @@ public class CreatorMapping {
         String qualifier = dcValue.getQualifier().getValue();
         String value = dcValue.getText();
 
-        String creatorUri = ResourceUtils.generateURI(
-                NSConstants.NS_REPO_RESOURCE, EDM.Agent, value
+        String creatorUri = GraphResource.generateURI(
+                Namespace.NS_REPO_RESOURCE, EDM.Agent, value
         );
         Resource contributor = model
                 .createResource(creatorUri)

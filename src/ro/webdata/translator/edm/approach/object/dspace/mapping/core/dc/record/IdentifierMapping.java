@@ -3,12 +3,12 @@ package ro.webdata.translator.edm.approach.object.dspace.mapping.core.dc.record;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DC_11;
-import ro.webdata.common.constants.TextUtils;
+import ro.webdata.echo.commons.Const;
+import ro.webdata.echo.commons.Text;
 import ro.webdata.parser.xml.dspace.core.attribute.record.BasicRecord;
 import ro.webdata.parser.xml.dspace.core.attribute.record.IdentifierRecord;
 import ro.webdata.parser.xml.dspace.core.leaf.dcValue.DcValue;
-import ro.webdata.translator.edm.approach.object.dspace.common.PrintMessages;
-import ro.webdata.translator.edm.approach.object.dspace.common.constants.EnvConstants;
+import ro.webdata.translator.edm.approach.object.dspace.commons.PrintMessages;
 
 public class IdentifierMapping {
     private static final String REFINEMENT_CITATION = "citation";
@@ -41,11 +41,11 @@ public class IdentifierMapping {
             case SCHEME_SICI:
             case SCHEME_SLUG:
             case SCHEME_T100:
-                value = TextUtils.attachesSchemaToValue(qualifier, value);
+                value = Text.attachesSchemaToValue(qualifier, value);
                 providedCHO.addProperty(DC_11.identifier, value, language);
                 break;
             default:
-                PrintMessages.elementWarning(EnvConstants.OPERATION_MAPPING, providedCHO, dcValue);
+                PrintMessages.elementWarning(Const.OPERATION_MAPPING, providedCHO, dcValue);
                 break;
         }
     }

@@ -7,14 +7,15 @@ import org.apache.jena.sparql.vocabulary.FOAF;
 import org.apache.jena.vocabulary.DC_11;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.SKOS;
-import ro.webdata.common.constants.TextUtils;
+import ro.webdata.echo.commons.Const;
+import ro.webdata.echo.commons.Text;
+import ro.webdata.echo.commons.graph.Namespace;
 import ro.webdata.parser.xml.lido.core.complex.legalBodyRefComplexType.LegalBodyRefComplexType;
 import ro.webdata.parser.xml.lido.core.leaf.appellationValue.AppellationValue;
 import ro.webdata.parser.xml.lido.core.leaf.legalBodyID.LegalBodyID;
 import ro.webdata.parser.xml.lido.core.leaf.legalBodyName.LegalBodyName;
 import ro.webdata.parser.xml.lido.core.leaf.legalBodyWeblink.LegalBodyWeblink;
-import ro.webdata.translator.edm.approach.event.lido.common.constants.Constants;
-import ro.webdata.translator.edm.approach.event.lido.common.constants.NSConstants;
+import ro.webdata.translator.edm.approach.event.lido.commons.constants.Constants;
 
 import java.util.ArrayList;
 
@@ -30,7 +31,7 @@ public class LegalBodyRefComplexTypeProcessing {
 
             String name = getOrganizationName(legalBodyNameList);
             organization = model.createResource(
-                    NSConstants.NS_REPO_RESOURCE_ORGANIZATION + TextUtils.sanitizeString(name)
+                    Namespace.NS_REPO_RESOURCE_ORGANIZATION + Text.sanitizeString(name)
             );
             organization.addProperty(RDF.type, FOAF.Organization);
             addOrganizationIdentifier(model, organization, legalBodyIDList);
@@ -129,7 +130,7 @@ public class LegalBodyRefComplexTypeProcessing {
 
             AppellationValue appellationValue = getAppellationValue(appellationValues, Constants.LANG_MAIN);
             if (appellationValue == null)
-                appellationValue = getAppellationValue(appellationValues, Constants.LANG_EN);
+                appellationValue = getAppellationValue(appellationValues, Const.LANG_EN);
             if (appellationValue == null)
                 appellationValue = getAppellationValue(appellationValues, null);
 
@@ -157,7 +158,7 @@ public class LegalBodyRefComplexTypeProcessing {
             }
 
             String name = getOrganizationName(legalBodyNameList);
-            return NSConstants.NS_REPO_RESOURCE_ORGANIZATION + TextUtils.sanitizeString(name);
+            return Namespace.NS_REPO_RESOURCE_ORGANIZATION + Text.sanitizeString(name);
         }
 
         return null;

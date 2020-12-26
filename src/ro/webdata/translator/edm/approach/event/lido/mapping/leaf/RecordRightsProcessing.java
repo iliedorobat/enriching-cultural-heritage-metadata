@@ -2,7 +2,7 @@ package ro.webdata.translator.edm.approach.event.lido.mapping.leaf;
 
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
-import ro.webdata.translator.edm.approach.event.lido.common.constants.NSConstants;
+import ro.webdata.echo.commons.graph.Namespace;
 import ro.webdata.parser.xml.lido.core.leaf.recordRights.RecordRights;
 import ro.webdata.parser.xml.lido.core.leaf.rightsType.RightsType;
 import ro.webdata.parser.xml.lido.core.leaf.term.Term;
@@ -59,9 +59,9 @@ public class RecordRightsProcessing {
             Term term = termList.get(0);
             String text = term.getText();
 
-            List licences = Arrays.asList(NSConstants.LICENSES_NAME);
+            List licences = Arrays.asList(Namespace.LICENSE_NAMES);
             int index = licences.indexOf(text);
-            String licenseLink = NSConstants.LICENSES_LINK[index];
+            String licenseLink = Namespace.LICENSE_LINKS[index];
 
             return model.createResource(licenseLink);
         }

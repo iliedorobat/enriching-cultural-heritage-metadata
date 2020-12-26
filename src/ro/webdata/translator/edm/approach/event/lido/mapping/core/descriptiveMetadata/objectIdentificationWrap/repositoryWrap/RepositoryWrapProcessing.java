@@ -2,13 +2,13 @@ package ro.webdata.translator.edm.approach.event.lido.mapping.core.descriptiveMe
 
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
-import ro.webdata.translator.edm.approach.event.lido.mapping.leaf.LegalBodyRefComplexTypeProcessing;
-import ro.webdata.translator.edm.approach.event.lido.mapping.leaf.WorkIDProcessing;
-import ro.webdata.translator.edm.approach.event.lido.vocabulary.EDM;
+import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.parser.xml.lido.core.leaf.repositoryName.RepositoryName;
 import ro.webdata.parser.xml.lido.core.leaf.workID.WorkID;
 import ro.webdata.parser.xml.lido.core.set.repositorySet.RepositorySet;
 import ro.webdata.parser.xml.lido.core.wrap.repositoryWrap.RepositoryWrap;
+import ro.webdata.translator.edm.approach.event.lido.mapping.leaf.LegalBodyRefComplexTypeProcessing;
+import ro.webdata.translator.edm.approach.event.lido.mapping.leaf.WorkIDProcessing;
 
 import java.util.ArrayList;
 

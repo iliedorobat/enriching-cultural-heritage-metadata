@@ -4,12 +4,12 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DCTerms;
 import org.apache.jena.vocabulary.DC_11;
-import ro.webdata.common.constants.TextUtils;
+import ro.webdata.echo.commons.Const;
+import ro.webdata.echo.commons.Text;
 import ro.webdata.parser.xml.dspace.core.attribute.record.BasicRecord;
 import ro.webdata.parser.xml.dspace.core.attribute.record.DateRecord;
 import ro.webdata.parser.xml.dspace.core.leaf.dcValue.DcValue;
-import ro.webdata.translator.edm.approach.object.dspace.common.PrintMessages;
-import ro.webdata.translator.edm.approach.object.dspace.common.constants.EnvConstants;
+import ro.webdata.translator.edm.approach.object.dspace.commons.PrintMessages;
 
 public class DateMapping {
     private static final String REFINEMENT_ACCESSIONED = "accessioned";
@@ -40,11 +40,11 @@ public class DateMapping {
                 break;
             case DateRecord.SCHEME_TEMPORAL_DCMI_PERIOD:
             case DateRecord.SCHEME_TEMPORAL_W3C_DTF:
-                value = TextUtils.attachesSchemaToValue(qualifier, value);
+                value = Text.attachesSchemaToValue(qualifier, value);
                 providedCHO.addProperty(DC_11.date, value, language);
                 break;
             default:
-                PrintMessages.elementWarning(EnvConstants.OPERATION_MAPPING, providedCHO, dcValue);
+                PrintMessages.elementWarning(Const.OPERATION_MAPPING, providedCHO, dcValue);
                 break;
         }
     }

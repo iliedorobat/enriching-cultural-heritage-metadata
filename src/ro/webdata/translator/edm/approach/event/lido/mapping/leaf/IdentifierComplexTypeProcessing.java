@@ -4,9 +4,10 @@ import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DC_11;
-import ro.webdata.translator.edm.approach.event.lido.common.constants.Constants;
-import ro.webdata.translator.edm.approach.event.lido.common.constants.LIDOConstants;
+import ro.webdata.echo.commons.Const;
 import ro.webdata.parser.xml.lido.core.complex.identifierComplexType.IdentifierComplexType;
+import ro.webdata.translator.edm.approach.event.lido.commons.constants.Constants;
+import ro.webdata.translator.edm.approach.event.lido.commons.constants.LIDOType;
 
 import java.util.ArrayList;
 
@@ -23,11 +24,11 @@ public class IdentifierComplexTypeProcessing {
 
         if (text != null) {
             // Only the entries from romanian dataset could have a CIMEC id (link)
-            if (Constants.LANG_MAIN.equals(Constants.LANG_RO) &&
-                    (type.equals(LIDOConstants.LIDO_TYPE_CIMEC) || type.equals(LIDOConstants.LIDO_TYPE_GUID))
+            if (Constants.LANG_MAIN.equals(Const.LANG_RO) &&
+                    (type.equals(LIDOType.CIMEC) || type.equals(LIDOType.GUID))
             ) {
-                resource.addProperty(DC_11.identifier, Constants.CIMEC_LINK_RO + text, Constants.LANG_RO);
-                resource.addProperty(DC_11.identifier, Constants.CIMEC_LINK_EN + text, Constants.LANG_EN);
+                resource.addProperty(DC_11.identifier, Constants.CIMEC_LINK_RO + text, Const.LANG_RO);
+                resource.addProperty(DC_11.identifier, Constants.CIMEC_LINK_EN + text, Const.LANG_EN);
             } else {
                 resource.addProperty(DC_11.identifier, text);
             }
@@ -46,9 +47,9 @@ public class IdentifierComplexTypeProcessing {
         String type = identifierComplexType.getType().getType();
 
         if (text != null) {
-            if (type.equals(LIDOConstants.LIDO_TYPE_CIMEC) || type.equals(LIDOConstants.LIDO_TYPE_GUID)) {
-                idList.add(model.createLiteral(Constants.CIMEC_LINK_RO + text, Constants.LANG_RO));
-                idList.add(model.createLiteral(Constants.CIMEC_LINK_EN + text, Constants.LANG_EN));
+            if (type.equals(LIDOType.CIMEC) || type.equals(LIDOType.GUID)) {
+                idList.add(model.createLiteral(Constants.CIMEC_LINK_RO + text, Const.LANG_RO));
+                idList.add(model.createLiteral(Constants.CIMEC_LINK_EN + text, Const.LANG_EN));
             } else {
                 idList.add(model.createLiteral(text));
             }

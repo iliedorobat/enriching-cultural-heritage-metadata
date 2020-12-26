@@ -6,11 +6,11 @@ import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.SKOS;
-import ro.webdata.translator.edm.approach.event.lido.common.ResourceUtils;
-import ro.webdata.translator.edm.approach.event.lido.common.constants.Constants;
-import ro.webdata.translator.edm.approach.event.lido.common.constants.NSConstants;
-import ro.webdata.translator.edm.approach.event.lido.common.constants.PlaceConstants;
-import ro.webdata.translator.edm.approach.event.lido.vocabulary.EDM;
+import ro.webdata.echo.commons.Const;
+import ro.webdata.echo.commons.graph.GraphResource;
+import ro.webdata.echo.commons.graph.Namespace;
+import ro.webdata.echo.commons.graph.PlaceType;
+import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.parser.xml.lido.core.complex.placeComplexType.PlaceComplexType;
 import ro.webdata.parser.xml.lido.core.leaf.appellationValue.AppellationValue;
 import ro.webdata.parser.xml.lido.core.leaf.eventPlace.EventPlace;
@@ -219,14 +219,15 @@ public class EventPlaceProcessing {
             String placeName,
             String placeType
     ) {
-        String localLink = ResourceUtils.generateURI(
-                NSConstants.NS_REPO_RESOURCE_PLACE,
+        String localLink = GraphResource.generateURI(
+                Namespace.NS_REPO_RESOURCE_PLACE,
                 getPlaceName(placeMap, placeName, placeType)
         );
         Resource placeResource = model.createResource(localLink);
 
         //TODO: add it back
 //        String dbpediaLink = ResourceUtils.generateDBPediaURI(placeName);
+//        TODO: try { TimeUnit.SECONDS.sleep(100); } catch (InterruptedException e) { e.printStackTrace(); }
 //        if (HttpGet.isValidDBPedia(placeName)) {
 //            placeResource.addProperty(OWL2.sameAs, model.createResource(dbpediaLink));
 //        }
@@ -246,42 +247,42 @@ public class EventPlaceProcessing {
         String parentName;
 
         switch (placeType) {
-            case PlaceConstants.PLACE_TYPE_COMMUNE:
+            case PlaceType.COMMUNE:
                 try {
-                    parentName = getFirstParentName(placeMap, PlaceConstants.PLACE_TYPE_COUNTY);
+                    parentName = getFirstParentName(placeMap, PlaceType.COUNTY);
                 } catch (Exception e) {
-                    try { parentName = getFirstParentName(placeMap, PlaceConstants.PLACE_TYPE_REGION); }
+                    try { parentName = getFirstParentName(placeMap, PlaceType.REGION); }
                     catch (Exception e2) { parentName = placeName; }
                 }
-                return placeName + Constants.UNDERSCORE_PLACEHOLDER + getPlaceName(placeMap, parentName, PlaceConstants.PLACE_TYPE_COUNTY);
-            case PlaceConstants.PLACE_TYPE_LOCALITY:
+                return placeName + Const.UNDERSCORE_PLACEHOLDER + getPlaceName(placeMap, parentName, PlaceType.COUNTY);
+            case PlaceType.LOCALITY:
                 try {
-                    parentName = getFirstParentName(placeMap, PlaceConstants.PLACE_TYPE_COMMUNE);
+                    parentName = getFirstParentName(placeMap, PlaceType.COMMUNE);
                 } catch (Exception e) {
                     try {
-                        parentName = getFirstParentName(placeMap, PlaceConstants.PLACE_TYPE_COUNTY);
+                        parentName = getFirstParentName(placeMap, PlaceType.COUNTY);
                     } catch (Exception e2) {
-                        try { parentName = getFirstParentName(placeMap, PlaceConstants.PLACE_TYPE_REGION); }
+                        try { parentName = getFirstParentName(placeMap, PlaceType.REGION); }
                         catch (Exception e3) { parentName = placeName; }
                     }
                 }
-                return placeName + Constants.UNDERSCORE_PLACEHOLDER + getPlaceName(placeMap, parentName, PlaceConstants.PLACE_TYPE_COMMUNE);
-            case PlaceConstants.PLACE_TYPE_POINT:
+                return placeName + Const.UNDERSCORE_PLACEHOLDER + getPlaceName(placeMap, parentName, PlaceType.COMMUNE);
+            case PlaceType.POINT:
                 try {
-                    parentName = getFirstParentName(placeMap, PlaceConstants.PLACE_TYPE_LOCALITY);
+                    parentName = getFirstParentName(placeMap, PlaceType.LOCALITY);
                 } catch (Exception e2) {
                     try {
-                        parentName = getFirstParentName(placeMap, PlaceConstants.PLACE_TYPE_COMMUNE);
+                        parentName = getFirstParentName(placeMap, PlaceType.COMMUNE);
                     } catch (Exception e3) {
                         try {
-                            parentName = getFirstParentName(placeMap, PlaceConstants.PLACE_TYPE_COUNTY);
+                            parentName = getFirstParentName(placeMap, PlaceType.COUNTY);
                         } catch (Exception e4) {
-                            try { parentName = getFirstParentName(placeMap, PlaceConstants.PLACE_TYPE_REGION); }
+                            try { parentName = getFirstParentName(placeMap, PlaceType.REGION); }
                             catch (Exception e5) { parentName = placeName; }
                         }
                     }
                 }
-                return placeName + Constants.UNDERSCORE_PLACEHOLDER + getPlaceName(placeMap, parentName, PlaceConstants.PLACE_TYPE_LOCALITY);
+                return placeName + Const.UNDERSCORE_PLACEHOLDER + getPlaceName(placeMap, parentName, PlaceType.LOCALITY);
             default:
                 return placeName;
         }
@@ -296,7 +297,7 @@ public class EventPlaceProcessing {
     }
 
     private String getParentType(String placeType) {
-        List<String> placeTypeList = Arrays.asList(PlaceConstants.PLACE_TYPE_LIST);
+        List<String> placeTypeList = Arrays.asList(PlaceType.TYPES);
         int index = placeTypeList.indexOf(placeType);
 
         if (index == placeTypeList.size() - 1) {
@@ -307,7 +308,7 @@ public class EventPlaceProcessing {
     }
 
     private String getChildType(String placeType) {
-        List<String> placeTypeList = Arrays.asList(PlaceConstants.PLACE_TYPE_LIST);
+        List<String> placeTypeList = Arrays.asList(PlaceType.TYPES);
         int index = placeTypeList.indexOf(placeType);
 
         if (index == 0) {

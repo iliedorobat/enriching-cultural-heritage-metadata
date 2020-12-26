@@ -3,14 +3,10 @@ package ro.webdata.translator.edm.approach.event.lido.mapping.core;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.RDF;
-import ro.webdata.translator.edm.approach.event.lido.common.PrintMessages;
-import ro.webdata.translator.edm.approach.event.lido.common.constants.EnvConst;
-import ro.webdata.translator.edm.approach.event.lido.common.constants.NSConstants;
-import ro.webdata.translator.edm.approach.event.lido.mapping.core.administrativeMetadata.AdministrativeMetadataProcessing;
-import ro.webdata.translator.edm.approach.event.lido.mapping.core.category.CategoryProcessing;
-import ro.webdata.translator.edm.approach.event.lido.mapping.core.descriptiveMetadata.DescriptiveMetadataProcessing;
-import ro.webdata.translator.edm.approach.event.lido.mapping.core.lidoRecID.LidoRecIDProcessing;
-import ro.webdata.translator.edm.approach.event.lido.vocabulary.EDM;
+import ro.webdata.echo.commons.Const;
+import ro.webdata.echo.commons.Print;
+import ro.webdata.echo.commons.graph.Namespace;
+import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.parser.xml.lido.core.ParserDAO;
 import ro.webdata.parser.xml.lido.core.ParserDAOImpl;
 import ro.webdata.parser.xml.lido.core.leaf.administrativeMetadata.AdministrativeMetadata;
@@ -19,6 +15,11 @@ import ro.webdata.parser.xml.lido.core.leaf.descriptiveMetadata.DescriptiveMetad
 import ro.webdata.parser.xml.lido.core.leaf.lido.Lido;
 import ro.webdata.parser.xml.lido.core.leaf.lidoRecID.LidoRecID;
 import ro.webdata.parser.xml.lido.core.wrap.lidoWrap.LidoWrap;
+import ro.webdata.translator.commons.EnvConstants;
+import ro.webdata.translator.edm.approach.event.lido.mapping.core.administrativeMetadata.AdministrativeMetadataProcessing;
+import ro.webdata.translator.edm.approach.event.lido.mapping.core.category.CategoryProcessing;
+import ro.webdata.translator.edm.approach.event.lido.mapping.core.descriptiveMetadata.DescriptiveMetadataProcessing;
+import ro.webdata.translator.edm.approach.event.lido.mapping.core.lidoRecID.LidoRecIDProcessing;
 
 import java.util.ArrayList;
 
@@ -30,7 +31,7 @@ public class LidoWrapProcessing {
     private static AdministrativeMetadataProcessing administrativeMetadataProcessing = new AdministrativeMetadataProcessing();
 
     public void processing(Model model, String fullPath) {
-        PrintMessages.printOperation(EnvConst.OPERATION_START, fullPath);
+        Print.operation(Const.OPERATION_START, fullPath, EnvConstants.SHOULD_PRINT);
         LidoWrap lidoWrap = parserDAO.parseLidoFile(fullPath);
 
         //TODO: change in the LIDO Parser component the "getLido" method name to "getLidoList"
@@ -61,12 +62,12 @@ public class LidoWrapProcessing {
             );
         }
 
-        PrintMessages.printOperation(EnvConst.OPERATION_END, fullPath);
+        Print.operation(Const.OPERATION_END, fullPath, EnvConstants.SHOULD_PRINT);
     }
 
     private Resource generateProvidedCHO(Model model, ArrayList<LidoRecID> lidoRecIDList) {
         String recordId = lidoRecIDProcessing.getRecordId(lidoRecIDList);
-        Resource providedCHO = model.createResource(NSConstants.NS_REPO_RESOURCE_CHO + recordId);
+        Resource providedCHO = model.createResource(Namespace.NS_REPO_RESOURCE_CHO + recordId);
         providedCHO.addProperty(RDF.type, EDM.ProvidedCHO);
 
         return providedCHO;

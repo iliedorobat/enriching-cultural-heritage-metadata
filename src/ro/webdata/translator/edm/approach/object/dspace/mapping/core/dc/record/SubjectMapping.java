@@ -3,12 +3,12 @@ package ro.webdata.translator.edm.approach.object.dspace.mapping.core.dc.record;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DC_11;
-import ro.webdata.common.constants.TextUtils;
+import ro.webdata.echo.commons.Const;
+import ro.webdata.echo.commons.Text;
 import ro.webdata.parser.xml.dspace.core.attribute.record.BasicRecord;
 import ro.webdata.parser.xml.dspace.core.attribute.record.SubjectRecord;
 import ro.webdata.parser.xml.dspace.core.leaf.dcValue.DcValue;
-import ro.webdata.translator.edm.approach.object.dspace.common.PrintMessages;
-import ro.webdata.translator.edm.approach.object.dspace.common.constants.EnvConstants;
+import ro.webdata.translator.edm.approach.object.dspace.commons.PrintMessages;
 
 public class SubjectMapping {
     private static final String REFINEMENT_CLASSIFICATION = "classification";
@@ -34,11 +34,11 @@ public class SubjectMapping {
             case SubjectRecord.SCHEME_LCSH:
             case SubjectRecord.SCHEME_MESH:
             case SubjectRecord.SCHEME_UDC:
-                value = TextUtils.attachesSchemaToValue(qualifier, value);
+                value = Text.attachesSchemaToValue(qualifier, value);
                 providedCHO.addProperty(DC_11.subject, value, language);
                 break;
             default:
-                PrintMessages.elementWarning(EnvConstants.OPERATION_MAPPING, providedCHO, dcValue);
+                PrintMessages.elementWarning(Const.OPERATION_MAPPING, providedCHO, dcValue);
                 break;
         }
     }

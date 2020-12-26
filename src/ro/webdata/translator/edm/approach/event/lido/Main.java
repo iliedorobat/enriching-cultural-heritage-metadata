@@ -1,11 +1,12 @@
 package ro.webdata.translator.edm.approach.event.lido;
 
 import org.apache.jena.rdf.model.Model;
-import ro.webdata.common.utils.FileUtils;
-import ro.webdata.common.utils.ModelUtils;
-import ro.webdata.translator.edm.approach.event.lido.common.PrintMessages;
-import ro.webdata.translator.edm.approach.event.lido.common.constants.EnvConst;
-import ro.webdata.translator.edm.approach.event.lido.common.constants.FileConstants;
+import ro.webdata.echo.commons.Const;
+import ro.webdata.echo.commons.File;
+import ro.webdata.echo.commons.Print;
+import ro.webdata.echo.commons.graph.GraphModel;
+import ro.webdata.translator.commons.EnvConstants;
+import ro.webdata.translator.commons.FileConstants;
 import ro.webdata.translator.edm.approach.event.lido.mapping.core.LidoWrapProcessing;
 
 import java.io.StringWriter;
@@ -26,43 +27,43 @@ public class Main {
     };
 
     public static void main(String[] args) {
-        System.out.println(EnvConst.OPERATION_START);
-        if (!EnvConst.IS_DEMO) run();
+        Print.operation(Const.OPERATION_START, EnvConstants.SHOULD_PRINT);
+        if (!EnvConstants.IS_DEMO) run();
         else runDemo();
-        PrintMessages.printOperation(EnvConst.OPERATION_FINISH);
+        Print.operation(Const.OPERATION_END, EnvConstants.SHOULD_PRINT);
     }
 
     //---------------------- Real Scenario ---------------------- //
     private static void run() {
         for (int i = 0; i < fileNames.length; i++) {
-            Model model = ModelUtils.generateModel();
+            Model model = GraphModel.generateModel();
             String filePath = FileConstants.PATH_INPUT_LIDO_DIR
-                    + FileConstants.FILE_SEPARATOR + fileNames[i]
-                    + FileConstants.FILE_EXTENSION_SEPARATOR + FileConstants.FILE_EXTENSION_XML;
+                    + File.FILE_SEPARATOR + fileNames[i]
+                    + File.EXTENSION_SEPARATOR + File.EXTENSION_XML;
             lidoWrapProcessing.processing(model, filePath);
 
             String outputPath = FileConstants.PATH_OUTPUT_LIDO_DIR
-                    + FileConstants.FILE_SEPARATOR + fileNames[i]
-                    + FileConstants.FILE_EXTENSION_SEPARATOR + FileConstants.FILE_EXTENSION_RDF;
+                    + File.FILE_SEPARATOR + fileNames[i]
+                    + File.EXTENSION_SEPARATOR + File.EXTENSION_RDF;
             writeRDFGraph(model, outputPath);
         }
     }
 
     //---------------------- DEMO Scenario ---------------------- //
     private static void runDemo() {
-        Model model = ModelUtils.generateModel();
+        Model model = GraphModel.generateModel();
         // The demo file is found in: files/lido-schema/inp-clasate-arheologie-2014-02-02.xml
         String filePath = FileConstants.PATH_INPUT_LIDO_DIR
-                + FileConstants.FILE_SEPARATOR + FileConstants.FILE_NAME_DEMO
-                + FileConstants.FILE_EXTENSION_SEPARATOR + FileConstants.FILE_EXTENSION_XML;
+                + File.FILE_SEPARATOR + FileConstants.FILE_NAME_DEMO
+                + File.EXTENSION_SEPARATOR + File.EXTENSION_XML;
         lidoWrapProcessing.processing(model, filePath);
         writeRDFGraph(model, FileConstants.PATH_OUTPUT_DEMO_FILE);
     }
 
     private static void writeRDFGraph(Model model, String outputFilePath) {
         StringWriter writer = new StringWriter();
-        model.write(writer, ModelUtils.SYNTAX_RDF_XML);
-        FileUtils.write(writer, outputFilePath);
+        model.write(writer, GraphModel.SYNTAX_RDF_XML);
+        File.write(writer, outputFilePath);
 //        String result = writer.toString();
 //        System.out.println(result);
     }

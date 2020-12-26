@@ -4,13 +4,13 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.SKOS;
+import ro.webdata.echo.commons.Const;
+import ro.webdata.echo.commons.graph.GraphResource;
+import ro.webdata.echo.commons.graph.Namespace;
+import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.parser.xml.dspace.core.attribute.record.BasicRecord;
 import ro.webdata.parser.xml.dspace.core.leaf.dcValue.DcValue;
-import ro.webdata.translator.edm.approach.event.lido.common.ResourceUtils;
-import ro.webdata.translator.edm.approach.event.lido.common.constants.NSConstants;
-import ro.webdata.translator.edm.approach.event.lido.vocabulary.EDM;
-import ro.webdata.translator.edm.approach.object.dspace.common.PrintMessages;
-import ro.webdata.translator.edm.approach.object.dspace.common.constants.EnvConstants;
+import ro.webdata.translator.edm.approach.object.dspace.commons.PrintMessages;
 
 public class ProviderMapping {
     public static void processing(Model model, Resource providedCHO, Resource aggregation, DcValue dcValue) {
@@ -21,8 +21,8 @@ public class ProviderMapping {
         switch (qualifier) {
             case BasicRecord.EMPTY:
             case BasicRecord.NONE:
-                String providerUri = ResourceUtils.generateURI(
-                        NSConstants.NS_REPO_RESOURCE, EDM.Agent, value
+                String providerUri = GraphResource.generateURI(
+                        Namespace.NS_REPO_RESOURCE, EDM.Agent, value
                 );
 
                 Resource provider = model
@@ -33,7 +33,7 @@ public class ProviderMapping {
                 aggregation.addProperty(EDM.provider, provider);
                 break;
             default:
-                PrintMessages.elementWarning(EnvConstants.OPERATION_MAPPING, providedCHO, dcValue);
+                PrintMessages.elementWarning(Const.OPERATION_MAPPING, providedCHO, dcValue);
                 break;
         }
     }
