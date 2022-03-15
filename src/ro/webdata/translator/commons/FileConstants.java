@@ -18,6 +18,8 @@ public class FileConstants {
 
     public static final String PATH_INPUT_CIMEC_DIR = File.PATH_INPUT_DIR + File.FILE_SEPARATOR + "cimec";
     public static final String PATH_OUTPUT_CIMEC_DIR = File.PATH_OUTPUT_DIR + File.FILE_SEPARATOR + "cimec2edm";
+    public static final String PATH_OUTPUT_CIMEC_DATASET = PATH_OUTPUT_CIMEC_DIR + File.FILE_SEPARATOR + "dataset" + File.EXTENSION_SEPARATOR + File.EXTENSION_RDF;
+    public static final String PATH_OUTPUT_CIMEC_DEMO = PATH_OUTPUT_CIMEC_DIR + File.FILE_SEPARATOR + "demo" + File.EXTENSION_SEPARATOR + File.EXTENSION_RDF;
 
     public static final String PATH_INPUT_DSPACE_DIR = File.PATH_INPUT_DIR + File.FILE_SEPARATOR + "dspace";
     public static final String PATH_OUTPUT_DSPACE_DIR = File.PATH_OUTPUT_DIR + File.FILE_SEPARATOR + "dspace2edm";

@@ -7,9 +7,8 @@ import ro.webdata.echo.commons.Print;
 import ro.webdata.echo.commons.graph.GraphModel;
 import ro.webdata.translator.commons.EnvConstants;
 import ro.webdata.translator.commons.FileConstants;
+import ro.webdata.translator.commons.GraphUtils;
 import ro.webdata.translator.edm.approach.event.lido.mapping.core.LidoWrapProcessing;
-
-import java.io.StringWriter;
 
 public class Main {
     private static LidoWrapProcessing lidoWrapProcessing = new LidoWrapProcessing();
@@ -28,8 +27,10 @@ public class Main {
 
     public static void main(String[] args) {
         Print.operation(Const.OPERATION_START, EnvConstants.SHOULD_PRINT);
-        if (!EnvConstants.IS_DEMO) run();
-        else runDemo();
+        if (!EnvConstants.IS_DEMO)
+            run();
+        else
+            runDemo();
         Print.operation(Const.OPERATION_END, EnvConstants.SHOULD_PRINT);
     }
 
@@ -45,7 +46,7 @@ public class Main {
             String outputPath = FileConstants.PATH_OUTPUT_LIDO_DIR
                     + File.FILE_SEPARATOR + fileNames[i]
                     + File.EXTENSION_SEPARATOR + File.EXTENSION_RDF;
-            writeRDFGraph(model, outputPath);
+            GraphUtils.writeRDFGraph(model, outputPath, EnvConstants.PRINT_RDF_RESULTS);
         }
     }
 
@@ -57,14 +58,6 @@ public class Main {
                 + File.FILE_SEPARATOR + FileConstants.FILE_NAME_DEMO
                 + File.EXTENSION_SEPARATOR + File.EXTENSION_XML;
         lidoWrapProcessing.processing(model, filePath);
-        writeRDFGraph(model, FileConstants.PATH_OUTPUT_DEMO_FILE);
-    }
-
-    private static void writeRDFGraph(Model model, String outputFilePath) {
-        StringWriter writer = new StringWriter();
-        model.write(writer, GraphModel.SYNTAX_RDF_XML);
-        File.write(writer, outputFilePath, false);
-//        String result = writer.toString();
-//        System.out.println(result);
+        GraphUtils.writeRDFGraph(model, FileConstants.PATH_OUTPUT_DEMO_FILE, EnvConstants.PRINT_RDF_RESULTS);
     }
 }
