@@ -63,7 +63,7 @@ public class Main {
     private static void writeRDFGraph(Model model, String outputFilePath) {
         StringWriter writer = new StringWriter();
         model.write(writer, GraphModel.SYNTAX_RDF_XML);
-        File.write(writer, outputFilePath);
+        File.write(writer, outputFilePath, false);
 //        String result = writer.toString();
 //        System.out.println(result);
     }

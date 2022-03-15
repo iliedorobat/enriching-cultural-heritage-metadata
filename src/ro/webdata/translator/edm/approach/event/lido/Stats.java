@@ -68,10 +68,11 @@ public class Stats {
             sb.append(string).append("\n");
         }
 
-        String fileWriterName = File.PATH_DATA_PROCESSING_DIR + File.FILE_SEPARATOR + "timespan-analysis-cleaned.csv";
+        // FIXME: PATH_DATA_PROCESSING_DIR => PATH_OUTPUT_DIR
+        String fileWriterName = FileConstants.PATH_DATA_PROCESSING_DIR + File.FILE_SEPARATOR + "timespan-analysis-cleaned.csv";
         StringWriter writer = new StringWriter();
         writer.write(sb.toString());
-        File.write(writer, fileWriterName);
+        File.write(writer, fileWriterName, false);
     }
 
     private static void printNewPropertiesStats() {

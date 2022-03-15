@@ -16,6 +16,9 @@ public class FileConstants {
     public static final String FILE_NAME_ST_NAT = "inp-clasate-stiintele-naturii-2014-02-03-7";
     public static final String FILE_NAME_DEMO = "demo3";
 
+    public static final String PATH_INPUT_CIMEC_DIR = File.PATH_INPUT_DIR + File.FILE_SEPARATOR + "cimec";
+    public static final String PATH_OUTPUT_CIMEC_DIR = File.PATH_OUTPUT_DIR + File.FILE_SEPARATOR + "cimec2edm";
+
     public static final String PATH_INPUT_DSPACE_DIR = File.PATH_INPUT_DIR + File.FILE_SEPARATOR + "dspace";
     public static final String PATH_OUTPUT_DSPACE_DIR = File.PATH_OUTPUT_DIR + File.FILE_SEPARATOR + "dspace2edm";
 
@@ -25,6 +28,9 @@ public class FileConstants {
     public static final String PATH_OUTPUT_DATASET_FILE = PATH_OUTPUT_LIDO_DIR + File.FILE_SEPARATOR + "dataset" + File.EXTENSION_SEPARATOR + File.EXTENSION_RDF;
     public static final String PATH_OUTPUT_DEMO_FILE = PATH_OUTPUT_LIDO_DIR + File.FILE_SEPARATOR + FILE_NAME_DEMO + File.EXTENSION_SEPARATOR + File.EXTENSION_RDF;
     public static final String PATH_OUTPUT_PROPERTIES_FILE = PATH_OUTPUT_LIDO_DIR + File.FILE_SEPARATOR + "properties" + File.EXTENSION_SEPARATOR + File.EXTENSION_CSV;
-    public static final String PATH_OUTPUT_TIMESPAN_FILE = File.PATH_DATA_PROCESSING_DIR + File.FILE_SEPARATOR + "timespan" + File.EXTENSION_SEPARATOR + File.EXTENSION_TXT;
-    public static final String PATH_OUTPUT_TIMESPAN_ANALYSIS_FILE = File.PATH_DATA_PROCESSING_DIR + File.FILE_SEPARATOR + "timespan-analysis" + File.EXTENSION_SEPARATOR + File.EXTENSION_CSV;
+
+    public static final String PATH_DATA_PROCESSING_DIR = File.PATH_FILES_DIR + File.FILE_SEPARATOR + "data-processing";
+    // FIXME: PATH_DATA_PROCESSING_DIR => PATH_OUTPUT_DIR
+    public static final String PATH_OUTPUT_TIMESPAN_FILE = PATH_DATA_PROCESSING_DIR + File.FILE_SEPARATOR + "timespan" + File.EXTENSION_SEPARATOR + File.EXTENSION_TXT;
+    public static final String PATH_OUTPUT_TIMESPAN_ANALYSIS_FILE = PATH_DATA_PROCESSING_DIR + File.FILE_SEPARATOR + "timespan-analysis" + File.EXTENSION_SEPARATOR + File.EXTENSION_CSV;
 }
