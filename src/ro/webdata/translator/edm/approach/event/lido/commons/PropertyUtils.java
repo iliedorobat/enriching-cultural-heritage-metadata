@@ -15,19 +15,13 @@ import ro.webdata.echo.commons.validator.UrlValidator;
 import ro.webdata.translator.commons.FileConstants;
 
 import java.io.StringWriter;
-import java.util.Arrays;
-import java.util.List;
+import java.util.ArrayList;
 
 import static ro.webdata.echo.commons.accessor.MuseumAccessors.*;
 import static ro.webdata.echo.commons.graph.Namespace.*;
 
 //TODO: move the class to ro.webdata.translator.commons
 public final class PropertyUtils {
-    private static final List<String> EXCEPTED_URLS = Arrays.asList(
-            "http://ghidulmuzeelor.cimec.ro/idEN.asp?k=2083&-Muzeul-Popa-Popa`s-TIMISOARA-Timis",
-            "http://ghidulmuzeelor.cimec.ro/id.asp?k=2083&-Muzeul-Popa-Popa`s-TIMISOARA-Timis"
-    );
-
     public static void addProperties(Model model, Resource museum, Property parentProperty, String modelProperty, JsonObject jsonObject, String accessor, String lang) {
         try {
             JsonArray array = jsonObject.getAsJsonArray(accessor);
@@ -78,10 +72,9 @@ public final class PropertyUtils {
     }
 
     public static void addUriProperty(Model model, Resource museum, Property property, String link) {
-        // EXCEPTED_URLS
-        // Suppress the URL check as long as the url works. "`" is not a valid character for a URL
-        // and the expression <validator.isValid(url)> will be evaluated as being false
-        if (UrlValidator.isValid(link, EXCEPTED_URLS)) {
+        ArrayList<String> excepted = new ArrayList<>();
+
+        if (UrlValidator.isValid(link, excepted)) {
             Resource uri = model.createResource(link);
             museum.addProperty(property, uri);
         } else {
