@@ -27,7 +27,6 @@
     <odp:cimec>51620000209</odp:cimec>
     <odp:mainProfile xml:lang="en">Memorials</odp:mainProfile>
     <dbp:schedule xml:lang="ro">Luni - vineri: 10:00 - 16:00</dbp:schedule>
-    <dbp:county>Timiș</dbp:county>
     <odp:mainProfile xml:lang="ro">Istorie Memorială</odp:mainProfile>
     <skos:prefLabel xml:lang="ro">Casa Memorială "Dr. Karl Diel"</skos:prefLabel>
     <dbp:photo rdf:resource="http://ghidulmuzeelor.cimec.ro/P/Ghid/51620000209_01.jpg"/>
@@ -43,6 +42,7 @@
     <dbp:locality xml:lang="ro">Jimbolia</dbp:locality>
     <dbp:locality xml:lang="en">Jimbolia</dbp:locality>
     <edm:begin>2000</edm:begin>
+    <dbp:county rdf:resource="https://dbpedia.org/page/Timiș_County"/>
     <dbp:photo rdf:resource="http://ghidulmuzeelor.cimec.ro/P/Ghid/51620000209_04.jpg"/>
     <dbp:photo rdf:resource="http://ghidulmuzeelor.cimec.ro/P/Ghid/51620000209_02.jpg"/>
     <dc:identifier rdf:resource="http://ghidulmuzeelor.cimec.ro/id.asp?k=1650&amp;-Casa-Memoriala-dr.-Karl-Diel-JIMBOLIA-Timis"/>
