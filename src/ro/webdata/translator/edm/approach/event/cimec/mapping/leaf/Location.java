@@ -2,15 +2,20 @@ package ro.webdata.translator.edm.approach.event.cimec.mapping.leaf;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.SKOS;
+import ro.webdata.echo.commons.graph.Namespace;
 
 import java.util.ArrayList;
 import java.util.Map;
 
 import static ro.webdata.echo.commons.accessor.MuseumAccessors.*;
 import static ro.webdata.translator.edm.approach.event.lido.commons.PropertyUtils.addProperty;
+import static ro.webdata.translator.edm.approach.event.lido.commons.PropertyUtils.addUriProperty;
+import static ro.webdata.translator.edm.approach.event.lido.commons.PropertyUtils.createSubProperty;
 
 public class Location {
     public static void mapEntries(
@@ -40,7 +45,7 @@ public class Location {
                         addProperty(model, museum, SKOS.note, LOCATION_COMMUNE, contact, COMMUNE, null);
                         break;
                     case COUNTY:
-                        addProperty(model, museum, SKOS.note, LOCATION_COUNTY, contact, COUNTY, null);
+                        mapCounty(model, museum, contact);
                         break;
                     case GEO:
                         mapGeo(model, museum, contact);
@@ -55,6 +60,19 @@ public class Location {
                         break;
                 }
             }
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void mapCounty(Model model, Resource museum, JsonObject object) {
+        try {
+            String countyName = object.get(COUNTY).getAsString();
+            Property property = createSubProperty(model, SKOS.note, LOCATION_COUNTY, false);
+            String link = (
+                    Namespace.NS_DBPEDIA_RESOURCE + StringUtils.capitalize(countyName) + "_County"
+            ).replaceAll("\\s", "_");
+            addUriProperty(model, museum, property, link);
         } catch (IllegalStateException e) {
             e.printStackTrace();
         }

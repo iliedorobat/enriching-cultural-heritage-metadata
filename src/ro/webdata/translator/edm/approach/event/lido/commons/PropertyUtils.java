@@ -73,16 +73,19 @@ public final class PropertyUtils {
     public static void addUriProperty(Model model, Resource museum, Property property, JsonElement value) {
         if (value instanceof JsonPrimitive) {
             String link = value.getAsString();
+            addUriProperty(model, museum, property, link);
+        }
+    }
 
-            // EXCEPTED_URLS
-            // Suppress the URL check as long as the url works. "`" is not a valid character for a URL
-            // and the expression <validator.isValid(url)> will be evaluated as being false
-            if (UrlValidator.isValid(link, EXCEPTED_URLS)) {
-                Resource uri = model.createResource(link);
-                museum.addProperty(property, uri);
-            } else {
-                System.err.println("\"" + link + "\" is not a valid URL");
-            }
+    public static void addUriProperty(Model model, Resource museum, Property property, String link) {
+        // EXCEPTED_URLS
+        // Suppress the URL check as long as the url works. "`" is not a valid character for a URL
+        // and the expression <validator.isValid(url)> will be evaluated as being false
+        if (UrlValidator.isValid(link, EXCEPTED_URLS)) {
+            Resource uri = model.createResource(link);
+            museum.addProperty(property, uri);
+        } else {
+            System.err.println("\"" + link + "\" is not a valid URL");
         }
     }
 

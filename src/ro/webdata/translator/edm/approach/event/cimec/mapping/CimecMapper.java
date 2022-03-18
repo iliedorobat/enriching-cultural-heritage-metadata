@@ -11,8 +11,6 @@ import ro.webdata.translator.commons.GraphUtils;
 import ro.webdata.translator.edm.approach.event.cimec.commons.FilePath;
 import ro.webdata.translator.edm.approach.event.cimec.mapping.core.Museum;
 
-import java.io.StringWriter;
-
 public class CimecMapper {
     public static void run() {
         String enPath = FilePath.getCimecJsonPath(Const.LANG_EN);
