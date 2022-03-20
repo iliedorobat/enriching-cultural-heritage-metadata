@@ -9,12 +9,10 @@ import ro.webdata.echo.commons.Text;
 import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.parser.xml.lido.core.leaf.eventType.EventType;
 import ro.webdata.parser.xml.lido.core.leaf.term.Term;
-import ro.webdata.translator.edm.approach.event.lido.commons.constants.Constants;
 
 import java.util.ArrayList;
 
-import static ro.webdata.translator.commons.EnvConstants.NS_REPO_RESOURCE_CHO;
-import static ro.webdata.translator.commons.EnvConstants.NS_REPO_RESOURCE_EVENT;
+import static ro.webdata.translator.commons.EnvConstants.*;
 
 public class EventTypeProcessing {
     /**
@@ -31,7 +29,7 @@ public class EventTypeProcessing {
         Resource resource = generateEvent(model, providedCHO, termList, Const.LANG_EN);
 
         if (resource == null) {
-            resource = generateEvent(model, providedCHO, termList, Constants.LANG_MAIN);
+            resource = generateEvent(model, providedCHO, termList, LANG_MAIN);
         }
 
         if (resource == null) {

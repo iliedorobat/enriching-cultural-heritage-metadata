@@ -11,7 +11,6 @@ import ro.webdata.echo.commons.Text;
 import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.echo.commons.graph.vocab.constraints.EDMRoles;
 import ro.webdata.parser.xml.lido.core.leaf.recordSource.RecordSource;
-import ro.webdata.translator.edm.approach.event.lido.commons.constants.Constants;
 import ro.webdata.translator.edm.approach.event.lido.commons.constants.LIDOType;
 
 import java.util.ArrayList;
@@ -21,6 +20,8 @@ import static ro.webdata.translator.commons.EnvConstants.NS_REPO_RESOURCE_ORGANI
 import static ro.webdata.translator.edm.approach.event.lido.commons.ResourceUtils.addUriProperty;
 
 public class RecordSourceProcessing {
+    public static final String INP_NAME_RO = "Institutul Național al Patrimoniului";
+
     public static Resource generateDataProvider(Model model, ArrayList<RecordSource> recordSourceList) {
         int size = recordSourceList.size();
 
@@ -51,7 +52,7 @@ public class RecordSourceProcessing {
                 LegalBodyRefComplexTypeProcessing.addOrganizationName(model, dataProvider, recordSource.getLegalBodyName());
                 LegalBodyRefComplexTypeProcessing.addOrganizationWeblink(model, dataProvider, recordSource.getLegalBodyWeblink());
 
-                if (providerName.equals(Constants.INP_NAME)) {
+                if (providerName.equals(INP_NAME_RO)) {
                     addINPProperties(model, dataProvider);
                 }
 
@@ -70,7 +71,7 @@ public class RecordSourceProcessing {
     private static String getNamespace(String providerName) {
         String namespace = NS_REPO_RESOURCE_ORGANIZATION;
 
-        if (providerName.equals(Constants.INP_NAME)) {
+        if (providerName.equals(INP_NAME_RO)) {
             namespace += ROMANIAN_COUNTRY_NAME + File.FILE_SEPARATOR;
         }
 

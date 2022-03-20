@@ -15,10 +15,10 @@ import ro.webdata.parser.xml.lido.core.leaf.legalBodyID.LegalBodyID;
 import ro.webdata.parser.xml.lido.core.leaf.legalBodyName.LegalBodyName;
 import ro.webdata.parser.xml.lido.core.leaf.legalBodyWeblink.LegalBodyWeblink;
 import ro.webdata.translator.commons.MuseumUtils;
-import ro.webdata.translator.edm.approach.event.lido.commons.constants.Constants;
 
 import java.util.ArrayList;
 
+import static ro.webdata.translator.commons.EnvConstants.LANG_MAIN;
 import static ro.webdata.translator.commons.EnvConstants.NS_REPO_RESOURCE_ORGANIZATION;
 
 public class LegalBodyRefComplexTypeProcessing {
@@ -134,7 +134,7 @@ public class LegalBodyRefComplexTypeProcessing {
             LegalBodyName legalBodyName = legalBodyNameList.get(0);
             ArrayList<AppellationValue> appellationValues = legalBodyName.getAppellationValue();
 
-            AppellationValue appellationValue = getAppellationValue(appellationValues, Constants.LANG_MAIN);
+            AppellationValue appellationValue = getAppellationValue(appellationValues, LANG_MAIN);
             if (appellationValue == null) {
                 appellationValue = getAppellationValue(appellationValues, Const.LANG_EN);
             }

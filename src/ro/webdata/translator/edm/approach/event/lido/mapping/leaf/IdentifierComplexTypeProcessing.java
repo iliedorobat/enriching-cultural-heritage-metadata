@@ -4,11 +4,8 @@ import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DC_11;
-import ro.webdata.echo.commons.Const;
 import ro.webdata.parser.xml.lido.core.complex.identifierComplexType.IdentifierComplexType;
 import ro.webdata.translator.commons.MuseumUtils;
-import ro.webdata.translator.edm.approach.event.lido.commons.constants.Constants;
-import ro.webdata.translator.edm.approach.event.lido.commons.constants.LIDOType;
 
 import java.util.ArrayList;
 
@@ -41,13 +38,12 @@ public class IdentifierComplexTypeProcessing {
     public static ArrayList<Literal> getIdentifierList(Model model, IdentifierComplexType identifierComplexType) {
         ArrayList<Literal> idList = new ArrayList<>();
         String text = identifierComplexType.getText();
-        String type = identifierComplexType.getType().getType();
 
         if (text != null) {
-            if (type.equals(LIDOType.CIMEC) || type.equals(LIDOType.GUID)) {
-                idList.add(model.createLiteral(Constants.CIMEC_LINK_RO + text, Const.LANG_RO));
-                idList.add(model.createLiteral(Constants.CIMEC_LINK_EN + text, Const.LANG_EN));
-            } else {
+            // Skip adding entries which have CIEMC id because they have already been added in an earlier stage
+            // (look at LegalBodyRefComplexTypeProcessing.createLegalBodyRef method)
+            // Only the entries from romanian dataset could have a CIMEC id (link)
+            if (!MuseumUtils.hasCimecCode(MuseumUtils.enJsonArray, text)) {
                 idList.add(model.createLiteral(text));
             }
         }

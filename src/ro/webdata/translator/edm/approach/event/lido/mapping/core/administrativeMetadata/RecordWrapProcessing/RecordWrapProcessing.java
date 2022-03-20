@@ -12,7 +12,6 @@ import ro.webdata.echo.commons.Text;
 import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.echo.commons.graph.vocab.constraints.EDMRoles;
 import ro.webdata.parser.xml.lido.core.wrap.recordWrap.RecordWrap;
-import ro.webdata.translator.edm.approach.event.lido.commons.constants.Constants;
 import ro.webdata.translator.edm.approach.event.lido.mapping.leaf.RecordRightsProcessing;
 import ro.webdata.translator.edm.approach.event.lido.mapping.leaf.RecordSourceProcessing;
 
@@ -21,6 +20,8 @@ import static ro.webdata.translator.commons.EnvConstants.NS_REPO_RESOURCE_ORGANI
 import static ro.webdata.translator.edm.approach.event.lido.commons.ResourceUtils.addUriProperty;
 
 public class RecordWrapProcessing {
+    private static final String DATA_GOV_LINK_EN = "http://data.gov.ro/en/";
+
     public static void mapEntries(
             Model model,
             Resource aggregation,
@@ -88,8 +89,8 @@ public class RecordWrapProcessing {
         Resource provider = model.createResource(providerLink);
         provider.addProperty(RDF.type, FOAF.Organization);
 
-        addUriProperty(model, provider, DC_11.identifier, Constants.DATA_GOV_LINK_EN);
-        addUriProperty(model, provider, FOAF.homepage, Constants.DATA_GOV_LINK_EN);
+        addUriProperty(model, provider, DC_11.identifier, DATA_GOV_LINK_EN);
+        addUriProperty(model, provider, FOAF.homepage, DATA_GOV_LINK_EN);
         addUriProperty(model, provider, FOAF.logo, "https://data.gov.ro/assets/images/gov/gov3.png");
 
         provider.addProperty(SKOS.prefLabel, "data.gov.ro");

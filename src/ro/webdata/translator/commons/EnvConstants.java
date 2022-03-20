@@ -1,5 +1,6 @@
 package ro.webdata.translator.commons;
 
+import ro.webdata.echo.commons.Const;
 import ro.webdata.echo.commons.graph.Namespace;
 
 public final class EnvConstants {
@@ -21,5 +22,9 @@ public final class EnvConstants {
     public static final String NS_REPO_RESOURCE_ORGANIZATION = Namespace.NS_REPO_RESOURCE_ORGANIZATION;
     public static final String NS_REPO_RESOURCE_PLACE = Namespace.NS_REPO_RESOURCE_PLACE;
 
-
+    /**
+     * The native dataset language
+     * FIXME: change the main language as you need
+     */
+    public static final String LANG_MAIN =  Const.LANG_RO;
 }

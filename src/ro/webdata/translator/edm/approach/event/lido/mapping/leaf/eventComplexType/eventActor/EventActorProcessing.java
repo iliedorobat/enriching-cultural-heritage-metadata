@@ -18,10 +18,10 @@ import ro.webdata.parser.xml.lido.core.leaf.eventActor.EventActor;
 import ro.webdata.parser.xml.lido.core.leaf.roleActor.RoleActor;
 import ro.webdata.parser.xml.lido.core.leaf.term.Term;
 import ro.webdata.parser.xml.lido.core.set.nameActorSet.NameActorSet;
-import ro.webdata.translator.edm.approach.event.lido.commons.constants.Constants;
 
 import java.util.ArrayList;
 
+import static ro.webdata.translator.commons.EnvConstants.LANG_MAIN;
 import static ro.webdata.translator.commons.EnvConstants.NS_REPO_RESOURCE_AGENT;
 
 public class EventActorProcessing {
@@ -115,7 +115,7 @@ public class EventActorProcessing {
         String role = getActorRole(roleActorList, Const.LANG_EN);
 
         if (role == null) {
-            role = getActorRole(roleActorList, Constants.LANG_MAIN);
+            role = getActorRole(roleActorList, LANG_MAIN);
         }
 
         if (role == null) {

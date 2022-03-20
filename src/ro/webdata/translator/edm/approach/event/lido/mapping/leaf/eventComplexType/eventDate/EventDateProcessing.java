@@ -10,11 +10,12 @@ import ro.webdata.normalization.timespan.ro.TimespanUtils;
 import ro.webdata.parser.xml.lido.core.leaf.displayDate.DisplayDate;
 import ro.webdata.parser.xml.lido.core.leaf.eventDate.EventDate;
 import ro.webdata.translator.commons.FileConstants;
-import ro.webdata.translator.edm.approach.event.lido.commons.constants.Constants;
 
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.TreeSet;
+
+import static ro.webdata.translator.commons.EnvConstants.LANG_MAIN;
 
 public class EventDateProcessing {
     /**
@@ -39,7 +40,7 @@ public class EventDateProcessing {
 
             // TODO: detecting the language tag
             // FIXME: update as you need
-            if (Constants.LANG_MAIN.equals(Const.LANG_RO)) {
+            if (LANG_MAIN.equals(Const.LANG_RO)) {
                 timespanSet = TimespanUtils.getTimespanSet(text);
             }
 
