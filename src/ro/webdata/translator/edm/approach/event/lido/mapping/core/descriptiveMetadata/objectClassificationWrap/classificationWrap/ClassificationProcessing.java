@@ -22,7 +22,7 @@ public class ClassificationProcessing {
      * @param providedCHO The CHO
      * @param classificationWrap The wrapper for classification properties
      */
-    public void addClassificationWrap(Model model, Resource providedCHO, ClassificationWrap classificationWrap) {
+    public static void addClassificationWrap(Model model, Resource providedCHO, ClassificationWrap classificationWrap) {
         if (classificationWrap != null) {
             ArrayList<Classification> classificationList = classificationWrap.getClassification();
             addClassificationList(model, providedCHO, classificationList);
@@ -35,10 +35,11 @@ public class ClassificationProcessing {
      * @param providedCHO The CHO
      * @param classificationList The list with <b>Classification</b> objects
      */
-    private void addClassificationList(
-            Model model, Resource providedCHO, ArrayList<Classification> classificationList) {
-        for (int i = 0; i < classificationList.size(); i++) {
-            addClassificationTermList(model, providedCHO, classificationList.get(i));
+    private static void addClassificationList(
+            Model model, Resource providedCHO, ArrayList<Classification> classificationList
+    ) {
+        for (Classification classification : classificationList) {
+            addClassificationTermList(model, providedCHO, classification);
         }
     }
 
@@ -48,19 +49,18 @@ public class ClassificationProcessing {
      * @param providedCHO The CHO
      * @param classification <b>Classification</b> object
      */
-    private void addClassificationTermList(Model model, Resource providedCHO, Classification classification) {
+    private static void addClassificationTermList(Model model, Resource providedCHO, Classification classification) {
         ArrayList<Term> termList = classification.getTerm();
         String type = classification.getType().getType();
 
-        for (int i = 0; i < termList.size(); i++) {
-            Term term = termList.get(i);
+        for (Term term : termList) {
             String lang = term.getLang().getLang();
 
             if (type != null && type.equals(LIDOType.EUROPEANA_TYPE)) {
                 addClassificationTerm(model, providedCHO, term, EDM.type);
 
                 if (type.equals(EDMType.VALUE_TEXT))
-                    System.err.println(this.getClass().getName() + ":" +
+                    System.err.println(ClassificationProcessing.class.getName() + ":" +
                             "\nFor the TEXT type must be provided the \"dc:language\" property");
             } else {
                 addClassificationTerm(model, providedCHO, term, null);
@@ -76,10 +76,10 @@ public class ClassificationProcessing {
      * @param model The RDF graph
      * @param providedCHO The CHO
      * @param term
-     * @param type
      */
-    private void addClassificationTerm(
-            Model model, Resource providedCHO, Term term, Property type) {
+    private static void addClassificationTerm(
+            Model model, Resource providedCHO, Term term, Property type
+    ) {
         String lang = term.getLang().getLang();
         String text = term.getText();
         boolean isEDMType = Validators.isEDMType(text);

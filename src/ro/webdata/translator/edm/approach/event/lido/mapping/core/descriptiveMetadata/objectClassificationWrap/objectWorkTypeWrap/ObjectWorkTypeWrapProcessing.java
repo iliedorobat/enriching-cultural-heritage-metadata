@@ -17,8 +17,9 @@ public class ObjectWorkTypeWrapProcessing {
      * @param providedCHO The CHO
      * @param objectWorkTypeWrap
      */
-    public void addObjectWorkTypeWrap(
-            Model model, Resource providedCHO, ObjectWorkTypeWrap objectWorkTypeWrap) {
+    public static void addObjectWorkTypeWrap(
+            Model model, Resource providedCHO, ObjectWorkTypeWrap objectWorkTypeWrap
+    ) {
         if (objectWorkTypeWrap != null) {
             ArrayList<ObjectWorkType> objectWorkTypeList = objectWorkTypeWrap.getObjectWorkType();
             addObjectWorkTypeList(model, providedCHO, objectWorkTypeList);
@@ -31,11 +32,12 @@ public class ObjectWorkTypeWrapProcessing {
      * @param providedCHO The CHO
      * @param objectWorkTypeList
      */
-    private void addObjectWorkTypeList(
-            Model model, Resource providedCHO, ArrayList<ObjectWorkType> objectWorkTypeList) {
-            for (int i = 0; i < objectWorkTypeList.size(); i++) {
-                addObjectWorkTypeTermList(model, providedCHO, objectWorkTypeList.get(i));
-            }
+    private static void addObjectWorkTypeList(
+            Model model, Resource providedCHO, ArrayList<ObjectWorkType> objectWorkTypeList
+    ) {
+        for (ObjectWorkType objectWorkType : objectWorkTypeList) {
+            addObjectWorkTypeTermList(model, providedCHO, objectWorkType);
+        }
     }
 
     /**
@@ -44,10 +46,10 @@ public class ObjectWorkTypeWrapProcessing {
      * @param providedCHO The CHO
      * @param objectWorkType
      */
-    private void addObjectWorkTypeTermList(Model model, Resource providedCHO, ObjectWorkType objectWorkType) {
+    private static void addObjectWorkTypeTermList(Model model, Resource providedCHO, ObjectWorkType objectWorkType
+    ) {
         ArrayList<Term> termList = objectWorkType.getTerm();
-        for (int i = 0; i < termList.size(); i++) {
-            Term term = termList.get(i);
+        for (Term term : termList) {
             addObjectWorkTypeTerm(model, providedCHO, term);
         }
     }
@@ -59,7 +61,7 @@ public class ObjectWorkTypeWrapProcessing {
      * @param providedCHO The CHO
      * @param term
      */
-    private void addObjectWorkTypeTerm(Model model, Resource providedCHO, Term term) {
+    private static void addObjectWorkTypeTerm(Model model, Resource providedCHO, Term term) {
         String lang = term.getLang().getLang();
         String text = term.getText();
 

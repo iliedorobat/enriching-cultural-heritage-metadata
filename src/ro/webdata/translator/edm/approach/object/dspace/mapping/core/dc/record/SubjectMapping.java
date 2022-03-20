@@ -25,7 +25,7 @@ public class SubjectMapping {
             case REFINEMENT_OTHER:
                 providedCHO.addProperty(DC_11.subject, value, language);
                 break;
-            //TODO: classification = dc:type?
+            // TODO: classification == dc:type?
             case REFINEMENT_CLASSIFICATION:
                 providedCHO.addProperty(DC_11.type, value, language);
                 break;

@@ -5,8 +5,8 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DC_11;
-import ro.webdata.translator.edm.approach.event.lido.commons.PropertyUtils;
 import ro.webdata.parser.xml.lido.core.leaf.workID.WorkID;
+import ro.webdata.translator.edm.approach.event.lido.commons.PropertyUtils;
 
 import java.util.ArrayList;
 
@@ -17,12 +17,10 @@ public class WorkIDProcessing {
      * @param providedCHO The CHO
      * @param workIDList The related WorkID objects list
      */
-    public void addWorkIDList(Model model, Resource providedCHO, ArrayList<WorkID> workIDList) {
-        WorkID workID;
+    public static void addWorkIDList(Model model, Resource providedCHO, ArrayList<WorkID> workIDList) {
         String text, type;
 
-        for (int i = 0; i < workIDList.size(); i++) {
-            workID = workIDList.get(i);
+        for (WorkID workID : workIDList) {
             text = workID.getText();
             type = workID.getType().getType();
 

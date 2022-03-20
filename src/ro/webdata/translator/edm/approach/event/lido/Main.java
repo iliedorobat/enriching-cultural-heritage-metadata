@@ -11,8 +11,7 @@ import ro.webdata.translator.commons.GraphUtils;
 import ro.webdata.translator.edm.approach.event.lido.mapping.core.LidoWrapProcessing;
 
 public class Main {
-    private static LidoWrapProcessing lidoWrapProcessing = new LidoWrapProcessing();
-    private static String[] fileNames = {
+    private static final String[] FILE_NAMES = {
             FileConstants.FILE_NAME_ARHEOLOGIE,
             FileConstants.FILE_NAME_ARTA,
             FileConstants.FILE_NAME_ARTE_DECO,
@@ -27,24 +26,27 @@ public class Main {
 
     public static void main(String[] args) {
         Print.operation(Const.OPERATION_START, EnvConstants.SHOULD_PRINT);
-        if (!EnvConstants.IS_DEMO)
+
+        if (!EnvConstants.IS_DEMO) {
             run();
-        else
+        } else {
             runDemo();
+        }
+
         Print.operation(Const.OPERATION_END, EnvConstants.SHOULD_PRINT);
     }
 
     //---------------------- Real Scenario ---------------------- //
     private static void run() {
-        for (int i = 0; i < fileNames.length; i++) {
+        for (String fileName : FILE_NAMES) {
             Model model = GraphModel.generateModel();
             String filePath = FileConstants.PATH_INPUT_LIDO_DIR
-                    + File.FILE_SEPARATOR + fileNames[i]
+                    + File.FILE_SEPARATOR + fileName
                     + File.EXTENSION_SEPARATOR + File.EXTENSION_XML;
-            lidoWrapProcessing.mapEntries(model, filePath);
+            LidoWrapProcessing.mapEntries(model, filePath);
 
             String outputPath = FileConstants.PATH_OUTPUT_LIDO_DIR
-                    + File.FILE_SEPARATOR + fileNames[i]
+                    + File.FILE_SEPARATOR + fileName
                     + File.EXTENSION_SEPARATOR + File.EXTENSION_RDF;
             GraphUtils.writeRDFGraph(model, outputPath, EnvConstants.PRINT_RDF_RESULTS);
         }
@@ -57,7 +59,7 @@ public class Main {
         String filePath = FileConstants.PATH_INPUT_LIDO_DIR
                 + File.FILE_SEPARATOR + FileConstants.FILE_NAME_DEMO
                 + File.EXTENSION_SEPARATOR + File.EXTENSION_XML;
-        lidoWrapProcessing.mapEntries(model, filePath);
+        LidoWrapProcessing.mapEntries(model, filePath);
         GraphUtils.writeRDFGraph(model, FileConstants.PATH_OUTPUT_DEMO_FILE, EnvConstants.PRINT_RDF_RESULTS);
     }
 }

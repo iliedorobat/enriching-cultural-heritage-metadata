@@ -17,8 +17,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class EuropeanaMapping {
-    //TODO: the elements and the qualifiers should be lowercase
-    // add suppress the element value to be lowercase (in the parser)
+    // TODO: the elements and the qualifiers should be lowercase
+    //  add suppress the element value to be lowercase (in the parser)
     private static final String ELEMENT_IS_SHOWN_AT = "isShownAt";
     private static final String ELEMENT_IS_SHOWN_BY = "isShownBy";
     private static final String ELEMENT_PROVIDER = "provider";
@@ -64,7 +64,7 @@ public class EuropeanaMapping {
         }
     }
 
-    //TODO: add edm:dataProvider and edm:rights
+    // TODO: add edm:dataProvider and edm:rights
     private static Resource generateAggregation(Model model, Resource providedCHO) {
         Resource aggregation = null;
         String providedCHOUri = providedCHO.getURI();

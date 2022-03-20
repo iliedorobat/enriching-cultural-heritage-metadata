@@ -24,12 +24,12 @@ public class AppellationComplexTypeProcessing {
      * @param providedCHO The CHO
      * @param appellationComplexType <b>AppellationComplexType</b> object
      */
-    public void addTitleList(Model model, Resource providedCHO, AppellationComplexType appellationComplexType) {
+    public static void addTitleList(Model model, Resource providedCHO, AppellationComplexType appellationComplexType) {
         ArrayList<HashMap<String, String>> valuesList = getAppellationValuesList(appellationComplexType);
         HashMap<String, String> hashMap;
 
-        for (int i = 0; i < valuesList.size(); i++) {
-            hashMap = valuesList.get(i);
+        for (HashMap<String, String> stringStringHashMap : valuesList) {
+            hashMap = stringStringHashMap;
             addTitle(model, providedCHO, hashMap);
         }
     }
@@ -39,14 +39,14 @@ public class AppellationComplexTypeProcessing {
      * @param appellationComplexType <b>AppellationValue</b> object
      * @return <b>ArrayList< HashMap< String, String > ></b>
      */
-    public ArrayList<HashMap<String, String>> getAppellationValuesList(AppellationComplexType appellationComplexType) {
+    public static ArrayList<HashMap<String, String>> getAppellationValuesList(AppellationComplexType appellationComplexType) {
         ArrayList<AppellationValue> appellationValueList = appellationComplexType.getAppellationValue();
         ArrayList<HashMap<String, String>> hashMapList = new ArrayList<>();
         AppellationValue appellationValue;
         HashMap<String, String> hashMap;
 
-        for (int i = 0; i < appellationValueList.size(); i++) {
-            appellationValue = appellationValueList.get(i);
+        for (AppellationValue value : appellationValueList) {
+            appellationValue = value;
             hashMap = new HashMap<>();
 
             hashMap.put(LABEL, appellationValue.getLabel().getLabel());
@@ -66,7 +66,7 @@ public class AppellationComplexTypeProcessing {
      * @param providedCHO The CHO
      * @param hashMap A map with title, label and language
      */
-    private void addTitle(Model model, Resource providedCHO, HashMap<String, String> hashMap) {
+    private static void addTitle(Model model, Resource providedCHO, HashMap<String, String> hashMap) {
         String label = hashMap.get(LABEL),
                 language = hashMap.get(LANGUAGE),
                 pref = hashMap.get(PREF),
@@ -75,20 +75,26 @@ public class AppellationComplexTypeProcessing {
 
         if (label != null) {
             labelLiteral = model.createLiteral(label, language);
-            if (labelLiteral != null)
+
+            if (labelLiteral != null) {
                 providedCHO.addProperty(DCTerms.alternative, labelLiteral);
+            }
         }
 
         if (pref != null) {
             prefLiteral = model.createLiteral(pref, language);
-            if (prefLiteral != null)
+
+            if (prefLiteral != null) {
                 providedCHO.addProperty(DCTerms.alternative, prefLiteral);
+            }
         }
 
         if (text != null) {
             titleLiteral = model.createLiteral(text, language);
-            if (titleLiteral != null)
+
+            if (titleLiteral != null) {
                 providedCHO.addProperty(DC_11.title, titleLiteral);
+            }
         }
     }
 }

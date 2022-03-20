@@ -22,7 +22,7 @@ public class RecordIDProcessing {
      * @param idList The LIDO list with <b>lido:recordID</b> elements
      * @return An unique identifier
      */
-    //TODO: is similar with LidoRecIDProcessing.getRecordId
+    // TODO: is similar with LidoRecIDProcessing.getRecordId
     public static String consolidatesIdentifiers(ArrayList<RecordID> idList) {
         String id = null;
 

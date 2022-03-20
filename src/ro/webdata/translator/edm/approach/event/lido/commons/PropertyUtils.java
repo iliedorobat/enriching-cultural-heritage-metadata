@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import static ro.webdata.echo.commons.accessor.MuseumAccessors.*;
 import static ro.webdata.echo.commons.graph.Namespace.*;
 
-//TODO: move the class to ro.webdata.translator.commons
+// TODO: move the class to ro.webdata.translator.commons
 public final class PropertyUtils {
     public static void addProperties(Model model, Resource museum, Property parentProperty, String modelProperty, JsonObject jsonObject, String accessor, String lang) {
         try {
@@ -185,9 +185,9 @@ public final class PropertyUtils {
      * @return Property - the new created subProperty
      * @deprecated
      */
-    //TODO: createSubProperty(Model model, Property mainProperty, String name)
+    // TODO: createSubProperty(Model model, Property mainProperty, String name)
     public static Property createSubProperty(Model model, String name, Property mainProperty) {
-        //TODO: remove prepareCamelCaseText? (example of property: "lmiCode")
+        // TODO: remove prepareCamelCaseText? (example of property: "lmiCode")
         String subPropertyName = Text.prepareCamelCaseText(name);
 
         String namespace = getPropertyNamespace(subPropertyName);

@@ -29,7 +29,7 @@ public class EventDateProcessing {
         ArrayList<Resource> eventDateResourceList = new ArrayList<>();
         Resource eventDateResource = null;
 
-        //TODO: remove the validation when the LIDO Parser bug is fixed
+        // TODO: remove the validation when the LIDO Parser bug is fixed
         if (eventDate != null)
             displayDateList = eventDate.getDisplayDate();
 
@@ -43,7 +43,7 @@ public class EventDateProcessing {
                 timespanSet = TimespanUtils.getTimespanSet(text);
             }
 
-            //TODO: remove
+            // TODO: remove
             StringWriter sw = new StringWriter()
                     .append(text)
                     .append("|")

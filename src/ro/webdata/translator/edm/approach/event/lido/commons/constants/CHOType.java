@@ -11,7 +11,7 @@ public final class CHOType {
      * is going to be used as values for <b>dc:subject</b> property<br/>
      * E.g. archaeology, documents etc.
      */
-    //TODO: automatize
+    // TODO: automatize
     public static ArrayList<HashMap<String, String>> SUBJECTS = new ArrayList<>();
 
     private static HashMap getSubjects(String language, String value) {

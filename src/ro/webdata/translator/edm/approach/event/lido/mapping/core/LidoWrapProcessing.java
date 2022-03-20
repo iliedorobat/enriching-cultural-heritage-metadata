@@ -26,7 +26,7 @@ import java.util.ArrayList;
 public class LidoWrapProcessing {
     private static final ParserDAO parserDAO = new ParserDAOImpl();
 
-    public void mapEntries(Model model, String fullPath) {
+    public static void mapEntries(Model model, String fullPath) {
         Print.operation(Const.OPERATION_START, fullPath, EnvConstants.SHOULD_PRINT);
 
         LidoWrap lidoWrap = parserDAO.parseLidoFile(fullPath);
@@ -60,7 +60,7 @@ public class LidoWrapProcessing {
         Print.operation(Const.OPERATION_END, fullPath, EnvConstants.SHOULD_PRINT);
     }
 
-    private Resource generateProvidedCHO(Model model, ArrayList<LidoRecID> lidoRecIDList) {
+    private static Resource generateProvidedCHO(Model model, ArrayList<LidoRecID> lidoRecIDList) {
         String recordId = LidoRecIDProcessing.getRecordId(lidoRecIDList);
         Resource providedCHO = model.createResource(Namespace.NS_REPO_RESOURCE_CHO + recordId);
         providedCHO.addProperty(RDF.type, EDM.ProvidedCHO);

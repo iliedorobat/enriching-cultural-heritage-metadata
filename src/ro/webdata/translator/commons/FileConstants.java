@@ -3,7 +3,7 @@ package ro.webdata.translator.commons;
 import ro.webdata.echo.commons.File;
 
 public class FileConstants {
-    //TODO: automatically parse the "files/input/lido" files
+    // TODO: automatically parse the "files/input/lido" files
     public static final String FILE_NAME_ARHEOLOGIE = "inp-clasate-arheologie-2014-02-02";
     public static final String FILE_NAME_ARTA = "inp-clasate-arta-2014-02-02";
     public static final String FILE_NAME_ARTE_DECO = "inp-clasate-arte-decorative-2014-02-02";

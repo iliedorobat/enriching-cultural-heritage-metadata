@@ -15,10 +15,10 @@ public class IdentifierComplexTypeProcessing {
     /**
      * Add an <b>dc:identifier</b> property to a resource
      * @param model The RDF graph
-     * @param resource A RDF resource
+     * @param resource RDF resource
      * @param identifierComplexType <b>IdentifierComplexType</b>
      */
-    public void addIdentifier(Model model, Resource resource, IdentifierComplexType identifierComplexType) {
+    public static void addIdentifier(Model model, Resource resource, IdentifierComplexType identifierComplexType) {
         String text = identifierComplexType.getText();
         String type = identifierComplexType.getType().getType();
 
@@ -41,7 +41,7 @@ public class IdentifierComplexTypeProcessing {
      * @param identifierComplexType <b>IdentifierComplexType</b>
      * @return
      */
-    public ArrayList<Literal> getIdentifierList(Model model, IdentifierComplexType identifierComplexType) {
+    public static ArrayList<Literal> getIdentifierList(Model model, IdentifierComplexType identifierComplexType) {
         ArrayList<Literal> idList = new ArrayList<>();
         String text = identifierComplexType.getText();
         String type = identifierComplexType.getType().getType();

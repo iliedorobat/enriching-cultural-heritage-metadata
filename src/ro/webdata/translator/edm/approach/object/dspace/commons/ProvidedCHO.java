@@ -82,7 +82,7 @@ public final class ProvidedCHO {
                 DcWrapper dcWrapper = Parser.parseDcXmlFile(file.getPath());
                 String schemaName = dcWrapper.getSchemaName();
 
-                //TODO: use a constant
+                // TODO: use a constant
                 if (schemaName.equals("dc")) {
                     providedCHO = generateProvidedCHO(model, dcWrapper);
                 }

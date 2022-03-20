@@ -13,18 +13,15 @@ public class ObjectClassificationWrapProcessing {
      * @param providedCHO The CHO
      * @param objectClassificationWrap The wrapper for classification properties
      */
-    public static void processing(
+    public static void mapEntries(
             Model model,
             Resource providedCHO,
             ObjectClassificationWrap objectClassificationWrap
     ) {
-        ClassificationProcessing classificationProcessing = new ClassificationProcessing();
-        ObjectWorkTypeWrapProcessing objectWorkTypeWrapProcessing = new ObjectWorkTypeWrapProcessing();
-
-        classificationProcessing.addClassificationWrap(
+        ClassificationProcessing.addClassificationWrap(
                 model, providedCHO, objectClassificationWrap.getClassificationWrap()
         );
-        objectWorkTypeWrapProcessing.addObjectWorkTypeWrap(
+        ObjectWorkTypeWrapProcessing.addObjectWorkTypeWrap(
                 model, providedCHO, objectClassificationWrap.getObjectWorkTypeWrap()
         );
     }

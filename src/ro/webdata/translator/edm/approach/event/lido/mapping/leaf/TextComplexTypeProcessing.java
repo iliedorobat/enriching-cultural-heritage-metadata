@@ -18,8 +18,9 @@ public class TextComplexTypeProcessing {
      * @param providedCHO The CHO
      * @param textComplexType <b>TextComplexType</b> object
      */
-    public void addDescription(
-            Model model, Resource providedCHO, TextComplexType textComplexType, LidoType setType) {
+    public static void addDescription(
+            Model model, Resource providedCHO, TextComplexType textComplexType, LidoType setType
+    ) {
         String lang = textComplexType.getLang().getLang(),
                 text = textComplexType.getText(),
                 type = setType.getType();
@@ -39,8 +40,9 @@ public class TextComplexTypeProcessing {
      * @param providedCHO The CHO
      * @param displayObjectMeasurements <b>DisplayObjectMeasurements</b> object
      */
-    public void addMeasurement(
-            Model model, Resource providedCHO, DisplayObjectMeasurements displayObjectMeasurements) {
+    public static void addMeasurement(
+            Model model, Resource providedCHO, DisplayObjectMeasurements displayObjectMeasurements
+    ) {
         String text = displayObjectMeasurements.getText(),
                 type = displayObjectMeasurements.getLabel().getLabel(),
                 name = Text.toCamelCase(type);

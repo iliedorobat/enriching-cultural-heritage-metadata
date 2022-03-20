@@ -10,7 +10,7 @@ import ro.webdata.translator.edm.approach.event.lido.mapping.leaf.eventComplexTy
 import java.util.ArrayList;
 
 public class EventWrapProcessing {
-    public static void processing(
+    public static void mapEntries(
             Model model,
             Resource providedCHO,
             EventWrap eventWrap

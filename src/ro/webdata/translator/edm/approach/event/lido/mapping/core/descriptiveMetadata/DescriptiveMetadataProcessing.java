@@ -14,13 +14,13 @@ public class DescriptiveMetadataProcessing {
            DescriptiveMetadata descriptiveMetadata
     ) {
         if (descriptiveMetadata != null) {
-            ObjectClassificationWrapProcessing.processing(
+            ObjectClassificationWrapProcessing.mapEntries(
                     model, providedCHO, descriptiveMetadata.getObjectClassificationWrap()
             );
-            ObjectIdentificationWrapProcessing.processing(
+            ObjectIdentificationWrapProcessing.mapEntries(
                     model, providedCHO, descriptiveMetadata.getObjectIdentificationWrap()
             );
-            EventWrapProcessing.processing(
+            EventWrapProcessing.mapEntries(
                     model, providedCHO, descriptiveMetadata.getEventWrap()
             );
         }

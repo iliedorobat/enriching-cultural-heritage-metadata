@@ -13,16 +13,13 @@ import ro.webdata.translator.edm.approach.event.lido.mapping.leaf.WorkIDProcessi
 import java.util.ArrayList;
 
 public class RepositoryWrapProcessing {
-    private static LegalBodyRefComplexTypeProcessing legalBodyRefComplexTypeProcessing = new LegalBodyRefComplexTypeProcessing();
-    private static WorkIDProcessing workIDProcessing = new WorkIDProcessing();
-
     /**
      * Add the repository description (the current location of the CHO)
      * @param model The RDF graph
      * @param providedCHO The CHO
      * @param repositoryWrap The wrapper for repository properties
      */
-    public void addRepositoryWrap(Model model, Resource providedCHO, RepositoryWrap repositoryWrap) {
+    public static void addRepositoryWrap(Model model, Resource providedCHO, RepositoryWrap repositoryWrap) {
         if (repositoryWrap != null) {
             ArrayList<RepositorySet> repositorySetList = repositoryWrap.getRepositorySet();
             addRepositorySet(model, providedCHO, repositorySetList);
@@ -35,9 +32,8 @@ public class RepositoryWrapProcessing {
      * @param providedCHO The CHO
      * @param repositorySetList The list with <b>RepositorySet</b> objects
      */
-    private void addRepositorySet(Model model, Resource providedCHO, ArrayList<RepositorySet> repositorySetList) {
-        for (int i = 0; i < repositorySetList.size(); i++) {
-            RepositorySet repositorySet = repositorySetList.get(i);
+    private static void addRepositorySet(Model model, Resource providedCHO, ArrayList<RepositorySet> repositorySetList) {
+        for (RepositorySet repositorySet : repositorySetList) {
             addRepositoryName(model, providedCHO, repositorySet.getRepositoryName());
             addRepository(model, providedCHO, repositorySet.getWorkID());
         }
@@ -49,12 +45,13 @@ public class RepositoryWrapProcessing {
      * @param providedCHO The CHO
      * @param repositoryName The <b>RepositoryName</b> object
      */
-    private void addRepositoryName(Model model, Resource providedCHO, RepositoryName repositoryName) {
-        Resource organization = legalBodyRefComplexTypeProcessing.createLegalBodyRef(model, repositoryName);
+    private static void addRepositoryName(Model model, Resource providedCHO, RepositoryName repositoryName) {
+        Resource organization = LegalBodyRefComplexTypeProcessing.createLegalBodyRef(model, repositoryName);
 
         // Add the CHO current location
-        if (organization != null)
+        if (organization != null) {
             providedCHO.addProperty(EDM.currentLocation, organization);
+        }
     }
 
     /**
@@ -63,7 +60,7 @@ public class RepositoryWrapProcessing {
      * @param providedCHO The CHO
      * @param workIDList The list with <b>WorkID</b> objects
      */
-    private void addRepository(Model model, Resource providedCHO, ArrayList<WorkID> workIDList) {
-        workIDProcessing.addWorkIDList(model, providedCHO, workIDList);
+    private static void addRepository(Model model, Resource providedCHO, ArrayList<WorkID> workIDList) {
+        WorkIDProcessing.addWorkIDList(model, providedCHO, workIDList);
     }
 }

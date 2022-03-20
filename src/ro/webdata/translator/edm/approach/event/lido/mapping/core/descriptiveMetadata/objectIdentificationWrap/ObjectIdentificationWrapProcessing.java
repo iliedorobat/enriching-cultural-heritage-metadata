@@ -16,30 +16,24 @@ public class ObjectIdentificationWrapProcessing {
      * @param providedCHO The CHO
      * @param objectIdentificationWrap The wrapper for object identification properties
      */
-    public static void processing(
+    public static void mapEntries(
             Model model,
             Resource providedCHO,
             ObjectIdentificationWrap objectIdentificationWrap
     ) {
-        TitleWrapProcessing titleWrapProcessing = new TitleWrapProcessing();
-        RepositoryWrapProcessing repositoryWrapProcessing = new RepositoryWrapProcessing();
-        DisplayStateEditionWrapProcessing displayStateEditionWrapProcessing = new DisplayStateEditionWrapProcessing();
-        ObjectDescriptionWrapProcessing objectDescriptionWrapProcessing = new ObjectDescriptionWrapProcessing();
-        ObjectMeasurementsWrapProcessing objectMeasurementsWrapProcessing = new ObjectMeasurementsWrapProcessing();
-
-        titleWrapProcessing.addTitleWrap(
+        TitleWrapProcessing.addTitleWrap(
                 model, providedCHO, objectIdentificationWrap.getTitleWrap()
         );
-        repositoryWrapProcessing.addRepositoryWrap(
+        RepositoryWrapProcessing.addRepositoryWrap(
                 model, providedCHO, objectIdentificationWrap.getRepositoryWrap()
         );
-        displayStateEditionWrapProcessing.addDisplayStateEditionWrap(
+        DisplayStateEditionWrapProcessing.addDisplayStateEditionWrap(
                 model, providedCHO, objectIdentificationWrap.getDisplayStateEditionWrap()
         );
-        objectDescriptionWrapProcessing.addObjectDescriptionWrap(
+        ObjectDescriptionWrapProcessing.addObjectDescriptionWrap(
                 model, providedCHO, objectIdentificationWrap.getObjectDescriptionWrap()
         );
-        objectMeasurementsWrapProcessing.addObjectMeasurementsWrap(
+        ObjectMeasurementsWrapProcessing.addObjectMeasurementsWrap(
                 model, providedCHO, objectIdentificationWrap.getObjectMeasurementsWrap()
         );
     }

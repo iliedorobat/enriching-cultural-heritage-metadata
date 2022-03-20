@@ -58,10 +58,10 @@ public class EventActorProcessing {
         ArrayList<Resource> actorNameList = new ArrayList<>();
 
         for (NameActorSet actorSet : nameActorSetList) {
-            //TODO: check if in "lido:actor" class exists the actorID resource and
-            // if exists, check if there is any other actor with the same actorID
+            // TODO: check if in "lido:actor" class exists the actorID resource and
+            //  if exists, check if there is any other actor with the same actorID
             ArrayList<ActorID> actorID = actor.getActorID();
-            //TODO: same as for all kind of resources ([agent], aggregation, cho, event, license, organization) !!!
+            // TODO: same as for all kind of resources ([agent], aggregation, cho, event, license, organization) !!!
 
             ArrayList<AppellationValue> appellationValueList = actorSet.getAppellationValue();
 

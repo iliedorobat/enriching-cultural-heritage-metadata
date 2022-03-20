@@ -12,12 +12,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public class RecordRightsProcessing {
-    public Resource getLicense(Model model, ArrayList<RecordRights> recordRightsList) {
+    public static Resource getLicense(Model model, ArrayList<RecordRights> recordRightsList) {
         int size = recordRightsList.size();
 
         if (size > 0) {
             if (size > 1) {
-                System.err.println(this.getClass().getName() + ":" +
+                System.err.println(RecordRightsProcessing.class.getName() + ":" +
                         "\nThere has been received " + size + " \"lido:recordRights\" objects," +
                         " but EDM accepts only one license object.");
             }
@@ -28,13 +28,13 @@ public class RecordRightsProcessing {
         return null;
     }
 
-    private Resource getLicense(Model model, RecordRights recordRights) {
+    private static Resource getLicense(Model model, RecordRights recordRights) {
         ArrayList<RightsType> rightsTypeList = recordRights.getRightsType();
         int size = rightsTypeList.size();
 
         if (size > 0) {
             if (size > 1) {
-                System.err.println(this.getClass().getName() + ":" +
+                System.err.println(RecordRightsProcessing.class.getName() + ":" +
                         "\nThere has been received " + size + " \"lido:rightsType\" objects," +
                         " but EDM accepts only one license object.");
             }
@@ -45,13 +45,13 @@ public class RecordRightsProcessing {
         return null;
     }
 
-    private Resource getLicense(Model model, RightsType rightsType) {
+    private static Resource getLicense(Model model, RightsType rightsType) {
         ArrayList<Term> termList = rightsType.getTerm();
         int size = termList.size();
 
         if (size > 0) {
             if (size > 1) {
-                System.err.println(this.getClass().getName() + ":" +
+                System.err.println(RecordRightsProcessing.class.getName() + ":" +
                         "\nThere has been received " + size + " \"lido:term\" objects," +
                         " but EDM accepts only one license object.");
             }

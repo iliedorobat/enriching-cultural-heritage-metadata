@@ -51,7 +51,7 @@ public class DSpaceMapping {
             if (files != null) {
                 filesProcessing(model, providedCHO, files);
             }
-            //TODO: check if edm:type has been added; if not, extract the value from the file extension
+            // TODO: check if edm:type has been added; if not, extract the value from the file extension
         }
     }
 

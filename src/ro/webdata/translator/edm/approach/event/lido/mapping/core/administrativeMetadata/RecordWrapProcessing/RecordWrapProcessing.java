@@ -21,19 +21,16 @@ import static ro.webdata.translator.commons.Constants.ROMANIAN_COUNTRY_NAME;
 import static ro.webdata.translator.edm.approach.event.lido.commons.ResourceUtils.addUriProperty;
 
 public class RecordWrapProcessing {
-    private static final RecordSourceProcessing recordSourceProcessing = new RecordSourceProcessing();
-    private static final RecordRightsProcessing recordRightsProcessing = new RecordRightsProcessing();
-
     public static void mapEntries(
             Model model,
             Resource aggregation,
             Resource providedCHO,
             RecordWrap recordWrap
     ) {
-        Resource dataProvider = recordSourceProcessing.generateDataProvider(model, recordWrap.getRecordSource());
+        Resource dataProvider = RecordSourceProcessing.generateDataProvider(model, recordWrap.getRecordSource());
         Resource provider = generateProvider(model);
         Resource intermediateProvider = generateIntermediateProvider(model);
-        Resource license = recordRightsProcessing.getLicense(model, recordWrap.getRecordRights());
+        Resource license = RecordRightsProcessing.getLicense(model, recordWrap.getRecordRights());
 
         aggregation.addProperty(EDM.aggregatedCHO, providedCHO);
         aggregation.addProperty(EDM.provider, provider);
