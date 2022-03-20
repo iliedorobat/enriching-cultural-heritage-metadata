@@ -2,12 +2,12 @@ package ro.webdata.translator.edm.approach.event.lido.mapping.core.descriptiveMe
 
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
+import ro.webdata.parser.xml.lido.core.wrap.objectIdentificationWrap.ObjectIdentificationWrap;
 import ro.webdata.translator.edm.approach.event.lido.mapping.core.descriptiveMetadata.objectIdentificationWrap.displayStateEditionWrap.DisplayStateEditionWrapProcessing;
 import ro.webdata.translator.edm.approach.event.lido.mapping.core.descriptiveMetadata.objectIdentificationWrap.objectDescriptionWrap.ObjectDescriptionWrapProcessing;
 import ro.webdata.translator.edm.approach.event.lido.mapping.core.descriptiveMetadata.objectIdentificationWrap.objectMeasurementsWrap.ObjectMeasurementsWrapProcessing;
 import ro.webdata.translator.edm.approach.event.lido.mapping.core.descriptiveMetadata.objectIdentificationWrap.repositoryWrap.RepositoryWrapProcessing;
 import ro.webdata.translator.edm.approach.event.lido.mapping.core.descriptiveMetadata.objectIdentificationWrap.titleWrap.TitleWrapProcessing;
-import ro.webdata.parser.xml.lido.core.wrap.objectIdentificationWrap.ObjectIdentificationWrap;
 
 public class ObjectIdentificationWrapProcessing {
     /**
@@ -16,7 +16,7 @@ public class ObjectIdentificationWrapProcessing {
      * @param providedCHO The CHO
      * @param objectIdentificationWrap The wrapper for object identification properties
      */
-    public void processing(
+    public static void processing(
             Model model,
             Resource providedCHO,
             ObjectIdentificationWrap objectIdentificationWrap
@@ -28,15 +28,20 @@ public class ObjectIdentificationWrapProcessing {
         ObjectMeasurementsWrapProcessing objectMeasurementsWrapProcessing = new ObjectMeasurementsWrapProcessing();
 
         titleWrapProcessing.addTitleWrap(
-                model, providedCHO, objectIdentificationWrap.getTitleWrap());
+                model, providedCHO, objectIdentificationWrap.getTitleWrap()
+        );
         repositoryWrapProcessing.addRepositoryWrap(
-                model, providedCHO, objectIdentificationWrap.getRepositoryWrap());
+                model, providedCHO, objectIdentificationWrap.getRepositoryWrap()
+        );
         displayStateEditionWrapProcessing.addDisplayStateEditionWrap(
-                model, providedCHO, objectIdentificationWrap.getDisplayStateEditionWrap());
+                model, providedCHO, objectIdentificationWrap.getDisplayStateEditionWrap()
+        );
         objectDescriptionWrapProcessing.addObjectDescriptionWrap(
-                model, providedCHO, objectIdentificationWrap.getObjectDescriptionWrap());
+                model, providedCHO, objectIdentificationWrap.getObjectDescriptionWrap()
+        );
         objectMeasurementsWrapProcessing.addObjectMeasurementsWrap(
-                model, providedCHO, objectIdentificationWrap.getObjectMeasurementsWrap());
+                model, providedCHO, objectIdentificationWrap.getObjectMeasurementsWrap()
+        );
     }
 
 

@@ -2,9 +2,9 @@ package ro.webdata.translator.edm.approach.event.lido.mapping.core.descriptiveMe
 
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
+import ro.webdata.parser.xml.lido.core.wrap.objectClassificationWrap.ObjectClassificationWrap;
 import ro.webdata.translator.edm.approach.event.lido.mapping.core.descriptiveMetadata.objectClassificationWrap.classificationWrap.ClassificationProcessing;
 import ro.webdata.translator.edm.approach.event.lido.mapping.core.descriptiveMetadata.objectClassificationWrap.objectWorkTypeWrap.ObjectWorkTypeWrapProcessing;
-import ro.webdata.parser.xml.lido.core.wrap.objectClassificationWrap.ObjectClassificationWrap;
 
 public class ObjectClassificationWrapProcessing {
     /**
@@ -13,7 +13,7 @@ public class ObjectClassificationWrapProcessing {
      * @param providedCHO The CHO
      * @param objectClassificationWrap The wrapper for classification properties
      */
-    public void processing(
+    public static void processing(
             Model model,
             Resource providedCHO,
             ObjectClassificationWrap objectClassificationWrap
@@ -22,8 +22,10 @@ public class ObjectClassificationWrapProcessing {
         ObjectWorkTypeWrapProcessing objectWorkTypeWrapProcessing = new ObjectWorkTypeWrapProcessing();
 
         classificationProcessing.addClassificationWrap(
-                model, providedCHO, objectClassificationWrap.getClassificationWrap());
+                model, providedCHO, objectClassificationWrap.getClassificationWrap()
+        );
         objectWorkTypeWrapProcessing.addObjectWorkTypeWrap(
-                model, providedCHO, objectClassificationWrap.getObjectWorkTypeWrap());
+                model, providedCHO, objectClassificationWrap.getObjectWorkTypeWrap()
+        );
     }
 }

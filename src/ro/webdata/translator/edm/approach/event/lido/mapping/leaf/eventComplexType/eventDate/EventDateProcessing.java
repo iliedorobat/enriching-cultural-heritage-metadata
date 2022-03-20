@@ -24,7 +24,7 @@ public class EventDateProcessing {
      * @param eventDate The <b>lido:eventDate</b> object
      * @return
      */
-    public ArrayList<Resource> generateEventDate(Model model, Resource providedCHO, EventDate eventDate) {
+    public static ArrayList<Resource> generateEventDate(Model model, Resource providedCHO, EventDate eventDate) {
         ArrayList<DisplayDate> displayDateList = new ArrayList<>();
         ArrayList<Resource> eventDateResourceList = new ArrayList<>();
         Resource eventDateResource = null;
@@ -33,8 +33,7 @@ public class EventDateProcessing {
         if (eventDate != null)
             displayDateList = eventDate.getDisplayDate();
 
-        for (int i = 0; i < displayDateList.size(); i++) {
-            DisplayDate displayDate = displayDateList.get(i);
+        for (DisplayDate displayDate : displayDateList) {
             String text = displayDate.getText();
             TreeSet<String> timespanSet = new TreeSet<>();
 

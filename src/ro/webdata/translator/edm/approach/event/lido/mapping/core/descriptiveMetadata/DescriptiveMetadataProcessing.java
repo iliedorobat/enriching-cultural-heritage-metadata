@@ -8,23 +8,21 @@ import ro.webdata.translator.edm.approach.event.lido.mapping.core.descriptiveMet
 import ro.webdata.translator.edm.approach.event.lido.mapping.core.descriptiveMetadata.objectIdentificationWrap.ObjectIdentificationWrapProcessing;
 
 public class DescriptiveMetadataProcessing {
-    private static ObjectClassificationWrapProcessing objectClassificationWrapProcessing = new ObjectClassificationWrapProcessing();
-    private static ObjectIdentificationWrapProcessing objectIdentificationWrapProcessing = new ObjectIdentificationWrapProcessing();
-    private static EventWrapProcessing eventWrapProcessing = new EventWrapProcessing();
-
     public static void mapEntries(
            Model model,
            Resource providedCHO,
            DescriptiveMetadata descriptiveMetadata
     ) {
-        objectClassificationWrapProcessing.processing(
-                model, providedCHO, descriptiveMetadata.getObjectClassificationWrap()
-        );
-        objectIdentificationWrapProcessing.processing(
-                model, providedCHO, descriptiveMetadata.getObjectIdentificationWrap()
-        );
-        eventWrapProcessing.processing(
-                model, providedCHO, descriptiveMetadata.getEventWrap()
-        );
+        if (descriptiveMetadata != null) {
+            ObjectClassificationWrapProcessing.processing(
+                    model, providedCHO, descriptiveMetadata.getObjectClassificationWrap()
+            );
+            ObjectIdentificationWrapProcessing.processing(
+                    model, providedCHO, descriptiveMetadata.getObjectIdentificationWrap()
+            );
+            EventWrapProcessing.processing(
+                    model, providedCHO, descriptiveMetadata.getEventWrap()
+            );
+        }
     }
 }

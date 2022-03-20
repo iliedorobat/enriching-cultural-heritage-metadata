@@ -28,12 +28,12 @@ public class EventPlaceProcessing {
      * @param eventPlaceList The LIDO Event Place list
      * @return The RDF Event Place list
      */
-    public ArrayList<Resource> generateEventPlaceList(
-            Model model, Resource providedCHO, ArrayList<EventPlace> eventPlaceList) {
+    public static ArrayList<Resource> generateEventPlaceList(
+            Model model, Resource providedCHO, ArrayList<EventPlace> eventPlaceList
+    ) {
         ArrayList<Resource> placeList = new ArrayList<>();
 
-        for (int i = 0; i < eventPlaceList.size(); i++) {
-            EventPlace eventPlace = eventPlaceList.get(i);
+        for (EventPlace eventPlace : eventPlaceList) {
             ArrayList<Resource> resourceList = generateEventPlace(model, eventPlace.getPlace());
             placeList.addAll(resourceList);
         }
@@ -49,10 +49,9 @@ public class EventPlaceProcessing {
      * @param place The place
      * @return The list with Event Places
      */
-    private ArrayList<Resource> generateEventPlace(Model model, Place place) {
+    private static ArrayList<Resource> generateEventPlace(Model model, Place place) {
         LinkedHashMap<String, ArrayList<PlaceComplexType>> placeMap =  preparePlaceMap(place);
-        ArrayList<Resource> resourceList = generatePlaceList(model, placeMap);
-        return resourceList;
+        return generatePlaceList(model, placeMap);
     }
 
     /**
@@ -61,7 +60,7 @@ public class EventPlaceProcessing {
      * (E.g.: country, region, county, commune, locality, point)
      * @param place The related place
      */
-    private LinkedHashMap<String, ArrayList<PlaceComplexType>> preparePlaceMap(PlaceComplexType place) {
+    private static LinkedHashMap<String, ArrayList<PlaceComplexType>> preparePlaceMap(PlaceComplexType place) {
         LinkedHashMap<String, ArrayList<PlaceComplexType>> placeMap = new LinkedHashMap<>();
         ArrayList<PartOfPlace> partOfPlaceList = place.getPartOfPlace();
 
@@ -83,15 +82,16 @@ public class EventPlaceProcessing {
      * @param place The related place
      * @param placeMap A sorted key-value list of places
      */
-    private void pushPlaceByType(PlaceComplexType place, HashMap<String, ArrayList<PlaceComplexType>> placeMap) {
+    private static void pushPlaceByType(PlaceComplexType place, HashMap<String, ArrayList<PlaceComplexType>> placeMap) {
         String placeType = place.getPoliticalEntity().getAttrValue();
         ArrayList<PlaceComplexType> placeValueList = placeMap.containsKey(placeType)
                 ? placeMap.get(placeType)
                 : new ArrayList<>();
         placeValueList.add(place);
 
-        if (!placeMap.containsKey(placeType))
+        if (!placeMap.containsKey(placeType)) {
             placeMap.put(placeType, placeValueList);
+        }
     }
 
     /**
@@ -103,8 +103,9 @@ public class EventPlaceProcessing {
      * @param model The RDF graph
      * @param placeMap A sorted key-value list of places
      */
-    private ArrayList<Resource> generatePlaceList(
-            Model model, LinkedHashMap<String, ArrayList<PlaceComplexType>> placeMap) {
+    private static ArrayList<Resource> generatePlaceList(
+            Model model, LinkedHashMap<String, ArrayList<PlaceComplexType>> placeMap
+    ) {
         ArrayList<Resource> resourceList = new ArrayList<>();
 
         for (Map.Entry<String, ArrayList<PlaceComplexType>> entry : placeMap.entrySet()) {
@@ -123,7 +124,7 @@ public class EventPlaceProcessing {
      * @param placeList The list of places
      * @return The list of event places
      */
-    private ArrayList<Resource> generateEventPlacesNames(
+    private static ArrayList<Resource> generateEventPlacesNames(
             Model model,
             LinkedHashMap<String, ArrayList<PlaceComplexType>> placeMap,
             ArrayList<PlaceComplexType> placeList
@@ -146,7 +147,7 @@ public class EventPlaceProcessing {
      * @param place The specified place
      * @return The list of RDF Resources for a specified place
      */
-    private ArrayList<Resource> generateEventPlaceNames(
+    private static ArrayList<Resource> generateEventPlaceNames(
             Model model,
             LinkedHashMap<String, ArrayList<PlaceComplexType>> placeMap,
             PlaceComplexType place
@@ -155,8 +156,7 @@ public class EventPlaceProcessing {
         ArrayList<NamePlaceSet> NamePlaceSetList = place.getNamePlaceSet();
         String placeType = place.getPoliticalEntity().getAttrValue();
 
-        for (int i = 0; i < NamePlaceSetList.size(); i++) {
-            NamePlaceSet namePlaceSet = NamePlaceSetList.get(i);
+        for (NamePlaceSet namePlaceSet : NamePlaceSetList) {
             ArrayList<AppellationValue> appellationValueList = namePlaceSet.getAppellationValue();
             resourceList.add(
                     consolidateEventPlace(model, placeMap, appellationValueList, placeType)
@@ -175,8 +175,8 @@ public class EventPlaceProcessing {
      * @param placeType The political entity ("point", "locality" etc.)
      * @return The consolidated place resource
      */
-    //TODO: "dcterms:hasPart" & "dcterms:isPartOf"
-    private Resource consolidateEventPlace(
+    // TODO: "dcterms:hasPart" & "dcterms:isPartOf"
+    private static Resource consolidateEventPlace(
             Model model,
             LinkedHashMap<String, ArrayList<PlaceComplexType>> placeMap,
             ArrayList<AppellationValue> appellationValueList,
@@ -185,15 +185,14 @@ public class EventPlaceProcessing {
         ArrayList<String> langList = new ArrayList<>();
         Resource placeResource = null;
 
-        for (int i = 0; i < appellationValueList.size(); i++) {
-            AppellationValue appellationValue = appellationValueList.get(i);
+        for (AppellationValue appellationValue : appellationValueList) {
             String lang = appellationValue.getLang().getLang();
             String placeName = appellationValue.getText();
             Literal literal = model.createLiteral(placeName, lang);
 
             if (placeResource == null)
                 placeResource = createEventPlace(model, placeMap, placeName, placeType);
-            Property label = langList.indexOf(lang) == -1
+            Property label = !langList.contains(lang)
                     ? SKOS.prefLabel
                     : SKOS.altLabel;
             placeResource.addProperty(label, literal);
@@ -212,8 +211,8 @@ public class EventPlaceProcessing {
      * @param placeType The political entity ("point", "locality" etc.)
      * @return The place resource
      */
-    //TODO: use geo names (https://www.geonames.org/search.html?q=&country=RO) for places
-    private Resource createEventPlace(
+    // TODO: use geo names (https://www.geonames.org/search.html?q=&country=RO) for places
+    private static Resource createEventPlace(
             Model model,
             LinkedHashMap<String, ArrayList<PlaceComplexType>> placeMap,
             String placeName,
@@ -225,9 +224,9 @@ public class EventPlaceProcessing {
         );
         Resource placeResource = model.createResource(localLink);
 
-        //TODO: add it back
+        // TODO: add it back
 //        String dbpediaLink = ResourceUtils.generateDBPediaURI(placeName);
-//        TODO: try { TimeUnit.SECONDS.sleep(100); } catch (InterruptedException e) { e.printStackTrace(); }
+//        try { TimeUnit.SECONDS.sleep(100); } catch (InterruptedException e) { e.printStackTrace(); }
 //        if (HttpGet.isValidDBPedia(placeName)) {
 //            placeResource.addProperty(OWL2.sameAs, model.createResource(dbpediaLink));
 //        }
@@ -238,8 +237,8 @@ public class EventPlaceProcessing {
         return placeResource;
     }
 
-    //TODO: find a better way to build the name of points, localities and communes
-    private String getPlaceName(
+    // TODO: find a better way to build the name of points, localities and communes
+    private static String getPlaceName(
             LinkedHashMap<String, ArrayList<PlaceComplexType>> placeMap,
             String placeName,
             String placeType
@@ -288,7 +287,7 @@ public class EventPlaceProcessing {
         }
     }
 
-    private String getFirstParentName(
+    private static String getFirstParentName(
             LinkedHashMap<String, ArrayList<PlaceComplexType>> placeMap, String parentPlaceType) {
         return placeMap.get(parentPlaceType).get(0)
                 .getNamePlaceSet().get(0)
@@ -296,7 +295,7 @@ public class EventPlaceProcessing {
                 .getText();
     }
 
-    private String getParentType(String placeType) {
+    private static String getParentType(String placeType) {
         List<String> placeTypeList = Arrays.asList(PlaceType.TYPES);
         int index = placeTypeList.indexOf(placeType);
 
@@ -307,7 +306,7 @@ public class EventPlaceProcessing {
         return placeTypeList.get(index + 1);
     }
 
-    private String getChildType(String placeType) {
+    private static String getChildType(String placeType) {
         List<String> placeTypeList = Arrays.asList(PlaceType.TYPES);
         int index = placeTypeList.indexOf(placeType);
 

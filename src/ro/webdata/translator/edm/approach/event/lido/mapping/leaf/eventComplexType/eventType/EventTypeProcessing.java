@@ -22,8 +22,8 @@ public class EventTypeProcessing {
      * @param eventType The EventType
      * @return Resource which represents the generated event
      */
-    //TODO: owlSameAs for different languages events
-    public Resource generateEventList(Model model, Resource providedCHO, EventType eventType) {
+    // TODO: owlSameAs for different languages events
+    public static Resource generateEventList(Model model, Resource providedCHO, EventType eventType) {
         ArrayList<Term> termList = eventType.getTerm();
 
         Resource resource = generateEvent(model, providedCHO, termList, Const.LANG_EN);
@@ -47,24 +47,22 @@ public class EventTypeProcessing {
      * @param eventLang The searched event language
      * @return
      */
-    private Resource generateEvent(Model model, Resource providedCHO, ArrayList<Term> termList, String eventLang) {
-        for (int i = 0; i < termList.size(); i++) {
-            Term term = termList.get(i);
+    private static Resource generateEvent(Model model, Resource providedCHO, ArrayList<Term> termList, String eventLang) {
+        for (Term term : termList) {
             String termLang = term.getLang().getLang();
-
             String choMainUri = Namespace.NS_REPO_RESOURCE_CHO;
             String choUri = providedCHO.getURI();
             int index = choMainUri.length() + 1;
 
-            //TODO: subClass of Constants.NS_REPO_RESOURCE_EVENT + Constants.FILE_SEPARATOR + TextUtils.sanitizeString(eventName)
+            // TODO: subClass of Constants.NS_REPO_RESOURCE_EVENT + Constants.FILE_SEPARATOR + TextUtils.sanitizeString(eventName)
             if (termLang.equals(eventLang) || eventLang == null) {
                 String eventType = Text.sanitizeString(term.getText());
                 Resource resource = model.createResource(
                         Namespace.NS_REPO_RESOURCE_EVENT + eventType
-                        + File.FILE_SEPARATOR + choUri.substring(index)
+                                + File.FILE_SEPARATOR + choUri.substring(index)
                 );
                 resource.addProperty(RDF.type, EDM.Event);
-                //TODO: create a concept for the event type
+                // TODO: create a concept for event type
                 resource.addProperty(EDM.hasType, eventType);
                 return resource;
             }

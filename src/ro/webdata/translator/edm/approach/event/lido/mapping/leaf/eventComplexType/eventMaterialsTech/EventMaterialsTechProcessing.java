@@ -14,16 +14,15 @@ import ro.webdata.parser.xml.lido.core.leaf.eventMaterialsTech.EventMaterialsTec
 import java.util.ArrayList;
 
 public class EventMaterialsTechProcessing {
-    public ArrayList<Resource> addEventMaterialsTechList(
-            Model model, Resource providedCHO, ArrayList<EventMaterialsTech> eventMaterialsTechList) {
+    public static ArrayList<Resource> addEventMaterialsTechList(
+            Model model, Resource providedCHO, ArrayList<EventMaterialsTech> eventMaterialsTechList
+    ) {
         ArrayList<Resource> output = new ArrayList<>();
 
-        for (int i = 0; i < eventMaterialsTechList.size(); i++) {
-            EventMaterialsTech eventMaterialsTech = eventMaterialsTechList.get(i);
-
+        for (EventMaterialsTech eventMaterialsTech : eventMaterialsTechList) {
             ArrayList<DisplayMaterialsTech> displayMaterialsTechList = eventMaterialsTech.getDisplayMaterialsTech();
-            for (int j = 0; j < displayMaterialsTechList.size(); j++) {
-                DisplayMaterialsTech displayMaterialsTech = displayMaterialsTechList.get(j);
+
+            for (DisplayMaterialsTech displayMaterialsTech : displayMaterialsTechList) {
                 String lang = displayMaterialsTech.getLang().getLang();
                 String label = displayMaterialsTech.getLabel().getLabel();
                 String text = displayMaterialsTech.getText();
@@ -31,7 +30,7 @@ public class EventMaterialsTechProcessing {
                 Literal literal = model.createLiteral(text, lang);
                 Resource resource = model.createResource(
                         Namespace.NS_REPO_RESOURCE + Text.sanitizeString(Text.toCamelCase(label))
-                        + File.FILE_SEPARATOR + Text.sanitizeString(text)
+                                + File.FILE_SEPARATOR + Text.sanitizeString(text)
                 );
                 resource.addProperty(RDF.type, SKOS.Concept);
                 resource.addProperty(SKOS.prefLabel, literal);
