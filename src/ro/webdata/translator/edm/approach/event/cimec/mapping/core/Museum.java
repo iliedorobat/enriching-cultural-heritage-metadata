@@ -8,6 +8,7 @@ import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.RDF;
 import ro.webdata.echo.commons.Const;
 import ro.webdata.echo.commons.graph.vocab.EDM;
+import ro.webdata.translator.commons.MuseumUtils;
 import ro.webdata.translator.edm.approach.event.cimec.mapping.leaf.*;
 
 import java.util.Map;
@@ -72,8 +73,8 @@ public class Museum {
     }
 
     private static Resource generateMuseum(Model model, String museumCode) {
-        String id = MuseumUtils.generateMuseumId(museumCode);
-        Resource museum = model.createResource(id);
+        String resourceLink = MuseumUtils.generateMuseumId(museumCode);
+        Resource museum = model.createResource(resourceLink);
         museum.addProperty(RDF.type, EDM.Agent);
 
         return museum;

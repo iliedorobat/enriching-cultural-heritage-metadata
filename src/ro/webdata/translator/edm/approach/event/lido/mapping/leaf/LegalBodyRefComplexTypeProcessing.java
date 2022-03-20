@@ -8,18 +8,17 @@ import org.apache.jena.vocabulary.DC_11;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.SKOS;
 import ro.webdata.echo.commons.Const;
-import ro.webdata.echo.commons.File;
 import ro.webdata.echo.commons.Text;
 import ro.webdata.parser.xml.lido.core.complex.legalBodyRefComplexType.LegalBodyRefComplexType;
 import ro.webdata.parser.xml.lido.core.leaf.appellationValue.AppellationValue;
 import ro.webdata.parser.xml.lido.core.leaf.legalBodyID.LegalBodyID;
 import ro.webdata.parser.xml.lido.core.leaf.legalBodyName.LegalBodyName;
 import ro.webdata.parser.xml.lido.core.leaf.legalBodyWeblink.LegalBodyWeblink;
+import ro.webdata.translator.commons.MuseumUtils;
 import ro.webdata.translator.edm.approach.event.lido.commons.constants.Constants;
 
 import java.util.ArrayList;
 
-import static ro.webdata.translator.commons.Constants.ROMANIAN_COUNTRY_NAME;
 import static ro.webdata.translator.commons.EnvConstants.NS_REPO_RESOURCE_ORGANIZATION;
 
 public class LegalBodyRefComplexTypeProcessing {
@@ -31,17 +30,20 @@ public class LegalBodyRefComplexTypeProcessing {
             ArrayList<LegalBodyName> legalBodyNameList = legalBodyRefComplexType.getLegalBodyName();
 
             String name = getOrganizationName(legalBodyNameList);
-            organization = model.createResource(
-                    NS_REPO_RESOURCE_ORGANIZATION
-                            + ROMANIAN_COUNTRY_NAME
-                            + File.FILE_SEPARATOR
-                            // FIXME: add name of the county
-                            // FIXME: create the link based on the CIMEC id
-                            + Text.sanitizeString(name)
-            );
+            String resourceLink = NS_REPO_RESOURCE_ORGANIZATION + Text.sanitizeString(name);
+            String cimecCode = MuseumUtils.getCimecCode(legalBodyIDList, MuseumUtils.enJsonArray);
+
+            if (cimecCode != null) {
+                resourceLink = MuseumUtils.generateMuseumId(cimecCode);
+            }
+
+            organization = model.createResource(resourceLink);
             organization.addProperty(RDF.type, FOAF.Organization);
             addOrganizationIdentifier(model, organization, legalBodyIDList);
-            addOrganizationName(model, organization, legalBodyNameList);
+
+            if (cimecCode == null) {
+                addOrganizationName(model, organization, legalBodyNameList);
+            }
         }
 
         return organization;

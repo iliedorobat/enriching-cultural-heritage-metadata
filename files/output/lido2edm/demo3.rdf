@@ -117,13 +117,6 @@
         <dc:subject xml:lang="ro">Lada Frăției calfelor de lăcătuși</dc:subject>
         <dc:title xml:lang="ro">Lada Frăției calfelor de lăcătuși</dc:title>
         <dc:type xml:lang="en">man-made object</dc:type>
-        <edm:currentLocation>
-          <foaf:Organization rdf:about="http://opendata.cs.pub.ro/resource/organization/Romania/Muzeul_de_Istorie_SIBIU">
-            <skos:prefLabel>Muzeul de Istorie - SIBIU</skos:prefLabel>
-            <dc:identifier xml:lang="en">http://ghidulmuzeelor.cimec.ro/muzeeen.asp?ctext=6966501</dc:identifier>
-            <dc:identifier xml:lang="ro">http://ghidulmuzeelor.cimec.ro/muzee.asp?ctext=6966501</dc:identifier>
-          </foaf:Organization>
-        </edm:currentLocation>
         <odp:overallDescription xml:lang="ro">Lada frăției calfelor de lăcătuși, capacul cu borduri care formează un falț peste marginea lăzii, soclu din lemn de brad profilat. În interiorul lăzii pe partea stângă se găsește o casetă, lada este ornamentată cu feronerie lucrată artistic, iar în interior se găsesc benzi și alte aplicații metalice cositorite; broasca are două cârlige pentru două chei diferite.</odp:overallDescription>
         <dbr:dimensions>L: 57 cm; Î: 29 cm</dbr:dimensions>
         <dc:subject xml:lang="ro">Ladă de frăție</dc:subject>
@@ -142,6 +135,9 @@
             <edm:hasType>Finding</edm:hasType>
           </edm:Event>
         </edm:wasPresentAt>
+        <edm:currentLocation>
+          <foaf:Organization rdf:about="http://opendata.cs.pub.ro/resource/agent/Romania/Sibiu/History_Museum/"/>
+        </edm:currentLocation>
         <dcterms:alternative xml:lang="ro">preferred</dcterms:alternative>
         <edm:type>IMAGE</edm:type>
         <odp:inventoryNumber>M5049</odp:inventoryNumber>

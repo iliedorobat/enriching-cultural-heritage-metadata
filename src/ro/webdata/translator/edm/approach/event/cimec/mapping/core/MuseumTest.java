@@ -5,6 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import org.apache.jena.rdf.model.Model;
 import ro.webdata.echo.commons.Const;
+import ro.webdata.translator.commons.MuseumUtils;
 
 public class MuseumTest extends Museum {
     public static void mapEntries(Model model, int index) {

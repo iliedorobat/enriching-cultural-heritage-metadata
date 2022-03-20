@@ -32,7 +32,7 @@ public class RecordSourceProcessing {
             }
 
             RecordSource recordSource = recordSourceList.get(0);
-            String recordSourceType = recordSource.getLidoType().getType();
+            String recordSourceType = recordSource.getType().getType();
 
             if (recordSourceType.equals(LIDOType.EUROPEANA_DATA_PROVIDER)) {
                 String providerName = LegalBodyRefComplexTypeProcessing.getOrganizationName(recordSource.getLegalBodyName());

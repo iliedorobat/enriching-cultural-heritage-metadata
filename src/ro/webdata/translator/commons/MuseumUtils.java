@@ -1,4 +1,4 @@
-package ro.webdata.translator.edm.approach.event.cimec.mapping.core;
+package ro.webdata.translator.commons;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -8,9 +8,10 @@ import org.apache.commons.lang3.StringUtils;
 import ro.webdata.echo.commons.Const;
 import ro.webdata.echo.commons.File;
 import ro.webdata.echo.commons.Json;
-import ro.webdata.translator.commons.Constants;
+import ro.webdata.parser.xml.lido.core.leaf.legalBodyID.LegalBodyID;
 import ro.webdata.translator.edm.approach.event.cimec.commons.FilePath;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,6 +25,38 @@ public class MuseumUtils {
 
     public static final JsonArray enJsonArray = Json.getJsonArray(enPath);
     public static final JsonArray roJsonArray = Json.getJsonArray(roPath);
+
+    public static List<String> getCimecCodeList(JsonArray jsonArray) {
+        List<String> cimecCodeList = new ArrayList<>();
+
+        for (JsonElement museumJson : jsonArray) {
+            JsonObject object = museumJson.getAsJsonObject();
+            String cimecCode = object.get(CODE).getAsString();
+            cimecCodeList.add(cimecCode);
+        }
+
+        return cimecCodeList;
+    }
+
+    public static String getCimecCode(ArrayList<LegalBodyID> legalBodyIDList, JsonArray jsonArray) {
+        List<String> cimecCodeList = MuseumUtils.getCimecCodeList(jsonArray);
+
+        for (LegalBodyID legalBodyID : legalBodyIDList) {
+            String cimecCode = legalBodyID.getText();
+
+            if (cimecCodeList.contains(cimecCode)) {
+                return cimecCode;
+            }
+        }
+
+        return null;
+    }
+
+    public static boolean hasCimecCode(JsonArray jsonArray, String cimecCode) {
+        List<String> cimecCodeList = MuseumUtils.getCimecCodeList(jsonArray);
+
+        return cimecCodeList.contains(cimecCode);
+    }
 
     /**
      * Create a unique identifier based on the name of the museum and the county in which it is located
