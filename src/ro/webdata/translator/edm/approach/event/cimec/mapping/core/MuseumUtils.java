@@ -8,7 +8,6 @@ import org.apache.commons.lang3.StringUtils;
 import ro.webdata.echo.commons.Const;
 import ro.webdata.echo.commons.File;
 import ro.webdata.echo.commons.Json;
-import ro.webdata.echo.commons.graph.Namespace;
 import ro.webdata.translator.commons.Constants;
 import ro.webdata.translator.edm.approach.event.cimec.commons.FilePath;
 
@@ -17,6 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static ro.webdata.echo.commons.accessor.MuseumAccessors.*;
+import static ro.webdata.translator.commons.EnvConstants.NS_REPO_RESOURCE_AGENT;
 
 public class MuseumUtils {
     public static final String enPath = FilePath.getCimecJsonPath(Const.LANG_EN);
@@ -35,7 +35,7 @@ public class MuseumUtils {
         String county = getEnStringValue(museumCode, LOCATION_COUNTY.split("\\."));
 
         return museumName != null && county != null ? (
-                Namespace.NS_REPO_RESOURCE_AGENT
+                NS_REPO_RESOURCE_AGENT
                         + Constants.ROMANIAN_COUNTRY_NAME
                         + File.FILE_SEPARATOR
                         + sanitizeCountyName(county, Constants.ROMANIAN_COUNTRY_NAME_SEPARATOR)

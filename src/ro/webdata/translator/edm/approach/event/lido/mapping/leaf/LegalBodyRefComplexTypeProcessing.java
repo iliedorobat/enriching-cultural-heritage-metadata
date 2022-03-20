@@ -10,7 +10,6 @@ import org.apache.jena.vocabulary.SKOS;
 import ro.webdata.echo.commons.Const;
 import ro.webdata.echo.commons.File;
 import ro.webdata.echo.commons.Text;
-import ro.webdata.echo.commons.graph.Namespace;
 import ro.webdata.parser.xml.lido.core.complex.legalBodyRefComplexType.LegalBodyRefComplexType;
 import ro.webdata.parser.xml.lido.core.leaf.appellationValue.AppellationValue;
 import ro.webdata.parser.xml.lido.core.leaf.legalBodyID.LegalBodyID;
@@ -21,6 +20,7 @@ import ro.webdata.translator.edm.approach.event.lido.commons.constants.Constants
 import java.util.ArrayList;
 
 import static ro.webdata.translator.commons.Constants.ROMANIAN_COUNTRY_NAME;
+import static ro.webdata.translator.commons.EnvConstants.NS_REPO_RESOURCE_ORGANIZATION;
 
 public class LegalBodyRefComplexTypeProcessing {
     public static Resource createLegalBodyRef(Model model, LegalBodyRefComplexType legalBodyRefComplexType) {
@@ -32,7 +32,7 @@ public class LegalBodyRefComplexTypeProcessing {
 
             String name = getOrganizationName(legalBodyNameList);
             organization = model.createResource(
-                    Namespace.NS_REPO_RESOURCE_ORGANIZATION
+                    NS_REPO_RESOURCE_ORGANIZATION
                             + ROMANIAN_COUNTRY_NAME
                             + File.FILE_SEPARATOR
                             // FIXME: add name of the county
@@ -164,7 +164,7 @@ public class LegalBodyRefComplexTypeProcessing {
             }
 
             String name = getOrganizationName(legalBodyNameList);
-            return Namespace.NS_REPO_RESOURCE_ORGANIZATION + Text.sanitizeString(name);
+            return NS_REPO_RESOURCE_ORGANIZATION + Text.sanitizeString(name);
         }
 
         return null;

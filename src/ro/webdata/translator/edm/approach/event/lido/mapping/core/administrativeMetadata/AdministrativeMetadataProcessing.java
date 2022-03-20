@@ -3,7 +3,6 @@ package ro.webdata.translator.edm.approach.event.lido.mapping.core.administrativ
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.RDF;
-import ro.webdata.echo.commons.graph.Namespace;
 import ro.webdata.echo.commons.graph.vocab.ORE;
 import ro.webdata.parser.xml.lido.core.leaf.administrativeMetadata.AdministrativeMetadata;
 import ro.webdata.parser.xml.lido.core.wrap.recordWrap.RecordWrap;
@@ -11,6 +10,8 @@ import ro.webdata.parser.xml.lido.core.wrap.resourceWrap.ResourceWrap;
 import ro.webdata.translator.edm.approach.event.lido.mapping.core.administrativeMetadata.RecordWrapProcessing.RecordWrapProcessing;
 import ro.webdata.translator.edm.approach.event.lido.mapping.core.administrativeMetadata.ResourceWrapProcessing.ResourceWrapProcessing;
 import ro.webdata.translator.edm.approach.event.lido.mapping.leaf.RecordIDProcessing;
+
+import static ro.webdata.translator.commons.EnvConstants.NS_REPO_RESOURCE_AGGREGATION;
 
 public class AdministrativeMetadataProcessing {
     public static void mapEntries(
@@ -42,7 +43,7 @@ public class AdministrativeMetadataProcessing {
         String identifier = RecordIDProcessing.consolidatesIdentifiers(recordWrap);
 
         Resource aggregation = model.createResource(
-                Namespace.NS_REPO_RESOURCE_AGGREGATION + identifier
+                NS_REPO_RESOURCE_AGGREGATION + identifier
         );
         aggregation.addProperty(RDF.type, ORE.Aggregation);
 

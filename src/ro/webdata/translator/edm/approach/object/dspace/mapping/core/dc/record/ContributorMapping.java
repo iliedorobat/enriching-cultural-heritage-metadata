@@ -7,11 +7,12 @@ import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.SKOS;
 import ro.webdata.echo.commons.Const;
 import ro.webdata.echo.commons.graph.GraphResource;
-import ro.webdata.echo.commons.graph.Namespace;
 import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.parser.xml.dspace.core.attribute.record.BasicRecord;
 import ro.webdata.parser.xml.dspace.core.leaf.dcValue.DcValue;
 import ro.webdata.translator.edm.approach.object.dspace.commons.PrintMessages;
+
+import static ro.webdata.translator.commons.EnvConstants.NS_REPO_RESOURCE;
 
 public class ContributorMapping {
     private static final String REFINEMENT_ADVISOR = "advisor";
@@ -34,7 +35,7 @@ public class ContributorMapping {
             case REFINEMENT_ILLUSTRATOR:
             case REFINEMENT_OTHER:
                 String contributorUri = GraphResource.generateURI(
-                        Namespace.NS_REPO_RESOURCE, EDM.Agent, value
+                        NS_REPO_RESOURCE, EDM.Agent, value
                 );
                 Resource contributor = model
                         .createResource(contributorUri)

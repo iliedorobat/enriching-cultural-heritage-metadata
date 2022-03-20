@@ -6,10 +6,11 @@ import org.apache.jena.vocabulary.DC_11;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.SKOS;
 import ro.webdata.echo.commons.graph.GraphResource;
-import ro.webdata.echo.commons.graph.Namespace;
 import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.parser.xml.dspace.core.attribute.record.BasicRecord;
 import ro.webdata.parser.xml.dspace.core.leaf.dcValue.DcValue;
+
+import static ro.webdata.translator.commons.EnvConstants.NS_REPO_RESOURCE;
 
 public class CreatorMapping {
     public static void processing(Model model, Resource providedCHO, DcValue dcValue) {
@@ -18,7 +19,7 @@ public class CreatorMapping {
         String value = dcValue.getText();
 
         String creatorUri = GraphResource.generateURI(
-                Namespace.NS_REPO_RESOURCE, EDM.Agent, value
+                NS_REPO_RESOURCE, EDM.Agent, value
         );
         Resource contributor = model
                 .createResource(creatorUri)

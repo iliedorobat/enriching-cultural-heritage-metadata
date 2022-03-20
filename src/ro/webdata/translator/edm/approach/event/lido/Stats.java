@@ -76,7 +76,7 @@ public class Stats {
     }
 
     private static void printNewPropertiesStats() {
-        Print.operation(Const.OPERATION_START, EnvConstants.SHOULD_PRINT);
+        Print.operation(Const.OPERATION_START, EnvConstants.IS_PRINT_ENABLED);
 
         HashSet<String> values = new HashSet<>();
         BufferedReader br = null;
@@ -118,6 +118,6 @@ public class Stats {
         System.out.println(total);
         System.out.println("------------------------------------");
 
-        Print.operation(Const.OPERATION_END, EnvConstants.SHOULD_PRINT);
+        Print.operation(Const.OPERATION_END, EnvConstants.IS_PRINT_ENABLED);
     }
 }

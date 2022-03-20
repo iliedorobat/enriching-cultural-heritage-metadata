@@ -5,10 +5,11 @@ import ro.webdata.echo.commons.Const;
 import ro.webdata.echo.commons.File;
 import ro.webdata.echo.commons.Print;
 import ro.webdata.echo.commons.graph.GraphModel;
-import ro.webdata.translator.commons.EnvConstants;
 import ro.webdata.translator.commons.FileConstants;
 import ro.webdata.translator.commons.GraphUtils;
 import ro.webdata.translator.edm.approach.event.lido.mapping.core.LidoWrapProcessing;
+
+import static ro.webdata.translator.commons.EnvConstants.*;
 
 public class Main {
     private static final String[] FILE_NAMES = {
@@ -25,15 +26,15 @@ public class Main {
     };
 
     public static void main(String[] args) {
-        Print.operation(Const.OPERATION_START, EnvConstants.SHOULD_PRINT);
+        Print.operation(Const.OPERATION_START, IS_PRINT_ENABLED);
 
-        if (!EnvConstants.IS_DEMO) {
+        if (!IS_DEMO) {
             run();
         } else {
             runDemo();
         }
 
-        Print.operation(Const.OPERATION_END, EnvConstants.SHOULD_PRINT);
+        Print.operation(Const.OPERATION_END, IS_PRINT_ENABLED);
     }
 
     //---------------------- Real Scenario ---------------------- //
@@ -48,7 +49,7 @@ public class Main {
             String outputPath = FileConstants.PATH_OUTPUT_LIDO_DIR
                     + File.FILE_SEPARATOR + fileName
                     + File.EXTENSION_SEPARATOR + File.EXTENSION_RDF;
-            GraphUtils.writeRDFGraph(model, outputPath, EnvConstants.PRINT_RDF_RESULTS);
+            GraphUtils.writeRDFGraph(model, outputPath, PRINT_RDF_RESULTS);
         }
     }
 
@@ -60,6 +61,6 @@ public class Main {
                 + File.FILE_SEPARATOR + FileConstants.FILE_NAME_DEMO
                 + File.EXTENSION_SEPARATOR + File.EXTENSION_XML;
         LidoWrapProcessing.mapEntries(model, filePath);
-        GraphUtils.writeRDFGraph(model, FileConstants.PATH_OUTPUT_DEMO_FILE, EnvConstants.PRINT_RDF_RESULTS);
+        GraphUtils.writeRDFGraph(model, FileConstants.PATH_OUTPUT_DEMO_FILE, PRINT_RDF_RESULTS);
     }
 }

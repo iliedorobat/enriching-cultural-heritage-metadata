@@ -9,7 +9,6 @@ import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.SKOS;
 import ro.webdata.echo.commons.Const;
 import ro.webdata.echo.commons.Text;
-import ro.webdata.echo.commons.graph.Namespace;
 import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.parser.xml.lido.core.leaf.actor.Actor;
 import ro.webdata.parser.xml.lido.core.leaf.actorID.ActorID;
@@ -22,6 +21,8 @@ import ro.webdata.parser.xml.lido.core.set.nameActorSet.NameActorSet;
 import ro.webdata.translator.edm.approach.event.lido.commons.constants.Constants;
 
 import java.util.ArrayList;
+
+import static ro.webdata.translator.commons.EnvConstants.NS_REPO_RESOURCE_AGENT;
 
 public class EventActorProcessing {
     /**
@@ -93,7 +94,7 @@ public class EventActorProcessing {
             Literal literal = model.createLiteral(actorName);
 
             Resource actor = model.createResource(
-                    Namespace.NS_REPO_RESOURCE_AGENT + Text.sanitizeString(actorName)
+                    NS_REPO_RESOURCE_AGENT + Text.sanitizeString(actorName)
             );
             actor.addProperty(RDF.type, EDM.Agent);
             actor.addProperty(FOAF.name, literal);

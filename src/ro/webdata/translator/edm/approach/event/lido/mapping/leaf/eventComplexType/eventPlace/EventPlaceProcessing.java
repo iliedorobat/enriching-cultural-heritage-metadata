@@ -8,7 +8,6 @@ import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.SKOS;
 import ro.webdata.echo.commons.Const;
 import ro.webdata.echo.commons.graph.GraphResource;
-import ro.webdata.echo.commons.graph.Namespace;
 import ro.webdata.echo.commons.graph.PlaceType;
 import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.parser.xml.lido.core.complex.placeComplexType.PlaceComplexType;
@@ -19,6 +18,8 @@ import ro.webdata.parser.xml.lido.core.leaf.place.Place;
 import ro.webdata.parser.xml.lido.core.set.namePlaceSet.NamePlaceSet;
 
 import java.util.*;
+
+import static ro.webdata.translator.commons.EnvConstants.NS_REPO_RESOURCE_PLACE;
 
 public class EventPlaceProcessing {
     /**
@@ -219,7 +220,7 @@ public class EventPlaceProcessing {
             String placeType
     ) {
         String localLink = GraphResource.generateURI(
-                Namespace.NS_REPO_RESOURCE_PLACE,
+                NS_REPO_RESOURCE_PLACE,
                 getPlaceName(placeMap, placeName, placeType)
         );
         Resource placeResource = model.createResource(localLink);

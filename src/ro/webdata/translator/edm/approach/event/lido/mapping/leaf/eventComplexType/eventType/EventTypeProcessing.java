@@ -6,13 +6,15 @@ import org.apache.jena.vocabulary.RDF;
 import ro.webdata.echo.commons.Const;
 import ro.webdata.echo.commons.File;
 import ro.webdata.echo.commons.Text;
-import ro.webdata.echo.commons.graph.Namespace;
 import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.parser.xml.lido.core.leaf.eventType.EventType;
 import ro.webdata.parser.xml.lido.core.leaf.term.Term;
 import ro.webdata.translator.edm.approach.event.lido.commons.constants.Constants;
 
 import java.util.ArrayList;
+
+import static ro.webdata.translator.commons.EnvConstants.NS_REPO_RESOURCE_CHO;
+import static ro.webdata.translator.commons.EnvConstants.NS_REPO_RESOURCE_EVENT;
 
 public class EventTypeProcessing {
     /**
@@ -50,7 +52,7 @@ public class EventTypeProcessing {
     private static Resource generateEvent(Model model, Resource providedCHO, ArrayList<Term> termList, String eventLang) {
         for (Term term : termList) {
             String termLang = term.getLang().getLang();
-            String choMainUri = Namespace.NS_REPO_RESOURCE_CHO;
+            String choMainUri = NS_REPO_RESOURCE_CHO;
             String choUri = providedCHO.getURI();
             int index = choMainUri.length() + 1;
 
@@ -58,8 +60,7 @@ public class EventTypeProcessing {
             if (termLang.equals(eventLang) || eventLang == null) {
                 String eventType = Text.sanitizeString(term.getText());
                 Resource resource = model.createResource(
-                        Namespace.NS_REPO_RESOURCE_EVENT + eventType
-                                + File.FILE_SEPARATOR + choUri.substring(index)
+                        NS_REPO_RESOURCE_EVENT + eventType + File.FILE_SEPARATOR + choUri.substring(index)
                 );
                 resource.addProperty(RDF.type, EDM.Event);
                 // TODO: create a concept for event type

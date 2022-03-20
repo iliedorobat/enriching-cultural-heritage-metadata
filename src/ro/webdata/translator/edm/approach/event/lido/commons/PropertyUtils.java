@@ -10,7 +10,6 @@ import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.RDFS;
 import ro.webdata.echo.commons.File;
 import ro.webdata.echo.commons.Text;
-import ro.webdata.echo.commons.graph.Namespace;
 import ro.webdata.echo.commons.validator.UrlValidator;
 import ro.webdata.translator.commons.FileConstants;
 
@@ -19,6 +18,7 @@ import java.util.ArrayList;
 
 import static ro.webdata.echo.commons.accessor.MuseumAccessors.*;
 import static ro.webdata.echo.commons.graph.Namespace.*;
+import static ro.webdata.translator.commons.EnvConstants.NS_REPO_PROPERTY;
 
 // TODO: move the class to ro.webdata.translator.commons
 public final class PropertyUtils {
@@ -223,9 +223,9 @@ public final class PropertyUtils {
             case "sex":
             case "weight":
             case "width":
-                return Namespace.NS_DBPEDIA_RESOURCE;
+                return NS_DBPEDIA_RESOURCE;
             default:
-                return Namespace.NS_REPO_PROPERTY;
+                return NS_REPO_PROPERTY;
         }
     }
 }

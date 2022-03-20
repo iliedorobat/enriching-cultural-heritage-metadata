@@ -5,7 +5,6 @@ import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.RDF;
 import ro.webdata.echo.commons.Const;
 import ro.webdata.echo.commons.Print;
-import ro.webdata.echo.commons.graph.Namespace;
 import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.parser.xml.lido.core.ParserDAO;
 import ro.webdata.parser.xml.lido.core.ParserDAOImpl;
@@ -15,7 +14,6 @@ import ro.webdata.parser.xml.lido.core.leaf.descriptiveMetadata.DescriptiveMetad
 import ro.webdata.parser.xml.lido.core.leaf.lido.Lido;
 import ro.webdata.parser.xml.lido.core.leaf.lidoRecID.LidoRecID;
 import ro.webdata.parser.xml.lido.core.wrap.lidoWrap.LidoWrap;
-import ro.webdata.translator.commons.EnvConstants;
 import ro.webdata.translator.edm.approach.event.lido.mapping.core.administrativeMetadata.AdministrativeMetadataProcessing;
 import ro.webdata.translator.edm.approach.event.lido.mapping.core.category.CategoryProcessing;
 import ro.webdata.translator.edm.approach.event.lido.mapping.core.descriptiveMetadata.DescriptiveMetadataProcessing;
@@ -23,11 +21,14 @@ import ro.webdata.translator.edm.approach.event.lido.mapping.core.lidoRecID.Lido
 
 import java.util.ArrayList;
 
+import static ro.webdata.translator.commons.EnvConstants.NS_REPO_RESOURCE_CHO;
+import static ro.webdata.translator.commons.EnvConstants.IS_PRINT_ENABLED;
+
 public class LidoWrapProcessing {
     private static final ParserDAO parserDAO = new ParserDAOImpl();
 
     public static void mapEntries(Model model, String fullPath) {
-        Print.operation(Const.OPERATION_START, fullPath, EnvConstants.SHOULD_PRINT);
+        Print.operation(Const.OPERATION_START, fullPath, IS_PRINT_ENABLED);
 
         LidoWrap lidoWrap = parserDAO.parseLidoFile(fullPath);
         ArrayList<Lido> lidoList = lidoWrap.getLidoList();
@@ -57,12 +58,12 @@ public class LidoWrapProcessing {
             );
         }
 
-        Print.operation(Const.OPERATION_END, fullPath, EnvConstants.SHOULD_PRINT);
+        Print.operation(Const.OPERATION_END, fullPath, IS_PRINT_ENABLED);
     }
 
     private static Resource generateProvidedCHO(Model model, ArrayList<LidoRecID> lidoRecIDList) {
         String recordId = LidoRecIDProcessing.getRecordId(lidoRecIDList);
-        Resource providedCHO = model.createResource(Namespace.NS_REPO_RESOURCE_CHO + recordId);
+        Resource providedCHO = model.createResource(NS_REPO_RESOURCE_CHO + recordId);
         providedCHO.addProperty(RDF.type, EDM.ProvidedCHO);
 
         return providedCHO;

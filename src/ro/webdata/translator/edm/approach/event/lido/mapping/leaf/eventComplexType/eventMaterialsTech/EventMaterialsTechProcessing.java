@@ -7,11 +7,12 @@ import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.SKOS;
 import ro.webdata.echo.commons.File;
 import ro.webdata.echo.commons.Text;
-import ro.webdata.echo.commons.graph.Namespace;
 import ro.webdata.parser.xml.lido.core.leaf.displayMaterialsTech.DisplayMaterialsTech;
 import ro.webdata.parser.xml.lido.core.leaf.eventMaterialsTech.EventMaterialsTech;
 
 import java.util.ArrayList;
+
+import static ro.webdata.translator.commons.EnvConstants.NS_REPO_RESOURCE;
 
 public class EventMaterialsTechProcessing {
     public static ArrayList<Resource> addEventMaterialsTechList(
@@ -29,7 +30,7 @@ public class EventMaterialsTechProcessing {
 
                 Literal literal = model.createLiteral(text, lang);
                 Resource resource = model.createResource(
-                        Namespace.NS_REPO_RESOURCE + Text.sanitizeString(Text.toCamelCase(label))
+                        NS_REPO_RESOURCE + Text.sanitizeString(Text.toCamelCase(label))
                                 + File.FILE_SEPARATOR + Text.sanitizeString(text)
                 );
                 resource.addProperty(RDF.type, SKOS.Concept);
