@@ -24,20 +24,19 @@ import ro.webdata.translator.edm.approach.event.lido.mapping.core.lidoRecID.Lido
 import java.util.ArrayList;
 
 public class LidoWrapProcessing {
-    private static ParserDAO parserDAO = new ParserDAOImpl();
-    private static CategoryProcessing categoryProcessing = new CategoryProcessing();
-    private static LidoRecIDProcessing lidoRecIDProcessing = new LidoRecIDProcessing();
-    private static DescriptiveMetadataProcessing descriptiveMetadataProcessing = new DescriptiveMetadataProcessing();
-    private static AdministrativeMetadataProcessing administrativeMetadataProcessing = new AdministrativeMetadataProcessing();
+    private static final ParserDAO parserDAO = new ParserDAOImpl();
+    private static final CategoryProcessing categoryProcessing = new CategoryProcessing();
+    private static final LidoRecIDProcessing lidoRecIDProcessing = new LidoRecIDProcessing();
+    private static final DescriptiveMetadataProcessing descriptiveMetadataProcessing = new DescriptiveMetadataProcessing();
+    private static final AdministrativeMetadataProcessing administrativeMetadataProcessing = new AdministrativeMetadataProcessing();
 
-    public void processing(Model model, String fullPath) {
+    public void mapEntries(Model model, String fullPath) {
         Print.operation(Const.OPERATION_START, fullPath, EnvConstants.SHOULD_PRINT);
+
         LidoWrap lidoWrap = parserDAO.parseLidoFile(fullPath);
+        ArrayList<Lido> lidoList = lidoWrap.getLidoList();
 
-        //TODO: change in the LIDO Parser component the "getLido" method name to "getLidoList"
-        for (int i = 0; i < lidoWrap.getLido().size(); i++) {
-            Lido lido = lidoWrap.getLido().get(i);
-
+        for (Lido lido : lidoList) {
             ArrayList<LidoRecID> lidoRecIDList = lido.getLidoRecID();
             Category category = lido.getCategory();
             ArrayList<AdministrativeMetadata> administrativeMetadataList = lido.getAdministrativeMetadata();
@@ -51,13 +50,13 @@ public class LidoWrapProcessing {
                     : null;
 
             Resource providedCHO = generateProvidedCHO(model, lidoRecIDList);
-            administrativeMetadataProcessing.processing(
+            administrativeMetadataProcessing.mapEntries(
                     model, providedCHO, administrativeMetadata
             );
-            categoryProcessing.processing(
+            categoryProcessing.mapEntries(
                     model, providedCHO, category
             );
-            descriptiveMetadataProcessing.processing(
+            descriptiveMetadataProcessing.mapEntries(
                     model, providedCHO, descriptiveMetadata
             );
         }

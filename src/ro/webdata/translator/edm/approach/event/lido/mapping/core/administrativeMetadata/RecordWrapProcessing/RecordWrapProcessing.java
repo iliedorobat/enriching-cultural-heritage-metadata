@@ -2,35 +2,113 @@ package ro.webdata.translator.edm.approach.event.lido.mapping.core.administrativ
 
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.sparql.vocabulary.FOAF;
+import org.apache.jena.vocabulary.DC_11;
+import org.apache.jena.vocabulary.RDF;
+import org.apache.jena.vocabulary.SKOS;
+import ro.webdata.echo.commons.Const;
+import ro.webdata.echo.commons.File;
+import ro.webdata.echo.commons.Text;
 import ro.webdata.echo.commons.graph.vocab.EDM;
+import ro.webdata.echo.commons.graph.vocab.constraints.EDMRoles;
 import ro.webdata.parser.xml.lido.core.wrap.recordWrap.RecordWrap;
-import ro.webdata.translator.edm.approach.event.lido.commons.ResourceUtils;
+import ro.webdata.translator.edm.approach.event.lido.commons.constants.Constants;
 import ro.webdata.translator.edm.approach.event.lido.mapping.leaf.RecordRightsProcessing;
 import ro.webdata.translator.edm.approach.event.lido.mapping.leaf.RecordSourceProcessing;
 
-public class RecordWrapProcessing {
-    private static RecordSourceProcessing recordSourceProcessing = new RecordSourceProcessing();
-    private static RecordRightsProcessing recordRightsProcessing = new RecordRightsProcessing();
+import static ro.webdata.echo.commons.graph.Namespace.NS_REPO_RESOURCE_ORGANIZATION;
+import static ro.webdata.translator.commons.Constants.ROMANIAN_COUNTRY_NAME;
+import static ro.webdata.translator.edm.approach.event.lido.commons.ResourceUtils.addUriProperty;
 
-    public void addRecordWrap(
+public class RecordWrapProcessing {
+    private static final RecordSourceProcessing recordSourceProcessing = new RecordSourceProcessing();
+    private static final RecordRightsProcessing recordRightsProcessing = new RecordRightsProcessing();
+
+    public void mapEntries(
             Model model,
             Resource aggregation,
             Resource providedCHO,
             RecordWrap recordWrap
     ) {
-        Resource dataProvider = recordSourceProcessing.generateDataProvider(
-                model, recordWrap.getRecordSource()
-        );
-        Resource provider = ResourceUtils.generateProvider(model);
-        Resource intermediateProvider = ResourceUtils.generateIntermediateProvider(model);
-        Resource license = recordRightsProcessing.getLicense(
-                model, recordWrap.getRecordRights()
-        );
+        Resource dataProvider = recordSourceProcessing.generateDataProvider(model, recordWrap.getRecordSource());
+        Resource provider = generateProvider(model);
+        Resource intermediateProvider = generateIntermediateProvider(model);
+        Resource license = recordRightsProcessing.getLicense(model, recordWrap.getRecordRights());
 
         aggregation.addProperty(EDM.aggregatedCHO, providedCHO);
         aggregation.addProperty(EDM.provider, provider);
         aggregation.addProperty(EDM.intermediateProvider, intermediateProvider);
         aggregation.addProperty(EDM.dataProvider, dataProvider);
         aggregation.addProperty(EDM.rights, license);
+    }
+
+    /**
+     * Generate the Europeana Provider (the institution which Europeana is harvesting for data)
+     * @param model The RDF graph
+     * @return The Europeana Provider
+     */
+    private static Resource generateProvider(Model model) {
+        String providerLink = NS_REPO_RESOURCE_ORGANIZATION
+                + ROMANIAN_COUNTRY_NAME
+                + File.FILE_SEPARATOR
+                + Text.sanitizeString("Politehnica University of Bucharest");
+        Resource provider = model.createResource(providerLink);
+        provider.addProperty(RDF.type, FOAF.Organization);
+
+        addUriProperty(model, provider, DC_11.identifier, "https://upb.ro/en/");
+        addUriProperty(model, provider, FOAF.homepage, "https://upb.ro/en/");
+        addUriProperty(model, provider, FOAF.logo, "https://upb.ro/upb-identitate-vizuala-logo/");
+
+        provider.addProperty(SKOS.prefLabel, "Politehnica University of Bucharest", Const.LANG_EN);
+        provider.addProperty(SKOS.prefLabel, "Universitatea Politehnica din București", Const.LANG_RO);
+
+        provider.addProperty(EDM.acronym, "PUB", Const.LANG_EN);
+        provider.addProperty(EDM.acronym, "UPB", Const.LANG_RO);
+
+        provider.addProperty(EDM.organizationScope, "academic research", Const.LANG_EN);
+        provider.addProperty(EDM.organizationScope, "cercetare academică", Const.LANG_RO);
+
+        addUriProperty(model, provider, EDM.organizationDomain, "education");
+        addUriProperty(model, provider, EDM.organizationSector, "higher education");
+        addUriProperty(model, provider, EDM.geographicLevel, "country");
+        addUriProperty(model, provider, EDM.country, "Romania");
+
+        provider.addProperty(EDM.europeanaRole, EDMRoles.ROLE_DATA_PROVIDER, Const.LANG_EN);
+
+        return provider;
+    }
+
+    /**
+     * Generate the Europeana Intermediate Provider (the institution where are data stored)
+     * @param model The RDF graph
+     * @return The Europeana Intermediate Provider
+     */
+    private static Resource generateIntermediateProvider(Model model) {
+        String providerLink = NS_REPO_RESOURCE_ORGANIZATION
+                + ROMANIAN_COUNTRY_NAME
+                + File.FILE_SEPARATOR
+                + Text.sanitizeString("Romanian Open Data Portal");
+        Resource provider = model.createResource(providerLink);
+        provider.addProperty(RDF.type, FOAF.Organization);
+
+        addUriProperty(model, provider, DC_11.identifier, Constants.DATA_GOV_LINK_EN);
+        addUriProperty(model, provider, FOAF.homepage, Constants.DATA_GOV_LINK_EN);
+        addUriProperty(model, provider, FOAF.logo, "https://data.gov.ro/assets/images/gov/gov3.png");
+
+        provider.addProperty(SKOS.prefLabel, "data.gov.ro");
+
+        provider.addProperty(EDM.organizationScope, "centralization of open data published " +
+                "by Romanian institutions according to the principles and standards in the field", Const.LANG_EN);
+        provider.addProperty(EDM.organizationScope, "centralizarea datelor deschise publicate " +
+                "de instituțiile din România conform principiilor și standardelor în domeniu", Const.LANG_RO);
+
+        addUriProperty(model, provider, EDM.organizationDomain, "data publishing");
+        addUriProperty(model, provider, EDM.organizationSector, "open data");
+        addUriProperty(model, provider, EDM.geographicLevel, "country");
+        addUriProperty(model, provider, EDM.country, "Romania");
+
+        provider.addProperty(EDM.europeanaRole, EDMRoles.ROLE_DATA_PROVIDER, Const.LANG_EN);
+
+        return provider;
     }
 }

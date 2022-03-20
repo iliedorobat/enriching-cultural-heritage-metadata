@@ -16,7 +16,7 @@ import ro.webdata.parser.xml.lido.core.wrap.resourceWrap.ResourceWrap;
 import java.util.ArrayList;
 
 public class ResourceWrapProcessing {
-    public void addResourceWrap(
+    public void mapEntries(
             Model model,
             Resource aggregation,
             ResourceWrap resourceWrap
@@ -29,8 +29,7 @@ public class ResourceWrapProcessing {
             Resource aggregation,
             ArrayList<ResourceSet> resourceSetList
     ) {
-        for (int i = 0; i < resourceSetList.size(); i++) {
-            ResourceSet resourceSet = resourceSetList.get(i);
+        for (ResourceSet resourceSet : resourceSetList) {
             aggregateResourceWeb(
                     model, aggregation, resourceSet.getResourceRepresentation(), resourceSet.getRightsResource()
             );
@@ -50,9 +49,9 @@ public class ResourceWrapProcessing {
             ArrayList<ResourceRepresentation> resourceRepresentationList,
             ArrayList<RightsResource> rightsResourceList
     ) {
-        for (int j = 0; j < resourceRepresentationList.size(); j++) {
+        for (ResourceRepresentation resourceRepresentation : resourceRepresentationList) {
             Resource webResource = generateWebResource(
-                    model, resourceRepresentationList.get(j), rightsResourceList
+                    model, resourceRepresentation, rightsResourceList
             );
             aggregation.addProperty(EDM.isShownBy, webResource);
             // EDM.object is used for generating previews for use in the Europeana portal
@@ -74,7 +73,7 @@ public class ResourceWrapProcessing {
     ) {
         LinkResource linkResource = resourceRepresentation.getLinkResource();
         String resourceLink = linkResource.getText();
-        //TODO: externalize (replace the spaces with the URL encoded character)
+        // TODO: externalize the replacing of white spaces with URL encoded character
         resourceLink = resourceLink.replaceAll(" ", "%20");
 
         Resource webResource = model.createResource(resourceLink);
@@ -92,16 +91,13 @@ public class ResourceWrapProcessing {
      * @param list The list with <b>lido:rightsResource</b> elements
      */
     private void addRightsProperty(Model model, Resource webResource, ArrayList<RightsResource> list) {
-        for (int i = 0; i < list.size(); i++) {
-            RightsResource rightsResource = list.get(i);
+        for (RightsResource rightsResource : list) {
             ArrayList<RightsType> rightsTypeList = rightsResource.getRightsType();
 
-            for (int j = 0; j < rightsTypeList.size(); j++) {
-                RightsType rightsType = rightsTypeList.get(j);
+            for (RightsType rightsType : rightsTypeList) {
                 ArrayList<Term> termList = rightsType.getTerm();
 
-                for (int k = 0; k < termList.size(); k++) {
-                    Term term = termList.get(k);
+                for (Term term : termList) {
                     Resource edmRights = model.createResource(term.getText());
                     webResource.addProperty(EDM.rights, edmRights);
                 }

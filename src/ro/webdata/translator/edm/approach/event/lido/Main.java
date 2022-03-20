@@ -41,7 +41,7 @@ public class Main {
             String filePath = FileConstants.PATH_INPUT_LIDO_DIR
                     + File.FILE_SEPARATOR + fileNames[i]
                     + File.EXTENSION_SEPARATOR + File.EXTENSION_XML;
-            lidoWrapProcessing.processing(model, filePath);
+            lidoWrapProcessing.mapEntries(model, filePath);
 
             String outputPath = FileConstants.PATH_OUTPUT_LIDO_DIR
                     + File.FILE_SEPARATOR + fileNames[i]
@@ -57,7 +57,7 @@ public class Main {
         String filePath = FileConstants.PATH_INPUT_LIDO_DIR
                 + File.FILE_SEPARATOR + FileConstants.FILE_NAME_DEMO
                 + File.EXTENSION_SEPARATOR + File.EXTENSION_XML;
-        lidoWrapProcessing.processing(model, filePath);
+        lidoWrapProcessing.mapEntries(model, filePath);
         GraphUtils.writeRDFGraph(model, FileConstants.PATH_OUTPUT_DEMO_FILE, EnvConstants.PRINT_RDF_RESULTS);
     }
 }

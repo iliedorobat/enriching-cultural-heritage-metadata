@@ -8,6 +8,7 @@ import org.apache.jena.vocabulary.DC_11;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.SKOS;
 import ro.webdata.echo.commons.Const;
+import ro.webdata.echo.commons.File;
 import ro.webdata.echo.commons.Text;
 import ro.webdata.echo.commons.graph.Namespace;
 import ro.webdata.parser.xml.lido.core.complex.legalBodyRefComplexType.LegalBodyRefComplexType;
@@ -18,6 +19,8 @@ import ro.webdata.parser.xml.lido.core.leaf.legalBodyWeblink.LegalBodyWeblink;
 import ro.webdata.translator.edm.approach.event.lido.commons.constants.Constants;
 
 import java.util.ArrayList;
+
+import static ro.webdata.translator.commons.Constants.ROMANIAN_COUNTRY_NAME;
 
 public class LegalBodyRefComplexTypeProcessing {
     private static IdentifierComplexTypeProcessing identifierComplexTypeProcessing = new IdentifierComplexTypeProcessing();
@@ -31,7 +34,12 @@ public class LegalBodyRefComplexTypeProcessing {
 
             String name = getOrganizationName(legalBodyNameList);
             organization = model.createResource(
-                    Namespace.NS_REPO_RESOURCE_ORGANIZATION + Text.sanitizeString(name)
+                    Namespace.NS_REPO_RESOURCE_ORGANIZATION
+                            + ROMANIAN_COUNTRY_NAME
+                            + File.FILE_SEPARATOR
+                            // FIXME: add name of the county
+                            // FIXME: create the link based on the CIMEC id
+                            + Text.sanitizeString(name)
             );
             organization.addProperty(RDF.type, FOAF.Organization);
             addOrganizationIdentifier(model, organization, legalBodyIDList);

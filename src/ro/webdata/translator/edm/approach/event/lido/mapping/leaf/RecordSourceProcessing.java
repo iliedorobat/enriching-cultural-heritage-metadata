@@ -6,19 +6,22 @@ import org.apache.jena.sparql.vocabulary.FOAF;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.SKOS;
 import ro.webdata.echo.commons.Const;
+import ro.webdata.echo.commons.File;
 import ro.webdata.echo.commons.Text;
-import ro.webdata.echo.commons.graph.Namespace;
 import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.echo.commons.graph.vocab.constraints.EDMRoles;
 import ro.webdata.parser.xml.lido.core.leaf.recordSource.RecordSource;
-import ro.webdata.translator.edm.approach.event.lido.commons.ResourceUtils;
 import ro.webdata.translator.edm.approach.event.lido.commons.constants.Constants;
 import ro.webdata.translator.edm.approach.event.lido.commons.constants.LIDOType;
 
 import java.util.ArrayList;
 
+import static ro.webdata.echo.commons.graph.Namespace.NS_REPO_RESOURCE_ORGANIZATION;
+import static ro.webdata.translator.commons.Constants.ROMANIAN_COUNTRY_NAME;
+import static ro.webdata.translator.edm.approach.event.lido.commons.ResourceUtils.addUriProperty;
+
 public class RecordSourceProcessing {
-    private static LegalBodyRefComplexTypeProcessing legalBodyRefComplexTypeProcessing = new LegalBodyRefComplexTypeProcessing();
+    private static final LegalBodyRefComplexTypeProcessing legalBodyRefComplexTypeProcessing = new LegalBodyRefComplexTypeProcessing();
 
     public Resource generateDataProvider(Model model, ArrayList<RecordSource> recordSourceList) {
         int size = recordSourceList.size();
@@ -31,20 +34,21 @@ public class RecordSourceProcessing {
             }
 
             RecordSource recordSource = recordSourceList.get(0);
-            String recordSourceType = recordSource.getType().getType();
+            String recordSourceType = recordSource.getLidoType().getType();
 
             if (recordSourceType.equals(LIDOType.EUROPEANA_DATA_PROVIDER)) {
                 String providerName = legalBodyRefComplexTypeProcessing.getOrganizationName(recordSource.getLegalBodyName());
                 Resource dataProvider = model.createResource(
-                        Namespace.NS_REPO_RESOURCE_ORGANIZATION + Text.sanitizeString(providerName)
+                        getNamespace(providerName) + Text.sanitizeString(providerName)
                 );
                 dataProvider.addProperty(RDF.type, FOAF.Organization);
 
                 legalBodyRefComplexTypeProcessing.addOrganizationName(model, dataProvider, recordSource.getLegalBodyName());
                 legalBodyRefComplexTypeProcessing.addOrganizationWeblink(model, dataProvider, recordSource.getLegalBodyWeblink());
 
-                if (providerName.equals(Constants.INP_NAME))
-                    addINPProperties(dataProvider);
+                if (providerName.equals(Constants.INP_NAME)) {
+                    addINPProperties(model, dataProvider);
+                }
 
                 return dataProvider;
             } else {
@@ -58,11 +62,19 @@ public class RecordSourceProcessing {
         return null;
     }
 
-    private void addINPProperties(Resource provider) {
+    private static String getNamespace(String providerName) {
+        String namespace = NS_REPO_RESOURCE_ORGANIZATION;
+
+        if (providerName.equals(Constants.INP_NAME)) {
+            namespace += ROMANIAN_COUNTRY_NAME + File.FILE_SEPARATOR;
+        }
+
+        return namespace;
+    }
+
+    private void addINPProperties(Model model, Resource provider) {
+        addUriProperty(model, provider, FOAF.homepage, "https://patrimoniu.ro/");
         provider.addProperty(SKOS.prefLabel, "National Heritage Institute", Const.LANG_EN);
-
-        provider.addProperty(FOAF.homepage, "https://patrimoniu.ro/", Const.LANG_RO);
-
         provider.addProperty(EDM.acronym, "INP", Const.LANG_RO);
 
         provider.addProperty(EDM.organizationScope, "ensuring the legal framework and managing " +
@@ -70,16 +82,10 @@ public class RecordSourceProcessing {
         provider.addProperty(EDM.organizationScope, "asigurarea cadrului legislativ si gestionarea " +
                 "patrimoniului national cultural", Const.LANG_RO);
 
-        provider.addProperty(EDM.organizationDomain, "culture", Const.LANG_EN);
-        provider.addProperty(EDM.organizationDomain, "cultură", Const.LANG_RO);
-
-        provider.addProperty(EDM.organizationSector, "cultural heritage", Const.LANG_EN);
-        provider.addProperty(EDM.organizationSector, "patrimoniul cultural", Const.LANG_RO);
-
-        provider.addProperty(EDM.geographicLevel, "country", Const.LANG_EN);
-        provider.addProperty(EDM.geographicLevel, "țară", Const.LANG_RO);
-
-        ResourceUtils.addProviderCountry(provider);
+        addUriProperty(model, provider, EDM.organizationDomain, "culture");
+        addUriProperty(model, provider, EDM.organizationSector, "cultural heritage");
+        addUriProperty(model, provider, EDM.geographicLevel, "country");
+        addUriProperty(model, provider, EDM.country, "Romania");
 
         provider.addProperty(EDM.europeanaRole, EDMRoles.ROLE_DATA_PROVIDER, Const.LANG_EN);
     }

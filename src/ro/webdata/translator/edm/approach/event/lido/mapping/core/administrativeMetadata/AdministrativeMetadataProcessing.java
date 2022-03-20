@@ -13,25 +13,23 @@ import ro.webdata.translator.edm.approach.event.lido.mapping.core.administrative
 import ro.webdata.translator.edm.approach.event.lido.mapping.leaf.RecordIDProcessing;
 
 public class AdministrativeMetadataProcessing {
-    private RecordIDProcessing recordIDProcessing = new RecordIDProcessing();
-    private RecordWrapProcessing recordWrapProcessing = new RecordWrapProcessing();
-    private ResourceWrapProcessing resourceWrapProcessing = new ResourceWrapProcessing();
+    private static final RecordIDProcessing recordIDProcessing = new RecordIDProcessing();
+    private static final RecordWrapProcessing recordWrapProcessing = new RecordWrapProcessing();
+    private static final ResourceWrapProcessing resourceWrapProcessing = new ResourceWrapProcessing();
 
-    public void processing(
+    public void mapEntries(
             Model model,
             Resource providedCHO,
             AdministrativeMetadata administrativeMetadata
     ) {
         RecordWrap recordWrap = administrativeMetadata.getRecordWrap();
         ResourceWrap resourceWrap = administrativeMetadata.getResourceWrap();
-        Resource aggregation = generateAggregation(
-                model, administrativeMetadata.getRecordWrap()
-        );
+        Resource aggregation = generateAggregation(model, recordWrap);
 
-        recordWrapProcessing.addRecordWrap(
+        recordWrapProcessing.mapEntries(
                 model, aggregation, providedCHO, recordWrap
         );
-        resourceWrapProcessing.addResourceWrap(
+        resourceWrapProcessing.mapEntries(
                 model, aggregation, resourceWrap
         );
     }

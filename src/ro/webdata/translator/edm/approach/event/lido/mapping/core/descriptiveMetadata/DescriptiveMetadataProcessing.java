@@ -12,7 +12,7 @@ public class DescriptiveMetadataProcessing {
     private static ObjectIdentificationWrapProcessing objectIdentificationWrapProcessing = new ObjectIdentificationWrapProcessing();
     private static EventWrapProcessing eventWrapProcessing = new EventWrapProcessing();
 
-    public void processing(
+    public void mapEntries(
            Model model,
            Resource providedCHO,
            DescriptiveMetadata descriptiveMetadata

@@ -9,7 +9,7 @@ import ro.webdata.parser.xml.lido.core.leaf.term.Term;
 import java.util.ArrayList;
 
 public class CategoryProcessing {
-    public void processing(
+    public void mapEntries(
             Model model,
             Resource providedCHO,
             Category category

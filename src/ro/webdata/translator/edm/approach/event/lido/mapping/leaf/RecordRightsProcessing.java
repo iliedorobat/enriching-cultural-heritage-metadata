@@ -59,7 +59,7 @@ public class RecordRightsProcessing {
             Term term = termList.get(0);
             String text = term.getText();
 
-            List licences = Arrays.asList(Namespace.LICENSE_NAMES);
+            List<String> licences = Arrays.asList(Namespace.LICENSE_NAMES);
             int index = licences.indexOf(text);
             String licenseLink = Namespace.LICENSE_LINKS[index];
 
