@@ -9,7 +9,7 @@ import ro.webdata.parser.xml.lido.core.leaf.term.Term;
 import java.util.ArrayList;
 
 public class CategoryProcessing {
-    public void mapEntries(
+    public static void mapEntries(
             Model model,
             Resource providedCHO,
             Category category
@@ -22,9 +22,9 @@ public class CategoryProcessing {
      * @param providedCHO The RDF CHO
      * @param termList The list with "lido:term" elements
      */
-    private void addCategories(Resource providedCHO, ArrayList<Term> termList) {
-        for (int i = 0; i < termList.size(); i++){
-            addCategory(providedCHO, termList.get(i));
+    private static void addCategories(Resource providedCHO, ArrayList<Term> termList) {
+        for (Term term : termList) {
+            addCategory(providedCHO, term);
         }
     }
 
@@ -33,7 +33,7 @@ public class CategoryProcessing {
      * @param providedCHO The RDF CHO
      * @param term The "lido:term" element
      */
-    private void addCategory(Resource providedCHO, Term term) {
+    private static void addCategory(Resource providedCHO, Term term) {
         String lang = term.getLang().getLang();
         String text = term.getText();
         providedCHO.addProperty(DC_11.type, text, lang);

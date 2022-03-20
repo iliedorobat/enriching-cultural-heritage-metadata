@@ -13,25 +13,23 @@ import ro.webdata.translator.edm.approach.event.lido.mapping.core.administrative
 import ro.webdata.translator.edm.approach.event.lido.mapping.leaf.RecordIDProcessing;
 
 public class AdministrativeMetadataProcessing {
-    private static final RecordIDProcessing recordIDProcessing = new RecordIDProcessing();
-    private static final RecordWrapProcessing recordWrapProcessing = new RecordWrapProcessing();
-    private static final ResourceWrapProcessing resourceWrapProcessing = new ResourceWrapProcessing();
-
-    public void mapEntries(
+    public static void mapEntries(
             Model model,
             Resource providedCHO,
             AdministrativeMetadata administrativeMetadata
     ) {
-        RecordWrap recordWrap = administrativeMetadata.getRecordWrap();
-        ResourceWrap resourceWrap = administrativeMetadata.getResourceWrap();
-        Resource aggregation = generateAggregation(model, recordWrap);
+        if (administrativeMetadata != null) {
+            RecordWrap recordWrap = administrativeMetadata.getRecordWrap();
+            ResourceWrap resourceWrap = administrativeMetadata.getResourceWrap();
+            Resource aggregation = generateAggregation(model, recordWrap);
 
-        recordWrapProcessing.mapEntries(
-                model, aggregation, providedCHO, recordWrap
-        );
-        resourceWrapProcessing.mapEntries(
-                model, aggregation, resourceWrap
-        );
+            RecordWrapProcessing.mapEntries(
+                    model, aggregation, providedCHO, recordWrap
+            );
+            ResourceWrapProcessing.mapEntries(
+                    model, aggregation, resourceWrap
+            );
+        }
     }
 
     /**
@@ -40,8 +38,8 @@ public class AdministrativeMetadataProcessing {
      * @param recordWrap The <b>lido:recordWrap</b> object
      * @return <b>Resource</b>
      */
-    private Resource generateAggregation(Model model, RecordWrap recordWrap) {
-        String identifier = recordIDProcessing.consolidatesIdentifiers(recordWrap);
+    private static Resource generateAggregation(Model model, RecordWrap recordWrap) {
+        String identifier = RecordIDProcessing.consolidatesIdentifiers(recordWrap);
 
         Resource aggregation = model.createResource(
                 Namespace.NS_REPO_RESOURCE_AGGREGATION + identifier

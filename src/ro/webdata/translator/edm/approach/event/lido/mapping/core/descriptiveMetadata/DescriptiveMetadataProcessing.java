@@ -2,17 +2,17 @@ package ro.webdata.translator.edm.approach.event.lido.mapping.core.descriptiveMe
 
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
+import ro.webdata.parser.xml.lido.core.leaf.descriptiveMetadata.DescriptiveMetadata;
 import ro.webdata.translator.edm.approach.event.lido.mapping.core.descriptiveMetadata.eventWrap.EventWrapProcessing;
 import ro.webdata.translator.edm.approach.event.lido.mapping.core.descriptiveMetadata.objectClassificationWrap.ObjectClassificationWrapProcessing;
 import ro.webdata.translator.edm.approach.event.lido.mapping.core.descriptiveMetadata.objectIdentificationWrap.ObjectIdentificationWrapProcessing;
-import ro.webdata.parser.xml.lido.core.leaf.descriptiveMetadata.DescriptiveMetadata;
 
 public class DescriptiveMetadataProcessing {
     private static ObjectClassificationWrapProcessing objectClassificationWrapProcessing = new ObjectClassificationWrapProcessing();
     private static ObjectIdentificationWrapProcessing objectIdentificationWrapProcessing = new ObjectIdentificationWrapProcessing();
     private static EventWrapProcessing eventWrapProcessing = new EventWrapProcessing();
 
-    public void mapEntries(
+    public static void mapEntries(
            Model model,
            Resource providedCHO,
            DescriptiveMetadata descriptiveMetadata

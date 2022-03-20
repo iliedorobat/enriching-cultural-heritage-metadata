@@ -25,10 +25,6 @@ import java.util.ArrayList;
 
 public class LidoWrapProcessing {
     private static final ParserDAO parserDAO = new ParserDAOImpl();
-    private static final CategoryProcessing categoryProcessing = new CategoryProcessing();
-    private static final LidoRecIDProcessing lidoRecIDProcessing = new LidoRecIDProcessing();
-    private static final DescriptiveMetadataProcessing descriptiveMetadataProcessing = new DescriptiveMetadataProcessing();
-    private static final AdministrativeMetadataProcessing administrativeMetadataProcessing = new AdministrativeMetadataProcessing();
 
     public void mapEntries(Model model, String fullPath) {
         Print.operation(Const.OPERATION_START, fullPath, EnvConstants.SHOULD_PRINT);
@@ -50,13 +46,13 @@ public class LidoWrapProcessing {
                     : null;
 
             Resource providedCHO = generateProvidedCHO(model, lidoRecIDList);
-            administrativeMetadataProcessing.mapEntries(
+            AdministrativeMetadataProcessing.mapEntries(
                     model, providedCHO, administrativeMetadata
             );
-            categoryProcessing.mapEntries(
+            CategoryProcessing.mapEntries(
                     model, providedCHO, category
             );
-            descriptiveMetadataProcessing.mapEntries(
+            DescriptiveMetadataProcessing.mapEntries(
                     model, providedCHO, descriptiveMetadata
             );
         }
@@ -65,7 +61,7 @@ public class LidoWrapProcessing {
     }
 
     private Resource generateProvidedCHO(Model model, ArrayList<LidoRecID> lidoRecIDList) {
-        String recordId = lidoRecIDProcessing.getRecordId(lidoRecIDList);
+        String recordId = LidoRecIDProcessing.getRecordId(lidoRecIDList);
         Resource providedCHO = model.createResource(Namespace.NS_REPO_RESOURCE_CHO + recordId);
         providedCHO.addProperty(RDF.type, EDM.ProvidedCHO);
 

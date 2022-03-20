@@ -12,7 +12,7 @@ public class LidoRecIDProcessing {
      * @return An unique identifier
      */
     //TODO: is similar with RecordIDProcessing.consolidatesIdentifiers
-    public String getRecordId(ArrayList<LidoRecID> lidoRecIDList) {
+    public static String getRecordId(ArrayList<LidoRecID> lidoRecIDList) {
         String id = null;
 
         if (lidoRecIDList.size() > 0) {
@@ -20,12 +20,13 @@ public class LidoRecIDProcessing {
             String text = lidoRecID.getText();
             String type = lidoRecID.getType().getType();
 
-            if (type != null)
+            if (type != null) {
                 id = File.FILE_SEPARATOR + type + File.FILE_SEPARATOR + text;
-            else
+            } else {
                 id = File.FILE_SEPARATOR + text;
+            }
         } else {
-            System.err.println(this.getClass().getName() + ":" +
+            System.err.println(LidoRecIDProcessing.class.getName() + ":" +
                     "There should be provided at least one \"lido:lidoRecID\" property" +
                     "but no any \"lido:lidoRecID\" has been identified.");
         }

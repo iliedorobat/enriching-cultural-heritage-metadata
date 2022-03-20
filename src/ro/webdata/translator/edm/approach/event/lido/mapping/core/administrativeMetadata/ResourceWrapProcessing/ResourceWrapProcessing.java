@@ -16,7 +16,7 @@ import ro.webdata.parser.xml.lido.core.wrap.resourceWrap.ResourceWrap;
 import java.util.ArrayList;
 
 public class ResourceWrapProcessing {
-    public void mapEntries(
+    public static void mapEntries(
             Model model,
             Resource aggregation,
             ResourceWrap resourceWrap
@@ -24,7 +24,7 @@ public class ResourceWrapProcessing {
         addResourceSet(model, aggregation, resourceWrap.getResourceSet());
     }
 
-    private void addResourceSet(
+    private static void addResourceSet(
             Model model,
             Resource aggregation,
             ArrayList<ResourceSet> resourceSetList
@@ -43,7 +43,7 @@ public class ResourceWrapProcessing {
      * @param resourceRepresentationList The list with <b>lido:resourceRepresentation</b> elements
      * @param rightsResourceList The list with <b>lido:rightsResource</b> elements
      */
-    private void aggregateResourceWeb(
+    private static void aggregateResourceWeb(
             Model model,
             Resource aggregation,
             ArrayList<ResourceRepresentation> resourceRepresentationList,
@@ -66,7 +66,7 @@ public class ResourceWrapProcessing {
      * @param resourceRepresentation <b>lido:rightsResource</b> element
      * @return <b>Resource</b>
      */
-    private Resource generateWebResource(
+    private static Resource generateWebResource(
             Model model,
             ResourceRepresentation resourceRepresentation,
             ArrayList<RightsResource> rightsResourceList
@@ -90,7 +90,7 @@ public class ResourceWrapProcessing {
      * @param webResource <b>edm:WebResource</b>
      * @param list The list with <b>lido:rightsResource</b> elements
      */
-    private void addRightsProperty(Model model, Resource webResource, ArrayList<RightsResource> list) {
+    private static void addRightsProperty(Model model, Resource webResource, ArrayList<RightsResource> list) {
         for (RightsResource rightsResource : list) {
             ArrayList<RightsType> rightsTypeList = rightsResource.getRightsType();
 
@@ -110,7 +110,7 @@ public class ResourceWrapProcessing {
      * @param link The provided link
      * @return <b>String</b>
      */
-    private String getResourceFormat(String link) {
+    private static String getResourceFormat(String link) {
         int index = link.lastIndexOf(".") + 1;
         return link.substring(index);
     }

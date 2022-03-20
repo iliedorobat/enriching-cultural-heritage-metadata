@@ -12,7 +12,7 @@ public class RecordIDProcessing {
      * @param recordWrap The <b>lido:recordWrap</b> element
      * @return An unique identifier
      */
-    public String consolidatesIdentifiers(RecordWrap recordWrap) {
+    public static String consolidatesIdentifiers(RecordWrap recordWrap) {
         ArrayList<RecordID> recordIDList = recordWrap.getRecordID();
         return consolidatesIdentifiers(recordIDList);
     }
@@ -23,7 +23,7 @@ public class RecordIDProcessing {
      * @return An unique identifier
      */
     //TODO: is similar with LidoRecIDProcessing.getRecordId
-    public String consolidatesIdentifiers(ArrayList<RecordID> idList) {
+    public static String consolidatesIdentifiers(ArrayList<RecordID> idList) {
         String id = null;
 
         if (idList.size() > 0) {
@@ -31,12 +31,13 @@ public class RecordIDProcessing {
             String text = recordID.getText();
             String type = recordID.getType().getType();
 
-            if (type != null)
+            if (type != null) {
                 id = File.FILE_SEPARATOR + type + File.FILE_SEPARATOR + text;
-            else
+            } else {
                 id = File.FILE_SEPARATOR + text;
+            }
         } else {
-            System.err.println(this.getClass().getName() + ":" +
+            System.err.println(RecordIDProcessing.class.getName() + ":" +
                     "There should be provided at least one \"lido:recordID\" property" +
                     "but no any \"lido:recordID\" has been identified.");
         }

@@ -24,7 +24,7 @@ public class RecordWrapProcessing {
     private static final RecordSourceProcessing recordSourceProcessing = new RecordSourceProcessing();
     private static final RecordRightsProcessing recordRightsProcessing = new RecordRightsProcessing();
 
-    public void mapEntries(
+    public static void mapEntries(
             Model model,
             Resource aggregation,
             Resource providedCHO,
