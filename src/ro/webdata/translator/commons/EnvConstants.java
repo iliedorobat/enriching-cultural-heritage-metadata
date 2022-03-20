@@ -8,7 +8,14 @@ public final class EnvConstants {
      * Specify if the environment is set for a demo
      * FIXME: update as you need
      */
-    public static final boolean IS_DEMO = true;
+    public static final boolean IS_DEMO = false;
+
+    /**
+     * The native dataset language
+     * FIXME: change the main language as you need
+     */
+    public static final String LANG_MAIN =  Const.LANG_RO;
+
     public static final boolean PRINT_RDF_RESULTS = false;
     public static final boolean IS_PRINT_ENABLED = true;
 
@@ -21,10 +28,4 @@ public final class EnvConstants {
     public static final String NS_REPO_RESOURCE_EVENT = Namespace.NS_REPO_RESOURCE_EVENT;
     public static final String NS_REPO_RESOURCE_ORGANIZATION = Namespace.NS_REPO_RESOURCE_ORGANIZATION;
     public static final String NS_REPO_RESOURCE_PLACE = Namespace.NS_REPO_RESOURCE_PLACE;
-
-    /**
-     * The native dataset language
-     * FIXME: change the main language as you need
-     */
-    public static final String LANG_MAIN =  Const.LANG_RO;
 }

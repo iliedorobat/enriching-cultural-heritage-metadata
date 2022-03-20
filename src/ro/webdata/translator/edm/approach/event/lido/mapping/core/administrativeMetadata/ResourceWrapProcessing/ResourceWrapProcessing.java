@@ -4,6 +4,7 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DC_11;
 import org.apache.jena.vocabulary.RDF;
+import ro.webdata.echo.commons.Text;
 import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.parser.xml.lido.core.leaf.linkResource.LinkResource;
 import ro.webdata.parser.xml.lido.core.leaf.resourceRepresentation.ResourceRepresentation;
@@ -72,9 +73,9 @@ public class ResourceWrapProcessing {
             ArrayList<RightsResource> rightsResourceList
     ) {
         LinkResource linkResource = resourceRepresentation.getLinkResource();
-        String resourceLink = linkResource.getText();
-        // TODO: externalize the replacing of white spaces with URL encoded character
-        resourceLink = resourceLink.replaceAll(" ", "%20");
+        String resourceLink = Text.encodeSpace(
+                linkResource.getText()
+        );
 
         Resource webResource = model.createResource(resourceLink);
         webResource.addProperty(RDF.type, EDM.WebResource);

@@ -38,8 +38,6 @@ public class EventDateProcessing {
             String text = displayDate.getText();
             TreeSet<String> timespanSet = new TreeSet<>();
 
-            // TODO: detecting the language tag
-            // FIXME: update as you need
             if (LANG_MAIN.equals(Const.LANG_RO)) {
                 timespanSet = TimespanUtils.getTimespanSet(text);
             }

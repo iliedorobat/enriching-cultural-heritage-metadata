@@ -9,7 +9,6 @@ import ro.webdata.echo.commons.Const;
 import ro.webdata.echo.commons.File;
 import ro.webdata.echo.commons.Json;
 import ro.webdata.parser.xml.lido.core.leaf.legalBodyID.LegalBodyID;
-import ro.webdata.translator.edm.approach.event.cimec.commons.FilePath;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,8 +19,8 @@ import static ro.webdata.echo.commons.accessor.MuseumAccessors.*;
 import static ro.webdata.translator.commons.EnvConstants.NS_REPO_RESOURCE_AGENT;
 
 public class MuseumUtils {
-    public static final String enPath = FilePath.getCimecJsonPath(Const.LANG_EN);
-    public static final String roPath = FilePath.getCimecJsonPath(Const.LANG_RO);
+    public static final String enPath = getCimecJsonPath(Const.LANG_EN);
+    public static final String roPath = getCimecJsonPath(Const.LANG_RO);
 
     public static final JsonArray enJsonArray = Json.getJsonArray(enPath);
     public static final JsonArray roJsonArray = Json.getJsonArray(roPath);
@@ -193,5 +192,17 @@ public class MuseumUtils {
         }
 
         return baseElement;
+    }
+
+    private static String getCimecJsonPath(String lang) {
+        return File.PATH_INPUT_DIR
+                + File.FILE_SEPARATOR
+                + "cimec"
+                + File.FILE_SEPARATOR
+                + "merged"
+                + StringUtils.capitalize(lang)
+                + "PreparedData"
+                + File.EXTENSION_SEPARATOR
+                + File.EXTENSION_JSON;
     }
 }

@@ -7,7 +7,7 @@ import ro.webdata.echo.commons.graph.GraphModel;
 import ro.webdata.translator.commons.FileConstants;
 import ro.webdata.translator.commons.GraphUtils;
 import ro.webdata.translator.edm.approach.event.cimec.mapping.core.Museum;
-import ro.webdata.translator.edm.approach.event.cimec.mapping.core.MuseumTest;
+import ro.webdata.translator.edm.approach.event.cimec.mapping.core.Test;
 
 import static ro.webdata.translator.commons.EnvConstants.*;
 
@@ -34,7 +34,7 @@ public class Main {
     //---------------------- DEMO Scenario ---------------------- //
     private static void runDemo() {
         Model model = GraphModel.generateModel();
-        MuseumTest.mapEntries(model, 10);
+        Test.mapEntries(model, 10);
         GraphUtils.writeRDFGraph(model, FileConstants.PATH_OUTPUT_CIMEC_DEMO, PRINT_RDF_RESULTS);
     }
 }
