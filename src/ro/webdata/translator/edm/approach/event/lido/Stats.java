@@ -3,6 +3,9 @@ package ro.webdata.translator.edm.approach.event.lido;
 import ro.webdata.echo.commons.Const;
 import ro.webdata.echo.commons.File;
 import ro.webdata.echo.commons.Print;
+import ro.webdata.normalization.timespan.ro.LidoXmlTimespanAnalysis;
+import ro.webdata.normalization.timespan.ro.TimeExpression;
+import ro.webdata.normalization.timespan.ro.TimespanUtils;
 import ro.webdata.translator.commons.EnvConstants;
 import ro.webdata.translator.commons.FileConstants;
 
@@ -10,37 +13,29 @@ import java.io.*;
 import java.util.*;
 
 public class Stats {
-    private static String[] fileNames = {
-            FileConstants.FILE_NAME_ARHEOLOGIE,
-            FileConstants.FILE_NAME_ARTA,
-            FileConstants.FILE_NAME_ARTE_DECO,
-            FileConstants.FILE_NAME_DOC,
-            FileConstants.FILE_NAME_ETNO,
-            FileConstants.FILE_NAME_ST_TEH,
-            FileConstants.FILE_NAME_ISTORIE,
-            FileConstants.FILE_NAME_MEDALISTICA,
-            FileConstants.FILE_NAME_NUMISMATICA,
-            FileConstants.FILE_NAME_ST_NAT
-    };
+    private static final ArrayList<String> EXCLUDED_FILES = new ArrayList<>(
+            Arrays.asList("demo.xml", "demo2.xml", "demo3.xml")
+    );
 
     public static void main(String[] args) {
 //        //TODO: remove
 //        boolean PLAY = true;
 //        if (PLAY)     TimespanUtils.getTimespanSet(FileConstants.PATH_OUTPUT_TIMESPAN_FILE);
-//        else          TimespanAnalysis.check(FileConstants.PATH_OUTPUT_TIMESPAN_FILE);
-//
-//        // 1. Write to disc all unique timespan values
-//        TimespanAnalysis.write(fileNames, FileConstants.PATH_OUTPUT_TIMESPAN_FILE, FileConstants.PATH_INPUT_LIDO_DIR);
-//
-//        // 2. Print the statistics of the new created properties
-//        printNewPropertiesStats();
-//
-//        // 3. Prepare the timespan statistics
-//        cleaningTimespanAnalysis();
+//        else          LidoXmlTimespanAnalysis.check(FileConstants.PATH_OUTPUT_TIMESPAN_FILE);
+
+        // 1. Write to disc all unique timespan values
+        LidoXmlTimespanAnalysis.writeAll(FileConstants.PATH_INPUT_LIDO_DIR, FileConstants.PATH_OUTPUT_TIMESPAN_FILE, EXCLUDED_FILES);
+        LidoXmlTimespanAnalysis.writeUnique(FileConstants.PATH_INPUT_LIDO_DIR, FileConstants.PATH_OUTPUT_UNIQUE_TIMESPAN_FILE, EXCLUDED_FILES);
+
+        // 2. Print the statistics of the new created properties
+        printNewPropertiesStats();
+
+        // 3. Prepare the timespan statistics
+        cleaningTimespanAnalysis();
     }
 
     private static void cleaningTimespanAnalysis() {
-        String fileName = FileConstants.PATH_OUTPUT_TIMESPAN_ANALYSIS_FILE;
+        String fileName = FileConstants.PATH_OUTPUT_UNIQUE_TIMESPAN_FILE;
         BufferedReader br = null;
         ArrayList<String> arrayList = new ArrayList<>();
 
@@ -51,7 +46,8 @@ public class Stats {
             while ((readLine = br.readLine()) != null) {
                 if (readLine.length() > 0) {
                     String value = readLine.toLowerCase();
-                    arrayList.add(value);
+                    TimeExpression timeExpression = new TimeExpression(value, "|");
+                    arrayList.add(timeExpression.toString());
                 }
             }
         } catch (Exception e) {
@@ -68,11 +64,9 @@ public class Stats {
             sb.append(string).append("\n");
         }
 
-        // FIXME: PATH_DATA_PROCESSING_DIR => PATH_OUTPUT_DIR
-        String fileWriterName = FileConstants.PATH_DATA_PROCESSING_DIR + File.FILE_SEPARATOR + "timespan-analysis-cleaned.csv";
         StringWriter writer = new StringWriter();
         writer.write(sb.toString());
-        File.write(writer, fileWriterName, false);
+        File.write(writer, FileConstants.PATH_OUTPUT_TIMESPAN_ANALYSIS_FILE, false);
     }
 
     private static void printNewPropertiesStats() {
