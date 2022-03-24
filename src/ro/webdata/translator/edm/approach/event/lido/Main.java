@@ -6,12 +6,12 @@ import ro.webdata.echo.commons.Print;
 import ro.webdata.echo.commons.graph.GraphModel;
 import ro.webdata.translator.commons.FileConstants;
 import ro.webdata.translator.commons.GraphUtils;
+import ro.webdata.translator.edm.approach.event.lido.commons.FileUtils;
 import ro.webdata.translator.edm.approach.event.lido.mapping.core.LidoWrapProcessing;
 
 import java.io.File;
 
 import static ro.webdata.translator.commons.EnvConstants.*;
-import static ro.webdata.echo.commons.File.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -49,22 +49,10 @@ public class Main {
 
     private static void mapEntries(String fileName) {
         Model model = GraphModel.generateModel();
-        String inputFilePath = getInputFilePath(fileName);
-        String outputPath = getOutputFilePath(fileName);
+        String inputFilePath = FileUtils.getInputFilePath(fileName);
+        String outputPath = FileUtils.getOutputFilePath(fileName);
 
         LidoWrapProcessing.mapEntries(model, inputFilePath);
         GraphUtils.writeRDFGraph(model, outputPath, PRINT_RDF_RESULTS);
-    }
-
-    private static String getInputFilePath(String fileName) {
-        return FileConstants.PATH_INPUT_LIDO_DIR
-                + FILE_SEPARATOR + fileName
-                + EXTENSION_SEPARATOR + EXTENSION_XML;
-    }
-
-    private static String getOutputFilePath(String fileName) {
-        return FileConstants.PATH_OUTPUT_LIDO_DIR
-                + FILE_SEPARATOR + fileName
-                + EXTENSION_SEPARATOR + EXTENSION_RDF;
     }
 }

@@ -118,10 +118,33 @@
                             <lido:place
                                     lido:politicalEntity="locality">
                                 <lido:namePlaceSet>
-                                    <lido:appellationValue>Sibiu</lido:appellationValue>
+                                    <lido:appellationValue>Sibiul Nou</lido:appellationValue>
+                                    <lido:appellationValue xml:lang="en">New Sibiu</lido:appellationValue>
                                 </lido:namePlaceSet>
                                 <lido:partOfPlace
                                         lido:politicalEntity="county">
+                                    <lido:namePlaceSet>
+                                        <lido:appellationValue>Sibiu</lido:appellationValue>
+                                        <lido:appellationValue xml:lang="en">Sibiu</lido:appellationValue>
+                                    </lido:namePlaceSet>
+                                    <lido:partOfPlace
+                                            lido:politicalEntity="country">
+                                        <lido:namePlaceSet>
+                                            <lido:appellationValue xml:lang="en">Romania</lido:appellationValue>
+                                            <lido:appellationValue>România</lido:appellationValue>
+                                        </lido:namePlaceSet>
+                                    </lido:partOfPlace>
+                                </lido:partOfPlace>
+                            </lido:place>
+                        </lido:eventPlace>
+                        <lido:eventPlace>
+                            <lido:place
+                                    lido:politicalEntity="locality">
+                                <lido:namePlaceSet>
+                                    <lido:appellationValue>Tarna Mare</lido:appellationValue>
+                                </lido:namePlaceSet>
+                                <lido:partOfPlace
+                                        lido:politicalEntity="region">
                                     <lido:namePlaceSet>
                                         <lido:appellationValue>Sibiu</lido:appellationValue>
                                     </lido:namePlaceSet>
@@ -136,40 +159,40 @@
                         </lido:eventPlace>
                     </lido:event>
                 </lido:eventSet>
-                <lido:eventSet>
-                    <lido:event>
-                        <lido:eventType>
-                            <lido:term
-                                    xml:lang="en">Finding</lido:term>
-                        </lido:eventType>
-                        <lido:eventPlace>
-                            <lido:place
-                                    lido:politicalEntity="locality">
-                                <lido:namePlaceSet>
-                                    <lido:appellationValue>Sibiu</lido:appellationValue>
-                                </lido:namePlaceSet>
-                                <lido:partOfPlace
-                                        lido:politicalEntity="county">
-                                    <lido:namePlaceSet>
-                                        <lido:appellationValue>Sibiu</lido:appellationValue>
-                                    </lido:namePlaceSet>
-                                    <lido:partOfPlace
-                                            lido:politicalEntity="region">
-                                        <lido:namePlaceSet>
-                                            <lido:appellationValue>Transilvania</lido:appellationValue>
-                                        </lido:namePlaceSet>
-                                        <lido:partOfPlace
-                                                lido:politicalEntity="country">
-                                            <lido:namePlaceSet>
-                                                <lido:appellationValue>România</lido:appellationValue>
-                                            </lido:namePlaceSet>
-                                        </lido:partOfPlace>
-                                    </lido:partOfPlace>
-                                </lido:partOfPlace>
-                            </lido:place>
-                        </lido:eventPlace>
-                    </lido:event>
-                </lido:eventSet>
+<!--                <lido:eventSet>-->
+<!--                    <lido:event>-->
+<!--                        <lido:eventType>-->
+<!--                            <lido:term-->
+<!--                                    xml:lang="en">Finding</lido:term>-->
+<!--                        </lido:eventType>-->
+<!--                        <lido:eventPlace>-->
+<!--                            <lido:place-->
+<!--                                    lido:politicalEntity="locality">-->
+<!--                                <lido:namePlaceSet>-->
+<!--                                    <lido:appellationValue>Sibiu</lido:appellationValue>-->
+<!--                                </lido:namePlaceSet>-->
+<!--                                <lido:partOfPlace-->
+<!--                                        lido:politicalEntity="county">-->
+<!--                                    <lido:namePlaceSet>-->
+<!--                                        <lido:appellationValue>Sibiu</lido:appellationValue>-->
+<!--                                    </lido:namePlaceSet>-->
+<!--                                    <lido:partOfPlace-->
+<!--                                            lido:politicalEntity="region">-->
+<!--                                        <lido:namePlaceSet>-->
+<!--                                            <lido:appellationValue>Transilvania</lido:appellationValue>-->
+<!--                                        </lido:namePlaceSet>-->
+<!--                                        <lido:partOfPlace-->
+<!--                                                lido:politicalEntity="country">-->
+<!--                                            <lido:namePlaceSet>-->
+<!--                                                <lido:appellationValue>România</lido:appellationValue>-->
+<!--                                            </lido:namePlaceSet>-->
+<!--                                        </lido:partOfPlace>-->
+<!--                                    </lido:partOfPlace>-->
+<!--                                </lido:partOfPlace>-->
+<!--                            </lido:place>-->
+<!--                        </lido:eventPlace>-->
+<!--                    </lido:event>-->
+<!--                </lido:eventSet>-->
             </lido:eventWrap>
         </lido:descriptiveMetadata>
         <lido:administrativeMetadata

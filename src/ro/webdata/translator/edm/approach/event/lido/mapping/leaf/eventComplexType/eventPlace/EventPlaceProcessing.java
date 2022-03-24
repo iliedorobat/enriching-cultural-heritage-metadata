@@ -1,25 +1,18 @@
 package ro.webdata.translator.edm.approach.event.lido.mapping.leaf.eventComplexType.eventPlace;
 
-import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
-import org.apache.jena.vocabulary.RDF;
+import org.apache.jena.vocabulary.DCTerms;
 import org.apache.jena.vocabulary.SKOS;
 import ro.webdata.echo.commons.Const;
-import ro.webdata.echo.commons.graph.GraphResource;
-import ro.webdata.echo.commons.graph.PlaceType;
-import ro.webdata.echo.commons.graph.vocab.EDM;
-import ro.webdata.parser.xml.lido.core.complex.placeComplexType.PlaceComplexType;
-import ro.webdata.parser.xml.lido.core.leaf.appellationValue.AppellationValue;
 import ro.webdata.parser.xml.lido.core.leaf.eventPlace.EventPlace;
-import ro.webdata.parser.xml.lido.core.leaf.partOfPlace.PartOfPlace;
 import ro.webdata.parser.xml.lido.core.leaf.place.Place;
-import ro.webdata.parser.xml.lido.core.set.namePlaceSet.NamePlaceSet;
+import ro.webdata.translator.edm.approach.event.lido.commons.PlaceMapUtils;
 
-import java.util.*;
-
-import static ro.webdata.translator.commons.EnvConstants.NS_REPO_RESOURCE_PLACE;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class EventPlaceProcessing {
     /**
@@ -35,8 +28,9 @@ public class EventPlaceProcessing {
         ArrayList<Resource> placeList = new ArrayList<>();
 
         for (EventPlace eventPlace : eventPlaceList) {
-            ArrayList<Resource> resourceList = generateEventPlace(model, eventPlace.getPlace());
-            placeList.addAll(resourceList);
+            placeList.addAll(
+                    generateEventPlace(model, eventPlace.getPlace())
+            );
         }
 
         return placeList;
@@ -51,270 +45,76 @@ public class EventPlaceProcessing {
      * @return The list with Event Places
      */
     private static ArrayList<Resource> generateEventPlace(Model model, Place place) {
-        LinkedHashMap<String, ArrayList<PlaceComplexType>> placeMap =  preparePlaceMap(place);
-        return generatePlaceList(model, placeMap);
-    }
+        ArrayList<Resource> allPlaceList = new ArrayList<>();
+        ArrayList<Resource> placeList = new ArrayList<>();
+        LinkedHashMap<String, HashMap<String, Object>> placeMapList = PlaceMapUtils.getPlaceMap(place);
 
-    /**
-     * Prepare a sorted key-value list which contains all places.<br/>
-     * The sorting is based on the principle of "top level" political entities
-     * (E.g.: country, region, county, commune, locality, point)
-     * @param place The related place
-     */
-    private static LinkedHashMap<String, ArrayList<PlaceComplexType>> preparePlaceMap(PlaceComplexType place) {
-        LinkedHashMap<String, ArrayList<PlaceComplexType>> placeMap = new LinkedHashMap<>();
-        ArrayList<PartOfPlace> partOfPlaceList = place.getPartOfPlace();
-
-        if (partOfPlaceList != null) {
-            for (PartOfPlace partOfPlace : partOfPlaceList) {
-                placeMap.putAll(
-                        preparePlaceMap(partOfPlace)
-                );
-            }
+        Resource resource = null;
+        for (Map.Entry<String, HashMap<String, Object>> placeMap : placeMapList.entrySet()) {
+            Resource placeResource = generateEventPlace(model, placeMap);
+            resource = placeResource;
+            allPlaceList.add(placeResource);
         }
 
-        pushPlaceByType(place, placeMap);
-
-        return placeMap;
-    }
-
-    /**
-     * Add a place into the sorted key-value list of places
-     * @param place The related place
-     * @param placeMap A sorted key-value list of places
-     */
-    private static void pushPlaceByType(PlaceComplexType place, HashMap<String, ArrayList<PlaceComplexType>> placeMap) {
-        String placeType = place.getPoliticalEntity().getAttrValue();
-        ArrayList<PlaceComplexType> placeValueList = placeMap.containsKey(placeType)
-                ? placeMap.get(placeType)
-                : new ArrayList<>();
-        placeValueList.add(place);
-
-        if (!placeMap.containsKey(placeType)) {
-            placeMap.put(placeType, placeValueList);
-        }
-    }
-
-    /**
-     * Generate a list with all political places related to an event<br/>
-     * E.g.: initial place: point "Leisure Island" from locality Bacau:<br/>
-     *      * locality Bacau is part of Bacau county<br/>
-     *      * Bacau county is part of Moldova region<br/>
-     *      * Moldova region is part of Romania
-     * @param model The RDF graph
-     * @param placeMap A sorted key-value list of places
-     */
-    private static ArrayList<Resource> generatePlaceList(
-            Model model, LinkedHashMap<String, ArrayList<PlaceComplexType>> placeMap
-    ) {
-        ArrayList<Resource> resourceList = new ArrayList<>();
-
-        for (Map.Entry<String, ArrayList<PlaceComplexType>> entry : placeMap.entrySet()) {
-            resourceList.addAll(
-                    generateEventPlacesNames(model, placeMap, entry.getValue())
-            );
+        if (resource != null) {
+            placeList.add(resource);
         }
 
-        return resourceList;
+        addIsPartOf(allPlaceList);
+        // TODO: "dcterms:hasPart"
+//        addHasPart(allPlaceList);
+
+        return placeList;
     }
 
-    /**
-     * Generate a list that contains every name of a all places
-     * @param model The RDF graph
-     * @param placeMap A sorted key-value list of places
-     * @param placeList The list of places
-     * @return The list of event places
-     */
-    private static ArrayList<Resource> generateEventPlacesNames(
-            Model model,
-            LinkedHashMap<String, ArrayList<PlaceComplexType>> placeMap,
-            ArrayList<PlaceComplexType> placeList
-    ) {
-        ArrayList<Resource> resourceList = new ArrayList<>();
+    // TODO: owl:sameAs => use geo names (https://www.geonames.org/search.html?q=&country=RO)
+    private static Resource generateEventPlace(Model model, Map.Entry<String, HashMap<String, Object>> placeMap) {
+        HashMap<String, String> nameMap = (HashMap<String, String>) placeMap.getValue().get(PlaceMapUtils.NAME_PROP);
+        String uri = placeMap.getValue().get(PlaceMapUtils.URI_PROP).toString();
+        String placeType = placeMap.getKey();
 
-        for (PlaceComplexType place : placeList) {
-            resourceList.addAll(
-                    generateEventPlaceNames(model, placeMap, place)
-            );
+        Resource placeResource = model.createResource(uri);
+
+        for (Map.Entry<String, String> entry : nameMap.entrySet()) {
+            String lang = entry.getKey();
+            String name = entry.getValue();
+            addLabelProperty(placeResource, name, lang);
         }
 
-        return resourceList;
-    }
+        placeResource.addProperty(SKOS.note, placeType, Const.LANG_EN);
 
-    /**
-     * Generate a list that contains every name of a specified place
-     * @param model The RDF graph
-     * @param placeMap A sorted key-value list of places
-     * @param place The specified place
-     * @return The list of RDF Resources for a specified place
-     */
-    private static ArrayList<Resource> generateEventPlaceNames(
-            Model model,
-            LinkedHashMap<String, ArrayList<PlaceComplexType>> placeMap,
-            PlaceComplexType place
-    ) {
-        ArrayList<Resource> resourceList = new ArrayList<>();
-        ArrayList<NamePlaceSet> NamePlaceSetList = place.getNamePlaceSet();
-        String placeType = place.getPoliticalEntity().getAttrValue();
-
-        for (NamePlaceSet namePlaceSet : NamePlaceSetList) {
-            ArrayList<AppellationValue> appellationValueList = namePlaceSet.getAppellationValue();
-            resourceList.add(
-                    consolidateEventPlace(model, placeMap, appellationValueList, placeType)
-            );
-        }
-
-        return resourceList;
-    }
-
-    /**
-     * Add the <b>skos:prefLabel</b> property if not exists, or add the <b>skos:altLabel</b>
-     * if the <b>skos:prefLabel</b> already exists in the Place Resource
-     * @param model The RDF graph
-     * @param placeMap A sorted key-value list of places
-     * @param appellationValueList The LIDO list with the place names
-     * @param placeType The political entity ("point", "locality" etc.)
-     * @return The consolidated place resource
-     */
-    // TODO: "dcterms:hasPart" & "dcterms:isPartOf"
-    private static Resource consolidateEventPlace(
-            Model model,
-            LinkedHashMap<String, ArrayList<PlaceComplexType>> placeMap,
-            ArrayList<AppellationValue> appellationValueList,
-            String placeType
-    ) {
-        ArrayList<String> langList = new ArrayList<>();
-        Resource placeResource = null;
-
-        for (AppellationValue appellationValue : appellationValueList) {
-            String lang = appellationValue.getLang().getLang();
-            String placeName = appellationValue.getText();
-            Literal literal = model.createLiteral(placeName, lang);
-
-            if (placeResource == null)
-                placeResource = createEventPlace(model, placeMap, placeName, placeType);
-            Property label = !langList.contains(lang)
-                    ? SKOS.prefLabel
-                    : SKOS.altLabel;
-            placeResource.addProperty(label, literal);
-
-            langList.add(lang);
-        }
-
-        return placeResource;
-    }
-
-    /**
-     * Create the basic <b>edm:Place</b> resource
-     * @param model The RDF graph
-     * @param placeMap A sorted key-value list of places
-     * @param placeName The place name (e.g. "Romania", "Beroe Piatra Frecăței" etc.)
-     * @param placeType The political entity ("point", "locality" etc.)
-     * @return The place resource
-     */
-    // TODO: use geo names (https://www.geonames.org/search.html?q=&country=RO) for places
-    private static Resource createEventPlace(
-            Model model,
-            LinkedHashMap<String, ArrayList<PlaceComplexType>> placeMap,
-            String placeName,
-            String placeType
-    ) {
-        String localLink = GraphResource.generateURI(
-                NS_REPO_RESOURCE_PLACE,
-                getPlaceName(placeMap, placeName, placeType)
-        );
-        Resource placeResource = model.createResource(localLink);
-
-        // TODO: add it back
+//        // TODO: link the place to DBpedia
 //        String dbpediaLink = ResourceUtils.generateDBPediaURI(placeName);
 //        try { TimeUnit.SECONDS.sleep(100); } catch (InterruptedException e) { e.printStackTrace(); }
 //        if (HttpGet.isValidDBPedia(placeName)) {
 //            placeResource.addProperty(OWL2.sameAs, model.createResource(dbpediaLink));
 //        }
 
-        placeResource.addProperty(RDF.type, EDM.Place);
-        placeResource.addProperty(SKOS.note, placeType);
-
         return placeResource;
     }
 
-    // TODO: find a better way to build the name of points, localities and communes
-    private static String getPlaceName(
-            LinkedHashMap<String, ArrayList<PlaceComplexType>> placeMap,
-            String placeName,
-            String placeType
-    ) {
-        String parentName;
-
-        switch (placeType) {
-            case PlaceType.COMMUNE:
-                try {
-                    parentName = getFirstParentName(placeMap, PlaceType.COUNTY);
-                } catch (Exception e) {
-                    try { parentName = getFirstParentName(placeMap, PlaceType.REGION); }
-                    catch (Exception e2) { parentName = placeName; }
-                }
-                return placeName + Const.UNDERSCORE_PLACEHOLDER + getPlaceName(placeMap, parentName, PlaceType.COUNTY);
-            case PlaceType.LOCALITY:
-                try {
-                    parentName = getFirstParentName(placeMap, PlaceType.COMMUNE);
-                } catch (Exception e) {
-                    try {
-                        parentName = getFirstParentName(placeMap, PlaceType.COUNTY);
-                    } catch (Exception e2) {
-                        try { parentName = getFirstParentName(placeMap, PlaceType.REGION); }
-                        catch (Exception e3) { parentName = placeName; }
-                    }
-                }
-                return placeName + Const.UNDERSCORE_PLACEHOLDER + getPlaceName(placeMap, parentName, PlaceType.COMMUNE);
-            case PlaceType.POINT:
-                try {
-                    parentName = getFirstParentName(placeMap, PlaceType.LOCALITY);
-                } catch (Exception e2) {
-                    try {
-                        parentName = getFirstParentName(placeMap, PlaceType.COMMUNE);
-                    } catch (Exception e3) {
-                        try {
-                            parentName = getFirstParentName(placeMap, PlaceType.COUNTY);
-                        } catch (Exception e4) {
-                            try { parentName = getFirstParentName(placeMap, PlaceType.REGION); }
-                            catch (Exception e5) { parentName = placeName; }
-                        }
-                    }
-                }
-                return placeName + Const.UNDERSCORE_PLACEHOLDER + getPlaceName(placeMap, parentName, PlaceType.LOCALITY);
-            default:
-                return placeName;
+    private static void addLabelProperty(Resource placeResource, String name, String language) {
+        // Add "skos:prefLabel" property for the input language only if it has not already been added
+        if (placeResource.getProperty(SKOS.prefLabel, language) == null) {
+            placeResource.addProperty(SKOS.prefLabel, name, language);
+        } else {
+            placeResource.addProperty(SKOS.altLabel, name, language);
         }
     }
 
-    private static String getFirstParentName(
-            LinkedHashMap<String, ArrayList<PlaceComplexType>> placeMap, String parentPlaceType) {
-        return placeMap.get(parentPlaceType).get(0)
-                .getNamePlaceSet().get(0)
-                .getAppellationValue().get(0)
-                .getText();
+    private static void addIsPartOf(ArrayList<Resource> placeList) {
+        for (int i = placeList.size() - 1; i > 0; i--) {
+            Resource crrResource = placeList.get(i);
+            Resource parentPlace = placeList.get(i - 1);
+            crrResource.addProperty(DCTerms.isPartOf, parentPlace);
+        }
     }
 
-    private static String getParentType(String placeType) {
-        List<String> placeTypeList = Arrays.asList(PlaceType.TYPES);
-        int index = placeTypeList.indexOf(placeType);
-
-        if (index == placeTypeList.size() - 1) {
-            return null;
+    private static void addHasPart(ArrayList<Resource> placeList) {
+        for (int i = 0; i < placeList.size() - 1; i++) {
+            Resource crrResource = placeList.get(i);
+            Resource childPlace = placeList.get(i + 1);
+            crrResource.addProperty(DCTerms.hasPart, childPlace);
         }
-
-        return placeTypeList.get(index + 1);
-    }
-
-    private static String getChildType(String placeType) {
-        List<String> placeTypeList = Arrays.asList(PlaceType.TYPES);
-        int index = placeTypeList.indexOf(placeType);
-
-        if (index == 0) {
-            return null;
-        }
-
-        return placeTypeList.get(index - 1);
     }
 }
