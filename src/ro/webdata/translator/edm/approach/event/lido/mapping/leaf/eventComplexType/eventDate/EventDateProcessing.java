@@ -51,8 +51,9 @@ public class EventDateProcessing {
             File.write(sw, FileConstants.PATH_OUTPUT_TIMESPAN_ANALYSIS_FILE, true);
 
             for (String timespan : timespanSet) {
-                eventDateResource = model.createResource(timespan);
-                eventDateResource.addProperty(RDF.type, EDM.TimeSpan);
+                eventDateResource = model
+                        .createResource(timespan)
+                        .addProperty(RDF.type, EDM.TimeSpan);
                 eventDateResourceList.add(eventDateResource);
             }
 

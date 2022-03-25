@@ -9,6 +9,7 @@ import ro.webdata.echo.commons.graph.GraphResource;
 import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.parser.xml.dspace.core.attribute.record.BasicRecord;
 import ro.webdata.parser.xml.dspace.core.leaf.dcValue.DcValue;
+import ro.webdata.translator.edm.approach.event.lido.commons.URIUtils;
 import ro.webdata.translator.edm.approach.object.dspace.commons.PrintMessages;
 
 import static ro.webdata.translator.commons.EnvConstants.NS_REPO_RESOURCE;
@@ -22,9 +23,8 @@ public class ProviderMapping {
         switch (qualifier) {
             case BasicRecord.EMPTY:
             case BasicRecord.NONE:
-                String providerUri = GraphResource.generateURI(
-                        NS_REPO_RESOURCE, EDM.Agent, value
-                );
+                String relativeUri = GraphResource.generateURI("", EDM.Agent, value);
+                String providerUri = URIUtils.prepareUri(NS_REPO_RESOURCE, relativeUri);
 
                 Resource provider = model
                         .createResource(providerUri)

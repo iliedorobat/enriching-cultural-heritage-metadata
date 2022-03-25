@@ -7,6 +7,7 @@ import ro.webdata.echo.commons.graph.Namespace;
 import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.echo.commons.graph.vocab.ORE;
 import ro.webdata.parser.xml.dspace.core.leaf.dcValue.DcValue;
+import ro.webdata.translator.edm.approach.event.lido.commons.URIUtils;
 import ro.webdata.translator.edm.approach.object.dspace.mapping.core.europeana.record.IsShownAtMapping;
 import ro.webdata.translator.edm.approach.object.dspace.mapping.core.europeana.record.IsShownByMapping;
 import ro.webdata.translator.edm.approach.object.dspace.mapping.core.europeana.record.ProviderMapping;
@@ -68,9 +69,10 @@ public class EuropeanaMapping {
     private static Resource generateAggregation(Model model, Resource providedCHO) {
         Resource aggregation = null;
         String providedCHOUri = providedCHO.getURI();
-        String aggregationUri = providedCHOUri + Namespace.LINK_ID_AGGREGATION;
+        String aggregationUri = URIUtils.prepareUri(providedCHOUri, Namespace.LINK_ID_AGGREGATION);
 
-        aggregation = model.createResource(aggregationUri)
+        aggregation = model
+                .createResource(aggregationUri)
                 .addProperty(RDF.type, ORE.Aggregation)
                 .addProperty(EDM.aggregatedCHO, providedCHO);
 

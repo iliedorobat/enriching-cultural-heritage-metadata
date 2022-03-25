@@ -9,6 +9,7 @@ import ro.webdata.echo.commons.Text;
 import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.parser.xml.lido.core.leaf.eventType.EventType;
 import ro.webdata.parser.xml.lido.core.leaf.term.Term;
+import ro.webdata.translator.edm.approach.event.lido.commons.URIUtils;
 
 import java.util.ArrayList;
 
@@ -57,12 +58,14 @@ public class EventTypeProcessing {
             // TODO: subClass of Constants.NS_REPO_RESOURCE_EVENT + Constants.FILE_SEPARATOR + TextUtils.sanitizeString(eventName)
             if (termLang.equals(eventLang) || eventLang == null) {
                 String eventType = Text.sanitizeString(term.getText());
-                Resource resource = model.createResource(
-                        NS_REPO_RESOURCE_EVENT + eventType + File.FILE_SEPARATOR + choUri.substring(index)
-                );
-                resource.addProperty(RDF.type, EDM.Event);
-                // TODO: create a concept for event type
-                resource.addProperty(EDM.hasType, eventType);
+                String uri = URIUtils.prepareUri(NS_REPO_RESOURCE_EVENT, eventType + File.FILE_SEPARATOR + choUri.substring(index));
+
+                Resource resource = model
+                        .createResource(uri)
+                        .addProperty(RDF.type, EDM.Event)
+                        // TODO: create a concept for event type
+                        .addProperty(EDM.hasType, eventType);
+
                 return resource;
             }
         }

@@ -8,9 +8,11 @@ import org.apache.jena.vocabulary.SKOS;
 import ro.webdata.echo.commons.Const;
 import ro.webdata.echo.commons.File;
 import ro.webdata.echo.commons.Text;
+import ro.webdata.echo.commons.graph.PlaceType;
 import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.echo.commons.graph.vocab.constraints.EDMRoles;
 import ro.webdata.parser.xml.lido.core.leaf.recordSource.RecordSource;
+import ro.webdata.translator.edm.approach.event.lido.commons.URIUtils;
 import ro.webdata.translator.edm.approach.event.lido.commons.constants.LIDOType;
 
 import java.util.ArrayList;
@@ -44,10 +46,10 @@ public class RecordSourceProcessing {
                     return null;
                 }
 
-                Resource dataProvider = model.createResource(
-                        getNamespace(providerName) + Text.sanitizeString(providerName)
-                );
-                dataProvider.addProperty(RDF.type, FOAF.Organization);
+                String uri = URIUtils.prepareUri(getNamespace(providerName), Text.sanitizeString(providerName));
+                Resource dataProvider = model
+                        .createResource(uri)
+                        .addProperty(RDF.type, FOAF.Organization);
 
                 LegalBodyRefComplexTypeProcessing.addOrganizationName(model, dataProvider, recordSource.getLegalBodyName());
                 LegalBodyRefComplexTypeProcessing.addOrganizationWeblink(model, dataProvider, recordSource.getLegalBodyWeblink());
@@ -72,7 +74,7 @@ public class RecordSourceProcessing {
         String namespace = NS_REPO_RESOURCE_ORGANIZATION;
 
         if (providerName.equals(INP_NAME_RO)) {
-            namespace += ROMANIAN_COUNTRY_NAME + File.FILE_SEPARATOR;
+            namespace += PlaceType.COUNTRY + ":" + ROMANIAN_COUNTRY_NAME + File.FILE_SEPARATOR;
         }
 
         return namespace;

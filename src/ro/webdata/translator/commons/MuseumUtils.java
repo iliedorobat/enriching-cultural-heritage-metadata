@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import ro.webdata.echo.commons.Const;
 import ro.webdata.echo.commons.File;
 import ro.webdata.echo.commons.Json;
+import ro.webdata.echo.commons.graph.PlaceType;
 import ro.webdata.parser.xml.lido.core.leaf.legalBodyID.LegalBodyID;
 
 import java.util.ArrayList;
@@ -68,9 +69,9 @@ public class MuseumUtils {
 
         return museumName != null && county != null ? (
                 NS_REPO_RESOURCE_AGENT
-                        + Constants.ROMANIAN_COUNTRY_NAME
+                        + PlaceType.COUNTRY + ":" + Constants.ROMANIAN_COUNTRY_NAME
                         + File.FILE_SEPARATOR
-                        + sanitizeCountyName(county, Constants.ROMANIAN_COUNTRY_NAME_SEPARATOR)
+                        + PlaceType.COUNTY + ":" + sanitizeCountyName(county, Constants.ROMANIAN_COUNTRY_NAME_SEPARATOR)
                         + File.FILE_SEPARATOR
                         + sanitizeString(museumName)
                         + File.FILE_SEPARATOR

@@ -73,9 +73,10 @@ public class Museum {
     }
 
     private static Resource generateMuseum(Model model, String museumCode) {
-        String resourceLink = MuseumUtils.generateMuseumId(museumCode);
-        Resource museum = model.createResource(resourceLink);
-        museum.addProperty(RDF.type, EDM.Agent);
+        String museumUri = MuseumUtils.generateMuseumId(museumCode);
+        Resource museum = model
+                .createResource(museumUri)
+                .addProperty(RDF.type, EDM.Agent);
 
         return museum;
     }

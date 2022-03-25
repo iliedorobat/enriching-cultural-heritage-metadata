@@ -8,11 +8,14 @@ import ro.webdata.echo.commons.Const;
 import ro.webdata.parser.xml.lido.core.leaf.eventPlace.EventPlace;
 import ro.webdata.parser.xml.lido.core.leaf.place.Place;
 import ro.webdata.translator.edm.approach.event.lido.commons.PlaceMapUtils;
+import ro.webdata.translator.edm.approach.event.lido.commons.URIUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import static ro.webdata.translator.commons.EnvConstants.NS_REPO_RESOURCE_PLACE;
 
 public class EventPlaceProcessing {
     /**
@@ -68,12 +71,14 @@ public class EventPlaceProcessing {
     }
 
     // TODO: owl:sameAs => use geo names (https://www.geonames.org/search.html?q=&country=RO)
+    //  translate the country name: https://stackoverflow.com/questions/8147284/how-to-use-google-translate-api-in-my-java-application
     private static Resource generateEventPlace(Model model, Map.Entry<String, HashMap<String, Object>> placeMap) {
         HashMap<String, String> nameMap = (HashMap<String, String>) placeMap.getValue().get(PlaceMapUtils.NAME_PROP);
-        String uri = placeMap.getValue().get(PlaceMapUtils.URI_PROP).toString();
+        String relativeUri = placeMap.getValue().get(PlaceMapUtils.URI_PROP).toString();
+        String placeUri = URIUtils.prepareUri(NS_REPO_RESOURCE_PLACE, relativeUri);
         String placeType = placeMap.getKey();
 
-        Resource placeResource = model.createResource(uri);
+        Resource placeResource = model.createResource(placeUri);
 
         for (Map.Entry<String, String> entry : nameMap.entrySet()) {
             String lang = entry.getKey();

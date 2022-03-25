@@ -104,7 +104,8 @@ public final class ProvidedCHO {
 
             if (qualifier.equals("uri")) {
                 String uri = dcValue.getText();
-                providedCHO = model.createResource(uri)
+                providedCHO = model
+                        .createResource(uri)
                         .addProperty(RDF.type, EDM.ProvidedCHO);
             }
 

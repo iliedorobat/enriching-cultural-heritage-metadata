@@ -14,6 +14,7 @@ import ro.webdata.parser.xml.lido.core.leaf.descriptiveMetadata.DescriptiveMetad
 import ro.webdata.parser.xml.lido.core.leaf.lido.Lido;
 import ro.webdata.parser.xml.lido.core.leaf.lidoRecID.LidoRecID;
 import ro.webdata.parser.xml.lido.core.wrap.lidoWrap.LidoWrap;
+import ro.webdata.translator.edm.approach.event.lido.commons.URIUtils;
 import ro.webdata.translator.edm.approach.event.lido.mapping.core.administrativeMetadata.AdministrativeMetadataProcessing;
 import ro.webdata.translator.edm.approach.event.lido.mapping.core.category.CategoryProcessing;
 import ro.webdata.translator.edm.approach.event.lido.mapping.core.descriptiveMetadata.DescriptiveMetadataProcessing;
@@ -63,7 +64,9 @@ public class LidoWrapProcessing {
 
     private static Resource generateProvidedCHO(Model model, ArrayList<LidoRecID> lidoRecIDList) {
         String recordId = LidoRecIDProcessing.getRecordId(lidoRecIDList);
-        Resource providedCHO = model.createResource(NS_REPO_RESOURCE_CHO + recordId);
+        String uri = URIUtils.prepareUri(NS_REPO_RESOURCE_CHO, recordId);
+
+        Resource providedCHO = model.createResource(uri);
         providedCHO.addProperty(RDF.type, EDM.ProvidedCHO);
 
         return providedCHO;

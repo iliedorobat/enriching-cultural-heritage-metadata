@@ -9,9 +9,11 @@ import org.apache.jena.vocabulary.SKOS;
 import ro.webdata.echo.commons.Const;
 import ro.webdata.echo.commons.File;
 import ro.webdata.echo.commons.Text;
+import ro.webdata.echo.commons.graph.PlaceType;
 import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.echo.commons.graph.vocab.constraints.EDMRoles;
 import ro.webdata.parser.xml.lido.core.wrap.recordWrap.RecordWrap;
+import ro.webdata.translator.edm.approach.event.lido.commons.URIUtils;
 import ro.webdata.translator.edm.approach.event.lido.mapping.leaf.RecordRightsProcessing;
 import ro.webdata.translator.edm.approach.event.lido.mapping.leaf.RecordSourceProcessing;
 
@@ -46,10 +48,11 @@ public class RecordWrapProcessing {
      * @return The Europeana Provider
      */
     private static Resource generateProvider(Model model) {
-        String providerLink = NS_REPO_RESOURCE_ORGANIZATION
-                + ROMANIAN_COUNTRY_NAME
+        String relativeUri = PlaceType.COUNTRY + ":" + ROMANIAN_COUNTRY_NAME
                 + File.FILE_SEPARATOR
                 + Text.sanitizeString("Politehnica University of Bucharest");
+        String providerLink = URIUtils.prepareUri(NS_REPO_RESOURCE_ORGANIZATION, relativeUri);
+
         Resource provider = model.createResource(providerLink);
         provider.addProperty(RDF.type, FOAF.Organization);
 
@@ -82,10 +85,11 @@ public class RecordWrapProcessing {
      * @return The Europeana Intermediate Provider
      */
     private static Resource generateIntermediateProvider(Model model) {
-        String providerLink = NS_REPO_RESOURCE_ORGANIZATION
-                + ROMANIAN_COUNTRY_NAME
+        String relativeUri = PlaceType.COUNTRY + ":" + ROMANIAN_COUNTRY_NAME
                 + File.FILE_SEPARATOR
                 + Text.sanitizeString("Romanian Open Data Portal");
+        String providerLink = URIUtils.prepareUri(NS_REPO_RESOURCE_ORGANIZATION, relativeUri);
+
         Resource provider = model.createResource(providerLink);
         provider.addProperty(RDF.type, FOAF.Organization);
 

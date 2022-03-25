@@ -18,6 +18,7 @@ import ro.webdata.parser.xml.lido.core.leaf.eventActor.EventActor;
 import ro.webdata.parser.xml.lido.core.leaf.roleActor.RoleActor;
 import ro.webdata.parser.xml.lido.core.leaf.term.Term;
 import ro.webdata.parser.xml.lido.core.set.nameActorSet.NameActorSet;
+import ro.webdata.translator.edm.approach.event.lido.commons.URIUtils;
 
 import java.util.ArrayList;
 
@@ -92,12 +93,12 @@ public class EventActorProcessing {
         if (actorName != null) {
             String role = getActorRole(roleActorList);
             Literal literal = model.createLiteral(actorName);
+            String uri = URIUtils.prepareUri(NS_REPO_RESOURCE_AGENT, Text.sanitizeString(actorName));
 
-            Resource actor = model.createResource(
-                    NS_REPO_RESOURCE_AGENT + Text.sanitizeString(actorName)
-            );
-            actor.addProperty(RDF.type, EDM.Agent);
-            actor.addProperty(FOAF.name, literal);
+            Resource actor = model
+                    .createResource(uri)
+                    .addProperty(RDF.type, EDM.Agent)
+                    .addProperty(FOAF.name, literal);
             addPrefLabelProperty(model, actor, roleActorList);
 
             return actor;

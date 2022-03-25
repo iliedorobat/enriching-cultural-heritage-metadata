@@ -10,6 +10,7 @@ import ro.webdata.echo.commons.graph.GraphResource;
 import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.parser.xml.dspace.core.attribute.record.BasicRecord;
 import ro.webdata.parser.xml.dspace.core.leaf.dcValue.DcValue;
+import ro.webdata.translator.edm.approach.event.lido.commons.URIUtils;
 import ro.webdata.translator.edm.approach.object.dspace.commons.PrintMessages;
 
 import static ro.webdata.translator.commons.EnvConstants.NS_REPO_RESOURCE;
@@ -34,9 +35,9 @@ public class ContributorMapping {
             case REFINEMENT_EDITOR:
             case REFINEMENT_ILLUSTRATOR:
             case REFINEMENT_OTHER:
-                String contributorUri = GraphResource.generateURI(
-                        NS_REPO_RESOURCE, EDM.Agent, value
-                );
+                String relativeUri = GraphResource.generateURI("", EDM.Agent, value);
+                String contributorUri = URIUtils.prepareUri(NS_REPO_RESOURCE, relativeUri
+
                 Resource contributor = model
                         .createResource(contributorUri)
                         .addProperty(RDF.type, EDM.Agent)

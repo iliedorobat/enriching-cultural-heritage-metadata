@@ -37,8 +37,9 @@ public class LegalBodyRefComplexTypeProcessing {
                 resourceLink = MuseumUtils.generateMuseumId(cimecCode);
             }
 
-            organization = model.createResource(resourceLink);
-            organization.addProperty(RDF.type, FOAF.Organization);
+            organization = model
+                    .createResource(resourceLink)
+                    .addProperty(RDF.type, FOAF.Organization);
             addOrganizationIdentifier(model, organization, legalBodyIDList);
 
             if (cimecCode == null) {

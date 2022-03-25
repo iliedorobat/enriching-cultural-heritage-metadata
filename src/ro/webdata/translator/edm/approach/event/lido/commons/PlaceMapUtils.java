@@ -16,8 +16,6 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static ro.webdata.translator.commons.EnvConstants.NS_REPO_RESOURCE_PLACE;
-
 public class PlaceMapUtils {
     public static final String NAME_PROP = "name";
     public static final String URI_PROP = "uri";
@@ -25,7 +23,7 @@ public class PlaceMapUtils {
     public static LinkedHashMap<String, HashMap<String, Object>> getPlaceMap(Place place) {
         LinkedHashMap<String, HashMap<String, String>> reducedPlaceNameMap = preparePlaceNameMap(place);
         LinkedHashMap<String, HashMap<String, Object>> placesLinkMap = new LinkedHashMap<>();
-        String uri = NS_REPO_RESOURCE_PLACE;
+        String uri = "";
 
         for (Map.Entry<String, HashMap<String, String>> placeMap : reducedPlaceNameMap.entrySet()) {
             String placeType = placeMap.getKey();

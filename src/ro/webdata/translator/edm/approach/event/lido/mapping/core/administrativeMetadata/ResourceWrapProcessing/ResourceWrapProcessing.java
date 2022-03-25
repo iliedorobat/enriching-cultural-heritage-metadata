@@ -77,9 +77,10 @@ public class ResourceWrapProcessing {
                 linkResource.getText()
         );
 
-        Resource webResource = model.createResource(resourceLink);
-        webResource.addProperty(RDF.type, EDM.WebResource);
-        webResource.addProperty(DC_11.format, getResourceFormat(resourceLink));
+        Resource webResource = model
+                .createResource(resourceLink)
+                .addProperty(RDF.type, EDM.WebResource)
+                .addProperty(DC_11.format, getResourceFormat(resourceLink));
         addRightsProperty(model, webResource, rightsResourceList);
 
         return webResource;
