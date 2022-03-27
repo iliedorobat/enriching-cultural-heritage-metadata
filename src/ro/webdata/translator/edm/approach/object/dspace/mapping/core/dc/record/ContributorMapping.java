@@ -36,7 +36,7 @@ public class ContributorMapping {
             case REFINEMENT_ILLUSTRATOR:
             case REFINEMENT_OTHER:
                 String relativeUri = GraphResource.generateURI("", EDM.Agent, value);
-                String contributorUri = URIUtils.prepareUri(NS_REPO_RESOURCE, relativeUri
+                String contributorUri = URIUtils.prepareUri(NS_REPO_RESOURCE, relativeUri);
 
                 Resource contributor = model
                         .createResource(contributorUri)
