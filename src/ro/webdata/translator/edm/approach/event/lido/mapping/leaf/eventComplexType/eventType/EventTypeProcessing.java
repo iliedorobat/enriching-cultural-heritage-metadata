@@ -53,7 +53,7 @@ public class EventTypeProcessing {
             String termLang = term.getLang().getLang();
             String choMainUri = NS_REPO_RESOURCE_CHO;
             String choUri = providedCHO.getURI();
-            int index = choMainUri.length() + 1;
+            int index = choMainUri.length();
 
             // TODO: subClass of Constants.NS_REPO_RESOURCE_EVENT + Constants.FILE_SEPARATOR + TextUtils.sanitizeString(eventName)
             if (termLang.equals(eventLang) || eventLang == null) {

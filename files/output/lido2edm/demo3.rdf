@@ -12,63 +12,7 @@
     xmlns:ore="http://www.openarchives.org/ore/terms/"
     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
     xmlns:foaf="http://xmlns.com/foaf/0.1/">
-  <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/overallDescription">
-    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/description"/>
-  </rdf:Description>
-  <edm:Agent rdf:about="http://opendata.cs.pub.ro/resource/agent/frăția_calfelor_de_lăcătuși">
-    <edm:wasPresentAt>
-      <edm:Event rdf:about="http://opendata.cs.pub.ro/resource/event/Production/CIMEC/435A6FF67CD0482BA8760086B671BF92">
-        <edm:occuredAt>
-          <edm:TimeSpan rdf:about="https://dbpedia.org/page/18th_century"/>
-        </edm:occuredAt>
-        <edm:occuredAt>
-          <edm:TimeSpan rdf:about="https://dbpedia.org/page/17th_century"/>
-        </edm:occuredAt>
-        <edm:happenedAt>
-          <rdf:Description rdf:about="http://opendata.cs.pub.ro/resource/place/country:Romania/region:Sibiu/locality:Tarna_Mare/">
-            <dcterms:isPartOf>
-              <rdf:Description rdf:about="http://opendata.cs.pub.ro/resource/place/country:Romania/region:Sibiu/">
-                <dcterms:isPartOf>
-                  <rdf:Description rdf:about="http://opendata.cs.pub.ro/resource/place/country:Romania/">
-                    <skos:altLabel xml:lang="ro">România</skos:altLabel>
-                    <skos:note xml:lang="en">country</skos:note>
-                    <skos:prefLabel xml:lang="ro">România</skos:prefLabel>
-                    <skos:prefLabel xml:lang="en">Romania</skos:prefLabel>
-                  </rdf:Description>
-                </dcterms:isPartOf>
-                <skos:note xml:lang="en">region</skos:note>
-                <skos:prefLabel xml:lang="ro">Sibiu</skos:prefLabel>
-              </rdf:Description>
-            </dcterms:isPartOf>
-            <skos:note xml:lang="en">locality</skos:note>
-            <skos:prefLabel xml:lang="ro">Tarna Mare</skos:prefLabel>
-          </rdf:Description>
-        </edm:happenedAt>
-        <edm:happenedAt>
-          <rdf:Description rdf:about="http://opendata.cs.pub.ro/resource/place/country:Romania/county:Sibiu/locality:Sibiul_Nou/">
-            <dcterms:isPartOf>
-              <rdf:Description rdf:about="http://opendata.cs.pub.ro/resource/place/country:Romania/county:Sibiu/">
-                <dcterms:isPartOf rdf:resource="http://opendata.cs.pub.ro/resource/place/country:Romania/"/>
-                <skos:note xml:lang="en">county</skos:note>
-                <skos:prefLabel xml:lang="ro">Sibiu</skos:prefLabel>
-                <skos:prefLabel xml:lang="en">Sibiu</skos:prefLabel>
-              </rdf:Description>
-            </dcterms:isPartOf>
-            <skos:note xml:lang="en">locality</skos:note>
-            <skos:prefLabel xml:lang="ro">Sibiul Nou</skos:prefLabel>
-            <skos:prefLabel xml:lang="en">New Sibiu</skos:prefLabel>
-          </rdf:Description>
-        </edm:happenedAt>
-        <edm:isRelatedTo xml:lang="ro">atelier: Atelier transilvănean</edm:isRelatedTo>
-        <edm:isRelatedTo xml:lang="en">workshop: Atelier transilvănean</edm:isRelatedTo>
-        <edm:hasType>Production</edm:hasType>
-      </edm:Event>
-    </edm:wasPresentAt>
-    <skos:prefLabel xml:lang="ro">comanditar</skos:prefLabel>
-    <skos:prefLabel xml:lang="en">paymaster</skos:prefLabel>
-    <foaf:name>frăția calfelor de lăcătuși</foaf:name>
-  </edm:Agent>
-  <ore:Aggregation rdf:about="http://opendata.cs.pub.ro/resource/aggregation//GUID/435A6FF67CD0482BA8760086B671BF92">
+  <ore:Aggregation rdf:about="http://opendata.cs.pub.ro/resource/Aggregation/GUID/435A6FF67CD0482BA8760086B671BF92">
     <edm:object>
       <edm:WebResource rdf:about="http://clasate.cimec.ro/medium/IST_6966501_558-7.jpg">
         <edm:rights rdf:resource="http://www.europeana.eu/rights/rr-f/"/>
@@ -78,80 +22,136 @@
     <edm:isShownBy rdf:resource="http://clasate.cimec.ro/medium/IST_6966501_558-7.jpg"/>
     <edm:rights rdf:resource="http://creativecommons.org/licenses/by-sa/4.0/"/>
     <edm:dataProvider>
-      <foaf:Organization rdf:about="http://opendata.cs.pub.ro/resource/organization/Romania/Institutul_Național_al_Patrimoniului">
+      <foaf:Organization rdf:about="http://opendata.cs.pub.ro/resource/Organization/country:Romania/Institutul_Național_al_Patrimoniului">
         <edm:europeanaRole xml:lang="en">data provider</edm:europeanaRole>
-        <foaf:homepage rdf:resource="https://patrimoniu.ro/"/>
         <edm:country rdf:resource="https://dbpedia.org/page/Romania"/>
-        <skos:prefLabel xml:lang="en">National Heritage Institute</skos:prefLabel>
-        <dc:identifier>http://www.patrimoniu.ro</dc:identifier>
-        <edm:organizationScope xml:lang="ro">asigurarea cadrului legislativ si gestionarea patrimoniului national cultural</edm:organizationScope>
         <edm:organizationSector rdf:resource="https://dbpedia.org/page/Cultural_heritage"/>
         <edm:organizationScope xml:lang="en">ensuring the legal framework and managing the national cultural heritage</edm:organizationScope>
-        <skos:prefLabel xml:lang="ro">Institutul Național al Patrimoniului</skos:prefLabel>
         <edm:organizationDomain rdf:resource="https://dbpedia.org/page/Culture"/>
+        <edm:organizationScope xml:lang="ro">asigurarea cadrului legislativ si gestionarea patrimoniului national cultural</edm:organizationScope>
         <edm:acronym xml:lang="ro">INP</edm:acronym>
+        <skos:prefLabel xml:lang="en">National Heritage Institute</skos:prefLabel>
+        <dc:identifier>http://www.patrimoniu.ro</dc:identifier>
+        <foaf:homepage rdf:resource="https://patrimoniu.ro/"/>
         <edm:geographicLevel rdf:resource="https://dbpedia.org/page/Country"/>
+        <skos:prefLabel xml:lang="ro">Institutul Național al Patrimoniului</skos:prefLabel>
       </foaf:Organization>
     </edm:dataProvider>
     <edm:intermediateProvider>
-      <foaf:Organization rdf:about="http://opendata.cs.pub.ro/resource/organization/Romania/Romanian_Open_Data_Portal">
-        <foaf:logo rdf:resource="https://data.gov.ro/assets/images/gov/gov3.png"/>
-        <edm:organizationScope xml:lang="en">centralization of open data published by Romanian institutions according to the principles and standards in the field</edm:organizationScope>
-        <edm:geographicLevel rdf:resource="https://dbpedia.org/page/Country"/>
-        <edm:europeanaRole xml:lang="en">data provider</edm:europeanaRole>
-        <edm:country rdf:resource="https://dbpedia.org/page/Romania"/>
-        <edm:organizationSector rdf:resource="https://dbpedia.org/page/Open_data"/>
-        <skos:prefLabel>data.gov.ro</skos:prefLabel>
-        <foaf:homepage rdf:resource="http://data.gov.ro/en/"/>
-        <edm:organizationScope xml:lang="ro">centralizarea datelor deschise publicate de instituțiile din România conform principiilor și standardelor în domeniu</edm:organizationScope>
+      <foaf:Organization rdf:about="http://opendata.cs.pub.ro/resource/Organization/country:Romania/Romanian_Open_Data_Portal">
         <edm:organizationDomain rdf:resource="https://dbpedia.org/page/Data_publishing"/>
+        <edm:country rdf:resource="https://dbpedia.org/page/Romania"/>
+        <foaf:logo rdf:resource="https://data.gov.ro/assets/images/gov/gov3.png"/>
+        <skos:prefLabel>data.gov.ro</skos:prefLabel>
+        <edm:organizationScope xml:lang="en">centralization of open data published by Romanian institutions according to the principles and standards in the field</edm:organizationScope>
+        <edm:europeanaRole xml:lang="en">data provider</edm:europeanaRole>
+        <edm:geographicLevel rdf:resource="https://dbpedia.org/page/Country"/>
+        <edm:organizationSector rdf:resource="https://dbpedia.org/page/Open_data"/>
+        <edm:organizationScope xml:lang="ro">centralizarea datelor deschise publicate de instituțiile din România conform principiilor și standardelor în domeniu</edm:organizationScope>
+        <foaf:homepage rdf:resource="http://data.gov.ro/en/"/>
         <dc:identifier rdf:resource="http://data.gov.ro/en/"/>
       </foaf:Organization>
     </edm:intermediateProvider>
     <edm:provider>
-      <foaf:Organization rdf:about="http://opendata.cs.pub.ro/resource/organization/Romania/Politehnica_University_of_Bucharest">
-        <edm:organizationScope xml:lang="en">academic research</edm:organizationScope>
-        <edm:country rdf:resource="https://dbpedia.org/page/Romania"/>
-        <edm:organizationSector rdf:resource="https://dbpedia.org/page/Higher_education"/>
-        <edm:acronym xml:lang="ro">UPB</edm:acronym>
-        <skos:prefLabel xml:lang="ro">Universitatea Politehnica din București</skos:prefLabel>
-        <dc:identifier rdf:resource="https://upb.ro/en/"/>
-        <edm:europeanaRole xml:lang="en">data provider</edm:europeanaRole>
+      <foaf:Organization rdf:about="http://opendata.cs.pub.ro/resource/Organization/country:Romania/Politehnica_University_of_Bucharest">
         <edm:geographicLevel rdf:resource="https://dbpedia.org/page/Country"/>
+        <edm:country rdf:resource="https://dbpedia.org/page/Romania"/>
+        <edm:organizationScope xml:lang="ro">cercetare academică</edm:organizationScope>
+        <edm:organizationDomain rdf:resource="https://dbpedia.org/page/Education"/>
+        <edm:organizationSector rdf:resource="https://dbpedia.org/page/Higher_education"/>
+        <edm:europeanaRole xml:lang="en">data provider</edm:europeanaRole>
+        <edm:organizationScope xml:lang="en">academic research</edm:organizationScope>
+        <edm:acronym xml:lang="en">PUB</edm:acronym>
+        <edm:acronym xml:lang="ro">UPB</edm:acronym>
+        <foaf:homepage rdf:resource="https://upb.ro/en/"/>
         <skos:prefLabel xml:lang="en">Politehnica University of Bucharest</skos:prefLabel>
         <foaf:logo rdf:resource="https://upb.ro/upb-identitate-vizuala-logo/"/>
-        <foaf:homepage rdf:resource="https://upb.ro/en/"/>
-        <edm:organizationDomain rdf:resource="https://dbpedia.org/page/Education"/>
-        <edm:acronym xml:lang="en">PUB</edm:acronym>
-        <edm:organizationScope xml:lang="ro">cercetare academică</edm:organizationScope>
+        <dc:identifier rdf:resource="https://upb.ro/en/"/>
+        <skos:prefLabel xml:lang="ro">Universitatea Politehnica din București</skos:prefLabel>
       </foaf:Organization>
     </edm:provider>
     <edm:aggregatedCHO>
-      <edm:ProvidedCHO rdf:about="http://opendata.cs.pub.ro/resource/cho//CIMEC/435A6FF67CD0482BA8760086B671BF92">
-        <odp:displayState>bună</odp:displayState>
-        <dc:type xml:lang="ro">artefact</dc:type>
-        <edm:wasPresentAt rdf:resource="http://opendata.cs.pub.ro/resource/event/Production/CIMEC/435A6FF67CD0482BA8760086B671BF92"/>
+      <edm:ProvidedCHO rdf:about="http://opendata.cs.pub.ro/resource/CHO/CIMEC/435A6FF67CD0482BA8760086B671BF92">
+        <edm:wasPresentAt>
+          <edm:Event rdf:about="http://opendata.cs.pub.ro/resource/Event/Production/CIMEC/435A6FF67CD0482BA8760086B671BF92">
+            <edm:occuredAt>
+              <edm:TimeSpan rdf:about="https://dbpedia.org/page/18th_century"/>
+            </edm:occuredAt>
+            <edm:occuredAt>
+              <edm:TimeSpan rdf:about="https://dbpedia.org/page/17th_century"/>
+            </edm:occuredAt>
+            <edm:happenedAt>
+              <rdf:Description rdf:about="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Sibiu/locality:Tarna_Mare/">
+                <dcterms:isPartOf>
+                  <rdf:Description rdf:about="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Sibiu/">
+                    <dcterms:isPartOf>
+                      <rdf:Description rdf:about="http://opendata.cs.pub.ro/resource/Place/country:Romania/">
+                        <skos:altLabel xml:lang="ro">România</skos:altLabel>
+                        <skos:note xml:lang="en">country</skos:note>
+                        <skos:prefLabel xml:lang="ro">România</skos:prefLabel>
+                        <skos:prefLabel xml:lang="en">Romania</skos:prefLabel>
+                      </rdf:Description>
+                    </dcterms:isPartOf>
+                    <skos:note xml:lang="en">region</skos:note>
+                    <skos:prefLabel xml:lang="ro">Sibiu</skos:prefLabel>
+                  </rdf:Description>
+                </dcterms:isPartOf>
+                <skos:note xml:lang="en">locality</skos:note>
+                <skos:prefLabel xml:lang="ro">Tarna Mare</skos:prefLabel>
+              </rdf:Description>
+            </edm:happenedAt>
+            <edm:happenedAt>
+              <rdf:Description rdf:about="http://opendata.cs.pub.ro/resource/Place/country:Romania/county:Sibiu/locality:Sibiul_Nou/">
+                <dcterms:isPartOf>
+                  <rdf:Description rdf:about="http://opendata.cs.pub.ro/resource/Place/country:Romania/county:Sibiu/">
+                    <dcterms:isPartOf rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/"/>
+                    <skos:note xml:lang="en">county</skos:note>
+                    <skos:prefLabel xml:lang="ro">Sibiu</skos:prefLabel>
+                    <skos:prefLabel xml:lang="en">Sibiu</skos:prefLabel>
+                  </rdf:Description>
+                </dcterms:isPartOf>
+                <skos:note xml:lang="en">locality</skos:note>
+                <skos:prefLabel xml:lang="ro">Sibiul Nou</skos:prefLabel>
+                <skos:prefLabel xml:lang="en">New Sibiu</skos:prefLabel>
+              </rdf:Description>
+            </edm:happenedAt>
+            <edm:isRelatedTo xml:lang="ro">atelier: Atelier transilvănean</edm:isRelatedTo>
+            <edm:isRelatedTo xml:lang="en">workshop: Atelier transilvănean</edm:isRelatedTo>
+            <edm:hasType>Production</edm:hasType>
+          </edm:Event>
+        </edm:wasPresentAt>
         <dc:subject xml:lang="ro">Lada Frăției calfelor de lăcătuși</dc:subject>
-        <dc:title xml:lang="ro">Lada Frăției calfelor de lăcătuși</dc:title>
-        <dc:type xml:lang="en">man-made object</dc:type>
+        <edm:type>IMAGE</edm:type>
         <odp:overallDescription xml:lang="ro">Lada frăției calfelor de lăcătuși, capacul cu borduri care formează un falț peste marginea lăzii, soclu din lemn de brad profilat. În interiorul lăzii pe partea stângă se găsește o casetă, lada este ornamentată cu feronerie lucrată artistic, iar în interior se găsesc benzi și alte aplicații metalice cositorite; broasca are două cârlige pentru două chei diferite.</odp:overallDescription>
-        <dbr:dimensions>L: 57 cm; Î: 29 cm</dbr:dimensions>
+        <dc:subject xml:lang="ro">Ladă</dc:subject>
+        <dcterms:alternative xml:lang="ro">preferred</dcterms:alternative>
+        <dc:type xml:lang="ro">artefact</dc:type>
         <dc:subject xml:lang="ro">Ladă de frăție</dc:subject>
+        <odp:displayState>bună</odp:displayState>
+        <dc:type xml:lang="en">man-made object</dc:type>
+        <dc:title xml:lang="ro">Lada Frăției calfelor de lăcătuși</dc:title>
         <edm:hasType xml:lang="en">history</edm:hasType>
         <edm:currentLocation>
-          <foaf:Organization rdf:about="http://opendata.cs.pub.ro/resource/agent/Romania/Sibiu/History_Museum/"/>
+          <foaf:Organization rdf:about="http://opendata.cs.pub.ro/resource/Organization/country:Romania/county:Sibiu/History_Museum/"/>
         </edm:currentLocation>
-        <dcterms:alternative xml:lang="ro">preferred</dcterms:alternative>
-        <edm:type>IMAGE</edm:type>
-        <odp:inventoryNumber>M5049</odp:inventoryNumber>
         <edm:hasType xml:lang="ro">istorie</edm:hasType>
-        <dc:subject xml:lang="ro">Ladă</dc:subject>
+        <dbr:dimensions>L: 57 cm; Î: 29 cm</dbr:dimensions>
+        <odp:inventoryNumber>M5049</odp:inventoryNumber>
       </edm:ProvidedCHO>
     </edm:aggregatedCHO>
   </ore:Aggregation>
+  <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/overallDescription">
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/description"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/displayState">
     <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/description"/>
   </rdf:Description>
+  <edm:Agent rdf:about="http://opendata.cs.pub.ro/resource/Agent/frăția_calfelor_de_lăcătuși">
+    <edm:wasPresentAt rdf:resource="http://opendata.cs.pub.ro/resource/Event/Production/CIMEC/435A6FF67CD0482BA8760086B671BF92"/>
+    <skos:prefLabel xml:lang="ro">comanditar</skos:prefLabel>
+    <skos:prefLabel xml:lang="en">paymaster</skos:prefLabel>
+    <foaf:name>frăția calfelor de lăcătuși</foaf:name>
+  </edm:Agent>
   <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/inventoryNumber">
     <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/identifier"/>
   </rdf:Description>
