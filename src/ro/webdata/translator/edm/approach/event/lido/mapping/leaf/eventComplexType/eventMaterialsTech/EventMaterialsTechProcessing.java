@@ -13,7 +13,7 @@ import ro.webdata.translator.edm.approach.event.lido.commons.URIUtils;
 
 import java.util.ArrayList;
 
-import static ro.webdata.translator.commons.EnvConstants.NS_REPO_RESOURCE;
+import static ro.webdata.echo.commons.graph.Namespace.NS_REPO_RESOURCE;
 
 public class EventMaterialsTechProcessing {
     public static ArrayList<Resource> addEventMaterialsTechList(

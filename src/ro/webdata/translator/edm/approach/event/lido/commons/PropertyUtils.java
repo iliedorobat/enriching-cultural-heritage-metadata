@@ -18,7 +18,6 @@ import java.util.ArrayList;
 
 import static ro.webdata.echo.commons.accessor.MuseumAccessors.*;
 import static ro.webdata.echo.commons.graph.Namespace.*;
-import static ro.webdata.translator.commons.EnvConstants.NS_REPO_PROPERTY;
 
 // TODO: move the class to ro.webdata.translator.commons
 public final class PropertyUtils {

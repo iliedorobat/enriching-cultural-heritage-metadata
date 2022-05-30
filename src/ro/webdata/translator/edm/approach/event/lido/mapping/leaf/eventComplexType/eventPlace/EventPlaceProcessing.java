@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static ro.webdata.translator.commons.EnvConstants.NS_REPO_RESOURCE_PLACE;
+import static ro.webdata.echo.commons.graph.Namespace.NS_REPO_RESOURCE_PLACE;
 
 public class EventPlaceProcessing {
     /**

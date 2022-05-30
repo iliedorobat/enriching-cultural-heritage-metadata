@@ -13,7 +13,9 @@ import ro.webdata.translator.edm.approach.event.lido.commons.URIUtils;
 
 import java.util.ArrayList;
 
-import static ro.webdata.translator.commons.EnvConstants.*;
+import static ro.webdata.echo.commons.graph.Namespace.NS_REPO_RESOURCE_CHO;
+import static ro.webdata.echo.commons.graph.Namespace.NS_REPO_RESOURCE_EVENT;
+import static ro.webdata.translator.commons.EnvConstants.LANG_MAIN;
 
 public class EventTypeProcessing {
     /**

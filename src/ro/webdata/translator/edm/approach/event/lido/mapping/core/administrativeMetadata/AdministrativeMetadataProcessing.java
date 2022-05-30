@@ -12,7 +12,7 @@ import ro.webdata.translator.edm.approach.event.lido.mapping.core.administrative
 import ro.webdata.translator.edm.approach.event.lido.mapping.core.administrativeMetadata.ResourceWrapProcessing.ResourceWrapProcessing;
 import ro.webdata.translator.edm.approach.event.lido.mapping.leaf.RecordIDProcessing;
 
-import static ro.webdata.translator.commons.EnvConstants.NS_REPO_RESOURCE_AGGREGATION;
+import static ro.webdata.echo.commons.graph.Namespace.NS_REPO_RESOURCE_AGGREGATION;
 
 public class AdministrativeMetadataProcessing {
     public static void mapEntries(

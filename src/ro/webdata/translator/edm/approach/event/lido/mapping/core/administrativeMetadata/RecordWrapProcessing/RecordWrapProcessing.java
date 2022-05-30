@@ -17,8 +17,8 @@ import ro.webdata.translator.edm.approach.event.lido.commons.URIUtils;
 import ro.webdata.translator.edm.approach.event.lido.mapping.leaf.RecordRightsProcessing;
 import ro.webdata.translator.edm.approach.event.lido.mapping.leaf.RecordSourceProcessing;
 
+import static ro.webdata.echo.commons.graph.Namespace.NS_REPO_RESOURCE_ORGANIZATION;
 import static ro.webdata.translator.commons.Constants.ROMANIAN_COUNTRY_NAME;
-import static ro.webdata.translator.commons.EnvConstants.NS_REPO_RESOURCE_ORGANIZATION;
 import static ro.webdata.translator.edm.approach.event.lido.commons.ResourceUtils.addUriProperty;
 
 public class RecordWrapProcessing {

@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static ro.webdata.echo.commons.accessor.MuseumAccessors.*;
-import static ro.webdata.translator.commons.EnvConstants.NS_REPO_RESOURCE_ORGANIZATION;
+import static ro.webdata.echo.commons.graph.Namespace.NS_REPO_RESOURCE_ORGANIZATION;
 
 public class MuseumUtils {
     public static final String enPath = getCimecJsonPath(Const.LANG_EN);
@@ -112,7 +112,7 @@ public class MuseumUtils {
         }
 
         char chr = museumName.charAt(0);
-        String unicode = String.format ("\\u%04x", (int)chr);
+        String unicode = String.format("\\u%04x", (int)chr);
         String QUOTATION_MARKS_REGEX = "[\\u0022\u0027\u201a\u201b\u201c\u201d\u201e\u201f\u2018\u2019]";
 
         return StringUtils.stripAccents(museumName)

@@ -11,7 +11,7 @@ import ro.webdata.parser.xml.dspace.core.attribute.record.BasicRecord;
 import ro.webdata.parser.xml.dspace.core.leaf.dcValue.DcValue;
 import ro.webdata.translator.edm.approach.event.lido.commons.URIUtils;
 
-import static ro.webdata.translator.commons.EnvConstants.NS_REPO_RESOURCE;
+import static ro.webdata.echo.commons.graph.Namespace.NS_REPO_RESOURCE;
 
 public class PublisherMapping {
     public static void mapEntries(Model model, Resource providedCHO, DcValue dcValue) {

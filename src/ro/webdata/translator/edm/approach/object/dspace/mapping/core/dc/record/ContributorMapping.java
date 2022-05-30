@@ -13,7 +13,7 @@ import ro.webdata.parser.xml.dspace.core.leaf.dcValue.DcValue;
 import ro.webdata.translator.edm.approach.event.lido.commons.URIUtils;
 import ro.webdata.translator.edm.approach.object.dspace.commons.PrintMessages;
 
-import static ro.webdata.translator.commons.EnvConstants.NS_REPO_RESOURCE;
+import static ro.webdata.echo.commons.graph.Namespace.NS_REPO_RESOURCE;
 
 public class ContributorMapping {
     private static final String REFINEMENT_ADVISOR = "advisor";
