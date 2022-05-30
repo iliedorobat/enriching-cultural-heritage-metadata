@@ -11,7 +11,6 @@ import java.util.Map;
 
 import static ro.webdata.echo.commons.accessor.MuseumAccessors.*;
 import static ro.webdata.translator.edm.approach.event.lido.commons.PropertyUtils.addProperty;
-import static ro.webdata.translator.edm.approach.event.lido.commons.PropertyUtils.addUriProperty;
 
 public class GeneralInfo {
     public static void mapEntries(
@@ -28,7 +27,9 @@ public class GeneralInfo {
                 addProperty(model, museum, SKOS.note, MUSEUM_ACCREDITATION, value, lang);
                 break;
             case CIMEC_URI:
-                addUriProperty(model, museum, DC_11.identifier, value);
+                // EDM.Agent does not support a reference for the "dc:identifier" property
+                // addUriProperty(model, museum, DC_11.identifier, value);
+                addProperty(model, museum, DC_11.identifier, CIMEC_URI, value, null);
                 break;
             case CODE:
                 addProperty(model, museum, DC_11.identifier, CODE, value, null);

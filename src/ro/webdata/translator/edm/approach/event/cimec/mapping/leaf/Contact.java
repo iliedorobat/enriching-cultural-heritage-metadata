@@ -40,7 +40,9 @@ public class Contact {
                         addProperties(model, museum, SKOS.note, CONTACT_FAX, contact, FAX, null);
                         break;
                     case SOCIAL_MEDIA:
-                        addUriProperties(model, museum, SKOS.note, CONTACT_SOCIAL_MEDIA, contact, SOCIAL_MEDIA);
+                        // EDM.Agent does not support a reference for the "skos:note" property
+                        // addUriProperties(model, museum, SKOS.note, CONTACT_SOCIAL_MEDIA, contact, SOCIAL_MEDIA);
+                        addProperties(model, museum, SKOS.note, CONTACT_SOCIAL_MEDIA, contact, SOCIAL_MEDIA, null);
                         break;
                     case PHONE:
                         addProperties(model, museum, SKOS.note, CONTACT_PHONE, contact, PHONE, null);
@@ -49,10 +51,14 @@ public class Contact {
                         addProperties(model, museum, SKOS.note, CONTACT_TIME_TABLE, contact, TIMETABLE, lang);
                         break;
                     case VIRTUAL_TOUR:
-                        addUriProperties(model, museum, SKOS.note, CONTACT_VIRTUAL_TOUR, contact, VIRTUAL_TOUR);
+                        // EDM.Agent does not support a reference for the "skos:note" property
+                        // addUriProperties(model, museum, SKOS.note, CONTACT_VIRTUAL_TOUR, contact, VIRTUAL_TOUR);
+                        addProperties(model, museum, SKOS.note, CONTACT_VIRTUAL_TOUR, contact, VIRTUAL_TOUR, null);
                         break;
                     case WEB:
-                        addUriProperties(model, museum, SKOS.note, CONTACT_WEB, contact, WEB);
+                        // EDM.Agent does not support a reference for the "skos:note" property
+                        // addUriProperties(model, museum, SKOS.note, CONTACT_WEB, contact, WEB);
+                        addProperties(model, museum, SKOS.note, CONTACT_WEB, contact, WEB, null);
                         break;
                     default:
                         break;

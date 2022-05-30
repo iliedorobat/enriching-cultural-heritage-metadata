@@ -14,7 +14,6 @@ import java.util.Map;
 
 import static ro.webdata.echo.commons.accessor.MuseumAccessors.*;
 import static ro.webdata.translator.edm.approach.event.lido.commons.PropertyUtils.addProperty;
-import static ro.webdata.translator.edm.approach.event.lido.commons.PropertyUtils.addUriProperty;
 import static ro.webdata.translator.edm.approach.event.lido.commons.PropertyUtils.createSubProperty;
 
 public class Location {
@@ -72,7 +71,10 @@ public class Location {
             String link = (
                     Namespace.NS_DBPEDIA_RESOURCE + StringUtils.capitalize(countyName) + "_County"
             ).replaceAll("\\s", "_");
-            addUriProperty(model, museum, property, link);
+
+            // EDM.Agent does not support a reference for the "skos:note" property
+            // addUriProperty(model, museum, property, link);
+            addProperty(model, museum, SKOS.note, LOCATION_COUNTY, link, null);
         } catch (IllegalStateException e) {
             e.printStackTrace();
         }

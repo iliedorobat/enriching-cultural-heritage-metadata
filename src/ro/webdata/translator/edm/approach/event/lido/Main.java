@@ -31,14 +31,18 @@ public class Main {
         File lidoDirectory = new File(FileConstants.PATH_INPUT_LIDO_DIR);
         File[] subDirectories = lidoDirectory.listFiles();
 
-        for (File file : subDirectories) {
-            String fullName = file.getName();
-            int dotIndex = fullName.lastIndexOf(".");
-            String fileName = fullName.substring(0, dotIndex);
+        if (subDirectories != null) {
+            for (File file : subDirectories) {
+                String fullName = file.getName();
+                int dotIndex = fullName.lastIndexOf(".");
+                String fileName = fullName.substring(0, dotIndex);
 
-            if (!fileName.startsWith("demo")) {
-                mapEntries(fileName);
+                if (!fileName.startsWith("demo")) {
+                    mapEntries(fileName);
+                }
             }
+        } else {
+            System.err.println(FileConstants.PATH_INPUT_LIDO_DIR + " does not contain any directories!");
         }
     }
 

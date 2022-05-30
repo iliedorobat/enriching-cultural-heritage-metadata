@@ -52,9 +52,13 @@ public final class PropertyUtils {
 
     public static void addProperty(Model model, Resource museum, Property parentProperty, String propertyName, JsonElement value, String lang) {
         if (value instanceof JsonPrimitive) {
-            Property property = createSubProperty(model, parentProperty, propertyName, false);
-            museum.addProperty(property, value.getAsString(), lang);
+            addProperty(model, museum, parentProperty, propertyName, value.getAsString(), lang);
         }
+    }
+
+    public static void addProperty(Model model, Resource museum, Property parentProperty, String propertyName, String value, String lang) {
+        Property property = createSubProperty(model, parentProperty, propertyName, false);
+        museum.addProperty(property, value, lang);
     }
 
     public static void addProperty(Model model, Resource museum, Property modelProperty, JsonElement value, String lang) {

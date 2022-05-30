@@ -10,8 +10,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import static ro.webdata.echo.commons.accessor.MuseumAccessors.*;
-import static ro.webdata.translator.edm.approach.event.lido.commons.PropertyUtils.addProperty;
-import static ro.webdata.translator.edm.approach.event.lido.commons.PropertyUtils.addUriProperties;
+import static ro.webdata.translator.edm.approach.event.lido.commons.PropertyUtils.*;
 
 public class Collection {
     public static void mapEntries(
@@ -32,7 +31,9 @@ public class Collection {
                         addProperty(model, museum, SKOS.note, COLLECTION_IMPORTANCE, collection, IMPORTANCE, lang);
                         break;
                     case PICTURES:
-                        addUriProperties(model, museum, SKOS.note, COLLECTION_PICTURES, collection, PICTURES);
+                        // EDM.Agent does not support a reference for the "skos:note" property
+                        // addUriProperties(model, museum, SKOS.note, COLLECTION_PICTURES, collection, PICTURES);
+                        addProperties(model, museum, SKOS.note, COLLECTION_PICTURES, collection, PICTURES, null);
                         break;
                     case PROFILE:
                         mapProfile(model, museum, collection, lang);
