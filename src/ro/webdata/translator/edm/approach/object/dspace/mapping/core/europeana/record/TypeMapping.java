@@ -10,7 +10,7 @@ import ro.webdata.parser.xml.dspace.core.leaf.dcValue.DcValue;
 import ro.webdata.translator.edm.approach.object.dspace.commons.PrintMessages;
 
 public class TypeMapping {
-    public static void processing(Model model, Resource providedCHO, DcValue dcValue) {
+    public static void mapEntries(Model model, Resource providedCHO, DcValue dcValue) {
         String qualifier = dcValue.getQualifier().getValue();
         String value = dcValue.getText();
 

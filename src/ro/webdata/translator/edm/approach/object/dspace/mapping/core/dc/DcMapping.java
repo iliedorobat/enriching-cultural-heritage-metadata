@@ -11,61 +11,61 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DcMapping {
-    public static void processing(Model model, Resource providedCHO, HashMap<String, ArrayList<DcValue>> dcValueMap) {
+    public static void mapEntries(Model model, Resource providedCHO, HashMap<String, ArrayList<DcValue>> dcValueMap) {
         for (Map.Entry<String, ArrayList<DcValue>> entry : dcValueMap.entrySet()) {
-            dcValueProcessing(model, providedCHO, entry.getValue());
+            mapEntries(model, providedCHO, entry.getValue());
         }
     }
 
-    private static void dcValueProcessing(Model model, Resource providedCHO, ArrayList<DcValue> dcValueList) {
+    private static void mapEntries(Model model, Resource providedCHO, ArrayList<DcValue> dcValueList) {
         for (DcValue dcValue : dcValueList) {
             String elementName = dcValue.getElement().getValue();
 
             switch (elementName) {
                 case ContributorRecord.ELEMENT:
-                    ContributorMapping.processing(model, providedCHO, dcValue);
+                    ContributorMapping.mapEntries(model, providedCHO, dcValue);
                     break;
                 case CoverageRecord.ELEMENT:
-                    CoverageMapping.processing(model, providedCHO, dcValue);
+                    CoverageMapping.mapEntries(model, providedCHO, dcValue);
                     break;
                 case CreatorRecord.ELEMENT:
-                    CreatorMapping.processing(model, providedCHO, dcValue);
+                    CreatorMapping.mapEntries(model, providedCHO, dcValue);
                     break;
                 case DateRecord.ELEMENT:
-                    DateMapping.processing(model, providedCHO, dcValue);
+                    DateMapping.mapEntries(model, providedCHO, dcValue);
                     break;
                 case DescriptionRecord.ELEMENT:
-                    DescriptionMapping.processing(model, providedCHO, dcValue);
+                    DescriptionMapping.mapEntries(model, providedCHO, dcValue);
                     break;
                 case FormatRecord.ELEMENT:
-                    FormatMapping.processing(model, providedCHO, dcValue);
+                    FormatMapping.mapEntries(model, providedCHO, dcValue);
                     break;
                 case IdentifierRecord.ELEMENT:
-                    IdentifierMapping.processing(model, providedCHO, dcValue);
+                    IdentifierMapping.mapEntries(model, providedCHO, dcValue);
                     break;
                 case LanguageRecord.ELEMENT:
-                    LanguageMapping.processing(model, providedCHO, dcValue);
+                    LanguageMapping.mapEntries(model, providedCHO, dcValue);
                     break;
                 case PublisherRecord.ELEMENT:
-                    PublisherMapping.processing(model, providedCHO, dcValue);
+                    PublisherMapping.mapEntries(model, providedCHO, dcValue);
                     break;
                 case RelationRecord.ELEMENT:
-                    RelationMapping.processing(model, providedCHO, dcValue);
+                    RelationMapping.mapEntries(model, providedCHO, dcValue);
                     break;
                 case RightsRecord.ELEMENT:
-                    RightsMapping.processing(model, providedCHO, dcValue);
+                    RightsMapping.mapEntries(model, providedCHO, dcValue);
                     break;
                 case SourceRecord.ELEMENT:
-                    SourceMapping.processing(model, providedCHO, dcValue);
+                    SourceMapping.mapEntries(model, providedCHO, dcValue);
                     break;
                 case SubjectRecord.ELEMENT:
-                    SubjectMapping.processing(model, providedCHO, dcValue);
+                    SubjectMapping.mapEntries(model, providedCHO, dcValue);
                     break;
                 case TitleRecord.ELEMENT:
-                    TitleMapping.processing(model, providedCHO, dcValue);
+                    TitleMapping.mapEntries(model, providedCHO, dcValue);
                     break;
                 case TypeRecord.ELEMENT:
-                    TypeMapping.processing(model, providedCHO, dcValue);
+                    TypeMapping.mapEntries(model, providedCHO, dcValue);
                     break;
                 default:
                     break;

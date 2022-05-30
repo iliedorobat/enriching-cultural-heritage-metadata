@@ -32,36 +32,36 @@ public class DSpaceMapping {
      * @param model The RDF graph
      * @param dSpacePath The DSpace directory path (E.g.: FileConstants.PATH_INPUT_DSPACE_DIR)
      */
-    public static void processing(Model model, String dSpacePath) {
+    public static void mapEntries(Model model, String dSpacePath) {
         File dSpaceDirectory = new File(dSpacePath);
         File[] subDirectories = dSpaceDirectory.listFiles();
         Resource providedCHO = ProvidedCHO.dSpaceFileMapping(model, dSpacePath);
 
         if (subDirectories != null) {
             for (File subDirectory : subDirectories) {
-                itemProcessing(model, providedCHO, subDirectory);
+                mapEntries(model, providedCHO, subDirectory);
             }
         }
     }
 
-    private static void itemProcessing(Model model, Resource providedCHO, File subDirectory) {
+    private static void mapEntries(Model model, Resource providedCHO, File subDirectory) {
         if (subDirectory.isDirectory()) {
             File[] files = subDirectory.listFiles();
 
             if (files != null) {
-                filesProcessing(model, providedCHO, files);
+                mapFilesEntries(model, providedCHO, files);
             }
-            // TODO: check if edm:type has been added; if not, extract the value from the file extension
+            // TODO: check if edm:type has been added and if not, extract the value from the file extension
         }
     }
 
-    private static void filesProcessing(Model model, Resource providedCHO, File[] files) {
+    private static void mapFilesEntries(Model model, Resource providedCHO, File[] files) {
         for (File file : files) {
-            fileProcessing(model, providedCHO, file);
+            mapFileEntries(model, providedCHO, file);
         }
     }
 
-    private static void fileProcessing(Model model, Resource providedCHO, File file) {
+    private static void mapFileEntries(Model model, Resource providedCHO, File file) {
         if (file.isFile()) {
             String fileName = file.getName();
             String extension = FilenameUtils.getExtension(fileName);
@@ -73,10 +73,10 @@ public class DSpaceMapping {
 
                 switch (schemaName) {
                     case Namespace.DC:
-                        DcMapping.processing(model, providedCHO, dcValueMap);
+                        DcMapping.mapEntries(model, providedCHO, dcValueMap);
                         break;
                     case Namespace.EUROPEANA:
-                        EuropeanaMapping.processing(model, providedCHO, dcValueMap);
+                        EuropeanaMapping.mapEntries(model, providedCHO, dcValueMap);
                         break;
                     default:
                         break;

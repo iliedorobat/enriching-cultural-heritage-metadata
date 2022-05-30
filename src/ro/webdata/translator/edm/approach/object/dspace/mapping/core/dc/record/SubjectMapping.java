@@ -14,7 +14,7 @@ public class SubjectMapping {
     private static final String REFINEMENT_CLASSIFICATION = "classification";
     private static final String REFINEMENT_OTHER = "other";
 
-    public static void processing(Model model, Resource providedCHO, DcValue dcValue) {
+    public static void mapEntries(Model model, Resource providedCHO, DcValue dcValue) {
         String language = dcValue.getLanguage().getValue();
         String qualifier = dcValue.getQualifier().getValue();
         String value = dcValue.getText();

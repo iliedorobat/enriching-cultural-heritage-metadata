@@ -14,7 +14,7 @@ import ro.webdata.translator.edm.approach.event.lido.commons.URIUtils;
 import static ro.webdata.translator.commons.EnvConstants.NS_REPO_RESOURCE;
 
 public class CreatorMapping {
-    public static void processing(Model model, Resource providedCHO, DcValue dcValue) {
+    public static void mapEntries(Model model, Resource providedCHO, DcValue dcValue) {
         String language = dcValue.getLanguage().getValue();
         String qualifier = dcValue.getQualifier().getValue();
         String value = dcValue.getText();

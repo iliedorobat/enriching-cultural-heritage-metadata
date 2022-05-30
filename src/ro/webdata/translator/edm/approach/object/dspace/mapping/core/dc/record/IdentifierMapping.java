@@ -21,7 +21,7 @@ public class IdentifierMapping {
     private static final String SCHEME_SLUG = "slug";
     private static final String SCHEME_T100 = "t100";
 
-    public static void processing(Model model, Resource providedCHO, DcValue dcValue) {
+    public static void mapEntries(Model model, Resource providedCHO, DcValue dcValue) {
         String language = dcValue.getLanguage().getValue();
         String qualifier = dcValue.getQualifier().getValue();
         String value = dcValue.getText();

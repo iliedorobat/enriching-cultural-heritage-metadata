@@ -11,7 +11,7 @@ import java.io.StringWriter;
 public class Main {
     public static void main(String[] args) {
         Model model = GraphModel.generateModel();
-        DSpaceMapping.processing(model, FileConstants.PATH_INPUT_DSPACE_DIR);
+        DSpaceMapping.mapEntries(model, FileConstants.PATH_INPUT_DSPACE_DIR);
         writeRDFGraph(model, FileConstants.PATH_OUTPUT_DATASET_FILE, false);
     }
 

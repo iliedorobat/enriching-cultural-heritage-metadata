@@ -15,7 +15,7 @@ import ro.webdata.translator.edm.approach.object.dspace.commons.PrintMessages;
 import static ro.webdata.translator.commons.EnvConstants.NS_REPO_RESOURCE;
 
 public class ProviderMapping {
-    public static void processing(Model model, Resource providedCHO, Resource aggregation, DcValue dcValue) {
+    public static void mapEntries(Model model, Resource providedCHO, Resource aggregation, DcValue dcValue) {
         String language = dcValue.getLanguage().getValue();
         String qualifier = dcValue.getQualifier().getValue();
         String value = dcValue.getText();

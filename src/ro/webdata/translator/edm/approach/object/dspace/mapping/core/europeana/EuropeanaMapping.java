@@ -19,13 +19,13 @@ import java.util.Map;
 
 public class EuropeanaMapping {
     // TODO: the elements and the qualifiers should be lowercase
-    //  add suppress the element value to be lowercase (in the parser)
+    //  add suppressing of the element value to be lowercase (in the parser)
     private static final String ELEMENT_IS_SHOWN_AT = "isShownAt";
     private static final String ELEMENT_IS_SHOWN_BY = "isShownBy";
     private static final String ELEMENT_PROVIDER = "provider";
     private static final String ELEMENT_TYPE= "type";
 
-    public static void processing(
+    public static void mapEntries(
             Model model,
             Resource providedCHO,
             HashMap<String, ArrayList<DcValue>> dcValueMap
@@ -33,11 +33,11 @@ public class EuropeanaMapping {
         Resource aggregation = generateAggregation(model, providedCHO);
 
         for (Map.Entry<String, ArrayList<DcValue>> entry : dcValueMap.entrySet()) {
-            dcValueProcessing(model, providedCHO, aggregation, entry.getValue());
+            mapEntries(model, providedCHO, aggregation, entry.getValue());
         }
     }
 
-    private static void dcValueProcessing(
+    private static void mapEntries(
             Model model,
             Resource providedCHO,
             Resource aggregation,
@@ -48,16 +48,16 @@ public class EuropeanaMapping {
 
             switch (elementName) {
                 case ELEMENT_IS_SHOWN_AT:
-                    IsShownAtMapping.processing(model, providedCHO, aggregation, dcValue);
+                    IsShownAtMapping.mapEntries(model, providedCHO, aggregation, dcValue);
                     break;
                 case ELEMENT_IS_SHOWN_BY:
-                    IsShownByMapping.processing(model, providedCHO, aggregation, dcValue);
+                    IsShownByMapping.mapEntries(model, providedCHO, aggregation, dcValue);
                     break;
                 case ELEMENT_PROVIDER:
-                    ProviderMapping.processing(model, providedCHO, aggregation, dcValue);
+                    ProviderMapping.mapEntries(model, providedCHO, aggregation, dcValue);
                     break;
                 case ELEMENT_TYPE:
-                    TypeMapping.processing(model, providedCHO, dcValue);
+                    TypeMapping.mapEntries(model, providedCHO, dcValue);
                     break;
                 default:
                     break;

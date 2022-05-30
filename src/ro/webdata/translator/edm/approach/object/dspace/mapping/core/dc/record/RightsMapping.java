@@ -12,7 +12,7 @@ public class RightsMapping {
     private static final String REFINEMENT_HOLDER = "holder";
     private static final String SCHEME_URI = "uri";
 
-    public static void processing(Model model, Resource providedCHO, DcValue dcValue) {
+    public static void mapEntries(Model model, Resource providedCHO, DcValue dcValue) {
         String language = dcValue.getLanguage().getValue();
         String qualifier = dcValue.getQualifier().getValue();
         String value = dcValue.getText();

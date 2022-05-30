@@ -14,7 +14,7 @@ public class RelationMapping {
     private static final String REFINEMENT_IS_BASED_ON = "isbasedon";
     private static final String REFINEMENT_IS_PART_OF_SERIES = "ispartofseries";
 
-    public static void processing(Model model, Resource providedCHO, DcValue dcValue) {
+    public static void mapEntries(Model model, Resource providedCHO, DcValue dcValue) {
         String language = dcValue.getLanguage().getValue();
         String qualifier = dcValue.getQualifier().getValue();
         String value = dcValue.getText();
