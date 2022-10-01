@@ -17,21 +17,21 @@
   </rdf:Description>
   <edm:Agent rdf:about="http://opendata.cs.pub.ro/resource/Organization/country:Romania/county:Timis/Dr_Karl_Diel_Memorial_House/">
     <skos:prefLabel xml:lang="en">"Dr. Karl Diel" Memorial House</skos:prefLabel>
-    <dbp:photo rdf:resource="http://ghidulmuzeelor.cimec.ro/P/Ghid/51620000209_05.jpg"/>
+    <dbp:photo>http://ghidulmuzeelor.cimec.ro/P/Ghid/51620000209_05.jpg</dbp:photo>
     <dbp:schedule xml:lang="ro">Luni - vineri: 10:00 - 16:00</dbp:schedule>
     <dbo:postalCode>305400</dbo:postalCode>
-    <dbp:photo rdf:resource="http://ghidulmuzeelor.cimec.ro/P/Ghid/51620000209_04.jpg"/>
+    <dbp:photo>http://ghidulmuzeelor.cimec.ro/P/Ghid/51620000209_04.jpg</dbp:photo>
     <odp:generalProfile xml:lang="ro">Memoriale</odp:generalProfile>
-    <dbp:photo rdf:resource="http://ghidulmuzeelor.cimec.ro/P/Ghid/51620000209_02.jpg"/>
-    <dbp:photo rdf:resource="http://ghidulmuzeelor.cimec.ro/P/Ghid/51620000209_01.jpg"/>
+    <dbp:photo>http://ghidulmuzeelor.cimec.ro/P/Ghid/51620000209_02.jpg</dbp:photo>
+    <dbp:photo>http://ghidulmuzeelor.cimec.ro/P/Ghid/51620000209_01.jpg</dbp:photo>
     <odp:mainProfile xml:lang="ro">Istorie Memorială</odp:mainProfile>
     <dbp:director xml:lang="ro">Maria Schultz</dbp:director>
-    <odp:virtualTour rdf:resource="https://turismtimis.ro/wp-content/uploads/TurVirtual/CasaMemorial%C4%83DrKarlDiel/"/>
+    <odp:virtualTour>https://turismtimis.ro/wp-content/uploads/TurVirtual/CasaMemorial%C4%83DrKarlDiel/</odp:virtualTour>
     <dbp:county>https://dbpedia.org/page/Timiș_County</dbp:county>
     <dbp:director xml:lang="en">Maria Schultz</dbp:director>
     <edm:begin>2000</edm:begin>
     <dbp:details xml:lang="ro">A fost inaugurată în anul 2000 prin efortul comun al doamnei Pia Brânzeu, strănepoata reputatului chirurg Karl Diel, care și-a desfășurat activitatea în cadrul Spitalului orășenesc și al Primăriei Jimbolia. Casa oferă o imagine a personalității celui care a fost dr. Karl Diel (1855 - 1930), a medicinei din Banatul anilor 1900 - 1930 și a vieții jimbolienilor la începutul secolului al XX-lea. Karl Diel este organizatorul Spitalului din Jimbolia, al cărui director ajunge în anul 1924. Aici au fost efectuate 50.000 de intervenții chirurgicale, reprezentând tot atâtea succese, î;ntr-o perioadă în care chirurgia se află într-o fază de pionierat. Pentru activitatea sa medicală și cetățenească este decorat de regele Ferdinand cu Steaua României în grad de comandor. O statuie a acestei personalități se află în fața Primăriei, iar un bust se află în incinta spitalului orășenesc, care îi poartă numele.</dbp:details>
-    <dbp:photo rdf:resource="http://ghidulmuzeelor.cimec.ro/P/Ghid/51620000209_03.jpg"/>
+    <dbp:photo>http://ghidulmuzeelor.cimec.ro/P/Ghid/51620000209_03.jpg</dbp:photo>
     <odp:siruta>155500</odp:siruta>
     <dbp:telephoneNumber>0721.050.105</dbp:telephoneNumber>
     <odp:cimecUri>http://ghidulmuzeelor.cimec.ro/idEN.asp?k=1650&amp;-Casa-Memoriala-dr.-Karl-Diel-JIMBOLIA-Timis</odp:cimecUri>

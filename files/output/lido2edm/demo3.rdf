@@ -135,7 +135,7 @@
           <foaf:Organization rdf:about="http://opendata.cs.pub.ro/resource/Organization/country:Romania/county:Sibiu/History_Museum/"/>
         </edm:currentLocation>
         <edm:hasType xml:lang="ro">istorie</edm:hasType>
-        <dbr:dimensions>L: 57 cm; Î: 29 cm</dbr:dimensions>
+        <dbp:size>L: 57 cm; Î: 29 cm</dbp:size>
         <odp:inventoryNumber>M5049</odp:inventoryNumber>
       </edm:ProvidedCHO>
     </edm:aggregatedCHO>
@@ -155,7 +155,7 @@
   <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/inventoryNumber">
     <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/identifier"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://dbpedia.org/page/dimensions">
+  <rdf:Description rdf:about="https://dbpedia.org/property/size">
     <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/description"/>
   </rdf:Description>
 </rdf:RDF>
