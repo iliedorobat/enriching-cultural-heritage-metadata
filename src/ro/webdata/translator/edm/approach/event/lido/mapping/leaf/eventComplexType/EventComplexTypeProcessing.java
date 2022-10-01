@@ -34,7 +34,7 @@ public class EventComplexTypeProcessing {
                 model, providedCHO, event.getEventMaterialsTech()
         );
 
-//        PropertyUtils.createSubProperty(model, "timePeriod", SKOS.note);
+//        PropertyUtils.createSubProperty(model, SKOS.note, "timePeriod", true);
         providedCHO.addProperty(EDM.wasPresentAt, resourceEvent);
 
         addActors(resourceEvent, actorsList);

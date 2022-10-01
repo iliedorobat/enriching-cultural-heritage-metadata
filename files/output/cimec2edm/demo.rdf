@@ -27,19 +27,18 @@
     <odp:mainProfile xml:lang="ro">Istorie Memorială</odp:mainProfile>
     <dbp:director xml:lang="ro">Maria Schultz</dbp:director>
     <odp:virtualTour rdf:resource="https://turismtimis.ro/wp-content/uploads/TurVirtual/CasaMemorial%C4%83DrKarlDiel/"/>
-    <dbp:county rdf:resource="https://dbpedia.org/page/Timiș_County"/>
+    <dbp:county>https://dbpedia.org/page/Timiș_County</dbp:county>
     <dbp:director xml:lang="en">Maria Schultz</dbp:director>
     <edm:begin>2000</edm:begin>
     <dbp:details xml:lang="ro">A fost inaugurată în anul 2000 prin efortul comun al doamnei Pia Brânzeu, strănepoata reputatului chirurg Karl Diel, care și-a desfășurat activitatea în cadrul Spitalului orășenesc și al Primăriei Jimbolia. Casa oferă o imagine a personalității celui care a fost dr. Karl Diel (1855 - 1930), a medicinei din Banatul anilor 1900 - 1930 și a vieții jimbolienilor la începutul secolului al XX-lea. Karl Diel este organizatorul Spitalului din Jimbolia, al cărui director ajunge în anul 1924. Aici au fost efectuate 50.000 de intervenții chirurgicale, reprezentând tot atâtea succese, î;ntr-o perioadă în care chirurgia se află într-o fază de pionierat. Pentru activitatea sa medicală și cetățenească este decorat de regele Ferdinand cu Steaua României în grad de comandor. O statuie a acestei personalități se află în fața Primăriei, iar un bust se află în incinta spitalului orășenesc, care îi poartă numele.</dbp:details>
     <dbp:photo rdf:resource="http://ghidulmuzeelor.cimec.ro/P/Ghid/51620000209_03.jpg"/>
     <odp:siruta>155500</odp:siruta>
     <dbp:telephoneNumber>0721.050.105</dbp:telephoneNumber>
-    <dc:identifier rdf:resource="http://ghidulmuzeelor.cimec.ro/id.asp?k=1650&amp;-Casa-Memoriala-dr.-Karl-Diel-JIMBOLIA-Timis"/>
+    <odp:cimecUri>http://ghidulmuzeelor.cimec.ro/idEN.asp?k=1650&amp;-Casa-Memoriala-dr.-Karl-Diel-JIMBOLIA-Timis</odp:cimecUri>
     <odp:importance xml:lang="en">Local</odp:importance>
     <odp:mainProfile xml:lang="en">Memorials</odp:mainProfile>
     <odp:supervisedBy xml:lang="ro">Primăria Orașului Jimbolia</odp:supervisedBy>
     <dbp:details xml:lang="en">It was inaugurated in the year 2000 due to the joint endeavours of Mrs. Pia Branzeu, great grand-daughter to the renowned surgeon Karl Diel, who conducted his activity at the town hospital and Jimbolia Town Council. The house offers a view upon the personality of the late dr. Karl Diel (1855-1930), medicine science in Banat by 1900 - 1930 and life at Jimbolia by early 20th century. Karl Diel is the organiser of Jimbolia Hospital, where he was appointed manager in 1924. There 50,000 surgical interventions were performed, all of them successful, during a time when surgery was in its early days. King Ferdinand awarded him the Star of Romania, commander’s rank for his medical and civic activity. A statue of this personality stands in front of the Town Hall, and a bust stands in the precinct of the town hospital, that bears his name.</dbp:details>
-    <dc:identifier rdf:resource="http://ghidulmuzeelor.cimec.ro/idEN.asp?k=1650&amp;-Casa-Memoriala-dr.-Karl-Diel-JIMBOLIA-Timis"/>
     <dbp:telephoneNumber>0256.360.770</dbp:telephoneNumber>
     <dbp:latitude>45.785959</dbp:latitude>
     <odp:generalProfile xml:lang="en">Memorials</odp:generalProfile>
@@ -48,6 +47,7 @@
     <odp:supervisedBy xml:lang="en">Jimbolia City Council</odp:supervisedBy>
     <dbp:telephoneNumber>0256.360.455</dbp:telephoneNumber>
     <dbo:address xml:lang="en">Strada Principală K. Diel nr. 1</dbo:address>
+    <odp:cimecUri>http://ghidulmuzeelor.cimec.ro/id.asp?k=1650&amp;-Casa-Memoriala-dr.-Karl-Diel-JIMBOLIA-Timis</odp:cimecUri>
     <odp:cimec>51620000209</odp:cimec>
     <skos:prefLabel xml:lang="ro">Casa Memorială "Dr. Karl Diel"</skos:prefLabel>
     <dbp:schedule xml:lang="en">Monday - Friday: 10:00 - 16:00</dbp:schedule>
@@ -98,6 +98,9 @@
   </rdf:Description>
   <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/importance">
     <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/cimecUri">
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/identifier"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://dbpedia.org/ontology/address">
     <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>

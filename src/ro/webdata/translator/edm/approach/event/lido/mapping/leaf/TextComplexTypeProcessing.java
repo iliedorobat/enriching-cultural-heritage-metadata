@@ -28,7 +28,7 @@ public class TextComplexTypeProcessing {
         if (text != null) {
             Literal textLiteral = model.createLiteral(text, lang);
             if (textLiteral != null) {
-                Property property = PropertyUtils.createSubProperty(model, type, DC_11.description);
+                Property property = PropertyUtils.createSubProperty(model, DC_11.description, type, true);
                 providedCHO.addProperty(property, textLiteral);
             }
         }
@@ -50,7 +50,7 @@ public class TextComplexTypeProcessing {
         if (text != null) {
             Literal textLiteral = model.createLiteral(text);
             if (textLiteral != null) {
-                Property property = PropertyUtils.createSubProperty(model, name, DC_11.description);
+                Property property = PropertyUtils.createSubProperty(model, DC_11.description, name, true);
                 providedCHO.addProperty(property, textLiteral);
             }
         }

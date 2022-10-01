@@ -48,7 +48,7 @@ public class DisplayStateEditionWrapProcessing {
      * @param displayState The <b>DisplayState</b> object
      */
     private static void addDisplayState(Model model, Resource providedCHO, DisplayState displayState) {
-        Property property = PropertyUtils.createSubProperty(model, "Display State", DC_11.description);
+        Property property = PropertyUtils.createSubProperty(model, DC_11.description, "Display State", true);
         providedCHO.addProperty(property, displayState.getText());
     }
 }

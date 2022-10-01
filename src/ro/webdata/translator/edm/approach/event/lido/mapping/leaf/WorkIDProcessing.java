@@ -26,10 +26,10 @@ public class WorkIDProcessing {
 
             if (text != null) {
                 Literal textLiteral = model.createLiteral(text);
-                Property property = PropertyUtils.createSubProperty(model, type, DC_11.identifier);
+                Property property = PropertyUtils.createSubProperty(model, DC_11.identifier, type, true);
 
                 if (!type.equals("inventory number"))
-                    property = PropertyUtils.createSubProperty(model, type, DC_11.description);
+                    property = PropertyUtils.createSubProperty(model, DC_11.description, type, true);
 
                 providedCHO.addProperty(property, textLiteral);
             }
