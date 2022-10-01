@@ -22,7 +22,7 @@ public class IdentifierComplexTypeProcessing {
         if (text != null) {
             // Skip adding entries which have CIEMC id because they have already been added in an earlier stage
             // (look at LegalBodyRefComplexTypeProcessing.createLegalBodyRef method)
-            // Only the entries from romanian dataset could have a CIMEC id (link)
+            // NOTE: Only the entries from romanian dataset could have a CIMEC id (link)
             if (!MuseumUtils.hasCimecCode(MuseumUtils.enJsonArray, text)) {
                 resource.addProperty(DC_11.identifier, text);
             }

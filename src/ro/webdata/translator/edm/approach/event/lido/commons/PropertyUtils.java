@@ -82,6 +82,7 @@ public final class PropertyUtils {
             museum.addProperty(property, uri);
         } else {
             System.err.println("\"" + link + "\" is not a valid URL");
+            museum.addProperty(property, link);
         }
     }
 
