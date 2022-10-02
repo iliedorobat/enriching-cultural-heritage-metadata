@@ -1,8 +1,6 @@
 package ro.webdata.translator.edm.approach.event;
 
 import org.apache.jena.rdf.model.Model;
-import ro.webdata.echo.commons.Const;
-import ro.webdata.echo.commons.Print;
 import ro.webdata.echo.commons.graph.GraphModel;
 import ro.webdata.translator.commons.FileConst;
 import ro.webdata.translator.commons.GraphUtils;
@@ -11,23 +9,10 @@ import ro.webdata.translator.edm.approach.event.lido.mapping.core.LidoWrapProces
 
 import java.io.File;
 
-import static ro.webdata.translator.commons.EnvConstants.*;
+import static ro.webdata.translator.commons.Env.PRINT_RDF_RESULTS;
 
-public class Main {
-    public static void main(String[] args) {
-        Print.operation(Const.OPERATION_START, IS_PRINT_ENABLED);
-
-        if (!IS_DEMO) {
-            run();
-        } else {
-            runDemo();
-        }
-
-        Print.operation(Const.OPERATION_END, IS_PRINT_ENABLED);
-    }
-
-    //---------------------- Real Scenario ---------------------- //
-    private static void run() {
+public class Lido {
+    public static void run() {
         File lidoDirectory = new File(FileConst.PATH_INPUT_LIDO_DIR);
         File[] subDirectories = lidoDirectory.listFiles();
 
@@ -46,12 +31,7 @@ public class Main {
         }
     }
 
-    //---------------------- DEMO Scenario ---------------------- //
-    private static void runDemo() {
-        mapEntries(FileConst.FILE_NAME_DEMO);
-    }
-
-    private static void mapEntries(String fileName) {
+    public static void mapEntries(String fileName) {
         Model model = GraphModel.generateModel();
         String inputFilePath = FileUtils.getInputFilePath(fileName);
         String outputPath = FileUtils.getOutputFilePath(fileName);
