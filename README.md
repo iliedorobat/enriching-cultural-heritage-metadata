@@ -2,22 +2,58 @@
 
 
 
-## Setting-up:
-The main language is set to "Romanian" by default. You must modify the `LANG_MAIN` environment variable located in [EnvConstants.java](https://github.com/iliedorobat/enriching-cultural-heritage-metadata/blob/master/src/ro/webdata/translator/commons/EnvConstants.java) if the dataset uses a different language.
+## Local setup
+### Requirements
+- JDK 11 or OpenJDK 11.
+
+### Setup
+1. Clone the repository:
+```bash
+git clone https://github.com/iliedorobat/enriching-cultural-heritage-metadata.git
+```
+2. The main language is set to **Romanian** language by default. If the dataset uses a different language, you must modify the `LANG_MAIN` environment variable located in [EnvConstants.java](https://github.com/iliedorobat/enriching-cultural-heritage-metadata/blob/master/src/ro/webdata/translator/commons/EnvConstants.java).
+3. Open the Terminal/Command Prompt and navigate to the root directory (`enriching-cultural-heritage-metadata` directory).
+4. Register the environment variables:
+```bash
+export ECHO_PATH=`pwd`
+export CLASSPATH="${ECHO_PATH}/out/production/enriching-cultural-heritage-metadata:${ECHO_PATH}/lib/commons-compress-1.17.jar:${ECHO_PATH}/lib/commons-echo-1.5.1.jar:${ECHO_PATH}/lib/commons-io-2.6.jar:${ECHO_PATH}/lib/commons-lang3-3.4.jar:${ECHO_PATH}/lib/commons-text-1.6.jar:${ECHO_PATH}/lib/commons-validator-1.7.jar:${ECHO_PATH}/lib/Dublin-Core-Parser-1.1.jar:${ECHO_PATH}/lib/gson-2.3.1.jar:${ECHO_PATH}/lib/httpclient-4.5.5.jar:${ECHO_PATH}/lib/jackson-annotations-2.9.0.jar:${ECHO_PATH}/lib/jackson-core-2.9.6.jar:${ECHO_PATH}/lib/jackson-databind-2.9.6.jar:${ECHO_PATH}/lib/jena-arq-3.9.0.jar:${ECHO_PATH}/lib/jena-base-3.9.0.jar:${ECHO_PATH}/lib/jena-core-3.9.0.jar:${ECHO_PATH}/lib/jena-dboe-base-3.9.0.jar:${ECHO_PATH}/lib/jena-iri-3.9.0.jar:${ECHO_PATH}/lib/jena-shaded-guava-3.9.0.jar:${ECHO_PATH}/lib/jsonld-java-0.12.1.jar:${ECHO_PATH}/lib/libthrift-0.10.0.jar:${ECHO_PATH}/lib/LIDO-Parser-1.2.jar:${ECHO_PATH}/lib/log4j-1.2.17.jar:${ECHO_PATH}/lib/slf4j-api-1.7.25.jar:${ECHO_PATH}/lib/slf4j-log4j12-1.7.25.jar:${ECHO_PATH}/lib/timespan-normalization.jar"
+```
+4. Compile the project:
+```bash
+javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/translator/BuildProject.java
+java ro/webdata/translator/BuildProject
+```
+5. Translate the XML files to EDM:
+
+   i. CIMEC to EDM:
+   ```bash
+   ## main command
+   java ro.webdata.translator/Main --approach=EVENT_CENTRIC --dataType=CIMEC
+   ## quick demo
+   java ro.webdata.translator/Main --demo --approach=EVENT_CENTRIC --dataType=CIMEC
+   ```
+   ii. DStorage to EDM:
+   ```bash
+   ## main command
+   java ro.webdata.translator/Main --approach=OBJECT_CENTRIC --dataType=DSTORAGE
+   ## quick demo
+   java ro.webdata.translator/Main --demo --approach=OBJECT_CENTRIC --dataType=DSTORAGE
+   ```
+   iii. LIDO to EDM:
+   ```bash
+   ## main command
+   java ro.webdata.translator/Main --approach=EVENT_CENTRIC --dataType=LIDO
+   ## quick demo
+   java ro.webdata.translator/Main --demo --approach=EVENT_CENTRIC --dataType=LIDO
+   ```
 
 
 
 ## Translating the Cultural Heritage metadata stored in LIDO format into Linked Data through the EDM event-centric approach
 
-### The Application Location
-The application is located in the [src.ro.webdata.translator.edm.approach.event.lido](https://github.com/iliedorobat/enriching-cultural-heritage-metadata/tree/master/src/ro/webdata/translator/edm/approach/event/lido) package.
-
-### Running the Application
-The application can be run through [Main.java](https://github.com/iliedorobat/enriching-cultural-heritage-metadata/blob/master/src/ro/webdata/translator/edm/approach/event/lido/Main.java).
-
 ### The Input Datasets
 * The input datasets need to be added in the [files/input/lido](https://github.com/iliedorobat/enriching-cultural-heritage-metadata/tree/master/files/input/lido) directory.
-* These datasets have been downloaded from the [data.gov.ro portal](http://data.gov.ro/organization/institutul-national-al-patrimoniului).
+* The current datasets have been downloaded from the [data.gov.ro portal](http://data.gov.ro/organization/institutul-national-al-patrimoniului).
 
 ### The Output Datasets
 * After running the application, the output datasets are thrown into the [files/output/lido2edm](https://github.com/iliedorobat/enriching-cultural-heritage-metadata/tree/master/files/output/lido2edm) directory.<br/>
