@@ -18,7 +18,6 @@ import ro.webdata.translator.edm.approach.event.lido.mapping.leaf.RecordRightsPr
 import ro.webdata.translator.edm.approach.event.lido.mapping.leaf.RecordSourceProcessing;
 
 import static ro.webdata.echo.commons.graph.Namespace.NS_REPO_RESOURCE_ORGANIZATION;
-import static ro.webdata.translator.commons.Constants.ROMANIAN_COUNTRY_NAME;
 import static ro.webdata.translator.edm.approach.event.lido.commons.ResourceUtils.addUriProperty;
 
 public class RecordWrapProcessing {
@@ -48,7 +47,7 @@ public class RecordWrapProcessing {
      * @return The Europeana Provider
      */
     private static Resource generateProvider(Model model) {
-        String relativeUri = PlaceType.COUNTRY + ":" + ROMANIAN_COUNTRY_NAME
+        String relativeUri = PlaceType.COUNTRY + ":Romania"
                 + File.FILE_SEPARATOR
                 + Text.sanitizeString("Politehnica University of Bucharest");
         String providerLink = URIUtils.prepareUri(NS_REPO_RESOURCE_ORGANIZATION, relativeUri);
@@ -85,7 +84,7 @@ public class RecordWrapProcessing {
      * @return The Europeana Intermediate Provider
      */
     private static Resource generateIntermediateProvider(Model model) {
-        String relativeUri = PlaceType.COUNTRY + ":" + ROMANIAN_COUNTRY_NAME
+        String relativeUri = PlaceType.COUNTRY + ":Romania"
                 + File.FILE_SEPARATOR
                 + Text.sanitizeString("Romanian Open Data Portal");
         String providerLink = URIUtils.prepareUri(NS_REPO_RESOURCE_ORGANIZATION, relativeUri);

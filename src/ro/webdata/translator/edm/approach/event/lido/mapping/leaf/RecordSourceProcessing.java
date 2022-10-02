@@ -18,7 +18,6 @@ import ro.webdata.translator.edm.approach.event.lido.commons.constants.LIDOType;
 import java.util.ArrayList;
 
 import static ro.webdata.echo.commons.graph.Namespace.NS_REPO_RESOURCE_ORGANIZATION;
-import static ro.webdata.translator.commons.Constants.ROMANIAN_COUNTRY_NAME;
 import static ro.webdata.translator.edm.approach.event.lido.commons.ResourceUtils.addUriProperty;
 
 public class RecordSourceProcessing {
@@ -74,7 +73,7 @@ public class RecordSourceProcessing {
         String namespace = NS_REPO_RESOURCE_ORGANIZATION;
 
         if (providerName.equals(INP_NAME_RO)) {
-            namespace += PlaceType.COUNTRY + ":" + ROMANIAN_COUNTRY_NAME + File.FILE_SEPARATOR;
+            namespace += PlaceType.COUNTRY + ":Romania" + File.FILE_SEPARATOR;
         }
 
         return namespace;

@@ -20,6 +20,8 @@ import static ro.webdata.echo.commons.accessor.MuseumAccessors.*;
 import static ro.webdata.echo.commons.graph.Namespace.NS_REPO_RESOURCE_ORGANIZATION;
 
 public class MuseumUtils {
+    private static final String ROMANIAN_COUNTY_NAME_SEPARATOR = "-";
+
     public static final String enPath = getCimecJsonPath(Const.LANG_EN);
     public static final String roPath = getCimecJsonPath(Const.LANG_RO);
 
@@ -69,9 +71,9 @@ public class MuseumUtils {
 
         return museumName != null && county != null ? (
                 NS_REPO_RESOURCE_ORGANIZATION
-                        + PlaceType.COUNTRY + ":" + Constants.ROMANIAN_COUNTRY_NAME
+                        + PlaceType.COUNTRY + ":Romania"
                         + File.FILE_SEPARATOR
-                        + PlaceType.COUNTY + ":" + sanitizeCountyName(county, Constants.ROMANIAN_COUNTRY_NAME_SEPARATOR)
+                        + PlaceType.COUNTY + ":" + sanitizeCountyName(county, ROMANIAN_COUNTY_NAME_SEPARATOR)
                         + File.FILE_SEPARATOR
                         + sanitizeString(museumName)
                         + File.FILE_SEPARATOR

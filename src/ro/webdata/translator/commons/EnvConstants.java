@@ -13,7 +13,7 @@ public final class EnvConstants {
      * The native dataset language
      * FIXME: change the main language as you need
      */
-    public static final String LANG_MAIN =  Const.LANG_RO;
+    public static final String LANG_MAIN = Const.LANG_RO;
 
     public static final boolean PRINT_RDF_RESULTS = false;
     public static final boolean IS_PRINT_ENABLED = true;
