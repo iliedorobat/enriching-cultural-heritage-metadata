@@ -3,7 +3,7 @@ package ro.webdata.translator.commons;
 import ro.webdata.echo.commons.File;
 
 public class FileConst {
-    public static final String FILE_NAME_DEMO = "demo3";
+    public static final String FILE_NAME_DEMO = "demo";
 
     public static final String PATH_INPUT_CIMEC_DIR = File.PATH_INPUT_DIR + File.FILE_SEPARATOR + "cimec";
     public static final String PATH_OUTPUT_CIMEC_DIR = File.PATH_OUTPUT_DIR + File.FILE_SEPARATOR + "cimec2edm";
