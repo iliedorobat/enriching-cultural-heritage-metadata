@@ -6,7 +6,7 @@ import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.SKOS;
 import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.echo.commons.graph.vocab.ORE;
-import ro.webdata.translator.commons.FileConstants;
+import ro.webdata.translator.commons.FileConst;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -31,7 +31,7 @@ public class Statistics {
     private static final String ENGRAVER = "http://opendata.cs.pub.ro/resource/agent/engraver";
 
     public static void main(String[] args) {
-        System.out.println(FileConstants.PATH_OUTPUT_DATASET_FILE);
+        System.out.println(FileConst.PATH_OUTPUT_DATASET_FILE);
         Model model = ModelFactory.createDefaultModel();
         model.read("files/output/dataset.rdf");
 

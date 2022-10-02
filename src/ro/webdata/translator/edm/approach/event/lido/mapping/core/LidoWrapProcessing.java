@@ -23,7 +23,7 @@ import ro.webdata.translator.edm.approach.event.lido.mapping.core.lidoRecID.Lido
 import java.util.ArrayList;
 
 import static ro.webdata.echo.commons.graph.Namespace.NS_REPO_RESOURCE_CHO;
-import static ro.webdata.translator.commons.EnvConstants.IS_PRINT_ENABLED;
+import static ro.webdata.translator.commons.Env.IS_PRINT_ENABLED;
 
 public class LidoWrapProcessing {
     private static final ParserDAO parserDAO = new ParserDAOImpl();

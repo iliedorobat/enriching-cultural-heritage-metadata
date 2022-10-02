@@ -6,7 +6,7 @@ import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DC_11;
 import ro.webdata.parser.xml.lido.core.leaf.displayState.DisplayState;
 import ro.webdata.parser.xml.lido.core.wrap.displayStateEditionWrap.DisplayStateEditionWrap;
-import ro.webdata.translator.edm.approach.event.lido.commons.PropertyUtils;
+import ro.webdata.translator.commons.PropertyUtils;
 
 import java.util.ArrayList;
 

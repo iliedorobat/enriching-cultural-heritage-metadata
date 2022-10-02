@@ -9,7 +9,7 @@ import ro.webdata.echo.commons.Text;
 import ro.webdata.parser.xml.lido.core.attribute.LidoType;
 import ro.webdata.parser.xml.lido.core.complex.textComplexType.TextComplexType;
 import ro.webdata.parser.xml.lido.core.leaf.displayObjectMeasurements.DisplayObjectMeasurements;
-import ro.webdata.translator.edm.approach.event.lido.commons.PropertyUtils;
+import ro.webdata.translator.commons.PropertyUtils;
 
 public class TextComplexTypeProcessing {
     /**

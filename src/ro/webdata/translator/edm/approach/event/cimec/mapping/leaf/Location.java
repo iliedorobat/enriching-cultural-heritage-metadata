@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import static ro.webdata.echo.commons.accessor.MuseumAccessors.*;
-import static ro.webdata.translator.edm.approach.event.lido.commons.PropertyUtils.addProperty;
-import static ro.webdata.translator.edm.approach.event.lido.commons.PropertyUtils.createSubProperty;
+import static ro.webdata.translator.commons.PropertyUtils.addProperty;
+import static ro.webdata.translator.commons.PropertyUtils.createSubProperty;
 
 public class Location {
     public static void mapEntries(

@@ -1,10 +1,10 @@
-package ro.webdata.translator.edm.approach.event.cimec;
+package ro.webdata.translator.edm.approach.event;
 
 import org.apache.jena.rdf.model.Model;
 import ro.webdata.echo.commons.Const;
 import ro.webdata.echo.commons.Print;
 import ro.webdata.echo.commons.graph.GraphModel;
-import ro.webdata.translator.commons.FileConstants;
+import ro.webdata.translator.commons.FileConst;
 import ro.webdata.translator.commons.GraphUtils;
 import ro.webdata.translator.edm.approach.event.cimec.mapping.core.Museum;
 import ro.webdata.translator.edm.approach.event.cimec.mapping.core.Test;
@@ -28,13 +28,13 @@ public class Main {
     private static void run() {
         Model model = GraphModel.generateModel();
         Museum.mapEntries(model);
-        GraphUtils.writeRDFGraph(model, FileConstants.PATH_OUTPUT_CIMEC_DATASET, PRINT_RDF_RESULTS);
+        GraphUtils.writeRDFGraph(model, FileConst.PATH_OUTPUT_CIMEC_DATASET, PRINT_RDF_RESULTS);
     }
 
     //---------------------- DEMO Scenario ---------------------- //
     private static void runDemo() {
         Model model = GraphModel.generateModel();
         Test.mapEntries(model, 10);
-        GraphUtils.writeRDFGraph(model, FileConstants.PATH_OUTPUT_CIMEC_DEMO, PRINT_RDF_RESULTS);
+        GraphUtils.writeRDFGraph(model, FileConst.PATH_OUTPUT_CIMEC_DEMO, PRINT_RDF_RESULTS);
     }
 }

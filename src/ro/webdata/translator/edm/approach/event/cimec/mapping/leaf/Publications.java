@@ -11,7 +11,7 @@ import java.util.Map;
 
 import static ro.webdata.echo.commons.accessor.MuseumAccessors.MATERIAL;
 import static ro.webdata.echo.commons.accessor.MuseumAccessors.PUBLICATIONS_MATERIAL;
-import static ro.webdata.translator.edm.approach.event.lido.commons.PropertyUtils.addProperty;
+import static ro.webdata.translator.commons.PropertyUtils.addProperty;
 
 public class Publications {
     public static void mapEntries(

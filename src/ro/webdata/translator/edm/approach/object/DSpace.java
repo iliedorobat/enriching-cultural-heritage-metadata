@@ -1,9 +1,9 @@
-package ro.webdata.translator.edm.approach.object.dspace;
+package ro.webdata.translator.edm.approach.object;
 
 import org.apache.jena.rdf.model.Model;
 import ro.webdata.echo.commons.File;
 import ro.webdata.echo.commons.graph.GraphModel;
-import ro.webdata.translator.commons.FileConstants;
+import ro.webdata.translator.commons.FileConst;
 
 import java.io.StringWriter;
 
@@ -11,8 +11,8 @@ import java.io.StringWriter;
 public class Main {
     public static void main(String[] args) {
         Model model = GraphModel.generateModel();
-        DSpaceMapping.mapEntries(model, FileConstants.PATH_INPUT_DSPACE_DIR);
-        writeRDFGraph(model, FileConstants.PATH_OUTPUT_DATASET_FILE, false);
+        DSpaceMapping.mapEntries(model, FileConst.PATH_INPUT_DSPACE_DIR);
+        writeRDFGraph(model, FileConst.PATH_OUTPUT_DATASET_FILE, false);
     }
 
     private static void writeRDFGraph(Model model, String outputFilePath, boolean append) {

@@ -29,7 +29,7 @@ public class Museum {
         }
     }
 
-    protected static void mapEntry(Model model, String lang, JsonObject object) {
+    public static void mapEntry(Model model, String lang, JsonObject object) {
         Set<Map.Entry<String, JsonElement>> objectEntries = object.entrySet();
         String museumCode = object.get(CODE).getAsString();
         Resource museum = generateMuseum(model, museumCode);

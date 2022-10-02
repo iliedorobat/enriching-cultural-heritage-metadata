@@ -9,13 +9,13 @@ import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.normalization.timespan.ro.TimespanUtils;
 import ro.webdata.parser.xml.lido.core.leaf.displayDate.DisplayDate;
 import ro.webdata.parser.xml.lido.core.leaf.eventDate.EventDate;
-import ro.webdata.translator.commons.FileConstants;
+import ro.webdata.translator.commons.FileConst;
 
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.TreeSet;
 
-import static ro.webdata.translator.commons.EnvConstants.LANG_MAIN;
+import static ro.webdata.translator.commons.Env.LANG_MAIN;
 
 public class EventDateProcessing {
     /**
@@ -48,7 +48,7 @@ public class EventDateProcessing {
                     .append("|")
                     .append(timespanSet.toString())
                     .append("\n");
-            File.write(sw, FileConstants.PATH_OUTPUT_TIMESPAN_ANALYSIS_FILE, true);
+            File.write(sw, FileConst.PATH_OUTPUT_TIMESPAN_ANALYSIS_FILE, true);
 
             for (String timespan : timespanSet) {
                 eventDateResource = model

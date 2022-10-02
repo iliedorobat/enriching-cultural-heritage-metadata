@@ -19,7 +19,7 @@ import ro.webdata.translator.commons.MuseumUtils;
 import java.util.ArrayList;
 
 import static ro.webdata.echo.commons.graph.Namespace.NS_REPO_RESOURCE_ORGANIZATION;
-import static ro.webdata.translator.commons.EnvConstants.LANG_MAIN;
+import static ro.webdata.translator.commons.Env.LANG_MAIN;
 
 public class LegalBodyRefComplexTypeProcessing {
     public static Resource createLegalBodyRef(Model model, LegalBodyRefComplexType legalBodyRefComplexType) {

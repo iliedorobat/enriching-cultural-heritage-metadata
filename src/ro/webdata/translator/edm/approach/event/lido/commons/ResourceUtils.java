@@ -3,6 +3,7 @@ package ro.webdata.translator.edm.approach.event.lido.commons;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
+import ro.webdata.translator.commons.PropertyUtils;
 
 import static ro.webdata.echo.commons.graph.Namespace.NS_DBPEDIA_RESOURCE;
 

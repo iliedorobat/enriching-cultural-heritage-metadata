@@ -1,10 +1,10 @@
-package ro.webdata.translator.edm.approach.event.lido;
+package ro.webdata.translator.edm.approach.event;
 
 import org.apache.jena.rdf.model.Model;
 import ro.webdata.echo.commons.Const;
 import ro.webdata.echo.commons.Print;
 import ro.webdata.echo.commons.graph.GraphModel;
-import ro.webdata.translator.commons.FileConstants;
+import ro.webdata.translator.commons.FileConst;
 import ro.webdata.translator.commons.GraphUtils;
 import ro.webdata.translator.edm.approach.event.lido.commons.FileUtils;
 import ro.webdata.translator.edm.approach.event.lido.mapping.core.LidoWrapProcessing;
@@ -28,7 +28,7 @@ public class Main {
 
     //---------------------- Real Scenario ---------------------- //
     private static void run() {
-        File lidoDirectory = new File(FileConstants.PATH_INPUT_LIDO_DIR);
+        File lidoDirectory = new File(FileConst.PATH_INPUT_LIDO_DIR);
         File[] subDirectories = lidoDirectory.listFiles();
 
         if (subDirectories != null) {
@@ -42,13 +42,13 @@ public class Main {
                 }
             }
         } else {
-            System.err.println(FileConstants.PATH_INPUT_LIDO_DIR + " does not contain any directories!");
+            System.err.println(FileConst.PATH_INPUT_LIDO_DIR + " does not contain any directories!");
         }
     }
 
     //---------------------- DEMO Scenario ---------------------- //
     private static void runDemo() {
-        mapEntries(FileConstants.FILE_NAME_DEMO);
+        mapEntries(FileConst.FILE_NAME_DEMO);
     }
 
     private static void mapEntries(String fileName) {

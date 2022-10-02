@@ -9,7 +9,7 @@ import ro.webdata.parser.xml.lido.core.leaf.appellationValue.AppellationValue;
 import ro.webdata.parser.xml.lido.core.leaf.partOfPlace.PartOfPlace;
 import ro.webdata.parser.xml.lido.core.leaf.place.Place;
 import ro.webdata.parser.xml.lido.core.set.namePlaceSet.NamePlaceSet;
-import ro.webdata.translator.commons.EnvConstants;
+import ro.webdata.translator.commons.Env;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -156,7 +156,7 @@ public class PlaceMapUtils {
         String placeName = appellationValue.getText();
 
         if (isMainLang(lang)) {
-            placeNameMap.put(EnvConstants.LANG_MAIN, placeName);
+            placeNameMap.put(Env.LANG_MAIN, placeName);
         } else {
             placeNameMap.put(lang, placeName);
         }
@@ -168,6 +168,6 @@ public class PlaceMapUtils {
      * @return True/False
      */
     private static boolean isMainLang(String language) {
-        return language == null || language.equals(EnvConstants.LANG_MAIN);
+        return language == null || language.equals(Env.LANG_MAIN);
     }
 }

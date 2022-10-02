@@ -8,7 +8,7 @@ import ro.webdata.parser.xml.lido.core.leaf.lido.Lido;
 import ro.webdata.parser.xml.lido.core.leaf.place.Place;
 import ro.webdata.parser.xml.lido.core.set.eventSet.EventSet;
 import ro.webdata.parser.xml.lido.core.wrap.lidoWrap.LidoWrap;
-import ro.webdata.translator.commons.FileConstants;
+import ro.webdata.translator.commons.FileConst;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ public class StatsUtils {
     // E.g.: getPlaceNames(PlaceType.COUNTRY, Const.LANG_RO)
     public static ArrayList<String> getPlaceNames(String placeType, String language) {
         ArrayList<String> placeNames = new ArrayList<>();
-        File lidoDirectory = new File(FileConstants.PATH_INPUT_LIDO_DIR);
+        File lidoDirectory = new File(FileConst.PATH_INPUT_LIDO_DIR);
         File[] subDirectories = lidoDirectory.listFiles();
 
         for (File file : subDirectories) {

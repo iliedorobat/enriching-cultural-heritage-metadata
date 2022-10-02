@@ -1,4 +1,4 @@
-package ro.webdata.translator.edm.approach.event.lido.commons;
+package ro.webdata.translator.commons;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -11,7 +11,6 @@ import org.apache.jena.vocabulary.RDFS;
 import ro.webdata.echo.commons.File;
 import ro.webdata.echo.commons.Text;
 import ro.webdata.echo.commons.validator.UrlValidator;
-import ro.webdata.translator.commons.FileConstants;
 
 import java.io.StringWriter;
 import java.util.ArrayList;
@@ -19,7 +18,6 @@ import java.util.ArrayList;
 import static ro.webdata.echo.commons.accessor.MuseumAccessors.*;
 import static ro.webdata.echo.commons.graph.Namespace.*;
 
-// TODO: move the class to ro.webdata.translator.commons
 public final class PropertyUtils {
     public static void addProperties(Model model, Resource museum, Property parentProperty, String modelProperty, JsonObject jsonObject, String accessor, String lang) {
         try {
@@ -123,7 +121,7 @@ public final class PropertyUtils {
                 .append("|")
                 .append(subProperty.toString())
                 .append("\n");
-        File.write(sw, FileConstants.PATH_OUTPUT_PROPERTIES_FILE, true);
+        File.write(sw, FileConst.PATH_OUTPUT_PROPERTIES_FILE, true);
 
         return subProperty;
     }

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import static ro.webdata.echo.commons.accessor.MuseumAccessors.*;
-import static ro.webdata.translator.edm.approach.event.lido.commons.PropertyUtils.*;
+import static ro.webdata.translator.commons.PropertyUtils.*;
 
 public class Collection {
     public static void mapEntries(
