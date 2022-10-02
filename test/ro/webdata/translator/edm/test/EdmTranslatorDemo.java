@@ -25,7 +25,7 @@ public class EdmTranslatorDemo {
             case DATA_TYPE_LIDO:
                 LidoDemo.run();
                 break;
-            case DATA_TYPE_DSTORAGE:
+            case DATA_TYPE_DSPACE:
             default:
                 break;
         }
@@ -33,7 +33,7 @@ public class EdmTranslatorDemo {
 
     private static void runObjectCentricApproach(String dataType) {
         switch (dataType) {
-            case DATA_TYPE_DSTORAGE:
+            case DATA_TYPE_DSPACE:
                 DSpaceDemo.run();
                 break;
             case DATA_TYPE_CIMEC:

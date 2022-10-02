@@ -8,7 +8,7 @@ public final class Env {
     public static final String EDM_APPROACH_EVENT_CENTRIC = "EVENT_CENTRIC";
     public static final String EDM_APPROACH_OBJECT_CENTRIC = "OBJECT_CENTRIC";
     public static final String DATA_TYPE_CIMEC = "CIMEC";
-    public static final String DATA_TYPE_DSTORAGE = "DSTORAGE";
+    public static final String DATA_TYPE_DSPACE = "DSPACE";
     public static final String DATA_TYPE_LIDO = "LIDO";
 
     /**
@@ -32,8 +32,8 @@ public final class Env {
     public static String getDataType(List<String> args) {
         if (args.contains("--dataType=" + DATA_TYPE_CIMEC)) {
             return DATA_TYPE_CIMEC;
-        } else if (args.contains("--dataType=" + DATA_TYPE_DSTORAGE)) {
-            return DATA_TYPE_DSTORAGE;
+        } else if (args.contains("--dataType=" + DATA_TYPE_DSPACE)) {
+            return DATA_TYPE_DSPACE;
         } else if (args.contains("--dataType=" + DATA_TYPE_LIDO)) {
             return DATA_TYPE_LIDO;
         }
