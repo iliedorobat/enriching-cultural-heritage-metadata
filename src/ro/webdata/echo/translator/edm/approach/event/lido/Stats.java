@@ -60,7 +60,7 @@ public class Stats {
 
         StringWriter writer = new StringWriter();
         writer.write(sb.toString());
-        File.write(writer, FileConst.PATH_OUTPUT_TIMESPAN_ANALYSIS_FILE, false);
+        File.write(writer, FileConst.PATH_OUTPUT_UNIQUE_TIMESPAN_ANALYSIS_FILE, false);
     }
 
     private static void printNewPropertiesStats() {

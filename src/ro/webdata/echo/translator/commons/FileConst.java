@@ -23,5 +23,6 @@ public class FileConst {
 
     public static final String PATH_OUTPUT_TIMESPAN_FILE = PATH_OUTPUT_LIDO_DIR + File.FILE_SEPARATOR + "timespan_all" + File.EXTENSION_SEPARATOR + File.EXTENSION_TXT;
     public static final String PATH_OUTPUT_UNIQUE_TIMESPAN_FILE = PATH_OUTPUT_LIDO_DIR + File.FILE_SEPARATOR + "timespan_unique" + File.EXTENSION_SEPARATOR + File.EXTENSION_TXT;
-    public static final String PATH_OUTPUT_TIMESPAN_ANALYSIS_FILE = PATH_OUTPUT_LIDO_DIR + File.FILE_SEPARATOR + "timespan-analysis" + File.EXTENSION_SEPARATOR + File.EXTENSION_CSV;
+    public static final String PATH_OUTPUT_ALL_TIMESPAN_ANALYSIS_FILE = PATH_OUTPUT_LIDO_DIR + File.FILE_SEPARATOR + "timespan_all-analysis" + File.EXTENSION_SEPARATOR + File.EXTENSION_CSV;
+    public static final String PATH_OUTPUT_UNIQUE_TIMESPAN_ANALYSIS_FILE = PATH_OUTPUT_LIDO_DIR + File.FILE_SEPARATOR + "timespan_unique-analysis" + File.EXTENSION_SEPARATOR + File.EXTENSION_CSV;
 }

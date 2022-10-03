@@ -42,13 +42,12 @@ public class EventDateProcessing {
                 timespanSet = TimespanUtils.getTimespanSet(text);
             }
 
-            // TODO: remove
             StringWriter sw = new StringWriter()
                     .append(text)
                     .append("|")
                     .append(timespanSet.toString())
                     .append("\n");
-            File.write(sw, FileConst.PATH_OUTPUT_TIMESPAN_ANALYSIS_FILE, true);
+            File.write(sw, FileConst.PATH_OUTPUT_ALL_TIMESPAN_ANALYSIS_FILE, true);
 
             for (String timespan : timespanSet) {
                 eventDateResource = model

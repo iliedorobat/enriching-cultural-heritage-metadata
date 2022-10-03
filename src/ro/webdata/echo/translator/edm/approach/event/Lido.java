@@ -17,8 +17,6 @@ public class Lido {
         File lidoDirectory = new File(FileConst.PATH_INPUT_LIDO_DIR);
         File[] subDirectories = lidoDirectory.listFiles();
 
-        Stats.run();
-
         if (subDirectories != null) {
             for (File file : subDirectories) {
                 String fullName = file.getName();
@@ -32,6 +30,8 @@ public class Lido {
         } else {
             System.err.println(FileConst.PATH_INPUT_LIDO_DIR + " does not contain any directories!");
         }
+
+       Stats.run();
     }
 
     public static void mapEntries(String fileName) {
