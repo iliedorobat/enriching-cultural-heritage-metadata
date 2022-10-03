@@ -16,12 +16,7 @@ public class Stats {
             Arrays.asList("demo.xml", "demo2.xml", "demo3.xml")
     );
 
-    public static void main(String[] args) {
-//        //TODO: remove
-//        boolean PLAY = true;
-//        if (PLAY)     TimespanUtils.getTimespanSet(FileConstants.PATH_OUTPUT_TIMESPAN_FILE);
-//        else          LidoXmlTimespanAnalysis.check(FileConstants.PATH_OUTPUT_TIMESPAN_FILE);
-
+    public static void run() {
         // 1. Write to disc all unique timespan values
         LidoXmlTimespanAnalysis.writeAll(FileConst.PATH_INPUT_LIDO_DIR, FileConst.PATH_OUTPUT_TIMESPAN_FILE, EXCLUDED_FILES);
         LidoXmlTimespanAnalysis.writeUnique(FileConst.PATH_INPUT_LIDO_DIR, FileConst.PATH_OUTPUT_UNIQUE_TIMESPAN_FILE, EXCLUDED_FILES);

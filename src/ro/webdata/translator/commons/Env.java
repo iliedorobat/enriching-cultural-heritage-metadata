@@ -3,6 +3,7 @@ package ro.webdata.translator.commons;
 import ro.webdata.echo.commons.Const;
 
 import java.util.List;
+import java.util.Optional;
 
 public final class Env {
     public static final String EDM_APPROACH_EVENT_CENTRIC = "EVENT_CENTRIC";
@@ -40,7 +41,28 @@ public final class Env {
         return null;
     }
 
+    public static String getInputTime(List<String> args) {
+        if (normalizeTimeExpression(args)) {
+            Optional<String> result = args.stream()
+                    .filter(item -> item.contains("--expression="))
+                    .findFirst();
+            if (result.isPresent()) {
+                return result.get().replace("--expression=", "");
+            }
+        }
+        return null;
+    }
+
     public static boolean isDemo(List<String> args) {
         return args.contains("--demo");
+    }
+
+    public static boolean normalizeTimeExpression(List<String> args) {
+        for (String arg : args) {
+            if (arg.contains("--expression=")) {
+                return true;
+            }
+        }
+        return false;
     }
 }

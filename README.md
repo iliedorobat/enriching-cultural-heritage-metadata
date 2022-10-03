@@ -23,40 +23,45 @@ export CLASSPATH="${ECHO_PATH}/out/production/enriching-cultural-heritage-metada
 javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/translator/BuildProject.java
 java ro/webdata/translator/BuildProject
 ```
-5. Translate the XML files to EDM:
 
-   i. CIMEC to EDM:
-   ```bash
-   ## main command
-   java ro.webdata.translator/Main --approach=EVENT_CENTRIC --dataType=CIMEC
-   ## quick demo
-   java ro.webdata.translator/Main --demo --approach=EVENT_CENTRIC --dataType=CIMEC
-   ```
-   ii. DSPACE to EDM:
-   ```bash
-   ## main command
-   java ro.webdata.translator/Main --approach=OBJECT_CENTRIC --dataType=DSPACE
-   ## quick demo
-   java ro.webdata.translator/Main --demo --approach=OBJECT_CENTRIC --dataType=DSPACE
-   ```
-   iii. LIDO to EDM:
-   ```bash
-   ## main command
-   java ro.webdata.translator/Main --approach=EVENT_CENTRIC --dataType=LIDO
-   ## quick demo
-   java ro.webdata.translator/Main --demo --approach=EVENT_CENTRIC --dataType=LIDO
-   ```
+### Translate the XML files to EDM:
+1. CIMEC to EDM **event-centric approach**:
+```bash
+## main command
+java ro.webdata.translator/Main --approach=EVENT_CENTRIC --dataType=CIMEC
+## quick demo
+java ro.webdata.translator/Main --demo --approach=EVENT_CENTRIC --dataType=CIMEC
+```
+2. DSPACE to EDM **object-centric approach**:
+```bash
+## main command
+java ro.webdata.translator/Main --approach=OBJECT_CENTRIC --dataType=DSPACE
+## quick demo
+java ro.webdata.translator/Main --demo --approach=OBJECT_CENTRIC --dataType=DSPACE
+```
+3. LIDO to EDM **event-centric approach**:
+```bash
+## main command
+java ro.webdata.translator/Main --approach=EVENT_CENTRIC --dataType=LIDO
+## quick demo
+java ro.webdata.translator/Main --demo --approach=EVENT_CENTRIC --dataType=LIDO
+```
+
+### Normalize time expression
+```bash
+java ro.webdata.translator/Main --expression="1/2 sec. 3 - sec. 1 a. chr."
+```
 
 
 
 ## Input Datasets
 
 **CIMEC datasets:**
-* The datasets need to be added in the [files/input/cimec](https://github.com/iliedorobat/enriching-cultural-heritage-metadata/tree/master/files/input/cimec) directory.
-* The datasets are strictly related to the data of Romanian museums. These are taken by parsing [Ghidul Muzeelor](http://ghidulmuzeelor.cimec.ro) and are prepared using [Cultural Leaf Service](https://github.com/iliedorobat/cultural-leaf-service).
+* Datasets need to be added in the [files/input/cimec](https://github.com/iliedorobat/enriching-cultural-heritage-metadata/tree/master/files/input/cimec) directory.
+* The existing datasets 
 
 **DSPACE datasets:**
-* The Datasets need to be added in the [files/input/dspace](https://github.com/iliedorobat/enriching-cultural-heritage-metadata/tree/master/files/input/dspace) directory.
+* The datasets need to be added in the [files/input/dspace](https://github.com/iliedorobat/enriching-cultural-heritage-metadata/tree/master/files/input/dspace) directory.
 * Snapshot of dspace storage level:
 ```
 main_directory/
@@ -73,7 +78,7 @@ main_directory/
 ```
 
 **LIDO datasets:**
-* The Datasets need to be added in the [files/input/lido](https://github.com/iliedorobat/enriching-cultural-heritage-metadata/tree/master/files/input/lido) directory.
+* The datasets need to be added in the [files/input/lido](https://github.com/iliedorobat/enriching-cultural-heritage-metadata/tree/master/files/input/lido) directory.
 * The existing datasets have been downloaded from the [data.gov.ro portal](http://data.gov.ro/organization/institutul-national-al-patrimoniului).
 
 
@@ -81,16 +86,20 @@ main_directory/
 ## Output Datasets
 
 **CIMEC datasets:**
-* The output datasets are located to the [files/output/cimec2edm](https://github.com/iliedorobat/enriching-cultural-heritage-metadata/tree/master/files/output/cimec2edm) directory.<br/>
-  **Make sure you've created this directory!**
+The output datasets are located to the [files/output/cimec2edm](https://github.com/iliedorobat/enriching-cultural-heritage-metadata/tree/master/files/output/cimec2edm) directory.<br/>
+* `*.rdf` contains the EDM prepared datasets;
 
 **DSPACE datasets:**
-* The output datasets are located to the [files/output/dspace2edm](https://github.com/iliedorobat/enriching-cultural-heritage-metadata/tree/master/files/output/dspace2edm) directory.<br/>
-  **Make sure you've created this directory!**
+The output datasets are located to the [files/output/dspace2edm](https://github.com/iliedorobat/enriching-cultural-heritage-metadata/tree/master/files/output/dspace2edm) directory.<br/>
+* `*.rdf` contains the EDM prepared datasets;
 
 **LIDO datasets:**
-* The output datasets are located to the [files/output/lido2edm](https://github.com/iliedorobat/enriching-cultural-heritage-metadata/tree/master/files/output/lido2edm) directory.<br/>
-  **Make sure you've already created this directory!**
+The output datasets are located to the [files/output/lido2edm](https://github.com/iliedorobat/enriching-cultural-heritage-metadata/tree/master/files/output/lido2edm) directory.<br/>
+* `*.rdf` contains the EDM prepared datasets;
+* `timespan_all.txt` contains all identified time expressions;
+* `timespan_unique.txt` contains unique identified time expressions;
+* `timespan-analysis.csv` contains the unique pair of input time expressions - normalized centuries;
+* `properties.csv` contains the pair of parent property - child property.
 
 
 

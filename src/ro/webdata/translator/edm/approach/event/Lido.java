@@ -4,6 +4,7 @@ import org.apache.jena.rdf.model.Model;
 import ro.webdata.echo.commons.graph.GraphModel;
 import ro.webdata.translator.commons.FileConst;
 import ro.webdata.translator.commons.GraphUtils;
+import ro.webdata.translator.edm.approach.event.lido.Stats;
 import ro.webdata.translator.edm.approach.event.lido.commons.FileUtils;
 import ro.webdata.translator.edm.approach.event.lido.mapping.core.LidoWrapProcessing;
 
@@ -15,6 +16,8 @@ public class Lido {
     public static void run() {
         File lidoDirectory = new File(FileConst.PATH_INPUT_LIDO_DIR);
         File[] subDirectories = lidoDirectory.listFiles();
+
+        Stats.run();
 
         if (subDirectories != null) {
             for (File file : subDirectories) {
