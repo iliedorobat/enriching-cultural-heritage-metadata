@@ -12,6 +12,6 @@ public class DSpace {
     public static void run() {
         Model model = GraphModel.generateModel();
         DSpaceMapping.mapEntries(model, FileConst.PATH_INPUT_DSPACE_DIR);
-        GraphUtils.writeRDFGraph(model, FileConst.PATH_OUTPUT_DATASET_FILE, PRINT_RDF_RESULTS);
+        GraphUtils.writeRDFGraph(model, FileConst.PATH_OUTPUT_DSPACE_DATASET_DIR, PRINT_RDF_RESULTS);
     }
 }

@@ -12,6 +12,7 @@ public class FileConst {
 
     public static final String PATH_INPUT_DSPACE_DIR = File.PATH_INPUT_DIR + File.FILE_SEPARATOR + "dspace";
     public static final String PATH_OUTPUT_DSPACE_DIR = File.PATH_OUTPUT_DIR + File.FILE_SEPARATOR + "dspace2edm";
+    public static final String PATH_OUTPUT_DSPACE_DATASET_DIR = PATH_OUTPUT_DSPACE_DIR + File.FILE_SEPARATOR + "dataset" + File.EXTENSION_SEPARATOR + File.EXTENSION_RDF;
     public static final String PATH_OUTPUT_DSPACE_DEMO = PATH_OUTPUT_DSPACE_DIR + File.FILE_SEPARATOR + "demo" + File.EXTENSION_SEPARATOR + File.EXTENSION_RDF;
 
     public static final String PATH_INPUT_LIDO_DIR = File.PATH_INPUT_DIR + File.FILE_SEPARATOR + "lido";
