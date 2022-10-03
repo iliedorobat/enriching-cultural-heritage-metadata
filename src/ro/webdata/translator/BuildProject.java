@@ -175,8 +175,8 @@ class BuildEventCentricApproach {
         commands.addAll(getLidoMappingLeafCommands());
         commands.addAll(getLidoMappingCoreCommands());
 
-        commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/translator/edm/approach/event/lido/mapping/Statistics.java");
-        commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/translator/edm/approach/event/lido/mapping/Stats.java");
+        commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/translator/edm/approach/event/lido/Statistics.java");
+        commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/translator/edm/approach/event/lido/Stats.java");
 
         return commands;
     }
