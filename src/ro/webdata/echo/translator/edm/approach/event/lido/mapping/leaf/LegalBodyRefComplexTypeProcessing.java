@@ -3,12 +3,12 @@ package ro.webdata.echo.translator.edm.approach.event.lido.mapping.leaf;
 import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
-import org.apache.jena.sparql.vocabulary.FOAF;
 import org.apache.jena.vocabulary.DC_11;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.SKOS;
 import ro.webdata.echo.commons.Const;
 import ro.webdata.echo.commons.Text;
+import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.echo.translator.commons.MuseumUtils;
 import ro.webdata.parser.xml.lido.core.complex.legalBodyRefComplexType.LegalBodyRefComplexType;
 import ro.webdata.parser.xml.lido.core.leaf.appellationValue.AppellationValue;
@@ -39,7 +39,7 @@ public class LegalBodyRefComplexTypeProcessing {
 
             organization = model
                     .createResource(resourceLink)
-                    .addProperty(RDF.type, FOAF.Organization);
+                    .addProperty(RDF.type, EDM.Agent);
             addOrganizationIdentifier(model, organization, legalBodyIDList);
 
             if (cimecCode == null) {
