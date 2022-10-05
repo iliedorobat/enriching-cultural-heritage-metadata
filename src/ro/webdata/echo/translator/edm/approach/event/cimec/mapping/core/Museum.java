@@ -43,6 +43,7 @@ public class Museum {
                 case CODE:
                 case FOUNDED:
                 case NAME:
+                case TYPE:
                     GeneralInfo.mapEntries(model, museum, baseEntry, lang);
                     break;
                 case BUILDING:

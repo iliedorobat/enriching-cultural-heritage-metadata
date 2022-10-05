@@ -40,6 +40,7 @@
     <dbo:picture>http://ghidulmuzeelor.cimec.ro/P/Ghid/51620000211_02.jpg</dbo:picture>
     <odp:mainProfile xml:lang="ro">Istorie Locală</odp:mainProfile>
     <skos:prefLabel xml:lang="en">"Anton And Maria Popescu" Memorial House</skos:prefLabel>
+    <dbo:type xml:lang="ro">Muzeu</dbo:type>
     <odp:importance xml:lang="en">Local</odp:importance>
     <odp:supervisedBy xml:lang="en">Local Council</odp:supervisedBy>
     <dbo:postalCode>147120</dbo:postalCode>
@@ -54,6 +55,7 @@
     <dbp:locality xml:lang="en">Drăcșani</dbp:locality>
     <odp:generalProfile xml:lang="en">Memorials</odp:generalProfile>
     <dbo:picture>http://ghidulmuzeelor.cimec.ro/P/Ghid/51620000211_01.jpg</dbo:picture>
+    <dbo:type xml:lang="en">Museum</dbo:type>
     <dbp:longitude>24.989367</dbp:longitude>
   </edm:Agent>
   <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/generalProfile">
@@ -66,6 +68,9 @@
     <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://dbpedia.org/property/locality">
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://dbpedia.org/ontology/type">
     <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://dbpedia.org/property/county">

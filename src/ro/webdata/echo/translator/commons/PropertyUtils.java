@@ -198,6 +198,7 @@ public final class PropertyUtils {
             case PUBLICATIONS_MATERIAL:         return NS_DBPEDIA_ONTOLOGY + "publication";
             case MUSEUM_SUPERVISED_BY:          return NS_REPO_PROPERTY + "supervisedBy";
             case MUSEUM_SUPERVISOR_FOR:         return NS_REPO_PROPERTY + "supervisorFor";
+            case TYPE:                          return NS_DBPEDIA_ONTOLOGY + "type";
             default:
                 switch (property.toLowerCase()) {
                     case "biotope":     return NS_REPO_PROPERTY + "biotope";

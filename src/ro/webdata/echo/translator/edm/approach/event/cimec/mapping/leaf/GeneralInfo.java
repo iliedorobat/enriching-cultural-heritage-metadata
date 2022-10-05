@@ -37,6 +37,9 @@ public class GeneralInfo {
             case NAME:
                 PropertyUtils.addProperty(model, museum, SKOS.prefLabel, value, lang);
                 break;
+            case TYPE:
+                PropertyUtils.addSubProperty(model, museum, SKOS.note, TYPE, value, lang);
+                break;
             default:
                 break;
         }
