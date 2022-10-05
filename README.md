@@ -1,18 +1,3 @@
-https://olingo.apache.org/javadoc/odata2/org/apache/olingo/odata2/api/edm/provider/EdmProvider.html
-https://github.com/apache/olingo-odata2/tree/master/odata2-lib/odata-annotation/src/main/java/org/apache/olingo/odata2/api/annotation/edm
-
-DSpace to EDM:
-- http://dspace.2283337.n4.nabble.com/Dspace-DC-to-EDM-td4686544.html
-- http://dspace.2283337.n4.nabble.com/How-to-implement-Linked-Data-in-Dspace-td4690596.html
-
-A global network on sharing cultural heritage: https://openglam.org/
-The Organization Ontology: https://www.w3.org/TR/vocab-org/
-
-
-LIDO -> linked to CIMEC resources (list of museums)
-
-
-
 # eCHO: Enriching The Digital Representation of Cultural Heritage Objects
 
 
@@ -124,14 +109,7 @@ The output datasets are located to the [files/output/lido2edm](https://github.co
 and can be queried by using the [opendata sparql endpoint](http://opendata.cs.pub.ro/repo/sparql/admin/squebi.html).
 
 
-
-## Notes
-The following comments have been added because `EDM.Agent` expects the value of `skos:node` and `dc:identifier` to be a `literal`, but `EDM.Organization` expects `references`:
-- `EDM.Agent does not support a reference for the "skos:note" property`
-- `EDM.Agent does not support a reference for the "dc:identifier" property`
-
-
-
+  
 ## Publications:
 TPDL 2019: [Enriching the Cultural Heritage Metadata Using Historical Events: A Graph-Based Representation](https://link.springer.com/chapter/10.1007/978-3-030-30760-8_30)
 ```
