@@ -28,12 +28,10 @@ public class Collection {
 
                 switch (key) {
                     case IMPORTANCE:
-                        PropertyUtils.addProperty(model, museum, SKOS.note, COLLECTION_IMPORTANCE, collection, IMPORTANCE, lang);
+                        PropertyUtils.addSubProperty(model, museum, SKOS.note, COLLECTION_IMPORTANCE, collection, IMPORTANCE, lang);
                         break;
                     case PICTURES:
-                        // EDM.Agent does not support a reference for the "skos:note" property
-                        // addUriProperties(model, museum, SKOS.note, COLLECTION_PICTURES, collection, PICTURES);
-                        PropertyUtils.addProperties(model, museum, SKOS.note, COLLECTION_PICTURES, collection, PICTURES, null);
+                        PropertyUtils.addAgentUris(model, museum, SKOS.note, COLLECTION_PICTURES, collection, PICTURES, null);
                         break;
                     case PROFILE:
                         mapProfile(model, museum, collection, lang);
@@ -56,10 +54,10 @@ public class Collection {
 
             switch (key) {
                 case GENERAL:
-                    PropertyUtils.addProperty(model, museum, SKOS.note, COLLECTION_GENERAL_PROFILE, profile, GENERAL, lang);
+                    PropertyUtils.addSubProperty(model, museum, SKOS.note, COLLECTION_GENERAL_PROFILE, profile, GENERAL, lang);
                     break;
                 case MAIN:
-                    PropertyUtils.addProperty(model, museum, SKOS.note, COLLECTION_MAIN_PROFILE, profile, MAIN, lang);
+                    PropertyUtils.addSubProperty(model, museum, SKOS.note, COLLECTION_MAIN_PROFILE, profile, MAIN, lang);
                     break;
                 default:
                     break;

@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import static ro.webdata.echo.commons.accessor.MuseumAccessors.*;
-import static ro.webdata.echo.translator.commons.PropertyUtils.addProperty;
 
 public class Description {
     public static void mapEntries(
@@ -29,13 +28,13 @@ public class Description {
 
                 switch (key) {
                     case DETAILS:
-                        PropertyUtils.addProperty(model, museum, SKOS.note, DESCRIPTION_DETAILS, building, DETAILS, lang);
+                        PropertyUtils.addSubProperty(model, museum, SKOS.note, DESCRIPTION_DETAILS, building, DETAILS, lang);
                         break;
                     case HISTORIC:
-                        PropertyUtils.addProperty(model, museum, SKOS.note, DESCRIPTION_HISTORIC, building, DESCRIPTION, lang);
+                        PropertyUtils.addSubProperty(model, museum, SKOS.note, DESCRIPTION_HISTORIC, building, DESCRIPTION, lang);
                         break;
                     case SUMMARY:
-                        PropertyUtils.addProperty(model, museum, SKOS.note, DESCRIPTION_SUMMARY, building, DESCRIPTION, lang);
+                        PropertyUtils.addSubProperty(model, museum, SKOS.note, DESCRIPTION_SUMMARY, building, DESCRIPTION, lang);
                         break;
                     default:
                         break;

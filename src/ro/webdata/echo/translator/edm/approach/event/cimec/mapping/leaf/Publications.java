@@ -12,7 +12,6 @@ import java.util.Map;
 
 import static ro.webdata.echo.commons.accessor.MuseumAccessors.MATERIAL;
 import static ro.webdata.echo.commons.accessor.MuseumAccessors.PUBLICATIONS_MATERIAL;
-import static ro.webdata.echo.translator.commons.PropertyUtils.addProperty;
 
 public class Publications {
     public static void mapEntries(
@@ -30,7 +29,7 @@ public class Publications {
 
                 switch (key) {
                     case MATERIAL:
-                        PropertyUtils.addProperty(model, museum, SKOS.note, PUBLICATIONS_MATERIAL, publications, lang);
+                        PropertyUtils.addSubProperty(model, museum, SKOS.note, PUBLICATIONS_MATERIAL, publications, lang);
                         break;
                     default:
                         break;

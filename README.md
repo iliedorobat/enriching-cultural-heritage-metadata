@@ -1,3 +1,18 @@
+https://olingo.apache.org/javadoc/odata2/org/apache/olingo/odata2/api/edm/provider/EdmProvider.html
+https://github.com/apache/olingo-odata2/tree/master/odata2-lib/odata-annotation/src/main/java/org/apache/olingo/odata2/api/annotation/edm
+
+DSpace to EDM:
+- http://dspace.2283337.n4.nabble.com/Dspace-DC-to-EDM-td4686544.html
+- http://dspace.2283337.n4.nabble.com/How-to-implement-Linked-Data-in-Dspace-td4690596.html
+
+A global network on sharing cultural heritage: https://openglam.org/
+The Organization Ontology: https://www.w3.org/TR/vocab-org/
+
+
+LIDO -> linked to CIMEC resources (list of museums)
+
+
+
 # eCHO: Enriching The Digital Representation of Cultural Heritage Objects
 
 
@@ -11,7 +26,7 @@
 ```bash
 git clone https://github.com/iliedorobat/enriching-cultural-heritage-metadata.git
 ```
-2. The main language is set to **Romanian** language by default. If the dataset uses a different language, you must modify the `LANG_MAIN` environment variable located in [EnvConstants.java](https://github.com/iliedorobat/enriching-cultural-heritage-metadata/blob/master/src/ro/webdata/translator/commons/EnvConstants.java).
+2. The main language is set to **Romanian** language by default. If the dataset uses a different language, you must modify the `LANG_MAIN` environment variable located in [EnvConstants.java](https://github.com/iliedorobat/enriching-cultural-heritage-metadata/blob/master/src/ro/webdata/echo/translator/commons/EnvConstants.java).
 3. Open the Terminal/Command Prompt and navigate to the root directory (`enriching-cultural-heritage-metadata` directory).
 4. Register the environment variables:
 ```bash
@@ -20,36 +35,36 @@ export CLASSPATH="${ECHO_PATH}/out/production/enriching-cultural-heritage-metada
 ```
 4. Compile the project:
 ```bash
-javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/translator/BuildProject.java
-java ro/webdata/translator/BuildProject
+javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/BuildProject.java
+java ro/webdata/echo/translator/BuildProject
 ```
 
 ### Translate the XML files to EDM:
 1. CIMEC to EDM **event-centric approach**:
 ```bash
 ## main command
-java ro.webdata.translator/Main --approach=EVENT_CENTRIC --dataType=CIMEC
+java ro.webdata.echo.translator/Main --approach=EVENT_CENTRIC --dataType=CIMEC
 ## quick demo
-java ro.webdata.translator/Main --demo --approach=EVENT_CENTRIC --dataType=CIMEC
+java ro.webdata.echo.translator/Main --demo --approach=EVENT_CENTRIC --dataType=CIMEC
 ```
 2. DSPACE to EDM **object-centric approach**:
 ```bash
 ## main command
-java ro.webdata.translator/Main --approach=OBJECT_CENTRIC --dataType=DSPACE
+java ro.webdata.echo.translator/Main --approach=OBJECT_CENTRIC --dataType=DSPACE
 ## quick demo
-java ro.webdata.translator/Main --demo --approach=OBJECT_CENTRIC --dataType=DSPACE
+java ro.webdata.echo.translator/Main --demo --approach=OBJECT_CENTRIC --dataType=DSPACE
 ```
 3. LIDO to EDM **event-centric approach**:
 ```bash
 ## main command
-java ro.webdata.translator/Main --approach=EVENT_CENTRIC --dataType=LIDO
+java ro.webdata.echo.translator/Main --approach=EVENT_CENTRIC --dataType=LIDO
 ## quick demo
-java ro.webdata.translator/Main --demo --approach=EVENT_CENTRIC --dataType=LIDO
+java ro.webdata.echo.translator/Main --demo --approach=EVENT_CENTRIC --dataType=LIDO
 ```
 
 ### Normalize time expression
 ```bash
-java ro.webdata.translator/Main --expression="1/2 sec. 3 - sec. 1 a. chr."
+java ro.webdata.echo.translator/Main --expression="1/2 sec. 3 - sec. 1 a. chr."
 ```
 
 
@@ -98,7 +113,8 @@ The output datasets are located to the [files/output/lido2edm](https://github.co
 * `*.rdf` contains the EDM prepared datasets;
 * `timespan_all.txt` contains all identified time expressions;
 * `timespan_unique.txt` contains unique identified time expressions;
-* `timespan-analysis.csv` contains the unique pair of input time expressions - normalized centuries;
+* `timespan_all-analysis.csv` contains the pair of input time expressions - normalized centuries;
+* `timespan_unique-analysis.csv` contains the unique pair of input time expressions - normalized centuries;
 * `properties.csv` contains the pair of parent property - child property.
 
 

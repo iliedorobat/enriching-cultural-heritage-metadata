@@ -31,34 +31,28 @@ public class Contact {
                         mapAgent(model, museum, contact, lang);
                         break;
                     case DIRECTOR:
-                        PropertyUtils.addProperty(model, museum, SKOS.note, CONTACT_DIRECTOR, contact, DIRECTOR, lang);
+                        PropertyUtils.addSubProperty(model, museum, SKOS.note, CONTACT_DIRECTOR, contact, DIRECTOR, lang);
                         break;
                     case EMAIL:
-                        PropertyUtils.addProperties(model, museum, SKOS.note, CONTACT_EMAIL, contact, EMAIL, null);
+                        PropertyUtils.addSubProperties(model, museum, SKOS.note, CONTACT_EMAIL, contact, EMAIL, null);
                         break;
                     case FAX:
-                        PropertyUtils.addProperties(model, museum, SKOS.note, CONTACT_FAX, contact, FAX, null);
+                        PropertyUtils.addSubProperties(model, museum, SKOS.note, CONTACT_FAX, contact, FAX, null);
                         break;
                     case SOCIAL_MEDIA:
-                        // EDM.Agent does not support a reference for the "skos:note" property
-                        // addUriProperties(model, museum, SKOS.note, CONTACT_SOCIAL_MEDIA, contact, SOCIAL_MEDIA);
-                        PropertyUtils.addProperties(model, museum, SKOS.note, CONTACT_SOCIAL_MEDIA, contact, SOCIAL_MEDIA, null);
+                        PropertyUtils.addAgentUris(model, museum, SKOS.note, CONTACT_SOCIAL_MEDIA, contact, SOCIAL_MEDIA, null);
                         break;
                     case PHONE:
-                        PropertyUtils.addProperties(model, museum, SKOS.note, CONTACT_PHONE, contact, PHONE, null);
+                        PropertyUtils.addSubProperties(model, museum, SKOS.note, CONTACT_PHONE, contact, PHONE, null);
                         break;
                     case TIMETABLE:
-                        PropertyUtils.addProperties(model, museum, SKOS.note, CONTACT_TIME_TABLE, contact, TIMETABLE, lang);
+                        PropertyUtils.addSubProperties(model, museum, SKOS.note, CONTACT_TIME_TABLE, contact, TIMETABLE, lang);
                         break;
                     case VIRTUAL_TOUR:
-                        // EDM.Agent does not support a reference for the "skos:note" property
-                        // addUriProperties(model, museum, SKOS.note, CONTACT_VIRTUAL_TOUR, contact, VIRTUAL_TOUR);
-                        PropertyUtils.addProperties(model, museum, SKOS.note, CONTACT_VIRTUAL_TOUR, contact, VIRTUAL_TOUR, null);
+                        PropertyUtils.addAgentUris(model, museum, SKOS.note, CONTACT_VIRTUAL_TOUR, contact, VIRTUAL_TOUR, null);
                         break;
                     case WEB:
-                        // EDM.Agent does not support a reference for the "skos:note" property
-                        // addUriProperties(model, museum, SKOS.note, CONTACT_WEB, contact, WEB);
-                        PropertyUtils.addProperties(model, museum, SKOS.note, CONTACT_WEB, contact, WEB, null);
+                        PropertyUtils.addAgentUris(model, museum, SKOS.note, CONTACT_WEB, contact, WEB, null);
                         break;
                     default:
                         break;
@@ -78,10 +72,10 @@ public class Contact {
 
             switch (key) {
                 case NAME:
-                    PropertyUtils.addProperty(model, museum, SKOS.note, CONTACT_PERSON_NAME, agent, NAME, lang);
+                    PropertyUtils.addSubProperty(model, museum, SKOS.note, CONTACT_PERSON_NAME, agent, NAME, lang);
                     break;
                 case POSITION:
-                    PropertyUtils.addProperty(model, museum, SKOS.note, CONTACT_PERSON_POSITION, agent, POSITION, lang);
+                    PropertyUtils.addSubProperty(model, museum, SKOS.note, CONTACT_PERSON_POSITION, agent, POSITION, lang);
                     break;
                 default:
                     break;

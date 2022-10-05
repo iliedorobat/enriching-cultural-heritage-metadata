@@ -4,7 +4,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.SKOS;
 import ro.webdata.echo.commons.graph.Namespace;
@@ -14,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import static ro.webdata.echo.commons.accessor.MuseumAccessors.*;
-import static ro.webdata.echo.translator.commons.PropertyUtils.addProperty;
 
 public class Location {
     public static void mapEntries(
@@ -32,16 +30,16 @@ public class Location {
 
                 switch (key) {
                     case ACCESS:
-                        PropertyUtils.addProperty(model, museum, SKOS.note, LOCATION_ACCESS, contact, ACCESS, lang);
+                        PropertyUtils.addSubProperty(model, museum, SKOS.note, LOCATION_ACCESS, contact, ACCESS, lang);
                         break;
                     case ADDRESS:
-                        PropertyUtils.addProperty(model, museum, SKOS.note, LOCATION_ADDRESS, contact, ADDRESS, lang);
+                        PropertyUtils.addSubProperty(model, museum, SKOS.note, LOCATION_ADDRESS, contact, ADDRESS, lang);
                         break;
                     case ADMINISTRATIVE:
-                        PropertyUtils.addProperty(model, museum, SKOS.note, LOCATION_ADM_UNIT, contact, ADMINISTRATIVE, null);
+                        PropertyUtils.addSubProperty(model, museum, SKOS.note, LOCATION_ADM_UNIT, contact, ADMINISTRATIVE, null);
                         break;
                     case COMMUNE:
-                        PropertyUtils.addProperty(model, museum, SKOS.note, LOCATION_COMMUNE, contact, COMMUNE, null);
+                        PropertyUtils.addSubProperty(model, museum, SKOS.note, LOCATION_COMMUNE, contact, COMMUNE, null);
                         break;
                     case COUNTY:
                         mapCounty(model, museum, contact);
@@ -53,7 +51,7 @@ public class Location {
                         mapLocality(model, museum, lang, contact);
                         break;
                     case ZIP_CODE:
-                        PropertyUtils.addProperty(model, museum, SKOS.note, LOCATION_ZIP_CODE, contact, ZIP_CODE, null);
+                        PropertyUtils.addSubProperty(model, museum, SKOS.note, LOCATION_ZIP_CODE, contact, ZIP_CODE, null);
                         break;
                     default:
                         break;
@@ -67,14 +65,11 @@ public class Location {
     private static void mapCounty(Model model, Resource museum, JsonObject object) {
         try {
             String countyName = object.get(COUNTY).getAsString();
-            Property property = PropertyUtils.createSubProperty(model, SKOS.note, LOCATION_COUNTY, false);
             String link = (
                     Namespace.NS_DBPEDIA_RESOURCE + StringUtils.capitalize(countyName) + "_County"
             ).replaceAll("\\s", "_");
 
-            // EDM.Agent does not support a reference for the "skos:note" property
-            // addUriProperty(model, museum, property, link);
-            PropertyUtils.addProperty(model, museum, SKOS.note, LOCATION_COUNTY, link, null);
+            PropertyUtils.addAgentUri(model, museum, SKOS.note, LOCATION_COUNTY, link, null);
         } catch (IllegalStateException e) {
             e.printStackTrace();
         }
@@ -89,10 +84,10 @@ public class Location {
 
             switch (key) {
                 case LATITUDE:
-                    PropertyUtils.addProperty(model, museum, SKOS.note, LOCATION_GEO_LATITUDE, agent, LATITUDE, null);
+                    PropertyUtils.addSubProperty(model, museum, SKOS.note, LOCATION_GEO_LATITUDE, agent, LATITUDE, null);
                     break;
                 case LONGITUDE:
-                    PropertyUtils.addProperty(model, museum, SKOS.note, LOCATION_GEO_LONGITUDE, agent, LONGITUDE, null);
+                    PropertyUtils.addSubProperty(model, museum, SKOS.note, LOCATION_GEO_LONGITUDE, agent, LONGITUDE, null);
                     break;
                 default:
                     break;
@@ -109,10 +104,10 @@ public class Location {
 
             switch (key) {
                 case CODE:
-                    PropertyUtils.addProperty(model, museum, SKOS.note, LOCATION_LOCALITY_CODE, agent, CODE, null);
+                    PropertyUtils.addSubProperty(model, museum, SKOS.note, LOCATION_LOCALITY_CODE, agent, CODE, null);
                     break;
                 case NAME:
-                    PropertyUtils.addProperty(model, museum, SKOS.note, LOCATION_LOCALITY_NAME, agent, NAME, lang);
+                    PropertyUtils.addSubProperty(model, museum, SKOS.note, LOCATION_LOCALITY_NAME, agent, NAME, lang);
                     break;
                 default:
                     break;

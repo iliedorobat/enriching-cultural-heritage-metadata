@@ -15,60 +15,47 @@
   <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/supervisedBy">
     <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
   </rdf:Description>
-  <edm:Agent rdf:about="http://opendata.cs.pub.ro/resource/Organization/country:Romania/county:Timis/Dr_Karl_Diel_Memorial_House/">
-    <skos:prefLabel xml:lang="en">"Dr. Karl Diel" Memorial House</skos:prefLabel>
-    <dbp:photo>http://ghidulmuzeelor.cimec.ro/P/Ghid/51620000209_05.jpg</dbp:photo>
-    <dbp:schedule xml:lang="ro">Luni - vineri: 10:00 - 16:00</dbp:schedule>
-    <dbo:postalCode>305400</dbo:postalCode>
-    <dbp:photo>http://ghidulmuzeelor.cimec.ro/P/Ghid/51620000209_04.jpg</dbp:photo>
-    <odp:generalProfile xml:lang="ro">Memoriale</odp:generalProfile>
-    <dbp:photo>http://ghidulmuzeelor.cimec.ro/P/Ghid/51620000209_02.jpg</dbp:photo>
-    <dbp:photo>http://ghidulmuzeelor.cimec.ro/P/Ghid/51620000209_01.jpg</dbp:photo>
-    <odp:mainProfile xml:lang="ro">Istorie Memorială</odp:mainProfile>
-    <dbp:director xml:lang="ro">Maria Schultz</dbp:director>
-    <odp:virtualTour>https://turismtimis.ro/wp-content/uploads/TurVirtual/CasaMemorial%C4%83DrKarlDiel/</odp:virtualTour>
-    <dbp:county>https://dbpedia.org/page/Timiș_County</dbp:county>
-    <dbp:director xml:lang="en">Maria Schultz</dbp:director>
-    <edm:begin>2000</edm:begin>
-    <dbp:details xml:lang="ro">A fost inaugurată în anul 2000 prin efortul comun al doamnei Pia Brânzeu, strănepoata reputatului chirurg Karl Diel, care și-a desfășurat activitatea în cadrul Spitalului orășenesc și al Primăriei Jimbolia. Casa oferă o imagine a personalității celui care a fost dr. Karl Diel (1855 - 1930), a medicinei din Banatul anilor 1900 - 1930 și a vieții jimbolienilor la începutul secolului al XX-lea. Karl Diel este organizatorul Spitalului din Jimbolia, al cărui director ajunge în anul 1924. Aici au fost efectuate 50.000 de intervenții chirurgicale, reprezentând tot atâtea succese, î;ntr-o perioadă în care chirurgia se află într-o fază de pionierat. Pentru activitatea sa medicală și cetățenească este decorat de regele Ferdinand cu Steaua României în grad de comandor. O statuie a acestei personalități se află în fața Primăriei, iar un bust se află în incinta spitalului orășenesc, care îi poartă numele.</dbp:details>
-    <dbp:photo>http://ghidulmuzeelor.cimec.ro/P/Ghid/51620000209_03.jpg</dbp:photo>
-    <odp:siruta>155500</odp:siruta>
-    <dbp:telephoneNumber>0721.050.105</dbp:telephoneNumber>
-    <odp:cimecUri>http://ghidulmuzeelor.cimec.ro/idEN.asp?k=1650&amp;-Casa-Memoriala-dr.-Karl-Diel-JIMBOLIA-Timis</odp:cimecUri>
-    <odp:importance xml:lang="en">Local</odp:importance>
-    <odp:mainProfile xml:lang="en">Memorials</odp:mainProfile>
-    <odp:supervisedBy xml:lang="ro">Primăria Orașului Jimbolia</odp:supervisedBy>
-    <dbp:details xml:lang="en">It was inaugurated in the year 2000 due to the joint endeavours of Mrs. Pia Branzeu, great grand-daughter to the renowned surgeon Karl Diel, who conducted his activity at the town hospital and Jimbolia Town Council. The house offers a view upon the personality of the late dr. Karl Diel (1855-1930), medicine science in Banat by 1900 - 1930 and life at Jimbolia by early 20th century. Karl Diel is the organiser of Jimbolia Hospital, where he was appointed manager in 1924. There 50,000 surgical interventions were performed, all of them successful, during a time when surgery was in its early days. King Ferdinand awarded him the Star of Romania, commander’s rank for his medical and civic activity. A statue of this personality stands in front of the Town Hall, and a bust stands in the precinct of the town hospital, that bears his name.</dbp:details>
-    <dbp:telephoneNumber>0256.360.770</dbp:telephoneNumber>
-    <dbp:latitude>45.785959</dbp:latitude>
-    <odp:generalProfile xml:lang="en">Memorials</odp:generalProfile>
-    <dbp:longitude>20.717955</dbp:longitude>
-    <dbo:address xml:lang="ro">Strada Principală K. Diel nr. 1</dbo:address>
-    <odp:supervisedBy xml:lang="en">Jimbolia City Council</odp:supervisedBy>
-    <dbp:telephoneNumber>0256.360.455</dbp:telephoneNumber>
-    <dbo:address xml:lang="en">Strada Principală K. Diel nr. 1</dbo:address>
-    <odp:cimecUri>http://ghidulmuzeelor.cimec.ro/id.asp?k=1650&amp;-Casa-Memoriala-dr.-Karl-Diel-JIMBOLIA-Timis</odp:cimecUri>
-    <odp:cimec>51620000209</odp:cimec>
-    <skos:prefLabel xml:lang="ro">Casa Memorială "Dr. Karl Diel"</skos:prefLabel>
-    <dbp:schedule xml:lang="en">Monday - Friday: 10:00 - 16:00</dbp:schedule>
-    <dbp:locality xml:lang="ro">Jimbolia</dbp:locality>
-    <dbp:locality xml:lang="en">Jimbolia</dbp:locality>
-  </edm:Agent>
-  <rdf:Description rdf:about="https://dbpedia.org/property/telephoneNumber">
+  <rdf:Description rdf:about="https://dbpedia.org/property/commune">
     <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://dbpedia.org/property/longitude">
     <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://dbpedia.org/property/schedule">
-    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://dbpedia.org/property/director">
-    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/mainProfile">
     <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
   </rdf:Description>
+  <edm:Agent rdf:about="http://opendata.cs.pub.ro/resource/Organization/country:Romania/county:Teleorman/Anton_And_Maria_Popescu_Memorial_House/">
+    <dbp:administrativeDivision>Drăcșenei</dbp:administrativeDivision>
+    <odp:siruta>152822</odp:siruta>
+    <dbp:details xml:lang="ro">Expune obiecte și documente privind învățământul și istorie locală.</dbp:details>
+    <dbp:details xml:lang="en">The exhibition includes items and documents regarding education and local history.</dbp:details>
+    <odp:supervisedBy xml:lang="ro">Consiliul Local</odp:supervisedBy>
+    <dbp:foundingDate>1984</dbp:foundingDate>
+    <dbp:commune>Drăcșenei</dbp:commune>
+    <odp:employeePosition xml:lang="ro">Custode</odp:employeePosition>
+    <dbp:latitude>44.216892</dbp:latitude>
+    <dbp:county>https://dbpedia.org/page/Teleorman_County</dbp:county>
+    <odp:employeePosition xml:lang="en">Custode</odp:employeePosition>
+    <odp:cimec>51620000211</odp:cimec>
+    <dbo:picture>http://ghidulmuzeelor.cimec.ro/P/Ghid/51620000211_02.jpg</dbo:picture>
+    <odp:mainProfile xml:lang="ro">Istorie Locală</odp:mainProfile>
+    <skos:prefLabel xml:lang="en">"Anton And Maria Popescu" Memorial House</skos:prefLabel>
+    <odp:importance xml:lang="en">Local</odp:importance>
+    <odp:supervisedBy xml:lang="en">Local Council</odp:supervisedBy>
+    <dbo:postalCode>147120</dbo:postalCode>
+    <skos:prefLabel xml:lang="ro">Casa Memorială "Anton Și Maria Popescu"</skos:prefLabel>
+    <odp:cimecUri>http://ghidulmuzeelor.cimec.ro/idEN.asp?k=1652&amp;-Casa-Memoriala-Anton-si-Maria-Popescu-DRACSANI-Teleorman</odp:cimecUri>
+    <odp:employee xml:lang="ro">Anton A. Popescu</odp:employee>
+    <odp:mainProfile xml:lang="en">Memorials</odp:mainProfile>
+    <odp:employee xml:lang="en">Anton A. Popescu</odp:employee>
+    <odp:cimecUri>http://ghidulmuzeelor.cimec.ro/id.asp?k=1652&amp;-Casa-Memoriala-Anton-si-Maria-Popescu-DRACSANI-Teleorman</odp:cimecUri>
+    <odp:generalProfile xml:lang="ro">Memoriale</odp:generalProfile>
+    <dbp:locality xml:lang="ro">Drăcșani</dbp:locality>
+    <dbp:locality xml:lang="en">Drăcșani</dbp:locality>
+    <odp:generalProfile xml:lang="en">Memorials</odp:generalProfile>
+    <dbo:picture>http://ghidulmuzeelor.cimec.ro/P/Ghid/51620000211_01.jpg</dbo:picture>
+    <dbp:longitude>24.989367</dbp:longitude>
+  </edm:Agent>
   <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/generalProfile">
     <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
   </rdf:Description>
@@ -82,18 +69,21 @@
     <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://dbpedia.org/property/county">
-    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/identifier"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://dbpedia.org/property/photo">
+  <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/employeePosition">
     <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://dbpedia.org/ontology/postalCode">
     <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/virtualTour">
-    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
+  <rdf:Description rdf:about="https://dbpedia.org/ontology/picture">
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/identifier"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://dbpedia.org/property/details">
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://dbpedia.org/property/foundingDate">
     <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/importance">
@@ -102,7 +92,10 @@
   <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/cimecUri">
     <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/identifier"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://dbpedia.org/ontology/address">
+  <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/employee">
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://dbpedia.org/property/administrativeDivision">
     <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/cimec">

@@ -30,10 +30,10 @@ public class Subordination {
 
                 switch (key) {
                     case SUPERVISED_BY:
-                        PropertyUtils.addProperty(model, museum, SKOS.note, MUSEUM_SUPERVISED_BY, building, SUPERVISED_BY, lang);
+                        PropertyUtils.addSubProperty(model, museum, SKOS.note, MUSEUM_SUPERVISED_BY, building, SUPERVISED_BY, lang);
                         break;
                     case SUPERVISOR_FOR:
-                        PropertyUtils.addProperties(model, museum, SKOS.note, MUSEUM_SUPERVISOR_FOR, building, SUPERVISOR_FOR, lang);
+                        PropertyUtils.addSubProperties(model, museum, SKOS.note, MUSEUM_SUPERVISOR_FOR, building, SUPERVISOR_FOR, lang);
                         break;
                     case PART_OF:
                         PropertyUtils.addProperty(model, museum, DCTerms.isPartOf, building, PART_OF, lang);

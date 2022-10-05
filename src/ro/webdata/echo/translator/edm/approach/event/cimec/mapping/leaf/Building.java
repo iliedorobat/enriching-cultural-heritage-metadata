@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import static ro.webdata.echo.commons.accessor.MuseumAccessors.*;
-import static ro.webdata.echo.translator.commons.PropertyUtils.addProperty;
 
 public class Building {
     public static void mapEntries(
@@ -19,7 +18,7 @@ public class Building {
             Resource museum,
             Map.Entry<String, JsonElement> jsonEntry,
             String lang
-            ) {
+    ) {
         try {
             JsonObject building = jsonEntry.getValue().getAsJsonObject();
             ArrayList<Map.Entry<String, JsonElement>> entries = new ArrayList<>(building.entrySet());
@@ -29,10 +28,10 @@ public class Building {
 
                 switch (key) {
                     case DESCRIPTION:
-                        PropertyUtils.addProperty(model, museum, SKOS.note, building, DESCRIPTION, lang);
+                        PropertyUtils.addSubProperty(model, museum, SKOS.note, BUILDING_DESCRIPTION, building, DESCRIPTION, lang);
                         break;
                     case LMI_CODE:
-                        PropertyUtils.addProperty(model, museum, SKOS.note, BUILDING_LMI_CODE, building, LMI_CODE, null);
+                        PropertyUtils.addSubProperty(model, museum, SKOS.note, BUILDING_LMI_CODE, building, LMI_CODE, null);
                         break;
                     default:
                         break;
