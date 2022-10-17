@@ -15,8 +15,14 @@ import ro.webdata.parser.xml.lido.core.set.resourceSet.ResourceSet;
 import ro.webdata.parser.xml.lido.core.wrap.resourceWrap.ResourceWrap;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ResourceWrapProcessing {
+    private static final ArrayList<String> imageTypes = new ArrayList<>(
+            // Common image file types: https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types
+            List.of("apng", "avif", "gif", "jpg", "jpeg", "jfif", "pjpeg", "pjp", "png", "svg", "webp")
+    );
+
     public static void mapEntries(
             Model model,
             Resource aggregation,
@@ -38,7 +44,7 @@ public class ResourceWrapProcessing {
     }
 
     /**
-     * Add the "edm:isShownBy" and "edm:object" properties to the Aggregation object
+     * Add the "edm:isShownBy", "edm:hasView" and "edm:object" properties to the Aggregation object
      * @param model The RDF graph
      * @param aggregation The Aggregation object
      * @param resourceRepresentationList The list with <b>lido:resourceRepresentation</b> elements
@@ -51,36 +57,44 @@ public class ResourceWrapProcessing {
             ArrayList<RightsResource> rightsResourceList
     ) {
         for (ResourceRepresentation resourceRepresentation : resourceRepresentationList) {
+            String resourceLink = getResourceLink(resourceRepresentation);
+            String resourceFormatType = getResourceFormat(resourceLink);
+
             Resource webResource = generateWebResource(
-                    model, resourceRepresentation, rightsResourceList
+                    model, rightsResourceList, resourceLink
             );
-            aggregation.addProperty(EDM.isShownBy, webResource);
+
+            if (!aggregation.hasProperty(EDM.isShownBy)) {
+                aggregation.addProperty(EDM.isShownBy, webResource);
+            } else {
+                aggregation.addProperty(EDM.hasView, webResource);
+            }
+
             // EDM.object is used for generating previews for use in the Europeana portal
-            // This may be the same URL as edm:isShownBy
-            aggregation.addProperty(EDM.object, webResource);
+            // This must be an image, even if it is for a sound object and may be the same URL as edm:isShownBy
+            if (imageTypes.contains(resourceFormatType)) {
+                aggregation.addProperty(EDM.object, webResource);
+            }
         }
     }
 
     /**
      * Generate an <b>edm:WebResource</b>
      * @param model The RDF graph
-     * @param resourceRepresentation <b>lido:rightsResource</b> element
+     * @param rightsResourceList The list with <b>lido:rightsResource</b> elements
+     * @param resourceLink Encoded resource link
      * @return <b>Resource</b>
      */
     private static Resource generateWebResource(
             Model model,
-            ResourceRepresentation resourceRepresentation,
-            ArrayList<RightsResource> rightsResourceList
+            ArrayList<RightsResource> rightsResourceList,
+            String resourceLink
     ) {
-        LinkResource linkResource = resourceRepresentation.getLinkResource();
-        String resourceLink = Text.encodeSpace(
-                linkResource.getText()
-        );
-
+        String resourceFormatType = getResourceFormat(resourceLink);
         Resource webResource = model
                 .createResource(resourceLink)
                 .addProperty(RDF.type, EDM.WebResource)
-                .addProperty(DC_11.format, getResourceFormat(resourceLink));
+                .addProperty(DC_11.format, resourceFormatType);
         addRightsProperty(model, webResource, rightsResourceList);
 
         return webResource;
@@ -105,6 +119,18 @@ public class ResourceWrapProcessing {
                 }
             }
         }
+    }
+
+    /**
+     * Extract and encode the resource's link
+     * @param resourceRepresentation <b>edm:resourceRepresentation</b>
+     * @return Resource's encoded link
+     */
+    private static String getResourceLink(ResourceRepresentation resourceRepresentation) {
+        LinkResource linkResource = resourceRepresentation.getLinkResource();
+        return Text.encodeSpace(
+                linkResource.getText()
+        );
     }
 
     /**
