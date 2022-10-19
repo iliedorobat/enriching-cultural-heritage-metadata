@@ -28,34 +28,27 @@
       <foaf:Organization rdf:about="http://opendata.cs.pub.ro/resource/Organization/country:Romania/Institutul_Național_al_Patrimoniului">
         <edm:europeanaRole xml:lang="en">data provider</edm:europeanaRole>
         <edm:country rdf:resource="https://dbpedia.org/page/Romania"/>
+        <edm:organizationScope xml:lang="ro">research, protect and restore the cultural heritage of Romania</edm:organizationScope>
         <edm:organizationSector rdf:resource="https://dbpedia.org/page/Cultural_heritage"/>
+        <edm:organizationDomain rdf:resource="https://dbpedia.org/page/Government_agency"/>
+        <edm:acronym xml:lang="ro">CIMEC</edm:acronym>
+        <foaf:homepage rdf:resource="http://www.cimec.ro"/>
         <edm:organizationScope xml:lang="en">ensuring the legal framework and managing the national cultural heritage</edm:organizationScope>
         <edm:organizationDomain rdf:resource="https://dbpedia.org/page/Culture"/>
         <edm:organizationScope xml:lang="ro">asigurarea cadrului legislativ si gestionarea patrimoniului national cultural</edm:organizationScope>
+        <dc:identifier rdf:resource="http://www.cimec.ro"/>
         <edm:acronym xml:lang="ro">INP</edm:acronym>
+        <foaf:logo rdf:resource="https://cimec.ro/wp-content/uploads/2021/08/logo-650-2.jpg"/>
         <skos:prefLabel xml:lang="en">National Heritage Institute</skos:prefLabel>
         <dc:identifier>http://www.patrimoniu.ro</dc:identifier>
         <foaf:homepage rdf:resource="https://patrimoniu.ro/"/>
         <edm:geographicLevel rdf:resource="https://dbpedia.org/page/Country"/>
         <skos:prefLabel xml:lang="ro">Institutul Național al Patrimoniului</skos:prefLabel>
+        <edm:organizationScope xml:lang="en">cercetarea, protejarea și restaurarea patirmoniului cultural român</edm:organizationScope>
+        <edm:europeanaRole xml:lang="en">provider</edm:europeanaRole>
       </foaf:Organization>
     </edm:dataProvider>
     <edm:intermediateProvider>
-      <foaf:Organization rdf:about="http://opendata.cs.pub.ro/resource/Organization/country:Romania/Romanian_Open_Data_Portal">
-        <edm:organizationDomain rdf:resource="https://dbpedia.org/page/Data_publishing"/>
-        <edm:country rdf:resource="https://dbpedia.org/page/Romania"/>
-        <foaf:logo rdf:resource="https://data.gov.ro/assets/images/gov/gov3.png"/>
-        <skos:prefLabel>data.gov.ro</skos:prefLabel>
-        <edm:organizationScope xml:lang="en">centralization of open data published by Romanian institutions according to the principles and standards in the field</edm:organizationScope>
-        <edm:europeanaRole xml:lang="en">data provider</edm:europeanaRole>
-        <edm:geographicLevel rdf:resource="https://dbpedia.org/page/Country"/>
-        <edm:organizationSector rdf:resource="https://dbpedia.org/page/Open_data"/>
-        <edm:organizationScope xml:lang="ro">centralizarea datelor deschise publicate de instituțiile din România conform principiilor și standardelor în domeniu</edm:organizationScope>
-        <foaf:homepage rdf:resource="http://data.gov.ro/en/"/>
-        <dc:identifier rdf:resource="http://data.gov.ro/en/"/>
-      </foaf:Organization>
-    </edm:intermediateProvider>
-    <edm:provider>
       <foaf:Organization rdf:about="http://opendata.cs.pub.ro/resource/Organization/country:Romania/Politehnica_University_of_Bucharest">
         <edm:geographicLevel rdf:resource="https://dbpedia.org/page/Country"/>
         <edm:country rdf:resource="https://dbpedia.org/page/Romania"/>
@@ -72,7 +65,8 @@
         <dc:identifier rdf:resource="https://upb.ro/en/"/>
         <skos:prefLabel xml:lang="ro">Universitatea Politehnica din București</skos:prefLabel>
       </foaf:Organization>
-    </edm:provider>
+    </edm:intermediateProvider>
+    <edm:provider rdf:resource="http://opendata.cs.pub.ro/resource/Organization/country:Romania/Institutul_Național_al_Patrimoniului"/>
     <edm:aggregatedCHO>
       <edm:ProvidedCHO rdf:about="http://opendata.cs.pub.ro/resource/CHO/CIMEC/00138C33DCAC402EA03B3641D66AE6FF">
         <edm:type>IMAGE</edm:type>

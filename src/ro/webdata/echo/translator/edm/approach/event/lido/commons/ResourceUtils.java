@@ -25,10 +25,9 @@ public final class ResourceUtils {
             case "country":             return NS_DBPEDIA_RESOURCE + "Country";
             case "cultural heritage":   return NS_DBPEDIA_RESOURCE + "Cultural_heritage";
             case "culture":             return NS_DBPEDIA_RESOURCE + "Culture";
-            case "data publishing":     return NS_DBPEDIA_RESOURCE + "Data_publishing";
             case "education":           return NS_DBPEDIA_RESOURCE + "Education";
             case "higher education":    return NS_DBPEDIA_RESOURCE + "Higher_education";
-            case "open data":           return NS_DBPEDIA_RESOURCE + "Open_data";
+            case "public institution":  return NS_DBPEDIA_RESOURCE + "Government_agency";
             case "Romania":             return NS_DBPEDIA_RESOURCE + "Romania";
             default:                    return label;
         }
