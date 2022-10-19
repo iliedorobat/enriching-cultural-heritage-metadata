@@ -1,5 +1,6 @@
 package ro.webdata.echo.translator.edm.approach.event.lido.mapping.core.descriptiveMetadata.objectIdentificationWrap.displayStateEditionWrap;
 
+import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
@@ -48,7 +49,8 @@ public class DisplayStateEditionWrapProcessing {
      * @param displayState The <b>DisplayState</b> object
      */
     private static void addDisplayState(Model model, Resource providedCHO, DisplayState displayState) {
+        Literal literal = model.createLiteral(displayState.getText(), displayState.getLang().getLang());
         Property property = PropertyUtils.createSubProperty(model, DC_11.description, "Display State", true);
-        providedCHO.addProperty(property, displayState.getText());
+        providedCHO.addProperty(property, literal);
     }
 }

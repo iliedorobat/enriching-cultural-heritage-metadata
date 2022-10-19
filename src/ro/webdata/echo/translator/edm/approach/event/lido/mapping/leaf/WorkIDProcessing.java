@@ -1,6 +1,5 @@
 package ro.webdata.echo.translator.edm.approach.event.lido.mapping.leaf;
 
-import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
@@ -25,13 +24,10 @@ public class WorkIDProcessing {
             type = workID.getType().getType();
 
             if (text != null) {
-                Literal textLiteral = model.createLiteral(text);
-                Property property = PropertyUtils.createSubProperty(model, DC_11.identifier, type, true);
-
-                if (!type.equals("inventory number"))
-                    property = PropertyUtils.createSubProperty(model, DC_11.description, type, true);
-
-                providedCHO.addProperty(property, textLiteral);
+                Property property = type.equals("inventory number")
+                        ? PropertyUtils.createSubProperty(model, DC_11.identifier, type, true)
+                        : PropertyUtils.createSubProperty(model, DC_11.description, type, true);
+                providedCHO.addProperty(property, text);
             }
         }
     }

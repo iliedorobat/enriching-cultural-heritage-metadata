@@ -26,11 +26,9 @@ public class TextComplexTypeProcessing {
                 type = setType.getType();
 
         if (text != null) {
-            Literal textLiteral = model.createLiteral(text, lang);
-            if (textLiteral != null) {
-                Property property = PropertyUtils.createSubProperty(model, DC_11.description, type, true);
-                providedCHO.addProperty(property, textLiteral);
-            }
+            Literal literal = model.createLiteral(text, lang);
+            Property property = PropertyUtils.createSubProperty(model, DC_11.description, type, true);
+            providedCHO.addProperty(property, literal);
         }
     }
 
@@ -43,16 +41,15 @@ public class TextComplexTypeProcessing {
     public static void addMeasurement(
             Model model, Resource providedCHO, DisplayObjectMeasurements displayObjectMeasurements
     ) {
-        String text = displayObjectMeasurements.getText(),
+        String lang = displayObjectMeasurements.getLang().getLang(),
+                text = displayObjectMeasurements.getText(),
                 type = displayObjectMeasurements.getLabel().getLabel(),
                 name = Text.toCamelCase(type);
 
         if (text != null) {
-            Literal textLiteral = model.createLiteral(text);
-            if (textLiteral != null) {
-                Property property = PropertyUtils.createSubProperty(model, DC_11.description, name, true);
-                providedCHO.addProperty(property, textLiteral);
-            }
+            Literal literal = model.createLiteral(text, lang);
+            Property property = PropertyUtils.createSubProperty(model, DC_11.description, name, true);
+            providedCHO.addProperty(property, literal);
         }
     }
 }

@@ -1,14 +1,17 @@
 package ro.webdata.echo.translator.edm.approach.event.lido.mapping.leaf.eventComplexType.eventPlace;
 
+import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DCTerms;
 import org.apache.jena.vocabulary.SKOS;
 import ro.webdata.echo.commons.Const;
-import ro.webdata.parser.xml.lido.core.leaf.eventPlace.EventPlace;
-import ro.webdata.parser.xml.lido.core.leaf.place.Place;
+import ro.webdata.echo.translator.commons.PropertyUtils;
 import ro.webdata.echo.translator.edm.approach.event.lido.commons.PlaceMapUtils;
 import ro.webdata.echo.translator.edm.approach.event.lido.commons.URIUtils;
+import ro.webdata.parser.xml.lido.core.leaf.eventPlace.EventPlace;
+import ro.webdata.parser.xml.lido.core.leaf.place.Place;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -86,7 +89,11 @@ public class EventPlaceProcessing {
             addLabelProperty(placeResource, name, lang);
         }
 
-        placeResource.addProperty(SKOS.note, placeType, Const.LANG_EN);
+        if (placeType != null) {
+            Literal literal = model.createLiteral(placeType, Const.LANG_EN);
+            Property property = PropertyUtils.createSubProperty(model, SKOS.note, "politicalEntity", false);
+            placeResource.addProperty(property, literal);
+        }
 
 //        // TODO: link the place to DBpedia
 //        String dbpediaLink = ResourceUtils.generateDBPediaURI(placeName);

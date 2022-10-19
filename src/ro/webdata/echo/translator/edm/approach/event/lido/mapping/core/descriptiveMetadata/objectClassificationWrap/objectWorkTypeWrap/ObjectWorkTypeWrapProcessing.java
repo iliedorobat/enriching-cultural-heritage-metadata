@@ -66,8 +66,8 @@ public class ObjectWorkTypeWrapProcessing {
         String text = term.getText();
 
         if (text != null) {
-            Literal textLiteral = model.createLiteral(text, lang);
-            providedCHO.addProperty(DC_11.subject, textLiteral);
+            Literal literal = model.createLiteral(text, lang);
+            providedCHO.addProperty(DC_11.subject, literal);
         }
     }
 }

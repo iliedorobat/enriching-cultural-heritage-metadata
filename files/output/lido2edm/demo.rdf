@@ -93,34 +93,35 @@
                               <rdf:Description rdf:about="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/">
                                 <dcterms:isPartOf>
                                   <rdf:Description rdf:about="http://opendata.cs.pub.ro/resource/Place/country:Romania/">
-                                    <skos:note xml:lang="en">country</skos:note>
+                                    <dbp:polity xml:lang="en"
+                                    >country</dbp:polity>
                                     <skos:prefLabel xml:lang="ro"
                                     >România</skos:prefLabel>
                                   </rdf:Description>
                                 </dcterms:isPartOf>
-                                <skos:note xml:lang="en">region</skos:note>
+                                <dbp:polity xml:lang="en">region</dbp:polity>
                                 <skos:prefLabel xml:lang="ro"
                                 >Dobrogea</skos:prefLabel>
                               </rdf:Description>
                             </dcterms:isPartOf>
-                            <skos:note xml:lang="en">county</skos:note>
+                            <dbp:polity xml:lang="en">county</dbp:polity>
                             <skos:prefLabel xml:lang="ro">Tulcea</skos:prefLabel>
                           </rdf:Description>
                         </dcterms:isPartOf>
-                        <skos:note xml:lang="en">commune</skos:note>
+                        <dbp:polity xml:lang="en">commune</dbp:polity>
                         <skos:prefLabel xml:lang="ro">Ostrov</skos:prefLabel>
                       </rdf:Description>
                     </dcterms:isPartOf>
-                    <skos:note xml:lang="en">locality</skos:note>
+                    <dbp:polity xml:lang="en">locality</dbp:polity>
                     <skos:prefLabel xml:lang="ro">Ostrov</skos:prefLabel>
                   </rdf:Description>
                 </dcterms:isPartOf>
-                <skos:note xml:lang="en">point</skos:note>
+                <dbp:polity xml:lang="en">point</dbp:polity>
                 <skos:prefLabel xml:lang="ro">Beroe Piatra Frecăței 22222</skos:prefLabel>
                 <skos:prefLabel xml:lang="en">Beroe Piatra Frecăței 77</skos:prefLabel>
               </rdf:Description>
             </edm:happenedAt>
-            <edm:hasType>Finding</edm:hasType>
+            <edm:hasType xml:lang="en">Finding</edm:hasType>
           </edm:Event>
         </edm:wasPresentAt>
         <dc:subject xml:lang="ro">Podoabe</dc:subject>
@@ -135,18 +136,18 @@
             </edm:occuredAt>
             <edm:isRelatedTo xml:lang="ro">cultură: romană târzie</edm:isRelatedTo>
             <edm:isRelatedTo xml:lang="en">culture: romană târzie</edm:isRelatedTo>
-            <edm:hasType>Production</edm:hasType>
+            <edm:hasType xml:lang="en">Production</edm:hasType>
           </edm:Event>
         </edm:wasPresentAt>
-        <dbo:length>57 cm</dbo:length>
-        <odp:displayState>bună</odp:displayState>
+        <dbo:length xml:lang="ro">57 cm</dbo:length>
+        <odp:displayState xml:lang="ro">bună</odp:displayState>
         <dc:title xml:lang="ro">Colier</dc:title>
         <odp:inventoryNumber>2926, 11521-11654</odp:inventoryNumber>
         <odp:overallDescription xml:lang="ro">Colier din mărgele de sticlă și rășină naturală. Culori: verde, bej, maron, negru, bleu-transparent. Forme globulare, cilindrice neregulate, patrulatere.</odp:overallDescription>
         <dc:type xml:lang="ro">artefact</dc:type>
         <edm:hasType xml:lang="ro">arheologie</edm:hasType>
         <edm:currentLocation>
-          <foaf:Organization rdf:about="http://opendata.cs.pub.ro/resource/Organization/country:Romania/county:Tulcea/History_And_Archaeology_Museum/"/>
+          <edm:Agent rdf:about="http://opendata.cs.pub.ro/resource/Organization/country:Romania/county:Tulcea/History_And_Archaeology_Museum/"/>
         </edm:currentLocation>
       </edm:ProvidedCHO>
     </edm:aggregatedCHO>
@@ -159,6 +160,9 @@
   </rdf:Description>
   <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/inventoryNumber">
     <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/identifier"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://dbpedia.org/property/polity">
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
   </rdf:Description>
   <edm:Agent rdf:about="http://opendata.cs.pub.ro/resource/Agent/Petre_Aurelian">
     <edm:wasPresentAt rdf:resource="http://opendata.cs.pub.ro/resource/Event/Finding/CIMEC/00138C33DCAC402EA03B3641D66AE6FF"/>

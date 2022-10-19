@@ -79,7 +79,6 @@ public class LegalBodyRefComplexTypeProcessing {
                         "\n--- Only the first organization name will be registered! ---");
             }
 
-            ArrayList<String> languages = new ArrayList<>();
             LegalBodyName legalBodyName = legalBodyNameList.get(0);
             ArrayList<AppellationValue> appellationValueList = legalBodyName.getAppellationValue();
             AppellationValue appellationValue = appellationValueList.get(0);
@@ -88,18 +87,14 @@ public class LegalBodyRefComplexTypeProcessing {
             String lang = appellationValue.getLang().getLang();
             String title = appellationValue.getText();
 
-            if (!languages.contains(lang)) {
-                Literal labelLiteral = label != null
-                        ? model.createLiteral(label, lang)
-                        : null;
-                Literal titleLiteral = title != null
-                        ? model.createLiteral(title, lang)
-                        : null;
+            if (label != null) {
+                Literal literal = model.createLiteral(label, lang);
+                organization.addProperty(SKOS.altLabel, literal);
+            }
 
-                if (labelLiteral != null) organization.addProperty(SKOS.altLabel, labelLiteral);
-                if (titleLiteral != null) organization.addProperty(SKOS.prefLabel, titleLiteral);
-
-                languages.add(lang);
+            if (title != null) {
+                Literal literal = model.createLiteral(title, lang);
+                organization.addProperty(SKOS.prefLabel, literal);
             }
         }
     }

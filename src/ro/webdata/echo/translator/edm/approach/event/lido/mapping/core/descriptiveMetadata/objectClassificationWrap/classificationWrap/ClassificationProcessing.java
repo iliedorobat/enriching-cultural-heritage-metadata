@@ -84,19 +84,21 @@ public class ClassificationProcessing {
         String text = term.getText();
         boolean isEDMType = Validators.isEDMType(text);
 
-        if (type != null && type.equals(EDM.type)) {
-            if (isEDMType) {
-                Literal textLiteral = model.createLiteral(text);
-                providedCHO.addProperty(EDM.type, textLiteral);
-            }
-        } else {
-            Literal textLiteral = model.createLiteral(text, lang);
-            boolean isSuperType = Validators.isSubject(text);
+        if (text != null) {
+            if (type != null && type.equals(EDM.type)) {
+                if (isEDMType) {
+                    Literal literal = model.createLiteral(text);
+                    providedCHO.addProperty(EDM.type, literal);
+                }
+            } else {
+                Literal literal = model.createLiteral(text, lang);
+                boolean isSuperType = Validators.isSubject(text);
 
-            if (isSuperType)
-                providedCHO.addProperty(EDM.hasType, textLiteral);
-            else
-                providedCHO.addProperty(DC_11.subject, textLiteral);
+                if (isSuperType)
+                    providedCHO.addProperty(EDM.hasType, literal);
+                else
+                    providedCHO.addProperty(DC_11.subject, literal);
+            }
         }
     }
 }

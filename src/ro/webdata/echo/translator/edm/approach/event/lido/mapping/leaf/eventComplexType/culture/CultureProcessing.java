@@ -34,8 +34,11 @@ public class CultureProcessing {
         for (Term term : termList) {
             String lang = term.getLang().getLang();
             String text = term.getText();
-            Literal literal = model.createLiteral(text, lang);
-            output.add(literal);
+
+            if (text != null) {
+                Literal literal = model.createLiteral(text, lang);
+                output.add(literal);
+            }
         }
 
         return output;

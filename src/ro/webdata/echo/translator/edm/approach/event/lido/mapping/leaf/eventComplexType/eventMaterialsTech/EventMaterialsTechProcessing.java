@@ -29,17 +29,19 @@ public class EventMaterialsTechProcessing {
                 String label = displayMaterialsTech.getLabel().getLabel();
                 String text = displayMaterialsTech.getText();
 
-                Literal literal = model.createLiteral(text, lang);
-                String uri = URIUtils.prepareUri(NS_REPO_RESOURCE, Text.sanitizeString(Text.toCamelCase(label))
-                        + File.FILE_SEPARATOR + Text.sanitizeString(text));
+                if (text != null) {
+                    Literal literal = model.createLiteral(text, lang);
+                    String uri = URIUtils.prepareUri(NS_REPO_RESOURCE, Text.sanitizeString(Text.toCamelCase(label))
+                            + File.FILE_SEPARATOR + Text.sanitizeString(text));
 
-                Resource resource = model
-                        .createResource(uri)
-                        .addProperty(RDF.type, SKOS.Concept)
-                        .addProperty(SKOS.prefLabel, literal)
-                        .addProperty(SKOS.note, label);
+                    Resource resource = model
+                            .createResource(uri)
+                            .addProperty(RDF.type, SKOS.Concept)
+                            .addProperty(SKOS.prefLabel, literal)
+                            .addProperty(SKOS.note, label);
 
-                output.add(resource);
+                    output.add(resource);
+                }
             }
         }
 

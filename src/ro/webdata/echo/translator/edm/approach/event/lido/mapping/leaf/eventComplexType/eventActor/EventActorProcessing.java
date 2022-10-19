@@ -161,8 +161,11 @@ public class EventActorProcessing {
             for (Term term : termList) {
                 String lang = term.getLang().getLang();
                 String text = term.getText();
-                Literal literal = model.createLiteral(text, lang);
-                actor.addProperty(SKOS.prefLabel, literal);
+
+                if (text != null) {
+                    Literal literal = model.createLiteral(text, lang);
+                    actor.addProperty(SKOS.prefLabel, literal);
+                }
             }
         }
     }

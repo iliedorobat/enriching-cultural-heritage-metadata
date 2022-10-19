@@ -55,8 +55,11 @@ public final class PropertyUtils {
     }
 
     public static void addSubProperty(Model model, Resource museum, Property parentProperty, String propertyName, String value, String lang) {
-        Property property = createSubProperty(model, parentProperty, propertyName, false);
-        museum.addProperty(property, value, lang);
+        if (value != null) {
+            Literal literal = model.createLiteral(value, lang);
+            Property property = createSubProperty(model, parentProperty, propertyName, false);
+            museum.addProperty(property, literal);
+        }
     }
 
     public static void addSubProperty(Model model, Resource museum, Property parentProperty, String propertyName, JsonElement value, String lang) {
@@ -95,8 +98,9 @@ public final class PropertyUtils {
     }
 
     public static void addProperty(Model model, Resource museum, Property modelProperty, JsonElement value, String lang) {
-        if (value instanceof JsonPrimitive) {
-            museum.addProperty(modelProperty, value.getAsString(), lang);
+        if (value instanceof JsonPrimitive && value.getAsString() != null) {
+            Literal literal = model.createLiteral(value.getAsString(), lang);
+            museum.addProperty(modelProperty, literal);
         }
     }
 
@@ -199,6 +203,7 @@ public final class PropertyUtils {
             case MUSEUM_SUPERVISED_BY:          return NS_REPO_PROPERTY + "supervisedBy";
             case MUSEUM_SUPERVISOR_FOR:         return NS_REPO_PROPERTY + "supervisorFor";
             case TYPE:                          return NS_DBPEDIA_ONTOLOGY + "type";
+            case "politicalEntity":             return NS_DBPEDIA_PROPERTY + "polity";
             default:
                 switch (property.toLowerCase()) {
                     case "biotope":     return NS_REPO_PROPERTY + "biotope";
