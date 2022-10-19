@@ -68,33 +68,17 @@ public class AppellationComplexTypeProcessing {
      */
     private static void addTitle(Model model, Resource providedCHO, HashMap<String, String> hashMap) {
         String label = hashMap.get(LABEL),
-                language = hashMap.get(LANGUAGE),
-                pref = hashMap.get(PREF),
+                lang = hashMap.get(LANGUAGE),
                 text = hashMap.get(TEXT);
-        Literal labelLiteral, prefLiteral, titleLiteral;
 
         if (label != null) {
-            labelLiteral = model.createLiteral(label, language);
-
-            if (labelLiteral != null) {
-                providedCHO.addProperty(DCTerms.alternative, labelLiteral);
-            }
-        }
-
-        if (pref != null) {
-            prefLiteral = model.createLiteral(pref, language);
-
-            if (prefLiteral != null) {
-                providedCHO.addProperty(DCTerms.alternative, prefLiteral);
-            }
+            Literal literal = model.createLiteral(label, lang);
+            providedCHO.addProperty(DCTerms.alternative, literal);
         }
 
         if (text != null) {
-            titleLiteral = model.createLiteral(text, language);
-
-            if (titleLiteral != null) {
-                providedCHO.addProperty(DC_11.title, titleLiteral);
-            }
+            Literal literal = model.createLiteral(text, lang);
+            providedCHO.addProperty(DC_11.title, literal);
         }
     }
 }

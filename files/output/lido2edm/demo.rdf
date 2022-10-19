@@ -77,7 +77,6 @@
       <edm:ProvidedCHO rdf:about="http://opendata.cs.pub.ro/resource/CHO/CIMEC/00138C33DCAC402EA03B3641D66AE6FF">
         <edm:type>IMAGE</edm:type>
         <edm:hasType xml:lang="en">archaeology</edm:hasType>
-        <dcterms:alternative xml:lang="ro">preferred</dcterms:alternative>
         <dc:type xml:lang="en">man-made object</dc:type>
         <edm:wasPresentAt>
           <edm:Event rdf:about="http://opendata.cs.pub.ro/resource/Event/Finding/CIMEC/00138C33DCAC402EA03B3641D66AE6FF">
