@@ -62,15 +62,15 @@ public class BuildProject {
 
 class BuildCommons {
     public static ArrayList<String> getCommands() {
-        ArrayList<String> list = new ArrayList<>();
+        ArrayList<String> commands = new ArrayList<>();
 
-        list.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/commons/Env.java");
-        list.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/commons/FileConst.java");
-        list.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/commons/GraphUtils.java");
-        list.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/commons/MuseumUtils.java");
-        list.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/commons/PropertyUtils.java");
+        commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/commons/Env.java");
+        commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/commons/FileConst.java");
+        commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/commons/GraphUtils.java");
+        commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/commons/MuseumUtils.java");
+        commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/commons/PropertyUtils.java");
 
-        return list;
+        return commands;
     }
 }
 
@@ -193,6 +193,9 @@ class BuildEventCentricApproach {
         commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/edm/approach/event/lido/commons/URIUtils.java");
         commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/edm/approach/event/lido/commons/Validators.java");
 
+        commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/edm/approach/event/lido/mapping/core/administrativeMetadata/RecordWrapProcessing/CimecProvider.java");
+        commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/edm/approach/event/lido/mapping/core/administrativeMetadata/RecordWrapProcessing/UpbProvider.java");
+
         return commands;
     }
 
@@ -221,9 +224,6 @@ class BuildEventCentricApproach {
 
     private static ArrayList<String> getLidoMappingCoreCommands() {
         ArrayList<String> commands = new ArrayList<>();
-
-        commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/edm/approach/event/lido/mapping/core/administrativeMetadata/RecordWrapProcessing/CimecProvider.java");
-        commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/edm/approach/event/lido/mapping/core/administrativeMetadata/RecordWrapProcessing/UpbProvider.java");
 
         // administrativeMetadata
         commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/edm/approach/event/lido/mapping/core/administrativeMetadata/RecordWrapProcessing/RecordWrapProcessing.java");
