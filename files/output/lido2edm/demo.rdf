@@ -12,6 +12,15 @@
     xmlns:ore="http://www.openarchives.org/ore/terms/"
     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
     xmlns:foaf="http://xmlns.com/foaf/0.1/">
+  <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/logo">
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/identifier"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/acronym">
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#altLabel"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://dbpedia.org/ontology/country">
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/overallDescription">
     <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/description"/>
   </rdf:Description>
@@ -25,46 +34,39 @@
     <edm:isShownBy rdf:resource="http://clasate.cimec.ro/medium/ARH_6975507_688-68.jpg"/>
     <edm:rights rdf:resource="http://creativecommons.org/licenses/by-sa/4.0/"/>
     <edm:dataProvider>
-      <foaf:Organization rdf:about="http://opendata.cs.pub.ro/resource/Organization/country:Romania/Institutul_Național_al_Patrimoniului">
-        <edm:europeanaRole xml:lang="en">data provider</edm:europeanaRole>
-        <edm:country rdf:resource="https://dbpedia.org/page/Romania"/>
-        <edm:organizationScope xml:lang="ro">research, protect and restore the cultural heritage of Romania</edm:organizationScope>
-        <edm:organizationSector rdf:resource="https://dbpedia.org/page/Cultural_heritage"/>
-        <edm:organizationDomain rdf:resource="https://dbpedia.org/page/Government_agency"/>
-        <edm:acronym xml:lang="ro">CIMEC</edm:acronym>
-        <foaf:homepage rdf:resource="http://www.cimec.ro"/>
-        <edm:organizationScope xml:lang="en">ensuring the legal framework and managing the national cultural heritage</edm:organizationScope>
-        <edm:organizationDomain rdf:resource="https://dbpedia.org/page/Culture"/>
-        <edm:organizationScope xml:lang="ro">asigurarea cadrului legislativ si gestionarea patrimoniului national cultural</edm:organizationScope>
-        <dc:identifier rdf:resource="http://www.cimec.ro"/>
-        <edm:acronym xml:lang="ro">INP</edm:acronym>
-        <foaf:logo rdf:resource="https://cimec.ro/wp-content/uploads/2021/08/logo-650-2.jpg"/>
+      <edm:Agent rdf:about="http://opendata.cs.pub.ro/resource/Organization/country:Romania/Institutul_Național_al_Patrimoniului">
+        <odp:organizationDomain xml:lang="en">public institution</odp:organizationDomain>
+        <odp:organizationSector xml:lang="en">cultural heritage</odp:organizationSector>
+        <odp:organizationScope xml:lang="en">research, protect and restore the cultural heritage of Romania</odp:organizationScope>
+        <odp:acronym xml:lang="ro">CIMEC</odp:acronym>
+        <dbo:country xml:lang="en">Romania</dbo:country>
+        <foaf:homepage>http://www.cimec.ro</foaf:homepage>
+        <dc:identifier>http://www.cimec.ro</dc:identifier>
+        <odp:organizationScope xml:lang="ro">cercetarea, protejarea și restaurarea patirmoniului cultural român</odp:organizationScope>
         <skos:prefLabel xml:lang="en">National Heritage Institute</skos:prefLabel>
-        <dc:identifier>http://www.patrimoniu.ro</dc:identifier>
-        <foaf:homepage rdf:resource="https://patrimoniu.ro/"/>
-        <edm:geographicLevel rdf:resource="https://dbpedia.org/page/Country"/>
+        <foaf:logo>https://cimec.ro/wp-content/uploads/2021/08/logo-650-2.jpg</foaf:logo>
+        <odp:geographicLevel xml:lang="en">country</odp:geographicLevel>
         <skos:prefLabel xml:lang="ro">Institutul Național al Patrimoniului</skos:prefLabel>
-        <edm:organizationScope xml:lang="en">cercetarea, protejarea și restaurarea patirmoniului cultural român</edm:organizationScope>
-        <edm:europeanaRole xml:lang="en">provider</edm:europeanaRole>
-      </foaf:Organization>
+        <odp:europeanaRole xml:lang="en">provider</odp:europeanaRole>
+      </edm:Agent>
     </edm:dataProvider>
     <edm:intermediateProvider>
-      <foaf:Organization rdf:about="http://opendata.cs.pub.ro/resource/Organization/country:Romania/Politehnica_University_of_Bucharest">
-        <edm:geographicLevel rdf:resource="https://dbpedia.org/page/Country"/>
-        <edm:country rdf:resource="https://dbpedia.org/page/Romania"/>
-        <edm:organizationScope xml:lang="ro">cercetare academică</edm:organizationScope>
-        <edm:organizationDomain rdf:resource="https://dbpedia.org/page/Education"/>
-        <edm:organizationSector rdf:resource="https://dbpedia.org/page/Higher_education"/>
-        <edm:europeanaRole xml:lang="en">data provider</edm:europeanaRole>
-        <edm:organizationScope xml:lang="en">academic research</edm:organizationScope>
-        <edm:acronym xml:lang="en">PUB</edm:acronym>
-        <edm:acronym xml:lang="ro">UPB</edm:acronym>
-        <foaf:homepage rdf:resource="https://upb.ro/en/"/>
+      <edm:Agent rdf:about="http://opendata.cs.pub.ro/resource/Organization/country:Romania/Politehnica_University_of_Bucharest">
+        <odp:europeanaRole xml:lang="en">data provider</odp:europeanaRole>
+        <odp:acronym xml:lang="ro">UPB</odp:acronym>
+        <foaf:homepage>https://upb.ro/en/</foaf:homepage>
         <skos:prefLabel xml:lang="en">Politehnica University of Bucharest</skos:prefLabel>
-        <foaf:logo rdf:resource="https://upb.ro/upb-identitate-vizuala-logo/"/>
+        <dbo:country xml:lang="en">Romania</dbo:country>
+        <foaf:logo>https://upb.ro/upb-identitate-vizuala-logo/</foaf:logo>
+        <odp:organizationScope xml:lang="ro">cercetare academică</odp:organizationScope>
+        <odp:organizationSector xml:lang="en">higher education</odp:organizationSector>
         <dc:identifier rdf:resource="https://upb.ro/en/"/>
+        <odp:organizationDomain xml:lang="en">education</odp:organizationDomain>
+        <odp:organizationScope xml:lang="en">academic research</odp:organizationScope>
+        <odp:acronym xml:lang="en">PUB</odp:acronym>
+        <odp:geographicLevel xml:lang="en">country</odp:geographicLevel>
         <skos:prefLabel xml:lang="ro">Universitatea Politehnica din București</skos:prefLabel>
-      </foaf:Organization>
+      </edm:Agent>
     </edm:intermediateProvider>
     <edm:provider rdf:resource="http://opendata.cs.pub.ro/resource/Organization/country:Romania/Institutul_Național_al_Patrimoniului"/>
     <edm:aggregatedCHO>
@@ -145,16 +147,34 @@
       </edm:ProvidedCHO>
     </edm:aggregatedCHO>
   </ore:Aggregation>
-  <rdf:Description rdf:about="https://dbpedia.org/ontology/length">
-    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/description"/>
+  <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/organizationSector">
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/homepage">
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/displayState">
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/description"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/organizationDomain">
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://dbpedia.org/property/polity">
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/europeanaRole">
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/organizationScope">
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://dbpedia.org/ontology/length">
     <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/description"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/inventoryNumber">
     <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/identifier"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://dbpedia.org/property/polity">
+  <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/geographicLevel">
     <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
   </rdf:Description>
   <edm:Agent rdf:about="http://opendata.cs.pub.ro/resource/Agent/Petre_Aurelian">

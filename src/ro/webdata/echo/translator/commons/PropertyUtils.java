@@ -22,6 +22,8 @@ import static ro.webdata.echo.commons.accessor.MuseumAccessors.*;
 import static ro.webdata.echo.commons.graph.Namespace.*;
 
 public final class PropertyUtils {
+    private static final String NS_FOAF = "http://xmlns.com/foaf/0.1/";
+
     public static void addAgentUri(Model model, Resource museum, Property parentProperty, String modelProperty, String value, String lang) {
         Statement stmt = museum.getProperty(RDF.type);
         RDFNode rdfType = stmt.getObject();
@@ -203,6 +205,9 @@ public final class PropertyUtils {
             case MUSEUM_SUPERVISED_BY:          return NS_REPO_PROPERTY + "supervisedBy";
             case MUSEUM_SUPERVISOR_FOR:         return NS_REPO_PROPERTY + "supervisorFor";
             case TYPE:                          return NS_DBPEDIA_ONTOLOGY + "type";
+            case "country":                     return NS_DBPEDIA_ONTOLOGY + "country";
+            case "homepage":                    return NS_FOAF + "homepage";
+            case "logo":                        return NS_FOAF + "logo";
             case "politicalEntity":             return NS_DBPEDIA_PROPERTY + "polity";
             default:
                 switch (property.toLowerCase()) {

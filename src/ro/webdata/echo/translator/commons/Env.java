@@ -6,11 +6,15 @@ import java.util.List;
 import java.util.Optional;
 
 public final class Env {
+    private static final String AGENT_TYPE = "Agent";
+
     public static final String EDM_APPROACH_EVENT_CENTRIC = "EVENT_CENTRIC";
     public static final String EDM_APPROACH_OBJECT_CENTRIC = "OBJECT_CENTRIC";
     public static final String DATA_TYPE_CIMEC = "CIMEC";
     public static final String DATA_TYPE_DSPACE = "DSPACE";
     public static final String DATA_TYPE_LIDO = "LIDO";
+    /** Flag used to enable creation of FOAF.Organization instances */
+    public static final boolean IS_ORGANIZATION = AGENT_TYPE.equals("Organization");
 
     /**
      * The native dataset language
