@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import static ro.webdata.echo.commons.graph.Namespace.NS_REPO_RESOURCE;
 
 public class EventMaterialsTechProcessing {
+    // TODO: split lido:displayMaterialsTech by ";" (E.g.: "hârtie; cerneală neagră")
     public static ArrayList<Resource> addEventMaterialsTechList(
             Model model, Resource providedCHO, ArrayList<EventMaterialsTech> eventMaterialsTechList
     ) {

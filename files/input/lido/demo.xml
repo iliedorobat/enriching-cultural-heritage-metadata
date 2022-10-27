@@ -3,7 +3,7 @@
                xsi:schemaLocation="lido http://www.lido-schema.org/schema/v1.0/lido-v1.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <lido:lido>
         <lido:lidoRecID
-                lido:type="CIMEC">00138C33DCAC402EA03B3641D66AE6FF</lido:lidoRecID>
+                lido:type="CIMEC">4E3EB69FE4DB4D00B755DFD31F430F7E</lido:lidoRecID>
         <lido:category>
             <lido:conceptID
                     lido:type="CIDOC-CRM">E22_Man-Made_Object</lido:conceptID>
@@ -18,7 +18,7 @@
                 <lido:objectWorkTypeWrap>
                     <lido:objectWorkType>
                         <lido:term
-                                xml:lang="ro">Colier</lido:term>
+                                xml:lang="ro">Document</lido:term>
                     </lido:objectWorkType>
                 </lido:objectWorkTypeWrap>
                 <lido:classificationWrap>
@@ -29,13 +29,13 @@
                     </lido:classification>
                     <lido:classification>
                         <lido:term
-                                xml:lang="ro">arheologie</lido:term>
+                                xml:lang="ro">documente</lido:term>
                         <lido:term
-                                xml:lang="en">archaeology</lido:term>
+                                xml:lang="en">documents</lido:term>
                     </lido:classification>
                     <lido:classification>
                         <lido:term
-                                xml:lang="ro">Podoabe</lido:term>
+                                xml:lang="ro">Documente</lido:term>
                     </lido:classification>
                 </lido:classificationWrap>
             </lido:objectClassificationWrap>
@@ -44,38 +44,34 @@
                     <lido:titleSet>
                         <lido:appellationValue
                                 xml:lang="ro"
-                                lido:pref="preferred">Colier</lido:appellationValue>
+                                lido:pref="preferred">Proclamația de la Padeș</lido:appellationValue>
                     </lido:titleSet>
                 </lido:titleWrap>
                 <lido:repositoryWrap>
                     <lido:repositorySet>
                         <lido:repositoryName>
                             <lido:legalBodyID
-                                    lido:type="CIMEC">6975507</lido:legalBodyID>
+                                    lido:type="CIMEC">7300100</lido:legalBodyID>
                             <lido:legalBodyName>
-                                <lido:appellationValue>Muzeul de Istorie și Arheologie - TULCEA</lido:appellationValue>
+                                <lido:appellationValue>Muzeul Național de Istorie a României - BUCUREȘTI</lido:appellationValue>
                             </lido:legalBodyName>
                         </lido:repositoryName>
                         <lido:workID
-                                lido:type="inventory number">2926, 11521-11654</lido:workID>
+                                lido:type="inventory number">32666</lido:workID>
                     </lido:repositorySet>
                 </lido:repositoryWrap>
-                <lido:displayStateEditionWrap>
-                    <lido:displayState
-                            xml:lang="ro">bună</lido:displayState>
-                </lido:displayStateEditionWrap>
                 <lido:objectDescriptionWrap>
                     <lido:objectDescriptionSet
                             lido:type="overall description">
                         <lido:descriptiveNoteValue
-                                xml:lang="ro">Colier din mărgele de sticlă și rășină naturală. Culori: verde, bej, maron, negru, bleu-transparent. Forme globulare, cilindrice neregulate, patrulatere.</lido:descriptiveNoteValue>
+                                xml:lang="ro">Proclamația de la Padeș, rostită în fața țăranilor de către Tudor Vladimirescu, la 23 ianuarie 1821. Documentul cuprinde Proclamația prin care T. Vladimirescu cheamă la luptă împotriva asupririi, pe toți locuitorii țării. Același document conține pe recto și o parte din Arzul adresat Porții Otomane privind cauzele care au determinat ridicarea poporului. Este scris în limba română, cu alfabet chirilic.</lido:descriptiveNoteValue>
                     </lido:objectDescriptionSet>
                 </lido:objectDescriptionWrap>
                 <lido:objectMeasurementsWrap>
                     <lido:objectMeasurementsSet>
                         <lido:displayObjectMeasurements
                                 xml:lang="ro"
-                                lido:label="length">57 cm</lido:displayObjectMeasurements>
+                                lido:label="dimensions">Î =460 mm; l =350mm, 1 filă</lido:displayObjectMeasurements>
                     </lido:objectMeasurementsSet>
                 </lido:objectMeasurementsWrap>
             </lido:objectIdentificationWrap>
@@ -86,19 +82,32 @@
                             <lido:term
                                     xml:lang="en">Production</lido:term>
                         </lido:eventType>
-                        <lido:culture>
-                            <lido:term
-                                    xml:lang="en">culture: romană târzie</lido:term>
-                            <lido:term
-                                    xml:lang="ro">cultură: romană târzie</lido:term>
-                        </lido:culture>
+                        <lido:eventActor>
+                            <lido:actorInRole>
+                                <lido:actor>
+                                    <lido:nameActorSet>
+                                        <lido:appellationValue>Vladimirescu, Tudor</lido:appellationValue>
+                                    </lido:nameActorSet>
+                                </lido:actor>
+                                <lido:roleActor>
+                                    <lido:term
+                                            xml:lang="en">author</lido:term>
+                                    <lido:term
+                                            xml:lang="ro">autor</lido:term>
+                                </lido:roleActor>
+                            </lido:actorInRole>
+                        </lido:eventActor>
                         <lido:eventDate>
-                            <lido:displayDate>sec. IV-V p.Chr.</lido:displayDate>
+                            <lido:displayDate>1821</lido:displayDate>
                         </lido:eventDate>
-                        <lido:periodName>
-                            <lido:term
-                                    xml:lang="ro">Perioada romană târzie</lido:term>
-                        </lido:periodName>
+                        <lido:eventMaterialsTech>
+                            <lido:displayMaterialsTech
+                                    xml:lang="ro"
+                                    lido:label="material">hârtie; cerneală neagră</lido:displayMaterialsTech>
+                            <lido:displayMaterialsTech
+                                    xml:lang="ro"
+                                    lido:label="technique">scriere</lido:displayMaterialsTech>
+                        </lido:eventMaterialsTech>
                     </lido:event>
                 </lido:eventSet>
                 <lido:eventSet>
@@ -107,68 +116,20 @@
                             <lido:term
                                     xml:lang="en">Finding</lido:term>
                         </lido:eventType>
-                        <lido:eventActor>
-                            <lido:actorInRole>
-                                <lido:actor>
-                                    <lido:nameActorSet>
-                                        <lido:appellationValue>Petre Aurelian</lido:appellationValue>
-                                    </lido:nameActorSet>
-                                </lido:actor>
-                                <lido:roleActor>
-                                    <lido:term
-                                            xml:lang="en">discoverer</lido:term>
-                                    <lido:term
-                                            xml:lang="ro">descoperitor</lido:term>
-                                </lido:roleActor>
-                            </lido:actorInRole>
-                        </lido:eventActor>
                         <lido:eventPlace>
                             <lido:place
-                                    lido:politicalEntity="point">
+                                    lido:politicalEntity="region">
                                 <lido:namePlaceSet>
-                                    <lido:appellationValue>Beroe Piatra Frecăței</lido:appellationValue>
-                                    <lido:appellationValue>Beroe Piatra Frecăței 22222</lido:appellationValue>
-                                    <lido:appellationValue xml:lang="en">Beroe Piatra Frecăței 55</lido:appellationValue>
-                                    <lido:appellationValue xml:lang="en">Beroe Piatra Frecăței 66</lido:appellationValue>
-                                    <lido:appellationValue xml:lang="en">Beroe Piatra Frecăței 77</lido:appellationValue>
+                                    <lido:appellationValue>Țara Româneaască</lido:appellationValue>
                                 </lido:namePlaceSet>
                                 <lido:partOfPlace
-                                        lido:politicalEntity="locality">
+                                        lido:politicalEntity="country">
                                     <lido:namePlaceSet>
-                                        <lido:appellationValue>Ostrov</lido:appellationValue>
+                                        <lido:appellationValue>România</lido:appellationValue>
                                     </lido:namePlaceSet>
-                                    <lido:partOfPlace
-                                            lido:politicalEntity="commune">
-                                        <lido:namePlaceSet>
-                                            <lido:appellationValue>Ostrov</lido:appellationValue>
-                                        </lido:namePlaceSet>
-                                        <lido:partOfPlace
-                                                lido:politicalEntity="county">
-                                            <lido:namePlaceSet>
-                                                <lido:appellationValue>Tulcea</lido:appellationValue>
-                                            </lido:namePlaceSet>
-                                            <lido:partOfPlace
-                                                    lido:politicalEntity="region">
-                                                <lido:namePlaceSet>
-                                                    <lido:appellationValue>Dobrogea</lido:appellationValue>
-                                                </lido:namePlaceSet>
-                                                <lido:partOfPlace
-                                                        lido:politicalEntity="country">
-                                                    <lido:namePlaceSet>
-                                                        <lido:appellationValue>România</lido:appellationValue>
-                                                    </lido:namePlaceSet>
-                                                </lido:partOfPlace>
-                                            </lido:partOfPlace>
-                                        </lido:partOfPlace>
-                                    </lido:partOfPlace>
                                 </lido:partOfPlace>
                             </lido:place>
                         </lido:eventPlace>
-                        <lido:eventDescriptionSet
-                                lido:type="discovery context">
-                            <lido:descriptiveNoteValue
-                                    xml:lang="ro">Săpătură sistematică</lido:descriptiveNoteValue>
-                        </lido:eventDescriptionSet>
                     </lido:event>
                 </lido:eventSet>
             </lido:eventWrap>
@@ -177,10 +138,10 @@
                 xml:lang="ro">
             <lido:recordWrap>
                 <lido:recordID
-                        lido:type="GUID">00138C33DCAC402EA03B3641D66AE6FF</lido:recordID>
+                        lido:type="GUID">4E3EB69FE4DB4D00B755DFD31F430F7E</lido:recordID>
                 <lido:recordType>
                     <lido:term
-                            xml:lang="en">group</lido:term>
+                            xml:lang="en">item</lido:term>
                 </lido:recordType>
                 <lido:recordSource
                         lido:type="europeana:dataProvider">
@@ -198,18 +159,16 @@
                 </lido:recordRights>
                 <lido:recordInfoSet>
                     <lido:recordInfoLink
-                            lido:formatResource="text/html">http://clasate.cimec.ro/detaliu.asp?k=00138C33DCAC402EA03B3641D66AE6FF</lido:recordInfoLink>
+                            lido:formatResource="text/html">http://clasate.cimec.ro/detaliu.asp?k=4E3EB69FE4DB4D00B755DFD31F430F7E</lido:recordInfoLink>
                     <lido:recordMetadataDate
-                            lido:type="creation date">2007-05-15 / Zvîncă, Iuliana</lido:recordMetadataDate>
-                    <lido:recordMetadataDate
-                            lido:type="validation date">2007-12-02 / Baumann, Victor H.</lido:recordMetadataDate>
+                            lido:type="creation date">2004-09-02 / Ilie, Oana; Neguțu, Maria</lido:recordMetadataDate>
                 </lido:recordInfoSet>
             </lido:recordWrap>
             <lido:resourceWrap>
                 <lido:resourceSet>
                     <lido:resourceRepresentation
                             lido:type="image_thumb">
-                        <lido:linkResource>http://clasate.cimec.ro/medium/ARH_6975507_688-68.jpg</lido:linkResource>
+                        <lido:linkResource>http://clasate.cimec.ro/medium/32666.jpg</lido:linkResource>
                     </lido:resourceRepresentation>
                     <lido:rightsResource>
                         <lido:rightsType>

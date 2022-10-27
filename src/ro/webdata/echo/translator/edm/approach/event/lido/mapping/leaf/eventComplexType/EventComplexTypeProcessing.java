@@ -3,7 +3,9 @@ package ro.webdata.echo.translator.edm.approach.event.lido.mapping.leaf.eventCom
 import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.vocabulary.DC_11;
 import ro.webdata.echo.commons.graph.vocab.EDM;
+import ro.webdata.echo.translator.edm.approach.event.lido.commons.RDFConceptService;
 import ro.webdata.echo.translator.edm.approach.event.lido.mapping.leaf.eventComplexType.culture.CultureProcessing;
 import ro.webdata.echo.translator.edm.approach.event.lido.mapping.leaf.eventComplexType.eventPlace.EventPlaceProcessing;
 import ro.webdata.parser.xml.lido.core.leaf.event.Event;
@@ -38,7 +40,7 @@ public class EventComplexTypeProcessing {
         providedCHO.addProperty(EDM.wasPresentAt, resourceEvent);
 
         addActors(resourceEvent, actorsList);
-        addCulture(resourceEvent, cultureList);
+        addCulture(model, resourceEvent, cultureList);
         addEvents(resourceEvent, eventPlaceList);
         addMaterials(resourceEvent, eventMaterialsList);
         // TODO: add a new property "edm:timePeriod" (extending "skos:note") for storing
@@ -54,10 +56,9 @@ public class EventComplexTypeProcessing {
         }
     }
 
-    private static void addCulture(Resource resourceEvent, ArrayList<Literal> cultureList) {
+    private static void addCulture(Model model, Resource resourceEvent, ArrayList<Literal> cultureList) {
         for (Literal culture : cultureList) {
-            // TODO: create a concept for culture
-            resourceEvent.addProperty(EDM.isRelatedTo, culture);
+            RDFConceptService.addConcept(model, resourceEvent, EDM.isRelatedTo, culture);
         }
     }
 

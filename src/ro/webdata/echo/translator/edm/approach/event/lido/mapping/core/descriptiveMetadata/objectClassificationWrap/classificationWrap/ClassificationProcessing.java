@@ -7,11 +7,12 @@ import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DC_11;
 import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.echo.commons.graph.vocab.constraints.EDMType;
+import ro.webdata.echo.translator.edm.approach.event.lido.commons.RDFConceptService;
+import ro.webdata.echo.translator.edm.approach.event.lido.commons.Validators;
+import ro.webdata.echo.translator.edm.approach.event.lido.commons.constants.LIDOType;
 import ro.webdata.parser.xml.lido.core.leaf.classification.Classification;
 import ro.webdata.parser.xml.lido.core.leaf.term.Term;
 import ro.webdata.parser.xml.lido.core.wrap.classificationWrap.ClassificationWrap;
-import ro.webdata.echo.translator.edm.approach.event.lido.commons.Validators;
-import ro.webdata.echo.translator.edm.approach.event.lido.commons.constants.LIDOType;
 
 import java.util.ArrayList;
 
@@ -93,11 +94,10 @@ public class ClassificationProcessing {
             } else {
                 Literal literal = model.createLiteral(text, lang);
                 boolean isSuperType = Validators.isSubject(text);
-
-                if (isSuperType)
-                    providedCHO.addProperty(EDM.hasType, literal);
-                else
-                    providedCHO.addProperty(DC_11.subject, literal);
+                Property property = isSuperType
+                        ? EDM.hasType
+                        : DC_11.subject;
+                RDFConceptService.addConcept(model, providedCHO, property, literal);
             }
         }
     }

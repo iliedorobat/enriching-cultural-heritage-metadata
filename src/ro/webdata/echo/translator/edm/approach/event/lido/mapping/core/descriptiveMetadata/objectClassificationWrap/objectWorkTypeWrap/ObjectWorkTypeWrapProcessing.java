@@ -4,6 +4,7 @@ import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DC_11;
+import ro.webdata.echo.translator.edm.approach.event.lido.commons.RDFConceptService;
 import ro.webdata.parser.xml.lido.core.leaf.objectWorkType.ObjectWorkType;
 import ro.webdata.parser.xml.lido.core.leaf.term.Term;
 import ro.webdata.parser.xml.lido.core.wrap.objectWorkTypeWrap.ObjectWorkTypeWrap;
@@ -67,7 +68,7 @@ public class ObjectWorkTypeWrapProcessing {
 
         if (text != null) {
             Literal literal = model.createLiteral(text, lang);
-            providedCHO.addProperty(DC_11.subject, literal);
+            RDFConceptService.addConcept(model, providedCHO, DC_11.subject, literal);
         }
     }
 }

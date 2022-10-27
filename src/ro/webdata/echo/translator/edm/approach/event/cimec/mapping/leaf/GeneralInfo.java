@@ -1,10 +1,12 @@
 package ro.webdata.echo.translator.edm.approach.event.cimec.mapping.leaf;
 
 import com.google.gson.JsonElement;
+import com.google.gson.JsonPrimitive;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DC_11;
 import org.apache.jena.vocabulary.SKOS;
+import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.echo.translator.commons.PropertyUtils;
 
 import java.util.Map;
@@ -32,7 +34,9 @@ public class GeneralInfo {
                 PropertyUtils.addSubProperty(model, museum, DC_11.identifier, CODE, value, null);
                 break;
             case FOUNDED:
-                PropertyUtils.addSubProperty(model, museum, SKOS.note, FOUNDED, value, null);
+                if (value instanceof JsonPrimitive) {
+                    museum.addProperty(EDM.begin, value.getAsString());
+                }
                 break;
             case NAME:
                 PropertyUtils.addProperty(model, museum, SKOS.prefLabel, value, lang);

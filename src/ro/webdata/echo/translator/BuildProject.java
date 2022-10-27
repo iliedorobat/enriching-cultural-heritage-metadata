@@ -69,6 +69,7 @@ class BuildCommons {
         commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/commons/GraphUtils.java");
         commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/commons/MuseumUtils.java");
         commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/commons/PropertyUtils.java");
+        commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/commons/SyncHttpClient.java");
 
         return commands;
     }
@@ -186,8 +187,10 @@ class BuildEventCentricApproach {
 
         commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/edm/approach/event/lido/commons/constants/CHOType.java");
         commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/edm/approach/event/lido/commons/constants/LIDOType.java");
+        commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/edm/approach/event/lido/commons/ConceptService.java");
         commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/edm/approach/event/lido/commons/FileUtils.java");
         commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/edm/approach/event/lido/commons/PlaceMapUtils.java");
+        commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/edm/approach/event/lido/commons/RDFConceptService.java");
         commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/edm/approach/event/lido/commons/ResourceUtils.java");
         commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/edm/approach/event/lido/commons/StatsUtils.java");
         commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/edm/approach/event/lido/commons/URIUtils.java");
