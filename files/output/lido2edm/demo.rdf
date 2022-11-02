@@ -72,7 +72,6 @@
     <edm:aggregatedCHO>
       <edm:ProvidedCHO rdf:about="http://opendata.cs.pub.ro/resource/CHO/CIMEC/00138C33DCAC402EA03B3641D66AE6FF">
         <edm:type>IMAGE</edm:type>
-        <edm:hasType xml:lang="en">archaeology</edm:hasType>
         <dc:type xml:lang="en">man-made object</dc:type>
         <edm:wasPresentAt>
           <edm:Event rdf:about="http://opendata.cs.pub.ro/resource/Event/Finding/CIMEC/00138C33DCAC402EA03B3641D66AE6FF">
@@ -119,6 +118,9 @@
             <edm:hasType xml:lang="en">Finding</edm:hasType>
           </edm:Event>
         </edm:wasPresentAt>
+        <edm:hasType>
+          <skos:Concept rdf:about="https://dbpedia.org/page/Archaeology"/>
+        </edm:hasType>
         <dc:subject xml:lang="ro">Podoabe</dc:subject>
         <dc:subject xml:lang="ro">Colier</dc:subject>
         <edm:wasPresentAt>

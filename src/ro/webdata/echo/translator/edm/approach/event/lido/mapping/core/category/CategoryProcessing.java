@@ -43,7 +43,7 @@ public class CategoryProcessing {
 
         if (text != null) {
             Literal literal = model.createLiteral(text, lang);
-            RDFConceptService.addConcept(model, providedCHO, DC_11.type, literal);
+            RDFConceptService.addConcept(model, providedCHO, DC_11.type, literal, null);
         }
     }
 }

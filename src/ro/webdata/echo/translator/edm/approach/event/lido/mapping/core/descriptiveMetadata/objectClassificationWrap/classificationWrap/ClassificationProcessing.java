@@ -97,7 +97,7 @@ public class ClassificationProcessing {
                 Property property = isSuperType
                         ? EDM.hasType
                         : DC_11.subject;
-                RDFConceptService.addConcept(model, providedCHO, property, literal);
+                RDFConceptService.addConcept(model, providedCHO, property, literal, null);
             }
         }
     }

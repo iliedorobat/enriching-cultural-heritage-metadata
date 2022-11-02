@@ -33,7 +33,7 @@ public class EventComplexTypeProcessing {
                 model, providedCHO, event.getEventPlace()
         );
         ArrayList<Resource> eventMaterialsList = EventMaterialsTechProcessing.addEventMaterialsTechList(
-                model, providedCHO, event.getEventMaterialsTech()
+                model, resourceEvent, event.getEventMaterialsTech()
         );
 
 //        PropertyUtils.createSubProperty(model, SKOS.note, "timePeriod", true);
@@ -58,7 +58,7 @@ public class EventComplexTypeProcessing {
 
     private static void addCulture(Model model, Resource resourceEvent, ArrayList<Literal> cultureList) {
         for (Literal culture : cultureList) {
-            RDFConceptService.addConcept(model, resourceEvent, EDM.isRelatedTo, culture);
+            RDFConceptService.addConcept(model, resourceEvent, EDM.isRelatedTo, culture, null);
         }
     }
 

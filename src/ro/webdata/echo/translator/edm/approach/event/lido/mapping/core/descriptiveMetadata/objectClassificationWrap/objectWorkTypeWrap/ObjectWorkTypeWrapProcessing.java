@@ -68,7 +68,7 @@ public class ObjectWorkTypeWrapProcessing {
 
         if (text != null) {
             Literal literal = model.createLiteral(text, lang);
-            RDFConceptService.addConcept(model, providedCHO, DC_11.subject, literal);
+            RDFConceptService.addConcept(model, providedCHO, DC_11.subject, literal, null);
         }
     }
 }

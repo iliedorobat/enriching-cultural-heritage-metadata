@@ -3,22 +3,20 @@ package ro.webdata.echo.translator.edm.approach.event.lido.mapping.leaf.eventCom
 import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
-import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.SKOS;
-import ro.webdata.echo.commons.File;
-import ro.webdata.echo.commons.Text;
+import ro.webdata.echo.commons.graph.vocab.EDM;
+import ro.webdata.echo.translator.edm.approach.event.lido.commons.RDFConceptService;
 import ro.webdata.parser.xml.lido.core.leaf.displayMaterialsTech.DisplayMaterialsTech;
 import ro.webdata.parser.xml.lido.core.leaf.eventMaterialsTech.EventMaterialsTech;
-import ro.webdata.echo.translator.edm.approach.event.lido.commons.URIUtils;
 
 import java.util.ArrayList;
-
-import static ro.webdata.echo.commons.graph.Namespace.NS_REPO_RESOURCE;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class EventMaterialsTechProcessing {
-    // TODO: split lido:displayMaterialsTech by ";" (E.g.: "hârtie; cerneală neagră")
     public static ArrayList<Resource> addEventMaterialsTechList(
-            Model model, Resource providedCHO, ArrayList<EventMaterialsTech> eventMaterialsTechList
+            Model model, Resource resourceEvent, ArrayList<EventMaterialsTech> eventMaterialsTechList
     ) {
         ArrayList<Resource> output = new ArrayList<>();
 
@@ -27,25 +25,36 @@ public class EventMaterialsTechProcessing {
 
             for (DisplayMaterialsTech displayMaterialsTech : displayMaterialsTechList) {
                 String lang = displayMaterialsTech.getLang().getLang();
-                String label = displayMaterialsTech.getLabel().getLabel();
+                String category = displayMaterialsTech.getLabel().getLabel();
                 String text = displayMaterialsTech.getText();
 
                 if (text != null) {
-                    Literal literal = model.createLiteral(text, lang);
-                    String uri = URIUtils.prepareUri(NS_REPO_RESOURCE, Text.sanitizeString(Text.toCamelCase(label))
-                            + File.FILE_SEPARATOR + Text.sanitizeString(text));
-
-                    Resource resource = model
-                            .createResource(uri)
-                            .addProperty(RDF.type, SKOS.Concept)
-                            .addProperty(SKOS.prefLabel, literal)
-                            .addProperty(SKOS.note, label);
-
-                    output.add(resource);
+                    addMaterialTechItems(model, resourceEvent, text, lang, category, output);
                 }
             }
         }
 
         return output;
+    }
+
+    private static void addMaterialTechItems(Model model, Resource resourceEvent, String text, String lang, String category, ArrayList<Resource> output) {
+        List<String> items = Arrays.stream(text.split(";"))
+                .map(String::trim)
+                .collect(Collectors.toList());
+
+        for (String item : items) {
+            addMaterialTechItem(model, resourceEvent, item, lang, category, output);
+        }
+    }
+
+    private static void addMaterialTechItem(Model model, Resource resourceEvent, String item, String lang, String category, ArrayList<Resource> output) {
+        Literal literal = model.createLiteral(item, lang);
+        Resource resource = RDFConceptService.addConcept(model, null, SKOS.prefLabel, literal, category);
+
+        if (resource != null) {
+            output.add(resource);
+        } else {
+            resourceEvent.addProperty(EDM.isRelatedTo, literal);
+        }
     }
 }
