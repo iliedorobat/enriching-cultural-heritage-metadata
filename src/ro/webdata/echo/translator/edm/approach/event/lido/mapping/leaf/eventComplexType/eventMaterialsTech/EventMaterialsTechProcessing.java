@@ -4,6 +4,7 @@ import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.SKOS;
+import ro.webdata.echo.commons.Text;
 import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.echo.translator.edm.approach.event.lido.commons.RDFConceptService;
 import ro.webdata.parser.xml.lido.core.leaf.displayMaterialsTech.DisplayMaterialsTech;
@@ -38,12 +39,8 @@ public class EventMaterialsTechProcessing {
     }
 
     private static void addMaterialTechItems(Model model, Resource resourceEvent, String text, String lang, String category, ArrayList<Resource> output) {
-        List<String> items = Arrays.stream(text.split(";"))
-                .map(String::trim)
-                .collect(Collectors.toList());
-
-        for (String item : items) {
-            addMaterialTechItem(model, resourceEvent, item, lang, category, output);
+        for (String value : Text.toList(text, null)) {
+            addMaterialTechItem(model, resourceEvent, value, lang, category, output);
         }
     }
 

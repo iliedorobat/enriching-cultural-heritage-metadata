@@ -47,9 +47,23 @@ public class TextComplexTypeProcessing {
                 name = Text.toCamelCase(type);
 
         if (text != null) {
-            Literal literal = model.createLiteral(text, lang);
-            Property property = PropertyUtils.createSubProperty(model, DC_11.description, name, true);
-            providedCHO.addProperty(property, literal);
+            for (String value : Text.toList(text, null)) {
+                addMeasurement(model, providedCHO, value, lang, name);
+            }
         }
+    }
+
+    /**
+     * Add a specific measurement subProperty (<b>weight</b>, <b>diameter</b> etc.) to the provided CHO
+     * @param model The RDF graph
+     * @param providedCHO The CHO
+     * @param text The value of the measurement
+     * @param lang The language used
+     * @param propertyName The name of the new property
+     */
+    private static void addMeasurement(Model model, Resource providedCHO, String text, String lang, String propertyName) {
+        Literal literal = model.createLiteral(text, lang);
+        Property property = PropertyUtils.createSubProperty(model, DC_11.description, propertyName, true);
+        providedCHO.addProperty(property, literal);
     }
 }
