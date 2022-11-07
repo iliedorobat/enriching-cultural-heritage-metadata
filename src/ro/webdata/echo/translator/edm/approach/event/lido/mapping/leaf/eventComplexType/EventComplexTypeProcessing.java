@@ -2,17 +2,21 @@ package ro.webdata.echo.translator.edm.approach.event.lido.mapping.leaf.eventCom
 
 import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
-import org.apache.jena.vocabulary.DC_11;
+import org.apache.jena.vocabulary.SKOS;
 import ro.webdata.echo.commons.graph.vocab.EDM;
+import ro.webdata.echo.translator.commons.PropertyUtils;
 import ro.webdata.echo.translator.edm.approach.event.lido.commons.RDFConceptService;
 import ro.webdata.echo.translator.edm.approach.event.lido.mapping.leaf.eventComplexType.culture.CultureProcessing;
-import ro.webdata.echo.translator.edm.approach.event.lido.mapping.leaf.eventComplexType.eventPlace.EventPlaceProcessing;
-import ro.webdata.parser.xml.lido.core.leaf.event.Event;
 import ro.webdata.echo.translator.edm.approach.event.lido.mapping.leaf.eventComplexType.eventActor.EventActorProcessing;
 import ro.webdata.echo.translator.edm.approach.event.lido.mapping.leaf.eventComplexType.eventDate.EventDateProcessing;
 import ro.webdata.echo.translator.edm.approach.event.lido.mapping.leaf.eventComplexType.eventMaterialsTech.EventMaterialsTechProcessing;
+import ro.webdata.echo.translator.edm.approach.event.lido.mapping.leaf.eventComplexType.eventPlace.EventPlaceProcessing;
 import ro.webdata.echo.translator.edm.approach.event.lido.mapping.leaf.eventComplexType.eventType.EventTypeProcessing;
+import ro.webdata.parser.xml.lido.core.leaf.displayDate.DisplayDate;
+import ro.webdata.parser.xml.lido.core.leaf.event.Event;
+import ro.webdata.parser.xml.lido.core.leaf.eventDate.EventDate;
 
 import java.util.ArrayList;
 
@@ -36,16 +40,13 @@ public class EventComplexTypeProcessing {
                 model, resourceEvent, event.getEventMaterialsTech()
         );
 
-//        PropertyUtils.createSubProperty(model, SKOS.note, "timePeriod", true);
         providedCHO.addProperty(EDM.wasPresentAt, resourceEvent);
 
         addActors(resourceEvent, actorsList);
         addCulture(model, resourceEvent, cultureList);
         addEvents(resourceEvent, eventPlaceList);
         addMaterials(resourceEvent, eventMaterialsList);
-        // TODO: add a new property "edm:timePeriod" (extending "skos:note") for storing
-        //  the original data related to "edm:occuredAt"
-        addTimespan(resourceEvent, eventDateResourceList);
+        addTimePeriod(model, resourceEvent, eventDateResourceList, event.getEventDate());
     }
 
     private static void addActors(Resource resourceEvent, ArrayList<ArrayList<Resource>> actorsList) {
@@ -75,9 +76,32 @@ public class EventComplexTypeProcessing {
         }
     }
 
-    private static void addTimespan(Resource resourceEvent, ArrayList<Resource> eventDateResourceList) {
+    private static void addTimePeriod(Model model, Resource resourceEvent, ArrayList<Resource> eventDateResourceList, EventDate eventDate) {
         for (Resource eventDateResource : eventDateResourceList) {
-            resourceEvent.addProperty(EDM.occurredAt, eventDateResource);
+            addTimeSpan(resourceEvent, eventDateResource);
+            addRawTimePeriod(model, resourceEvent, eventDate);
+        }
+    }
+
+    private static void addTimeSpan(Resource resourceEvent, Resource eventDateResource) {
+        resourceEvent.addProperty(EDM.occurredAt, eventDateResource);
+    }
+
+    private static void addRawTimePeriod(Model model, Resource resourceEvent, EventDate eventDate) {
+        Property property = PropertyUtils.createSubProperty(model, SKOS.note, "occurredAt", false);
+
+        for (DisplayDate displayDate : eventDate.getDisplayDate()) {
+            String timePeriod = displayDate.getText();
+            String label = displayDate.getLabel().getLabel();
+            String lang = displayDate.getLang().getLang();
+
+            Literal literal = model.createLiteral(timePeriod, lang);
+            resourceEvent.addProperty(property, literal);
+
+            if (label != null) {
+                Literal literalLabel = model.createLiteral(label, lang);
+                resourceEvent.addProperty(property, literalLabel);
+            }
         }
     }
 }
