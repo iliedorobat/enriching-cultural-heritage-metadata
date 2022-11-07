@@ -19,6 +19,7 @@ public class SyncHttpClient {
             return client.send(request, HttpResponse.BodyHandlers.ofString());
         } catch (IOException | InterruptedException | IllegalArgumentException e) {
             e.printStackTrace();
+            System.out.println("The current request is canceled, but the process continues...");
             return null;
         }
     }

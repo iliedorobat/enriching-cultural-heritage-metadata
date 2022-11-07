@@ -27,11 +27,11 @@ public class ConceptService {
 
         if (isDBpediaConcept) {
             String camelCaseConcept = Text.toCamelCase(concept, true, DELIMITERS);
-            String dbpediaUri = prepareDBpediaUri(concept, false);
-            String encodedDBpediaUri = prepareDBpediaUri(concept, true);
-            HttpResponse<String> response = SyncHttpClient.callApi(encodedDBpediaUri);
 
             if (conceptsMap.get(camelCaseConcept) == null) {
+                String dbpediaUri = prepareDBpediaUri(concept, false);
+                String encodedDBpediaUri = prepareDBpediaUri(concept, true);
+                HttpResponse<String> response = SyncHttpClient.callApi(encodedDBpediaUri);
                 int statusCode = response != null
                         ? response.statusCode()
                         : -1;
