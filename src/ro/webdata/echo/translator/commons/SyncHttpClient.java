@@ -17,7 +17,8 @@ public class SyncHttpClient {
                 .build();
         try {
             return client.send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException | InterruptedException | IllegalArgumentException e) {
+            e.printStackTrace();
             return null;
         }
     }

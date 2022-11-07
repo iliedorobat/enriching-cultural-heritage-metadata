@@ -5,8 +5,10 @@ import ro.webdata.echo.commons.Text;
 import ro.webdata.echo.translator.commons.SyncHttpClient;
 
 import java.net.HttpURLConnection;
+import java.net.URLEncoder;
 import java.net.http.HttpHeaders;
 import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -25,8 +27,9 @@ public class ConceptService {
 
         if (isDBpediaConcept) {
             String camelCaseConcept = Text.toCamelCase(concept, true, DELIMITERS);
-            String dbpediaUri = prepareDBpediaUri(concept);
-            HttpResponse<String> response = SyncHttpClient.callApi(dbpediaUri);
+            String dbpediaUri = prepareDBpediaUri(concept, false);
+            String encodedDBpediaUri = prepareDBpediaUri(concept, true);
+            HttpResponse<String> response = SyncHttpClient.callApi(encodedDBpediaUri);
 
             if (conceptsMap.get(camelCaseConcept) == null) {
                 int statusCode = response != null
@@ -74,12 +77,22 @@ public class ConceptService {
         return conceptsMap.get(camelCaseConcept);
     }
 
-    private static String prepareDBpediaUri(String concept) {
+    private static String prepareDBpediaUri(String concept, boolean encode) {
+        String relativeUri = prepareRelativeDBpediaUri(concept);
+
+        if (encode) {
+            return NS + URLEncoder.encode(relativeUri, StandardCharsets.UTF_8);
+        }
+
+        return NS + relativeUri;
+    }
+
+    private static String prepareRelativeDBpediaUri(String concept) {
         String[] terms = concept.split("[\\s_]");
         List<String> arrayList = Arrays.stream(terms)
                 .map(term -> Text.toCamelCase(term, true, DELIMITERS))
                 .collect(Collectors.toList());
 
-        return NS + String.join("_", arrayList);
+        return String.join("_", arrayList);
     }
 }
