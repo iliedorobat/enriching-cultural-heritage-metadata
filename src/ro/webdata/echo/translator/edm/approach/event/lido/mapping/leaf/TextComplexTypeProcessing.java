@@ -47,7 +47,8 @@ public class TextComplexTypeProcessing {
                 name = Text.toCamelCase(type);
 
         if (text != null) {
-            for (String value : Text.toList(text, null)) {
+            // The group "(,\s)" is used to prevent splitting a measurement like "lungime fus - 2,40 m"
+            for (String value : Text.toList(text, "(;)|(,\\s)")) {
                 addMeasurement(model, providedCHO, value, lang, name);
             }
         }
