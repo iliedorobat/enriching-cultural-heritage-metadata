@@ -146,7 +146,6 @@
         <edm:hasType>
           <skos:Concept rdf:about="https://dbpedia.org/page/Archaeology"/>
         </edm:hasType>
-        <dc:subject xml:lang="ro">Podoabe</dc:subject>
         <dc:subject xml:lang="ro">Colier</dc:subject>
         <edm:wasPresentAt>
           <edm:Event rdf:about="http://opendata.cs.pub.ro/resource/Event/Production/CIMEC/00138C33DCAC402EA03B3641D66AE6FF">
@@ -172,6 +171,7 @@
         <edm:currentLocation>
           <edm:Agent rdf:about="http://opendata.cs.pub.ro/resource/Organization/country:Romania/county:Tulcea/History_And_Archaeology_Museum/"/>
         </edm:currentLocation>
+        <edm:hasType xml:lang="ro">Podoabe</edm:hasType>
       </edm:ProvidedCHO>
     </edm:aggregatedCHO>
   </ore:Aggregation>
