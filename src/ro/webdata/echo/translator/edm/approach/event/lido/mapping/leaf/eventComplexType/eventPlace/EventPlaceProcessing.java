@@ -67,8 +67,7 @@ public class EventPlaceProcessing {
         }
 
         addIsPartOf(allPlaceList);
-        // TODO: "dcterms:hasPart"
-//        addHasPart(allPlaceList);
+        addHasPart(allPlaceList);
 
         return placeList;
     }
@@ -95,7 +94,7 @@ public class EventPlaceProcessing {
             placeResource.addProperty(property, literal);
         }
 
-//        // TODO: link the place to DBpedia
+//        // TODO: use owlSameAs to link the place to DBpedia
 //        String dbpediaLink = ResourceUtils.generateDBPediaURI(placeName);
 //        try { TimeUnit.SECONDS.sleep(100); } catch (InterruptedException e) { e.printStackTrace(); }
 //        if (HttpGet.isValidDBPedia(placeName)) {
@@ -115,18 +114,30 @@ public class EventPlaceProcessing {
     }
 
     private static void addIsPartOf(ArrayList<Resource> placeList) {
+        ArrayList<Resource> childPlaces = new ArrayList<>();
+
         for (int i = placeList.size() - 1; i > 0; i--) {
             Resource crrResource = placeList.get(i);
             Resource parentPlace = placeList.get(i - 1);
-            crrResource.addProperty(DCTerms.isPartOf, parentPlace);
+            childPlaces.add(crrResource);
+
+            for (Resource childPlace : childPlaces) {
+                childPlace.addProperty(DCTerms.isPartOf, parentPlace);
+            }
         }
     }
 
     private static void addHasPart(ArrayList<Resource> placeList) {
+        ArrayList<Resource> parentPlaces = new ArrayList<>();
+
         for (int i = 0; i < placeList.size() - 1; i++) {
             Resource crrResource = placeList.get(i);
             Resource childPlace = placeList.get(i + 1);
-            crrResource.addProperty(DCTerms.hasPart, childPlace);
+            parentPlaces.add(crrResource);
+
+            for (Resource parentPlace : parentPlaces) {
+                parentPlace.addProperty(DCTerms.hasPart, childPlace);
+            }
         }
     }
 }
