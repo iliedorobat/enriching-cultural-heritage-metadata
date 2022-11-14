@@ -2,17 +2,15 @@ package ro.webdata.echo.translator.edm.approach.event.lido.mapping.core.descript
 
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
+import ro.webdata.echo.translator.edm.approach.event.lido.mapping.leaf.TextComplexTypeProcessing;
 import ro.webdata.parser.xml.lido.core.leaf.displayObjectMeasurements.DisplayObjectMeasurements;
 import ro.webdata.parser.xml.lido.core.set.objectMeasurementsSet.ObjectMeasurementsSet;
 import ro.webdata.parser.xml.lido.core.wrap.objectMeasurementsWrap.ObjectMeasurementsWrap;
-import ro.webdata.echo.translator.edm.approach.event.lido.mapping.leaf.TextComplexTypeProcessing;
 
 import java.util.ArrayList;
 
 public class ObjectMeasurementsWrapProcessing {
     /**
-     * TODO: https://dbpedia.org/ontology/weight
-     * TODO: https://dbpedia.org/ontology/diameter
      * Add measurements subProperties (<b>weight</b>, <b>diameter</b> etc.) to the provided CHO
      * @param model The RDF graph
      * @param providedCHO The CHO

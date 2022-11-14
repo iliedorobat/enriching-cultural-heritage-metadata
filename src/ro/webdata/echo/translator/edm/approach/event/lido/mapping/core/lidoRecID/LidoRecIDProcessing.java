@@ -11,7 +11,7 @@ public class LidoRecIDProcessing {
      * @param lidoRecIDList The LIDO list with lido lidoRecID elements
      * @return An unique identifier
      */
-    // TODO: is similar with RecordIDProcessing.consolidatesIdentifiers
+    // TODO: consolidate with RecordIDProcessing.getRecordId
     public static String getRecordId(ArrayList<LidoRecID> lidoRecIDList) {
         String id = null;
 

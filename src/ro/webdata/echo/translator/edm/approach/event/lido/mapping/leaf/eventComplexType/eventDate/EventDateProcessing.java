@@ -55,8 +55,6 @@ public class EventDateProcessing {
                         .addProperty(RDF.type, EDM.TimeSpan);
                 eventDateResourceList.add(eventDateResource);
             }
-
-            // TODO: add the original value
         }
 
         return eventDateResourceList;

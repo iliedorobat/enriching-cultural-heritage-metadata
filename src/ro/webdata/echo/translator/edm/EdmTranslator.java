@@ -6,7 +6,6 @@ import ro.webdata.echo.translator.edm.approach.object.DSpace;
 
 import static ro.webdata.echo.translator.commons.Env.*;
 
-// TODO: ro.webdata.echo.translator....
 public class EdmTranslator {
     public static void run(String approach, String dataType) {
         if (approach != null && dataType != null) {

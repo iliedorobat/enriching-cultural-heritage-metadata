@@ -8,22 +8,21 @@ import java.util.ArrayList;
 
 public class RecordIDProcessing {
     /**
-     * Generate an unique identifier that would be used to identify all the resources related to one CHO
+     * Generate a unique identifier that would be used to identify all the resources related to one CHO
      * @param recordWrap The <b>lido:recordWrap</b> element
      * @return An unique identifier
      */
-    public static String consolidatesIdentifiers(RecordWrap recordWrap) {
+    public static String getRecordId(RecordWrap recordWrap) {
         ArrayList<RecordID> recordIDList = recordWrap.getRecordID();
-        return consolidatesIdentifiers(recordIDList);
+        return getRecordId(recordIDList);
     }
 
     /**
-     * Generate an unique identifier that would be used to identify all the resources related to one CHO
+     * Generate a unique identifier that would be used to identify all the resources related to one CHO
      * @param idList The LIDO list with <b>lido:recordID</b> elements
      * @return An unique identifier
      */
-    // TODO: is similar with LidoRecIDProcessing.getRecordId
-    public static String consolidatesIdentifiers(ArrayList<RecordID> idList) {
+    public static String getRecordId(ArrayList<RecordID> idList) {
         String id = null;
 
         if (idList.size() > 0) {

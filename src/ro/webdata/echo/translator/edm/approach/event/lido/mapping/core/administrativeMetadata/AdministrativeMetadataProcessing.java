@@ -41,7 +41,7 @@ public class AdministrativeMetadataProcessing {
      * @return <b>Resource</b>
      */
     private static Resource generateAggregation(Model model, RecordWrap recordWrap) {
-        String identifier = RecordIDProcessing.consolidatesIdentifiers(recordWrap);
+        String identifier = RecordIDProcessing.getRecordId(recordWrap);
         String uri = URIUtils.prepareUri(NS_REPO_RESOURCE_AGGREGATION, identifier);
 
         Resource aggregation = model.createResource(uri);
