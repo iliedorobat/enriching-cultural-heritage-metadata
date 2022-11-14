@@ -93,7 +93,7 @@ public class ClassificationProcessing {
                 }
             } else {
                 Literal literal = model.createLiteral(text, lang);
-                boolean isSuperType = Validators.isSubject(text);
+                boolean isSuperType = Validators.isSubject(text, lang);
                 Property property = isSuperType
                         ? EDM.hasType
                         : DC_11.subject;

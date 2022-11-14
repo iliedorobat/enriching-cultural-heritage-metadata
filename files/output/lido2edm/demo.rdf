@@ -78,38 +78,63 @@
             <edm:happenedAt>
               <rdf:Description rdf:about="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/locality:Ostrov/point:Beroe_Piatra_Frecatei_22222/">
                 <dcterms:isPartOf>
-                  <rdf:Description rdf:about="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/locality:Ostrov/">
-                    <dcterms:isPartOf>
-                      <rdf:Description rdf:about="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/">
+                  <rdf:Description rdf:about="http://opendata.cs.pub.ro/resource/Place/country:Romania/">
+                    <dcterms:hasPart rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/locality:Ostrov/point:Beroe_Piatra_Frecatei_22222/"/>
+                    <dcterms:hasPart>
+                      <rdf:Description rdf:about="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/locality:Ostrov/">
+                        <dcterms:hasPart rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/locality:Ostrov/point:Beroe_Piatra_Frecatei_22222/"/>
+                        <dcterms:isPartOf rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/"/>
                         <dcterms:isPartOf>
-                          <rdf:Description rdf:about="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/">
-                            <dcterms:isPartOf>
-                              <rdf:Description rdf:about="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/">
+                          <rdf:Description rdf:about="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/">
+                            <dcterms:hasPart rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/locality:Ostrov/point:Beroe_Piatra_Frecatei_22222/"/>
+                            <dcterms:hasPart rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/locality:Ostrov/"/>
+                            <dcterms:hasPart>
+                              <rdf:Description rdf:about="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/">
+                                <dcterms:hasPart rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/locality:Ostrov/point:Beroe_Piatra_Frecatei_22222/"/>
+                                <dcterms:hasPart rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/locality:Ostrov/"/>
+                                <dcterms:isPartOf rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/"/>
+                                <dcterms:isPartOf rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/"/>
                                 <dcterms:isPartOf>
-                                  <rdf:Description rdf:about="http://opendata.cs.pub.ro/resource/Place/country:Romania/">
+                                  <rdf:Description rdf:about="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/">
+                                    <dcterms:hasPart rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/locality:Ostrov/point:Beroe_Piatra_Frecatei_22222/"/>
+                                    <dcterms:hasPart rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/locality:Ostrov/"/>
+                                    <dcterms:hasPart rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/"/>
+                                    <dcterms:isPartOf rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/"/>
+                                    <dcterms:isPartOf rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/"/>
                                     <dbp:polity xml:lang="en"
-                                    >country</dbp:polity>
+                                    >county</dbp:polity>
                                     <skos:prefLabel xml:lang="ro"
-                                    >România</skos:prefLabel>
+                                    >Tulcea</skos:prefLabel>
                                   </rdf:Description>
                                 </dcterms:isPartOf>
-                                <dbp:polity xml:lang="en">region</dbp:polity>
+                                <dbp:polity xml:lang="en">commune</dbp:polity>
                                 <skos:prefLabel xml:lang="ro"
-                                >Dobrogea</skos:prefLabel>
+                                >Ostrov</skos:prefLabel>
                               </rdf:Description>
-                            </dcterms:isPartOf>
-                            <dbp:polity xml:lang="en">county</dbp:polity>
-                            <skos:prefLabel xml:lang="ro">Tulcea</skos:prefLabel>
+                            </dcterms:hasPart>
+                            <dcterms:hasPart rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/"/>
+                            <dcterms:isPartOf rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/"/>
+                            <dbp:polity xml:lang="en">region</dbp:polity>
+                            <skos:prefLabel xml:lang="ro">Dobrogea</skos:prefLabel>
                           </rdf:Description>
                         </dcterms:isPartOf>
-                        <dbp:polity xml:lang="en">commune</dbp:polity>
+                        <dcterms:isPartOf rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/"/>
+                        <dcterms:isPartOf rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/"/>
+                        <dbp:polity xml:lang="en">locality</dbp:polity>
                         <skos:prefLabel xml:lang="ro">Ostrov</skos:prefLabel>
                       </rdf:Description>
-                    </dcterms:isPartOf>
-                    <dbp:polity xml:lang="en">locality</dbp:polity>
-                    <skos:prefLabel xml:lang="ro">Ostrov</skos:prefLabel>
+                    </dcterms:hasPart>
+                    <dcterms:hasPart rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/"/>
+                    <dcterms:hasPart rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/"/>
+                    <dcterms:hasPart rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/"/>
+                    <dbp:polity xml:lang="en">country</dbp:polity>
+                    <skos:prefLabel xml:lang="ro">România</skos:prefLabel>
                   </rdf:Description>
                 </dcterms:isPartOf>
+                <dcterms:isPartOf rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/"/>
+                <dcterms:isPartOf rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/"/>
+                <dcterms:isPartOf rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/"/>
+                <dcterms:isPartOf rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/locality:Ostrov/"/>
                 <dbp:polity xml:lang="en">point</dbp:polity>
                 <skos:prefLabel xml:lang="ro">Beroe Piatra Frecăței 22222</skos:prefLabel>
                 <skos:prefLabel xml:lang="en">Beroe Piatra Frecăței 77</skos:prefLabel>
@@ -128,6 +153,7 @@
             <edm:occuredAt>
               <edm:TimeSpan rdf:about="https://dbpedia.org/page/5th_century"/>
             </edm:occuredAt>
+            <odp:occurredAt>sec. IV-V p.Chr.</odp:occurredAt>
             <edm:occuredAt>
               <edm:TimeSpan rdf:about="https://dbpedia.org/page/4th_century"/>
             </edm:occuredAt>
@@ -165,6 +191,9 @@
     <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/europeanaRole">
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/occurredAt">
     <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/organizationScope">
