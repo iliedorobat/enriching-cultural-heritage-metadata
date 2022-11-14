@@ -17,6 +17,7 @@ import ro.webdata.echo.translator.edm.approach.event.lido.mapping.leaf.eventComp
 import ro.webdata.parser.xml.lido.core.leaf.displayDate.DisplayDate;
 import ro.webdata.parser.xml.lido.core.leaf.event.Event;
 import ro.webdata.parser.xml.lido.core.leaf.eventDate.EventDate;
+import ro.webdata.parser.xml.lido.core.leaf.eventMaterialsTech.EventMaterialsTech;
 
 import java.util.ArrayList;
 
@@ -36,16 +37,13 @@ public class EventComplexTypeProcessing {
         ArrayList<Resource> eventPlaceList = EventPlaceProcessing.generateEventPlaceList(
                 model, providedCHO, event.getEventPlace()
         );
-        ArrayList<Resource> eventMaterialsList = EventMaterialsTechProcessing.addEventMaterialsTechList(
-                model, resourceEvent, event.getEventMaterialsTech()
-        );
 
         providedCHO.addProperty(EDM.wasPresentAt, resourceEvent);
 
         addActors(resourceEvent, actorsList);
         addCulture(model, resourceEvent, cultureList);
         addEvents(resourceEvent, eventPlaceList);
-        addMaterials(resourceEvent, eventMaterialsList);
+        addMaterials(model, resourceEvent, event.getEventMaterialsTech());
         addTimePeriod(model, resourceEvent, eventDateResourceList, event.getEventDate());
     }
 
@@ -69,11 +67,10 @@ public class EventComplexTypeProcessing {
         }
     }
 
-    // TODO: material => dcterms:medium
-    private static void addMaterials(Resource resourceEvent, ArrayList<Resource> eventMaterialsList) {
-        for (Resource eventMaterial : eventMaterialsList) {
-            resourceEvent.addProperty(EDM.isRelatedTo, eventMaterial);
-        }
+    private static void addMaterials(Model model, Resource resourceEvent, ArrayList<EventMaterialsTech> eventMaterialsTech) {
+        EventMaterialsTechProcessing.addEventMaterialsTechList(
+                model, resourceEvent, eventMaterialsTech
+        );
     }
 
     private static void addTimePeriod(Model model, Resource resourceEvent, ArrayList<Resource> eventDateResourceList, EventDate eventDate) {
