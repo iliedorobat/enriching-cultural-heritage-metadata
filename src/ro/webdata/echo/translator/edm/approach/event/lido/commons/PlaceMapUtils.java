@@ -4,17 +4,18 @@ import org.apache.commons.lang3.StringUtils;
 import ro.webdata.echo.commons.File;
 import ro.webdata.echo.commons.Text;
 import ro.webdata.echo.commons.graph.PlaceType;
+import ro.webdata.echo.translator.commons.Env;
 import ro.webdata.parser.xml.lido.core.complex.placeComplexType.PlaceComplexType;
 import ro.webdata.parser.xml.lido.core.leaf.appellationValue.AppellationValue;
 import ro.webdata.parser.xml.lido.core.leaf.partOfPlace.PartOfPlace;
 import ro.webdata.parser.xml.lido.core.leaf.place.Place;
 import ro.webdata.parser.xml.lido.core.set.namePlaceSet.NamePlaceSet;
-import ro.webdata.echo.translator.commons.Env;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class PlaceMapUtils {
     public static final String NAME_PROP = "name";
@@ -79,13 +80,19 @@ public class PlaceMapUtils {
     private static LinkedHashMap<String, HashMap<String, String>> preparePlaceNameMap(Place place) {
         LinkedHashMap<String, HashMap<String, String>> map = new LinkedHashMap<>();
         HashMap<String, PlaceComplexType> placeMap = preparePlaceMap(place);
+        HashMap<String, String> country = getPlaceNameMap(placeMap, PlaceType.COUNTRY);
 
-        for (String placeType : PlaceType.TYPES) {
-            HashMap<String, String> placeNameMap = getPlaceNameMap(placeMap, placeType);
+        // Each place must be located in a country
+        if (country.size() > 0) {
+            for (String placeType : PlaceType.TYPES) {
+                HashMap<String, String> placeNameMap = getPlaceNameMap(placeMap, placeType);
 
-            if (!placeNameMap.isEmpty()) {
-                map.put(placeType, placeNameMap);
+                if (!placeNameMap.isEmpty()) {
+                    map.put(placeType, placeNameMap);
+                }
             }
+        } else {
+            System.err.println(PlaceMapUtils.class.getName() + ": The country name is missing!");
         }
 
         return map;
@@ -155,10 +162,20 @@ public class PlaceMapUtils {
         String lang = appellationValue.getLang().getLang();
         String placeName = appellationValue.getText();
 
-        if (isMainLang(lang)) {
-            placeNameMap.put(Env.LANG_MAIN, placeName);
+        /*
+        Avoid using punctuation for place names
+        E.g.:
+            <lido:namePlaceSet>
+                <lido:appellationValue>?</lido:appellationValue>
+            </lido:namePlaceSet>
+         */
+        if (Pattern.matches("\\p{Punct}", placeName)) {
+            System.err.println(PlaceMapUtils.class.getName() + ": The name of the place cannot be a punctuation mark!");
         } else {
-            placeNameMap.put(lang, placeName);
+            String language = isMainLang(lang)
+                    ? Env.LANG_MAIN
+                    : lang;
+            placeNameMap.put(language, placeName);
         }
     }
 

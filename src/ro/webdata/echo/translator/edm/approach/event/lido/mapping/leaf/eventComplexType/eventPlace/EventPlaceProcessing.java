@@ -66,8 +66,10 @@ public class EventPlaceProcessing {
             placeList.add(resource);
         }
 
-        addIsPartOf(allPlaceList);
-        addHasPart(allPlaceList);
+        if (allPlaceList.size() > 0) {
+            addIsPartOf(allPlaceList);
+            addHasPart(allPlaceList);
+        }
 
         return placeList;
     }
