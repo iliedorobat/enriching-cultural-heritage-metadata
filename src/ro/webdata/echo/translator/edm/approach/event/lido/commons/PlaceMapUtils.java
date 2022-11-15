@@ -1,6 +1,7 @@
 package ro.webdata.echo.translator.edm.approach.event.lido.commons;
 
 import org.apache.commons.lang3.StringUtils;
+import ro.webdata.echo.commons.Const;
 import ro.webdata.echo.commons.File;
 import ro.webdata.echo.commons.Text;
 import ro.webdata.echo.commons.graph.PlaceType;
@@ -81,18 +82,47 @@ public class PlaceMapUtils {
         LinkedHashMap<String, HashMap<String, String>> map = new LinkedHashMap<>();
         HashMap<String, PlaceComplexType> placeMap = preparePlaceMap(place);
         HashMap<String, String> country = getPlaceNameMap(placeMap, PlaceType.COUNTRY);
+        HashMap<String, String> region = getPlaceNameMap(placeMap, PlaceType.REGION);
 
-        // Each place must be located in a country
-        if (country.size() > 0) {
-            for (String placeType : PlaceType.TYPES) {
-                HashMap<String, String> placeNameMap = getPlaceNameMap(placeMap, placeType);
+        for (String placeType : PlaceType.TYPES) {
+            HashMap<String, String> placeNameMap = getPlaceNameMap(placeMap, placeType);
 
-                if (!placeNameMap.isEmpty()) {
-                    map.put(placeType, placeNameMap);
+            if (!placeNameMap.isEmpty()) {
+                // Sanitize place name & place type
+                String roPlaceName = placeNameMap.get(Const.LANG_RO);
+                String sanitizedPlaceType = sanitizePlaceType(roPlaceName, placeType);
+                if (roPlaceName != null) {
+                    String sanitizedPlaceName = sanitizePlaceName(roPlaceName);
+                    placeNameMap.put(Const.LANG_RO, sanitizedPlaceName);
+                }
+
+                if (roPlaceName.equals("București")) {
+                    // "Ilfov" county was added for some entries, but "București" is not part of any county
+                    map.remove(PlaceType.COUNTY);
+
+                    // For some entries, the country is missing
+                    if (!map.containsKey(PlaceType.COUNTRY)) {
+                        HashMap<String, String> countryNameMap = new HashMap<>();
+                        countryNameMap.put(Const.LANG_RO, "România");
+                        map.put(PlaceType.COUNTRY, countryNameMap);
+                    }
+                    map.put(sanitizedPlaceType, placeNameMap);
+
+                // Each place must be located in a country/region
+                } else if (country.size() > 0 || region.size() > 0) {
+                    if (roPlaceName.equals("Sibiu, Transilvania") || roPlaceName.equals("Sălaj, Transilvania")) {
+                        String countyName = roPlaceName.split(",")[0];
+                        HashMap<String, String> countyNameMap = new HashMap<>();
+                        countyNameMap.put(Const.LANG_RO, sanitizePlaceName(countyName));
+                        map.put(PlaceType.COUNTY, countyNameMap);
+                    }
+                    map.put(sanitizedPlaceType, placeNameMap);
+                }
+
+                else {
+                    System.err.println(PlaceMapUtils.class.getName() + ": Country and region names are both missing!");
                 }
             }
-        } else {
-            System.err.println(PlaceMapUtils.class.getName() + ": The country name is missing!");
         }
 
         return map;
@@ -186,5 +216,42 @@ public class PlaceMapUtils {
      */
     private static boolean isMainLang(String language) {
         return language == null || language.equals(Env.LANG_MAIN);
+    }
+
+    private static String sanitizePlaceName(String placeName) {
+        switch (placeName) {
+            case "Dobrofgea":
+            case "Dobrogea (?)":
+                return "Dobrogea";
+            case "jud. Hunedoara":
+                return "Hunedoara";
+            case "jud. Sibiu":
+                return "Sibiu";
+            case "Modova":
+            case "MOLDOVA DE SUD":
+            case "sudul Moldovei":
+            case "Sudul Moldovei":
+                return "Moldova";
+            case "Tansilvania":
+            case "Transilvaniu":
+            case "centrul Transilvaniei de astăzi":
+            case "sudul Transilvaniei":
+            case "Sălaj, Transilvania":
+            case "Sibiu, Transilvania":
+                return "Transilvania";
+            case "sudul Bihorului în perioada dualismului":
+                return "Bihor";
+            default:
+                return placeName;
+        }
+    }
+
+    private static String sanitizePlaceType(String placeName, String placeType) {
+        // E.g.: "jud. Hunedoara", "jud. Sibiu"
+        if (placeName != null && placeName.startsWith("jud")) {
+            return PlaceType.COUNTY;
+        }
+
+        return placeType;
     }
 }
