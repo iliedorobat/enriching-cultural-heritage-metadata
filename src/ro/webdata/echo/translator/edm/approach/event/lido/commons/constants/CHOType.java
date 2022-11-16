@@ -1,8 +1,8 @@
 package ro.webdata.echo.translator.edm.approach.event.lido.commons.constants;
 
+import ro.webdata.echo.commons.graph.vocab.constraints.EDMType;
 import ro.webdata.echo.translator.commons.FileConst;
 import ro.webdata.echo.translator.edm.approach.event.lido.commons.FileUtils;
-import ro.webdata.echo.translator.edm.approach.event.lido.commons.Validators;
 import ro.webdata.parser.xml.lido.core.ParserDAO;
 import ro.webdata.parser.xml.lido.core.ParserDAOImpl;
 import ro.webdata.parser.xml.lido.core.leaf.classification.Classification;
@@ -31,6 +31,18 @@ public final class CHOType {
 
     static {
         readSubjects();
+    }
+
+    /**
+     * Check if CHOType.SUBJECTS contains the input value
+     * @param value Input string
+     * @param lang The searching language
+     * @return true/false
+     */
+    public static boolean isSubject(String value, String lang) {
+        Set<String> subjects = CHOType.SUBJECTS.get(lang);
+
+        return subjects != null && subjects.contains(value);
     }
 
     private static void readSubjects() {
@@ -83,7 +95,7 @@ public final class CHOType {
     private static void addSubject(Term term, String classificationType) {
         String lang = term.getLang().getLang();
         String text = term.getText();
-        boolean isEDMType = Validators.isEDMType(text);
+        boolean isEDMType = EDMType.contains(text);
         boolean isEDMTerm = classificationType != null && classificationType.equals(LIDOType.EUROPEANA_TYPE);
 
         if (!isEDMType && !isEDMTerm) {
