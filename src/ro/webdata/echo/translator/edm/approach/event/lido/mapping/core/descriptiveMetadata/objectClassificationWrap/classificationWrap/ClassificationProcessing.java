@@ -8,7 +8,7 @@ import org.apache.jena.vocabulary.DC_11;
 import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.echo.commons.graph.vocab.constraints.EDMType;
 import ro.webdata.echo.translator.edm.approach.event.lido.commons.RDFConceptService;
-import ro.webdata.echo.translator.edm.approach.event.lido.commons.Validators;
+import ro.webdata.echo.translator.edm.approach.event.lido.commons.constants.CHOType;
 import ro.webdata.echo.translator.edm.approach.event.lido.commons.constants.LIDOType;
 import ro.webdata.parser.xml.lido.core.leaf.classification.Classification;
 import ro.webdata.parser.xml.lido.core.leaf.term.Term;
@@ -83,7 +83,7 @@ public class ClassificationProcessing {
     ) {
         String lang = term.getLang().getLang();
         String text = term.getText();
-        boolean isEDMType = Validators.isEDMType(text);
+        boolean isEDMType = EDMType.contains(text);
 
         if (text != null) {
             if (type != null && type.equals(EDM.type)) {
@@ -93,7 +93,7 @@ public class ClassificationProcessing {
                 }
             } else {
                 Literal literal = model.createLiteral(text, lang);
-                boolean isSuperType = Validators.isSubject(text, lang);
+                boolean isSuperType = CHOType.isSubject(text, lang);
                 Property property = isSuperType
                         ? EDM.hasType
                         : DC_11.subject;
