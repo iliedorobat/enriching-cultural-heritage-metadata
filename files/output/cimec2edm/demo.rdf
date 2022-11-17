@@ -30,7 +30,6 @@
     <dbp:details xml:lang="ro">Expune obiecte și documente privind învățământul și istorie locală.</dbp:details>
     <dbp:details xml:lang="en">The exhibition includes items and documents regarding education and local history.</dbp:details>
     <odp:supervisedBy xml:lang="ro">Consiliul Local</odp:supervisedBy>
-    <dbp:foundingDate>1984</dbp:foundingDate>
     <dbp:commune>Drăcșenei</dbp:commune>
     <odp:employeePosition xml:lang="ro">Custode</odp:employeePosition>
     <dbp:latitude>44.216892</dbp:latitude>
@@ -46,6 +45,7 @@
     <dbo:postalCode>147120</dbo:postalCode>
     <skos:prefLabel xml:lang="ro">Casa Memorială "Anton Și Maria Popescu"</skos:prefLabel>
     <odp:cimecUri>http://ghidulmuzeelor.cimec.ro/idEN.asp?k=1652&amp;-Casa-Memoriala-Anton-si-Maria-Popescu-DRACSANI-Teleorman</odp:cimecUri>
+    <edm:begin>1984</edm:begin>
     <odp:employee xml:lang="ro">Anton A. Popescu</odp:employee>
     <odp:mainProfile xml:lang="en">Memorials</odp:mainProfile>
     <odp:employee xml:lang="en">Anton A. Popescu</odp:employee>
@@ -86,9 +86,6 @@
     <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/identifier"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://dbpedia.org/property/details">
-    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://dbpedia.org/property/foundingDate">
     <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/importance">
