@@ -186,8 +186,8 @@ class BuildEventCentricApproach {
         ArrayList<String> commands = new ArrayList<>();
 
         commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/edm/approach/event/lido/commons/FileUtils.java");
-        commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/edm/approach/event/lido/commons/constants/CHOType.java");
         commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/edm/approach/event/lido/commons/constants/LIDOType.java");
+        commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/edm/approach/event/lido/commons/constants/CHOType.java");
         commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/edm/approach/event/lido/commons/ConceptService.java");
         commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/edm/approach/event/lido/commons/PlaceMapUtils.java");
         commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/edm/approach/event/lido/commons/RDFConceptService.java");
