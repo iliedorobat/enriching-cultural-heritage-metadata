@@ -15,6 +15,9 @@
   <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/logo">
     <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/identifier"/>
   </rdf:Description>
+  <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/found">
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/date"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/acronym">
     <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#altLabel"/>
   </rdf:Description>
@@ -71,32 +74,40 @@
     <edm:provider rdf:resource="http://opendata.cs.pub.ro/resource/Organization/country:Romania/Institutul_Național_al_Patrimoniului"/>
     <edm:aggregatedCHO>
       <edm:ProvidedCHO rdf:about="http://opendata.cs.pub.ro/resource/CHO/CIMEC/00138C33DCAC402EA03B3641D66AE6FF">
+        <dcterms:temporal>Perioada romană târzie</dcterms:temporal>
         <edm:type>IMAGE</edm:type>
         <dc:type xml:lang="en">man-made object</dc:type>
         <edm:wasPresentAt>
           <edm:Event rdf:about="http://opendata.cs.pub.ro/resource/Event/Finding/CIMEC/00138C33DCAC402EA03B3641D66AE6FF">
             <edm:happenedAt>
-              <rdf:Description rdf:about="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/locality:Ostrov/point:Beroe_Piatra_Frecatei_22222/">
+              <rdf:Description rdf:about="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/locality:Ostrov/point:Beroe_Piatra_Frecatei/">
+                <skos:altLabel xml:lang="ro">Beroe Piatra Frecăței</skos:altLabel>
                 <dcterms:isPartOf>
                   <rdf:Description rdf:about="http://opendata.cs.pub.ro/resource/Place/country:Romania/">
-                    <dcterms:hasPart rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/locality:Ostrov/point:Beroe_Piatra_Frecatei_22222/"/>
+                    <skos:altLabel xml:lang="ro">România</skos:altLabel>
+                    <dcterms:hasPart rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/locality:Ostrov/point:Beroe_Piatra_Frecatei/"/>
                     <dcterms:hasPart>
                       <rdf:Description rdf:about="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/locality:Ostrov/">
-                        <dcterms:hasPart rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/locality:Ostrov/point:Beroe_Piatra_Frecatei_22222/"/>
+                        <skos:altLabel xml:lang="ro">Ostrov</skos:altLabel>
+                        <dcterms:hasPart rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/locality:Ostrov/point:Beroe_Piatra_Frecatei/"/>
                         <dcterms:isPartOf rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/"/>
                         <dcterms:isPartOf>
                           <rdf:Description rdf:about="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/">
-                            <dcterms:hasPart rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/locality:Ostrov/point:Beroe_Piatra_Frecatei_22222/"/>
+                            <skos:altLabel xml:lang="ro">Dobrogea</skos:altLabel>
+                            <dcterms:hasPart rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/locality:Ostrov/point:Beroe_Piatra_Frecatei/"/>
                             <dcterms:hasPart rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/locality:Ostrov/"/>
                             <dcterms:hasPart>
                               <rdf:Description rdf:about="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/">
-                                <dcterms:hasPart rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/locality:Ostrov/point:Beroe_Piatra_Frecatei_22222/"/>
+                                <skos:altLabel xml:lang="ro">Ostrov</skos:altLabel>
+                                <dcterms:hasPart rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/locality:Ostrov/point:Beroe_Piatra_Frecatei/"/>
                                 <dcterms:hasPart rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/locality:Ostrov/"/>
                                 <dcterms:isPartOf rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/"/>
                                 <dcterms:isPartOf rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/"/>
                                 <dcterms:isPartOf>
                                   <rdf:Description rdf:about="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/">
-                                    <dcterms:hasPart rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/locality:Ostrov/point:Beroe_Piatra_Frecatei_22222/"/>
+                                    <skos:altLabel xml:lang="ro"
+                                    >Tulcea</skos:altLabel>
+                                    <dcterms:hasPart rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/locality:Ostrov/point:Beroe_Piatra_Frecatei/"/>
                                     <dcterms:hasPart rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/locality:Ostrov/"/>
                                     <dcterms:hasPart rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/"/>
                                     <dcterms:isPartOf rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/"/>
@@ -136,8 +147,7 @@
                 <dcterms:isPartOf rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/"/>
                 <dcterms:isPartOf rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/locality:Ostrov/"/>
                 <dbp:polity xml:lang="en">point</dbp:polity>
-                <skos:prefLabel xml:lang="ro">Beroe Piatra Frecăței 22222</skos:prefLabel>
-                <skos:prefLabel xml:lang="en">Beroe Piatra Frecăței 77</skos:prefLabel>
+                <skos:prefLabel xml:lang="ro">Beroe Piatra Frecăței</skos:prefLabel>
               </rdf:Description>
             </edm:happenedAt>
             <edm:hasType xml:lang="en">Finding</edm:hasType>
@@ -146,16 +156,18 @@
         <edm:hasType>
           <skos:Concept rdf:about="https://dbpedia.org/page/Archaeology"/>
         </edm:hasType>
+        <dcterms:created>
+          <edm:TimeSpan rdf:about="https://dbpedia.org/page/4th_century"/>
+        </dcterms:created>
         <dc:subject xml:lang="ro">Colier</dc:subject>
         <edm:wasPresentAt>
           <edm:Event rdf:about="http://opendata.cs.pub.ro/resource/Event/Production/CIMEC/00138C33DCAC402EA03B3641D66AE6FF">
             <edm:occuredAt>
               <edm:TimeSpan rdf:about="https://dbpedia.org/page/5th_century"/>
             </edm:occuredAt>
-            <odp:occurredAt>sec. IV-V p.Chr.</odp:occurredAt>
-            <edm:occuredAt>
-              <edm:TimeSpan rdf:about="https://dbpedia.org/page/4th_century"/>
-            </edm:occuredAt>
+            <odp:occuredAt>sec. IV-V p.Chr.</odp:occuredAt>
+            <edm:occuredAt rdf:resource="https://dbpedia.org/page/4th_century"/>
+            <odp:temporal>Perioada romană târzie</odp:temporal>
             <edm:isRelatedTo xml:lang="ro">cultură: romană târzie</edm:isRelatedTo>
             <edm:isRelatedTo xml:lang="en">culture: romană târzie</edm:isRelatedTo>
             <edm:hasType xml:lang="en">Production</edm:hasType>
@@ -163,15 +175,28 @@
         </edm:wasPresentAt>
         <dbo:length xml:lang="ro">57 cm</dbo:length>
         <odp:displayState xml:lang="ro">bună</odp:displayState>
+        <edm:isRelatedTo xml:lang="en">culture: romană târzie</edm:isRelatedTo>
         <dc:title xml:lang="ro">Colier</dc:title>
         <odp:inventoryNumber>2926, 11521-11654</odp:inventoryNumber>
+        <dcterms:created rdf:resource="https://dbpedia.org/page/5th_century"/>
         <odp:overallDescription xml:lang="ro">Colier din mărgele de sticlă și rășină naturală. Culori: verde, bej, maron, negru, bleu-transparent. Forme globulare, cilindrice neregulate, patrulatere.</odp:overallDescription>
+        <edm:hasMet rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/region:Dobrogea/county:Tulcea/commune:Ostrov/locality:Ostrov/point:Beroe_Piatra_Frecatei/"/>
         <dc:type xml:lang="ro">artefact</dc:type>
         <edm:hasType xml:lang="ro">arheologie</edm:hasType>
+        <edm:isRelatedTo xml:lang="ro">cultură: romană târzie</edm:isRelatedTo>
         <edm:currentLocation>
           <edm:Agent rdf:about="http://opendata.cs.pub.ro/resource/Organization/country:Romania/county:Tulcea/History_And_Archaeology_Museum/"/>
         </edm:currentLocation>
+        <edm:hasMet>
+          <edm:Agent rdf:about="http://opendata.cs.pub.ro/resource/Agent/Petre_Aurelian">
+            <edm:wasPresentAt rdf:resource="http://opendata.cs.pub.ro/resource/Event/Finding/CIMEC/00138C33DCAC402EA03B3641D66AE6FF"/>
+            <skos:prefLabel xml:lang="ro">descoperitor</skos:prefLabel>
+            <skos:prefLabel xml:lang="en">discoverer</skos:prefLabel>
+            <foaf:name>Petre Aurelian</foaf:name>
+          </edm:Agent>
+        </edm:hasMet>
         <edm:hasType xml:lang="ro">Podoabe</edm:hasType>
+        <dcterms:created>sec. IV-V p.Chr.</dcterms:created>
       </edm:ProvidedCHO>
     </edm:aggregatedCHO>
   </ore:Aggregation>
@@ -193,7 +218,7 @@
   <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/europeanaRole">
     <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/occurredAt">
+  <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/medium">
     <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/organizationScope">
@@ -202,16 +227,16 @@
   <rdf:Description rdf:about="https://dbpedia.org/ontology/length">
     <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/description"/>
   </rdf:Description>
+  <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/occuredAt">
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/inventoryNumber">
     <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/identifier"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/geographicLevel">
     <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
   </rdf:Description>
-  <edm:Agent rdf:about="http://opendata.cs.pub.ro/resource/Agent/Petre_Aurelian">
-    <edm:wasPresentAt rdf:resource="http://opendata.cs.pub.ro/resource/Event/Finding/CIMEC/00138C33DCAC402EA03B3641D66AE6FF"/>
-    <skos:prefLabel xml:lang="ro">descoperitor</skos:prefLabel>
-    <skos:prefLabel xml:lang="en">discoverer</skos:prefLabel>
-    <foaf:name>Petre Aurelian</foaf:name>
-  </edm:Agent>
+  <rdf:Description rdf:about="http://opendata.cs.pub.ro/property/temporal">
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#note"/>
+  </rdf:Description>
 </rdf:RDF>

@@ -21,11 +21,10 @@ public class EventDateProcessing {
     /**
      * Generate an event date Resource
      * @param model The RDF graph
-     * @param providedCHO The CHO
      * @param eventDate The <b>lido:eventDate</b> object
      * @return
      */
-    public static ArrayList<Resource> generateEventDate(Model model, Resource providedCHO, EventDate eventDate) {
+    public static ArrayList<Resource> generateEventDate(Model model, EventDate eventDate) {
         ArrayList<DisplayDate> displayDateList = new ArrayList<>();
         ArrayList<Resource> eventDateResourceList = new ArrayList<>();
         Resource eventDateResource = null;

@@ -24,12 +24,11 @@ public class EventPlaceProcessing {
     /**
      * Generate the list of Event Place for all places
      * @param model The RDF graph
-     * @param providedCHO The RDF CHO
      * @param eventPlaceList The LIDO Event Place list
      * @return The RDF Event Place list
      */
     public static ArrayList<Resource> generateEventPlaceList(
-            Model model, Resource providedCHO, ArrayList<EventPlace> eventPlaceList
+            Model model, ArrayList<EventPlace> eventPlaceList
     ) {
         ArrayList<Resource> placeList = new ArrayList<>();
 

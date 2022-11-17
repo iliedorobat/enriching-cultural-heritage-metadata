@@ -26,11 +26,19 @@ public class EventWrapProcessing {
 
     private static void addEventSet(Model model, Resource providedCHO, ArrayList<EventSet> eventSetList) {
         for (EventSet eventSet : eventSetList) {
-            addEvent(model, providedCHO, eventSet.getEvent());
+            Event event = eventSet.getEvent();
+            objectCentricSupport(model, providedCHO, event);
+            eventCentricSupport(model, providedCHO, event);
         }
     }
 
-    private static void addEvent(Model model, Resource providedCHO, Event event) {
+    // object-centric support
+    private static void objectCentricSupport(Model model, Resource providedCHO, Event event) {
+        EventComplexTypeProcessing.addDate(model, providedCHO, event);
+    }
+
+    // event-centric support
+    private static void eventCentricSupport(Model model, Resource providedCHO, Event event) {
         EventComplexTypeProcessing.addEvent(model, providedCHO, event);
     }
 }

@@ -32,8 +32,8 @@ public class EventActorProcessing {
      * @param eventActorList The list with actors
      * @return
      */
-    public static ArrayList<ArrayList<Resource>> generateActorsList(Model model, ArrayList<EventActor> eventActorList) {
-        ArrayList<ArrayList<Resource>> actorsList = new ArrayList<>();
+    public static ArrayList<Resource> generateActorsList(Model model, ArrayList<EventActor> eventActorList) {
+        ArrayList<Resource> actorsList = new ArrayList<>();
 
         for (EventActor eventActor : eventActorList) {
             ActorInRole actorInRole = eventActor.getActorInRole();
@@ -42,7 +42,7 @@ public class EventActorProcessing {
                     model, actorInRole.getActor(), actorInRole.getRoleActor()
             );
 
-            actorsList.add(actorList);
+            actorsList.addAll(actorList);
         }
 
         return actorsList;

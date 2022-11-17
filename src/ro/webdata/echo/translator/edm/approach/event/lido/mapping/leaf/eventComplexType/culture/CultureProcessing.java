@@ -2,14 +2,13 @@ package ro.webdata.echo.translator.edm.approach.event.lido.mapping.leaf.eventCom
 
 import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.Resource;
 import ro.webdata.parser.xml.lido.core.leaf.culture.Culture;
 import ro.webdata.parser.xml.lido.core.leaf.term.Term;
 
 import java.util.ArrayList;
 
 public class CultureProcessing {
-    public static ArrayList<Literal> getCultureList(Model model, Resource providedCHO, ArrayList<Culture> lidoCultureList) {
+    public static ArrayList<Literal> getCultureList(Model model, ArrayList<Culture> lidoCultureList) {
         ArrayList<Literal> cultureList = new ArrayList<>();
 
         for (Culture culture : lidoCultureList) {

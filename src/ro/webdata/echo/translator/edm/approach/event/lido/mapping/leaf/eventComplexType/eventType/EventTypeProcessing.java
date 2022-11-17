@@ -11,11 +11,21 @@ import ro.webdata.parser.xml.lido.core.leaf.eventType.EventType;
 import ro.webdata.parser.xml.lido.core.leaf.term.Term;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static ro.webdata.echo.commons.graph.Namespace.NS_REPO_RESOURCE_CHO;
 import static ro.webdata.echo.commons.graph.Namespace.NS_REPO_RESOURCE_EVENT;
 
 public class EventTypeProcessing {
+    public static List<String> getEventTypeList(EventType eventType) {
+        return eventType
+                .getTerm()
+                .stream()
+                .map(term -> Text.sanitizeString(term.getText()))
+                .collect(Collectors.toList());
+    }
+
     /**
      * Generate an event resource
      * @param model The RDF graph
