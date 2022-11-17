@@ -7,12 +7,17 @@ import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DCTerms;
 import org.apache.jena.vocabulary.SKOS;
 import ro.webdata.echo.commons.Const;
+import ro.webdata.echo.commons.File;
+import ro.webdata.echo.commons.Writer;
+import ro.webdata.echo.commons.graph.PlaceType;
+import ro.webdata.echo.translator.commons.FileConst;
 import ro.webdata.echo.translator.commons.PropertyUtils;
 import ro.webdata.echo.translator.edm.lido.commons.PlaceMapUtils;
 import ro.webdata.echo.translator.edm.lido.commons.URIUtils;
 import ro.webdata.parser.xml.lido.core.leaf.eventPlace.EventPlace;
 import ro.webdata.parser.xml.lido.core.leaf.place.Place;
 
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -39,6 +44,67 @@ public class EventPlaceProcessing {
         }
 
         return placeList;
+    }
+
+    /**
+     * Save the places that do not belong to any country and region
+     * E.g.:
+     *    <lido:eventPlace>
+     *       <lido:place
+     *         lido:politicalEntity="locality">
+     *         <lido:namePlaceSet>
+     *           <lido:appellationValue>Steva</lido:appellationValue>
+     *         </lido:namePlaceSet>
+     *       </lido:place>
+     *     </lido:eventPlace>
+     *
+     * @param eventPlaceList The LIDO Event Place list
+     */
+    public static void saveMissingPlaces(ArrayList<EventPlace> eventPlaceList) {
+        for (EventPlace eventPlace : eventPlaceList) {
+            saveMissingPlace(eventPlace.getPlace());
+        }
+    }
+
+    private static void saveMissingPlace(Place place) {
+        LinkedHashMap<String, HashMap<String, String>> reducedPlaceNameMap = PlaceMapUtils.preparePlaceNameMap(place);
+        HashMap<String, String> country = reducedPlaceNameMap.get(PlaceType.COUNTRY);
+        HashMap<String, String> region = reducedPlaceNameMap.get(PlaceType.REGION);
+
+        if (country == null && region == null) {
+            HashMap<String, String> commune = reducedPlaceNameMap.get(PlaceType.COMMUNE);
+            HashMap<String, String> county = reducedPlaceNameMap.get(PlaceType.COUNTY);
+            HashMap<String, String> locality = reducedPlaceNameMap.get(PlaceType.LOCALITY);
+            HashMap<String, String> point = reducedPlaceNameMap.get(PlaceType.POINT);
+            StringWriter sw = new StringWriter();
+
+            if (commune != null || county != null || locality != null || point != null) {
+                // Add the header
+                if (!File.exists(FileConst.PATH_MISSING_COUNTRY_REGION)) {
+                    Writer.appendLine(
+                            sw,
+                            PlaceType.COUNTRY,
+                            PlaceType.REGION,
+                            PlaceType.COUNTY,
+                            PlaceType.COMMUNE,
+                            PlaceType.LOCALITY,
+                            PlaceType.POINT
+                    );
+                }
+
+                Writer.appendLine(
+                        sw,
+                        Writer.toString(null),
+                        Writer.toString(null),
+                        Writer.toString(county),
+                        Writer.toString(commune),
+                        Writer.toString(locality),
+                        Writer.toString(point)
+                );
+
+                File.write(sw, FileConst.PATH_MISSING_COUNTRY_REGION, true);
+            }
+        }
     }
 
     /**
