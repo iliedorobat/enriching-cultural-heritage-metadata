@@ -25,13 +25,11 @@ public class EventDateProcessing {
      * @return
      */
     public static ArrayList<Resource> generateEventDate(Model model, EventDate eventDate) {
-        ArrayList<DisplayDate> displayDateList = new ArrayList<>();
+        ArrayList<DisplayDate> displayDateList = eventDate != null
+                ? eventDate.getDisplayDate()
+                : new ArrayList<>();
         ArrayList<Resource> eventDateResourceList = new ArrayList<>();
         Resource eventDateResource = null;
-
-        // TODO: remove the validation when the LIDO Parser bug is fixed
-        if (eventDate != null)
-            displayDateList = eventDate.getDisplayDate();
 
         for (DisplayDate displayDate : displayDateList) {
             String text = displayDate.getText();
