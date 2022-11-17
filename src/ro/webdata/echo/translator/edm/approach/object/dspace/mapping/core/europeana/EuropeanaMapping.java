@@ -3,9 +3,11 @@ package ro.webdata.echo.translator.edm.approach.object.dspace.mapping.core.europ
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.RDF;
+import ro.webdata.echo.commons.Const;
 import ro.webdata.echo.commons.graph.Namespace;
 import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.echo.commons.graph.vocab.ORE;
+import ro.webdata.echo.translator.edm.approach.object.dspace.commons.PrintMessages;
 import ro.webdata.echo.translator.edm.approach.object.dspace.mapping.core.europeana.record.IsShownByMapping;
 import ro.webdata.echo.translator.edm.approach.object.dspace.mapping.core.europeana.record.ProviderMapping;
 import ro.webdata.echo.translator.edm.approach.object.dspace.mapping.core.europeana.record.TypeMapping;
@@ -34,6 +36,10 @@ public class EuropeanaMapping {
 
         for (Map.Entry<String, ArrayList<DcValue>> entry : dcValueMap.entrySet()) {
             mapEntries(model, providedCHO, aggregation, entry.getValue());
+        }
+
+        if (!hasEdmType(dcValueMap)) {
+            PrintMessages.edmTypeError(Const.OPERATION_MAPPING, providedCHO);
         }
     }
 
@@ -77,5 +83,15 @@ public class EuropeanaMapping {
                 .addProperty(EDM.aggregatedCHO, providedCHO);
 
         return aggregation;
+    }
+
+    private static boolean hasEdmType(HashMap<String, ArrayList<DcValue>> dcValueMap) {
+        for (Map.Entry<String, ArrayList<DcValue>> entry : dcValueMap.entrySet()) {
+            if (entry.getKey().equals(ELEMENT_TYPE)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

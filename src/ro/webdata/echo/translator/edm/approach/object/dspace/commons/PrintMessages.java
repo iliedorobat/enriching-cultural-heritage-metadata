@@ -5,6 +5,13 @@ import ro.webdata.echo.commons.graph.vocab.constraints.EDMType;
 import ro.webdata.parser.xml.dspace.core.leaf.dcValue.DcValue;
 
 public final class PrintMessages {
+    public static void edmTypeError(String operation, Resource providedCHO) {
+        System.err.println("ERROR: " + operation + ": RECORD IDENTIFIER: " + providedCHO.getURI() + "\n"
+                + "\tedm:type property is missing!\n"
+                + "\tPlease consider to use a proper value for the edm:type property "
+                + "(" + EDMType.VALUES.toString() + ")!");
+    }
+
     public static void edmTypeWarning(String operation, Resource providedCHO, String value) {
         System.err.println("WARNING: " + operation + ": RECORD IDENTIFIER: " + providedCHO.getURI() + "\n"
                 + "\tThe value \"" + value + "\" is not one of the edm:type accepted values!\n"
