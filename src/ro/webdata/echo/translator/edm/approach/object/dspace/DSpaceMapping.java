@@ -4,12 +4,12 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import ro.webdata.echo.commons.schema.Namespace;
-import ro.webdata.parser.xml.dspace.core.Parser;
-import ro.webdata.parser.xml.dspace.core.leaf.dcValue.DcValue;
-import ro.webdata.parser.xml.dspace.core.wrapper.dc.DcWrapper;
 import ro.webdata.echo.translator.edm.approach.object.dspace.commons.ProvidedCHO;
 import ro.webdata.echo.translator.edm.approach.object.dspace.mapping.core.dc.DcMapping;
 import ro.webdata.echo.translator.edm.approach.object.dspace.mapping.core.europeana.EuropeanaMapping;
+import ro.webdata.parser.xml.dspace.core.Parser;
+import ro.webdata.parser.xml.dspace.core.leaf.dcValue.DcValue;
+import ro.webdata.parser.xml.dspace.core.wrapper.dc.DcWrapper;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -45,24 +45,25 @@ public class DSpaceMapping {
     }
 
     private static void mapEntries(Model model, Resource providedCHO, File subDirectory) {
-        if (subDirectory.isDirectory()) {
+        if (subDirectory != null && subDirectory.isDirectory()) {
             File[] files = subDirectory.listFiles();
 
             if (files != null) {
                 mapFilesEntries(model, providedCHO, files);
             }
-            // TODO: check if edm:type has been added and if not, extract the value from the file extension
         }
     }
 
     private static void mapFilesEntries(Model model, Resource providedCHO, File[] files) {
-        for (File file : files) {
-            mapFileEntries(model, providedCHO, file);
+        if (files != null) {
+            for (File file : files) {
+                mapFileEntries(model, providedCHO, file);
+            }
         }
     }
 
     private static void mapFileEntries(Model model, Resource providedCHO, File file) {
-        if (file.isFile()) {
+        if (file != null && file.isFile()) {
             String fileName = file.getName();
             String extension = FilenameUtils.getExtension(fileName);
 
