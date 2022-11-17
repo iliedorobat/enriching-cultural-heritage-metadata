@@ -25,26 +25,26 @@ java ro/webdata/echo/translator/BuildProject
 ```
 
 ### Translate the XML files to EDM:
-1. CIMEC to EDM **event-centric approach**:
+1. CIMEC to EDM:
 ```bash
 ## main command
-java ro.webdata.echo.translator/Main --approach=EVENT_CENTRIC --dataType=CIMEC
+java ro.webdata.echo.translator/Main --dataType=CIMEC
 ## quick demo
-java ro.webdata.echo.translator/Main --demo --approach=EVENT_CENTRIC --dataType=CIMEC
+java ro.webdata.echo.translator/Main --demo --dataType=CIMEC
 ```
-2. DSPACE to EDM **object-centric approach**:
+2. DSPACE to EDM:
 ```bash
 ## main command
-java ro.webdata.echo.translator/Main --approach=OBJECT_CENTRIC --dataType=DSPACE
+java ro.webdata.echo.translator/Main --dataType=DSPACE
 ## quick demo
-java ro.webdata.echo.translator/Main --demo --approach=OBJECT_CENTRIC --dataType=DSPACE
+java ro.webdata.echo.translator/Main --demo --dataType=DSPACE
 ```
-3. LIDO to EDM **event-centric approach**:
+3. LIDO to EDM:
 ```bash
 ## main command
-java ro.webdata.echo.translator/Main --approach=EVENT_CENTRIC --dataType=LIDO
+java ro.webdata.echo.translator/Main --dataType=LIDO
 ## quick demo
-java ro.webdata.echo.translator/Main --demo --approach=EVENT_CENTRIC --dataType=LIDO
+java ro.webdata.echo.translator/Main --demo --dataType=LIDO
 ```
 
 ### Normalize time expression

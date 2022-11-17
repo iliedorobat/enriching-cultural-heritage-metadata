@@ -8,8 +8,6 @@ import java.util.Optional;
 public final class Env {
     private static final String AGENT_TYPE = "Agent";
 
-    public static final String EDM_APPROACH_EVENT_CENTRIC = "EVENT_CENTRIC";
-    public static final String EDM_APPROACH_OBJECT_CENTRIC = "OBJECT_CENTRIC";
     public static final String DATA_TYPE_CIMEC = "CIMEC";
     public static final String DATA_TYPE_DSPACE = "DSPACE";
     public static final String DATA_TYPE_LIDO = "LIDO";
@@ -24,15 +22,6 @@ public final class Env {
 
     public static final boolean PRINT_RDF_RESULTS = false;
     public static final boolean IS_PRINT_ENABLED = true;
-
-    public static String getApproach(List<String> args) {
-        if (args.contains("--approach=" + EDM_APPROACH_EVENT_CENTRIC)) {
-            return EDM_APPROACH_EVENT_CENTRIC;
-        } else if (args.contains("--approach=" + EDM_APPROACH_OBJECT_CENTRIC)) {
-            return EDM_APPROACH_OBJECT_CENTRIC;
-        }
-        return null;
-    }
 
     public static String getDataType(List<String> args) {
         if (args.contains("--dataType=" + DATA_TYPE_CIMEC)) {

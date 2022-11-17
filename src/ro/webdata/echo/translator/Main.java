@@ -2,10 +2,10 @@ package ro.webdata.echo.translator;
 
 import ro.webdata.echo.commons.Const;
 import ro.webdata.echo.commons.Print;
+import ro.webdata.echo.translator.commons.Env;
 import ro.webdata.echo.translator.edm.EdmTranslator;
 import ro.webdata.echo.translator.edm.test.EdmTranslatorDemo;
 import ro.webdata.normalization.timespan.ro.TimeExpression;
-import ro.webdata.echo.translator.commons.Env;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,7 +15,6 @@ import static ro.webdata.echo.translator.commons.Env.IS_PRINT_ENABLED;
 public class Main {
     public static void main(String[] args) {
         List<String> list = Arrays.asList(args);
-        String approach = Env.getApproach(list);
         String dataType = Env.getDataType(list);
         boolean isDemo = Env.isDemo(list);
         boolean normalizeTimeExpression = Env.normalizeTimeExpression(list);
@@ -24,9 +23,9 @@ public class Main {
 
         if (!normalizeTimeExpression) {
             if (!isDemo)
-                EdmTranslator.run(approach, dataType);
+                EdmTranslator.run(dataType);
             else
-                EdmTranslatorDemo.run(approach, dataType);
+                EdmTranslatorDemo.run(dataType);
         } else {
             String timeInput = Env.getInputTime(list);
             TimeExpression timeExpression = new TimeExpression(timeInput, null);
