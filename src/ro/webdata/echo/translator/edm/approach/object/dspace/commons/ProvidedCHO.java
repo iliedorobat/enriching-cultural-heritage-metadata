@@ -5,6 +5,7 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.RDF;
 import ro.webdata.echo.commons.graph.vocab.EDM;
+import ro.webdata.echo.commons.schema.Namespace;
 import ro.webdata.parser.xml.dspace.core.Parser;
 import ro.webdata.parser.xml.dspace.core.attribute.record.IdentifierRecord;
 import ro.webdata.parser.xml.dspace.core.leaf.dcValue.DcValue;
@@ -82,8 +83,7 @@ public final class ProvidedCHO {
                 DcWrapper dcWrapper = Parser.parseDcXmlFile(file.getPath());
                 String schemaName = dcWrapper.getSchemaName();
 
-                // TODO: use a constant
-                if (schemaName.equals("dc")) {
+                if (schemaName.equals(Namespace.DC)) {
                     providedCHO = generateProvidedCHO(model, dcWrapper);
                 }
             }

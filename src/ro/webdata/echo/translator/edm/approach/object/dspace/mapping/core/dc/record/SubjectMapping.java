@@ -5,6 +5,7 @@ import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DC_11;
 import ro.webdata.echo.commons.Const;
 import ro.webdata.echo.commons.Text;
+import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.echo.translator.edm.approach.object.dspace.commons.PrintMessages;
 import ro.webdata.parser.xml.dspace.core.attribute.record.BasicRecord;
 import ro.webdata.parser.xml.dspace.core.attribute.record.SubjectRecord;
@@ -25,9 +26,8 @@ public class SubjectMapping {
             case REFINEMENT_OTHER:
                 providedCHO.addProperty(DC_11.subject, value, language);
                 break;
-            // TODO: classification == dc:type?
             case REFINEMENT_CLASSIFICATION:
-                providedCHO.addProperty(DC_11.type, value, language);
+                providedCHO.addProperty(EDM.hasType, value, language);
                 break;
             case SubjectRecord.SCHEME_DDC:
             case SubjectRecord.SCHEME_LCC:
