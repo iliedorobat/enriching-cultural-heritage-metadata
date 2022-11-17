@@ -43,7 +43,7 @@ public class DescriptionMapping {
                 providedCHO.addProperty(DC_11.description, value, language);
                 break;
             default:
-                PrintMessages.elementWarning(Const.OPERATION_MAPPING, providedCHO, dcValue);
+                PrintMessages.invalidElement(Const.OPERATION_MAPPING, providedCHO, dcValue);
                 break;
         }
     }

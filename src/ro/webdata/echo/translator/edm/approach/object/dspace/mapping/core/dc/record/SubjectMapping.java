@@ -38,7 +38,7 @@ public class SubjectMapping {
                 providedCHO.addProperty(DC_11.subject, value, language);
                 break;
             default:
-                PrintMessages.elementWarning(Const.OPERATION_MAPPING, providedCHO, dcValue);
+                PrintMessages.invalidElement(Const.OPERATION_MAPPING, providedCHO, dcValue);
                 break;
         }
     }

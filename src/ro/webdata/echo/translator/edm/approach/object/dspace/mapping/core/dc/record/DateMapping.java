@@ -44,7 +44,7 @@ public class DateMapping {
                 providedCHO.addProperty(DC_11.date, value, language);
                 break;
             default:
-                PrintMessages.elementWarning(Const.OPERATION_MAPPING, providedCHO, dcValue);
+                PrintMessages.invalidElement(Const.OPERATION_MAPPING, providedCHO, dcValue);
                 break;
         }
     }

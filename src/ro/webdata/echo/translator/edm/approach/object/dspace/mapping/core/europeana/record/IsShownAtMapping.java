@@ -20,7 +20,7 @@ public class IsShownAtMapping {
                 aggregation.addProperty(EDM.isShownAt, value, language);
                 break;
             default:
-                PrintMessages.elementWarning(Const.OPERATION_MAPPING, providedCHO, dcValue);
+                PrintMessages.invalidElement(Const.OPERATION_MAPPING, providedCHO, dcValue);
                 break;
         }
     }

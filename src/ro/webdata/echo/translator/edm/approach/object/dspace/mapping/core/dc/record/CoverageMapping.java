@@ -41,7 +41,7 @@ public class CoverageMapping {
                 providedCHO.addProperty(DCTerms.temporal, value, language);
                 break;
             default:
-                PrintMessages.elementWarning(Const.OPERATION_MAPPING, providedCHO, dcValue);
+                PrintMessages.invalidElement(Const.OPERATION_MAPPING, providedCHO, dcValue);
                 break;
         }
     }

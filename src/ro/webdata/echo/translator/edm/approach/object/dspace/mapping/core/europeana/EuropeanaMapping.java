@@ -21,7 +21,7 @@ import java.util.Map;
 
 public class EuropeanaMapping {
     // TODO: the elements and the qualifiers should be lowercase
-    //  add suppressing of the element value to be lowercase (in the parser)
+    //  suppress the element value to be lowercase (in the parser)
     private static final String ELEMENT_IS_SHOWN_AT = "isShownAt";
     private static final String ELEMENT_IS_SHOWN_BY = "isShownBy";
     private static final String ELEMENT_PROVIDER = "provider";
@@ -39,7 +39,7 @@ public class EuropeanaMapping {
         }
 
         if (!hasEdmType(dcValueMap)) {
-            PrintMessages.edmTypeError(Const.OPERATION_MAPPING, providedCHO);
+            PrintMessages.missingEdmType(Const.OPERATION_MAPPING, providedCHO);
         }
     }
 

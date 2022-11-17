@@ -51,7 +51,7 @@ public class ContributorMapping {
                 providedCHO.addProperty(DC_11.contributor, contributor);
                 break;
             default:
-                PrintMessages.elementWarning(Const.OPERATION_MAPPING, providedCHO, dcValue);
+                PrintMessages.invalidElement(Const.OPERATION_MAPPING, providedCHO, dcValue);
                 break;
         }
     }

@@ -15,7 +15,7 @@ public class TypeMapping {
         String value = dcValue.getText();
 
         if (!EDMType.VALUES.contains(value)) {
-            PrintMessages.edmTypeWarning(Const.OPERATION_MAPPING, providedCHO, value);
+            PrintMessages.invalidEdmType(Const.OPERATION_MAPPING, providedCHO, value);
         }
 
         switch (qualifier) {
@@ -24,7 +24,7 @@ public class TypeMapping {
                 providedCHO.addProperty(EDM.type, value, Const.LANG_EN);
                 break;
             default:
-                PrintMessages.elementWarning(Const.OPERATION_MAPPING, providedCHO, dcValue);
+                PrintMessages.invalidElement(Const.OPERATION_MAPPING, providedCHO, dcValue);
                 break;
         }
     }
