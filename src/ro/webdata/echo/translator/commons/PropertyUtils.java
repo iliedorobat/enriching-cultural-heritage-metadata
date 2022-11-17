@@ -12,6 +12,7 @@ import org.apache.jena.vocabulary.RDFS;
 import org.apache.jena.vocabulary.SKOS;
 import ro.webdata.echo.commons.File;
 import ro.webdata.echo.commons.Text;
+import ro.webdata.echo.commons.Writer;
 import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.echo.commons.validator.UrlValidator;
 
@@ -148,6 +149,7 @@ public final class PropertyUtils {
      * @return Property - the new created subProperty
      */
     public static Property createSubProperty(Model model, Property mainProperty, String name, boolean prepareCamelCase) {
+        StringWriter sw = new StringWriter();
         String subPropertyName = prepareCamelCase
                 ? Text.prepareCamelCaseText(name)
                 : name;
@@ -157,11 +159,11 @@ public final class PropertyUtils {
         );
         subProperty.addProperty(RDFS.subPropertyOf, mainProperty);
 
-        StringWriter sw = new StringWriter()
-                .append(mainProperty.toString())
-                .append("|")
-                .append(subProperty.toString())
-                .append("\n");
+        // Add the header
+        if (!File.exists(FileConst.PATH_OUTPUT_PROPERTIES_FILE)) {
+            Writer.appendLine(sw, "parent property", "new property");
+        }
+        Writer.appendLine(sw, mainProperty.toString(), subProperty.toString());
         File.write(sw, FileConst.PATH_OUTPUT_PROPERTIES_FILE, true);
 
         return subProperty;

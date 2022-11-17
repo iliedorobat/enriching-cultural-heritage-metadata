@@ -69,12 +69,6 @@ public class PlaceMapUtils {
         LinkedHashMap<String, HashMap<String, Object>> placesLinkMap = new LinkedHashMap<>();
         String uri = "";
 
-        if (reducedPlaceNameMap.get(PlaceType.COUNTRY) == null && reducedPlaceNameMap.get(PlaceType.REGION) == null) {
-            HashMap<String, String> locality = reducedPlaceNameMap.get(PlaceType.LOCALITY);
-            if (locality != null)
-                System.out.println(locality);
-        }
-
         for (Map.Entry<String, HashMap<String, String>> placeMap : reducedPlaceNameMap.entrySet()) {
             String placeType = placeMap.getKey();
             HashMap<String, String> placeNames = placeMap.getValue();
@@ -126,7 +120,7 @@ public class PlaceMapUtils {
      * @param place The related place
      * @return Map containing the names of the political entities
      */
-    private static LinkedHashMap<String, HashMap<String, String>> preparePlaceNameMap(Place place) {
+    public static LinkedHashMap<String, HashMap<String, String>> preparePlaceNameMap(Place place) {
         LinkedHashMap<String, HashMap<String, String>> map = new LinkedHashMap<>();
         HashMap<String, PlaceComplexType> placeMap = preparePlaceMap(place);
         List<String> roCountyList = Arrays.stream(RO_COUNTIES)

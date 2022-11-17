@@ -5,6 +5,7 @@ import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.RDF;
 import ro.webdata.echo.commons.Const;
 import ro.webdata.echo.commons.File;
+import ro.webdata.echo.commons.Writer;
 import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.echo.translator.commons.FileConst;
 import ro.webdata.normalization.timespan.ro.TimespanUtils;
@@ -32,6 +33,7 @@ public class EventDateProcessing {
         Resource eventDateResource = null;
 
         for (DisplayDate displayDate : displayDateList) {
+            StringWriter sw = new StringWriter();
             String text = displayDate.getText();
             TreeSet<String> timespanSet = new TreeSet<>();
 
@@ -39,11 +41,11 @@ public class EventDateProcessing {
                 timespanSet = TimespanUtils.getTimespanSet(text);
             }
 
-            StringWriter sw = new StringWriter()
-                    .append(text)
-                    .append("|")
-                    .append(timespanSet.toString())
-                    .append("\n");
+            // Add the header
+            if (!File.exists(FileConst.PATH_OUTPUT_ALL_TIMESPAN_ANALYSIS_FILE)) {
+                Writer.appendLine(sw, "raw value", "normalized value");
+            }
+            Writer.appendLine(sw, text, timespanSet.toString());
             File.write(sw, FileConst.PATH_OUTPUT_ALL_TIMESPAN_ANALYSIS_FILE, true);
 
             for (String timespan : timespanSet) {

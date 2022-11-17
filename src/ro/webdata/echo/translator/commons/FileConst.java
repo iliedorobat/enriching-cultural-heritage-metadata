@@ -20,6 +20,7 @@ public class FileConst {
 
     public static final String PATH_OUTPUT_DATASET_FILE = PATH_OUTPUT_LIDO_DIR + File.FILE_SEPARATOR + "dataset" + File.EXTENSION_SEPARATOR + File.EXTENSION_RDF;
     public static final String PATH_OUTPUT_DEMO_FILE = PATH_OUTPUT_LIDO_DIR + File.FILE_SEPARATOR + FILE_NAME_DEMO + File.EXTENSION_SEPARATOR + File.EXTENSION_RDF;
+    public static final String PATH_MISSING_COUNTRY_REGION = PATH_OUTPUT_LIDO_DIR + File.FILE_SEPARATOR + "missing_country_and_region" + File.EXTENSION_SEPARATOR + File.EXTENSION_CSV;
     public static final String PATH_OUTPUT_PROPERTIES_FILE = PATH_OUTPUT_LIDO_DIR + File.FILE_SEPARATOR + "properties" + File.EXTENSION_SEPARATOR + File.EXTENSION_CSV;
 
     public static final String PATH_OUTPUT_TIMESPAN_FILE = PATH_OUTPUT_LIDO_DIR + File.FILE_SEPARATOR + "timespan_all" + File.EXTENSION_SEPARATOR + File.EXTENSION_TXT;
