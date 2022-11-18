@@ -6,6 +6,7 @@ import ro.webdata.echo.commons.File;
 import ro.webdata.echo.commons.Text;
 import ro.webdata.echo.commons.graph.PlaceType;
 import ro.webdata.echo.translator.commons.Env;
+import ro.webdata.echo.translator.edm.lido.commons.constants.PlaceConst;
 import ro.webdata.parser.xml.lido.core.complex.placeComplexType.PlaceComplexType;
 import ro.webdata.parser.xml.lido.core.leaf.appellationValue.AppellationValue;
 import ro.webdata.parser.xml.lido.core.leaf.partOfPlace.PartOfPlace;
@@ -17,50 +18,6 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class PlaceMapUtils {
-    public static final String[] RO_COUNTIES = {
-            "Alba",
-            "Arad",
-            "Argeș",
-            "Bacău",
-            "Bihor",
-            "Bistrița-Năsăud",
-            "Botoșani",
-            "Brașov",
-            "Brăila",
-            "București",
-            "Buzău",
-            "Caraș-Severin",
-            "Călărași",
-            "Cluj",
-            "Constanța",
-            "Covasna",
-            "Dâmbovița",
-            "Dolj",
-            "Galați",
-            "Giurgiu",
-            "Gorj",
-            "Harghita",
-            "Hunedoara",
-            "Ialomița",
-            "Iași",
-            "Ilfov",
-            "Maramureș",
-            "Mehedinți",
-            "Mureș",
-            "Neamț",
-            "Olt",
-            "Prahova",
-            "Satu Mare",
-            "Sălaj",
-            "Sibiu",
-            "Suceava",
-            "Teleorman",
-            "Timiș",
-            "Tulcea",
-            "Vaslui",
-            "Vâlcea",
-            "Vrancea"
-    };
     public static final String NAME_PROP = "name";
     public static final String URI_PROP = "uri";
 
@@ -69,15 +26,17 @@ public class PlaceMapUtils {
         LinkedHashMap<String, HashMap<String, Object>> placesLinkMap = new LinkedHashMap<>();
         String uri = "";
 
-        for (Map.Entry<String, HashMap<String, String>> placeMap : reducedPlaceNameMap.entrySet()) {
-            String placeType = placeMap.getKey();
-            HashMap<String, String> placeNames = placeMap.getValue();
-            uri = preparePlaceUri(placeNames, placeType, uri);
+        for (String placeType : PlaceType.TYPES) {
+            HashMap<String, String> placeNames = reducedPlaceNameMap.get(placeType);
 
-            HashMap<String, Object> placeLinkMap = new HashMap<>();
-            placeLinkMap.put(URI_PROP, uri);
-            placeLinkMap.put(NAME_PROP, placeNames);
-            placesLinkMap.put(placeType, placeLinkMap);
+            if (placeNames != null) {
+                uri = preparePlaceUri(placeNames, placeType, uri);
+
+                HashMap<String, Object> placeLinkMap = new HashMap<>();
+                placeLinkMap.put(URI_PROP, uri);
+                placeLinkMap.put(NAME_PROP, placeNames);
+                placesLinkMap.put(placeType, placeLinkMap);
+            }
         }
 
         return placesLinkMap;
@@ -101,7 +60,7 @@ public class PlaceMapUtils {
             String lang = placeNameMap.getKey();
             String placeName = placeNameMap.getValue();
 
-            if (isMainLang(lang)) {
+            if (Preparation.isMainLang(lang)) {
                 String preparedPlaceName = StringUtils.stripAccents(
                         Text.sanitizeString(placeName)
                 );
@@ -122,196 +81,336 @@ public class PlaceMapUtils {
      */
     public static LinkedHashMap<String, HashMap<String, String>> preparePlaceNameMap(Place place) {
         LinkedHashMap<String, HashMap<String, String>> map = new LinkedHashMap<>();
-        HashMap<String, PlaceComplexType> placeMap = preparePlaceMap(place);
-        List<String> roCountyList = Arrays.stream(RO_COUNTIES)
-                .map(county -> StringUtils.stripAccents(county.toLowerCase()))
-                .collect(Collectors.toList());
+        HashMap<String, PlaceComplexType> placeMap = Preparation.preparePlaceMap(place);
 
-        for (String placeType : PlaceType.TYPES) {
-            HashMap<String, String> placeNameMap = getPlaceNameMap(placeMap, placeType);
+        Curation.country(map, placeMap);
+        Curation.region(map, placeMap);
+        Curation.county(map, placeMap);
+        Curation.commune(map, placeMap);
+        Curation.locality(map, placeMap);
+        Curation.point(map, placeMap);
 
-            if (!placeNameMap.isEmpty()) {
-                // Sanitize place name & place type
-                String roPlaceName = placeNameMap.get(Const.LANG_RO);
-                String sanitizedPlaceType = sanitizePlaceType(roPlaceName, placeType);
+        return map;
+    }
+}
 
-                if (placeType.equals(PlaceType.COUNTRY)) {
-                    if (roPlaceName.equals("Regatul Unit al Marii Britanii și Irlandei de Nord")) {
-                        placeNameMap.put(Const.LANG_RO, "Marea Britanie");
-                        map.put(sanitizedPlaceType, placeNameMap);
-                    }
-                }
+class Curation {
+    protected static void country(LinkedHashMap<String, HashMap<String, String>> map, HashMap<String, PlaceComplexType> placeMap) {
+        HashMap<String, String> nameMap = Preparation.preparePlaceNameMap(placeMap, PlaceType.COUNTRY);
+        String placeName = nameMap.get(Const.LANG_RO);
+        String placeType = Cleaning.sanitizePlaceType(placeName, PlaceType.COUNTRY);
 
-                else if (placeType.equals(PlaceType.REGION)) {
-                    addMissingPlace(map, PlaceType.COUNTRY, "România");
-                    placeNameMap.put(Const.LANG_RO, sanitizeRegionName(placeNameMap.get(Const.LANG_RO)));
-                    map.put(sanitizedPlaceType, placeNameMap);
+        if (!nameMap.isEmpty()) {
+            if (placeName != null && placeName.equals("Regatul Unit al Marii Britanii și Irlandei de Nord")) {
+                nameMap.put(Const.LANG_RO, "Marea Britanie");
+            }
 
-                    if (roPlaceName.equals("Sibiu, Transilvania") || roPlaceName.equals("Sălaj, Transilvania")) {
-                        String countyName = roPlaceName.split(",")[0];
-                        HashMap<String, String> countyNameMap = new HashMap<>();
-                        countyNameMap.put(Const.LANG_RO, countyName);
-                        map.put(PlaceType.COUNTY, countyNameMap);
-                    }
-                }
+            map.put(placeType, nameMap);
+        }
+    }
 
-                else if (placeType.equals(PlaceType.COUNTY)) {
-                    if (roCountyList.contains(StringUtils.stripAccents(roPlaceName.toLowerCase()))) {
-                        addMissingPlace(map, PlaceType.COUNTRY, "România");
-                    }
-                    placeNameMap.put(Const.LANG_RO, sanitizeCountyName(placeNameMap.get(Const.LANG_RO)));
-                    map.put(sanitizedPlaceType, placeNameMap);
-                }
+    protected static void region(LinkedHashMap<String, HashMap<String, String>> map, HashMap<String, PlaceComplexType> placeMap) {
+        HashMap<String, String> nameMap = Preparation.preparePlaceNameMap(placeMap, PlaceType.REGION);
+        String placeName = nameMap.get(Const.LANG_RO);
+        String placeType = Cleaning.sanitizePlaceType(placeName, PlaceType.REGION);
 
-                else if (placeType.equals(PlaceType.LOCALITY)) {
-                    switch (roPlaceName) {
-                        case "Arad":
-                            addMissingPlace(map, PlaceType.COUNTRY, "România");
-                            addMissingPlace(map, PlaceType.REGION, "Transilvania");
-                            addMissingPlace(map, PlaceType.COUNTY, "Arad");
-                            map.put(sanitizedPlaceType, placeNameMap);
-                            break;
+        if (!nameMap.isEmpty()) {
+            // TODO: check for regions before adding the country (similar to how it is done in the case of counties)
+            addMissingPlace(map, PlaceType.COUNTRY, "România");
+            String regionName = Cleaning.sanitizeRegionName(
+                    nameMap.get(Const.LANG_RO)
+            );
+            nameMap.put(Const.LANG_RO, regionName);
+            map.put(placeType, nameMap);
 
-                        case "București":
-                        case "Bucuresti":
-                        case "BUCUREȘTI":
-                        case "BUCUREȘTI (Târgul moșilor)":
-                            // "Ilfov" county was added for some entries, but "București" is not part of any county
-                            map.remove(PlaceType.COUNTY);
-
-                            // For some entries, the country is missing
-                            addMissingPlace(map, PlaceType.COUNTRY, "România");
-                            placeNameMap.put(Const.LANG_RO, "București");
-                            map.put(sanitizedPlaceType, placeNameMap);
-                            break;
-
-                        case "Budapesta":
-                            addMissingPlace(map, PlaceType.COUNTRY, "Ungaria");
-                            map.put(sanitizedPlaceType, placeNameMap);
-
-                        case "Brașov":
-                            addMissingPlace(map, PlaceType.COUNTRY, "România");
-                            addMissingPlace(map, PlaceType.REGION, "Transilvania");
-                            addMissingPlace(map, PlaceType.COUNTY, "Brașov");
-                            map.put(sanitizedPlaceType, placeNameMap);
-                            break;
-
-                        case "Câmpulung Moldovenesc":
-                            addMissingPlace(map, PlaceType.COUNTRY, "România");
-                            addMissingPlace(map, PlaceType.REGION, "Bucovina");
-                            addMissingPlace(map, PlaceType.COUNTY, "Suceava");
-                            map.put(sanitizedPlaceType, placeNameMap);
-                            break;
-
-                        case "Cluj":
-                        case "Cluj-Napoca":
-                            addMissingPlace(map, PlaceType.COUNTRY, "România");
-                            addMissingPlace(map, PlaceType.REGION, "Transilvania");
-                            addMissingPlace(map, PlaceType.COUNTY, "Cluj");
-                            placeNameMap.put(Const.LANG_RO, "Cluj-Napoca");
-                            map.put(sanitizedPlaceType, placeNameMap);
-                            break;
-
-                        case "IAȘI":
-                            addMissingPlace(map, PlaceType.COUNTRY, "România");
-                            addMissingPlace(map, PlaceType.REGION, "Moldova");
-                            addMissingPlace(map, PlaceType.COUNTY, "Iași");
-                            map.put(sanitizedPlaceType, placeNameMap);
-                            break;
-
-                        case "Clopodia, județul Timiș":
-                        case "Lăpușnic, județ Timiș":
-                        case "Hodoș, județ Timiș":
-                            addMissingPlace(map, PlaceType.COUNTRY, "România");
-                            addMissingPlace(map, PlaceType.REGION, "Transilvania");
-                            addMissingPlace(map, PlaceType.COUNTY, "Timiș");
-                            placeNameMap.put(Const.LANG_RO, roPlaceName.split(",")[0]);
-                            map.put(sanitizedPlaceType, placeNameMap);
-                            break;
-
-                        case "Hațeg":
-                            addMissingPlace(map, PlaceType.COUNTRY, "România");
-                            addMissingPlace(map, PlaceType.REGION, "Transilvania");
-                            addMissingPlace(map, PlaceType.COUNTY, "Hunedoara");
-                            map.put(sanitizedPlaceType, placeNameMap);
-                            break;
-
-                        case "Olănești (Basarabia)":
-                            addMissingPlace(map, PlaceType.COUNTRY, "Republica Moldova");
-                            placeNameMap.put(Const.LANG_RO, "Olănești");
-                            map.put(sanitizedPlaceType, placeNameMap);
-                            break;
-
-                        case "ORADEA":
-                        case "Oradea Mare":
-                            addMissingPlace(map, PlaceType.COUNTRY, "România");
-//                            addMissingPlace(map, PlaceType.REGION, "Crișana");
-                            addMissingPlace(map, PlaceType.COUNTY, "Bihor");
-                            map.put(sanitizedPlaceType, placeNameMap);
-                            break;
-
-                        case "Târgu Mureș":
-                            addMissingPlace(map, PlaceType.COUNTRY, "România");
-                            addMissingPlace(map, PlaceType.REGION, "Transilvania");
-                            addMissingPlace(map, PlaceType.COUNTY, "Mureș");
-                            map.put(sanitizedPlaceType, placeNameMap);
-                            break;
-
-                        // The country & county are missing in the case of the localities "Șelimbăr" and "Sibiu"
-                        case "Șelimbăr":
-                        case "Sibiu":
-                            addMissingPlace(map, PlaceType.COUNTRY, "România");
-                            addMissingPlace(map, PlaceType.REGION, "Transilvania");
-                            addMissingPlace(map, PlaceType.COUNTY, "Sibiu");
-                            map.put(sanitizedPlaceType, placeNameMap);
-                            break;
-
-                        // The country & county are missing in some cases of the locality "Londra"
-                        case "Londra":
-                            if (map.containsKey(PlaceType.COUNTRY)) {
-                                Map<String, String> countryMap = map.get(PlaceType.COUNTRY);
-                                String roCountryName = countryMap.get(Const.LANG_RO);
-
-                                // Replace "Marea Britanie" with "Anglia"
-                                if (roCountryName.equals("Marea Britanie")) {
-                                    countryMap.put(Const.LANG_RO, "Anglia");
-                                }
-                            }
-                            // For some entries, the country is missing
-                            addMissingPlace(map, PlaceType.COUNTRY, "Anglia");
-                            map.put(sanitizedPlaceType, placeNameMap);
-                            break;
-
-                        case "Moscova":
-                            addMissingPlace(map, PlaceType.COUNTRY, "Rusia");
-                            map.put(sanitizedPlaceType, placeNameMap);
-                            break;
-
-                        case "Butin (Timiș)":
-                        case "Cebza (Timiș)":
-                        case "Jebel (Timiș)":
-                            addMissingPlace(map, PlaceType.COUNTRY, "România");
-                            addMissingPlace(map, PlaceType.REGION, "Transilvania");
-                            addMissingPlace(map, PlaceType.COUNTY, "Timiș");
-                            placeNameMap.put(Const.LANG_RO, roPlaceName.split(" \\(")[0]);
-                            map.put(sanitizedPlaceType, placeNameMap);
-                            break;
-
-                        case "necunoscută":
-                        case "Necunoscută":
-                        case "nu are":
-                            placeNameMap.remove(Const.LANG_RO);
-                            break;
-                        default:
-                            map.put(sanitizedPlaceType, placeNameMap);
-                    }
-                } else {
-                    map.put(sanitizedPlaceType, placeNameMap);
+            if (placeName != null) {
+                if (placeName.equals("Sibiu, Transilvania") || placeName.equals("Sălaj, Transilvania")) {
+                    String countyName = placeName.split(",")[0];
+                    addMissingPlace(map, PlaceType.COUNTY, countyName);
                 }
             }
         }
+    }
 
-        return map;
+    protected static void county(LinkedHashMap<String, HashMap<String, String>> map, HashMap<String, PlaceComplexType> placeMap) {
+        HashMap<String, String> nameMap = Preparation.preparePlaceNameMap(placeMap, PlaceType.COUNTY);
+        String placeName = nameMap.get(Const.LANG_RO);
+        String placeType = Cleaning.sanitizePlaceType(placeName, PlaceType.COUNTY);
+
+        if (!nameMap.isEmpty()) {
+            List<String> roCounties = Arrays.stream(PlaceConst.RO_COUNTIES)
+                    .map(county -> StringUtils.stripAccents(county.toLowerCase()))
+                    .collect(Collectors.toList());
+
+            if (placeName != null && roCounties.contains(StringUtils.stripAccents(placeName.toLowerCase()))) {
+                addMissingPlace(map, PlaceType.COUNTRY, "România");
+            }
+
+            String countyName = Cleaning.sanitizeCountyName(nameMap.get(Const.LANG_RO));
+            nameMap.put(Const.LANG_RO, countyName);
+            map.put(placeType, nameMap);
+        }
+    }
+
+    protected static void commune(LinkedHashMap<String, HashMap<String, String>> map, HashMap<String, PlaceComplexType> placeMap) {
+        HashMap<String, String> nameMap = Preparation.preparePlaceNameMap(placeMap, PlaceType.COMMUNE);
+        String placeName = nameMap.get(Const.LANG_RO);
+        String placeType = Cleaning.sanitizePlaceType(placeName, PlaceType.COMMUNE);
+
+        if (!nameMap.isEmpty()) {
+            if (placeName != null && placeName.equals("Udești")) {
+                HashMap<String, String> countyNameMap = map.get(PlaceType.COUNTY);
+
+                if (countyNameMap == null) {
+                    addMissingPlace(map, PlaceType.COUNTRY, "România");
+//                    addMissingPlace(map, PlaceType.REGION, "Bucovina");
+                    addMissingPlace(map, PlaceType.COUNTY, "Suceava");
+                }
+            }
+
+            map.put(placeType, nameMap);
+        }
+    }
+
+    protected static void locality(LinkedHashMap<String, HashMap<String, String>> map, HashMap<String, PlaceComplexType> placeMap) {
+        HashMap<String, String> nameMap = Preparation.preparePlaceNameMap(placeMap, PlaceType.LOCALITY);
+        String placeName = nameMap.get(Const.LANG_RO);
+        String placeType = Cleaning.sanitizePlaceType(placeName, PlaceType.LOCALITY);
+
+        if (!nameMap.isEmpty()) {
+            HashMap<String, String> countryMap = map.get(PlaceType.COUNTRY);
+            HashMap<String, String> countyMap = map.get(PlaceType.COUNTY);
+            String countryName = countryMap != null
+                    ? countryMap.get(Const.LANG_RO)
+                    : null;
+            String lcPlaceName = StringUtils.stripAccents(placeName.trim()).toLowerCase();
+
+            switch (lcPlaceName) {
+                // "Arad"
+                case "arad":
+                    addMissingPlace(map, PlaceType.COUNTRY, "România");
+//                    addMissingPlace(map, PlaceType.REGION, "Transilvania");
+                    addMissingPlace(map, PlaceType.COUNTY, "Arad");
+                    break;
+
+                // "Botoșani"
+                case "botosani":
+                    if (countyMap == null && countryMap == null) {
+                        addMissingPlace(map, PlaceType.COUNTRY, "România");
+//                        addMissingPlace(map, PlaceType.REGION, "Moldova");
+                        addMissingPlace(map, PlaceType.COUNTY, "Botoșani");
+                    }
+                    break;
+
+                // "Brașov"
+                case "brasov":
+                    addMissingPlace(map, PlaceType.COUNTRY, "România");
+//                    addMissingPlace(map, PlaceType.REGION, "Transilvania");
+                    addMissingPlace(map, PlaceType.COUNTY, "Brașov");
+                    break;
+
+                // "Bucrești", "București", "Bucuresti", "BUCUREȘTI", "BUCUREȘTI (Târgul moșilor)",
+                case "bucresti":
+                case "bucuresti":
+                case "bucuresti (targul mosilor)":
+                    // "Ilfov" county was added for some entries, but "București" is not part of any county
+                    map.remove(PlaceType.COUNTY);
+
+                    // For some entries, the country is missing
+                    addMissingPlace(map, PlaceType.COUNTRY, "România");
+                    nameMap.put(Const.LANG_RO, "București");
+                    break;
+
+                // "Budapesta"
+                case "budapesta":
+                    addMissingPlace(map, PlaceType.COUNTRY, "Ungaria");
+                    break;
+
+                // "Butin (Timiș)", "Cebza (Timiș)", "Jebel (Timiș)"
+                case "butin (timis)":
+                case "cebza (timis)":
+                case "jebel (timis)":
+                    addMissingPlace(map, PlaceType.COUNTRY, "România");
+//                    addMissingPlace(map, PlaceType.REGION, "Transilvania");
+                    addMissingPlace(map, PlaceType.COUNTY, "Timiș");
+                    nameMap.put(Const.LANG_RO, placeName.split(" \\(")[0]);
+                    break;
+
+                // "Câmpulung Moldovenesc"
+                case "campulung moldovenesc":
+                    addMissingPlace(map, PlaceType.COUNTRY, "România");
+//                    addMissingPlace(map, PlaceType.REGION, "Bucovina");
+                    addMissingPlace(map, PlaceType.COUNTY, "Suceava");
+                    break;
+
+                // "Cașva"
+                case "casva":
+                    String countyName = countyMap.get("ro");
+
+                    if (countyName != null && countyName.equals("Mureș")) {
+                        addMissingPlace(map, PlaceType.COUNTRY, "România");
+                    }
+
+                    break;
+
+                // "Clopodia, județul Timiș", "Lăpușnic, județ Timiș", "Hodoș, județ Timiș"
+                case "clopodia, judetul timis":
+                case "lapusnic, judet timis":
+                case "hodos, judet timis":
+                    addMissingPlace(map, PlaceType.COUNTRY, "România");
+//                    addMissingPlace(map, PlaceType.REGION, "Transilvania");
+                    addMissingPlace(map, PlaceType.COUNTY, "Timiș");
+                    nameMap.put(Const.LANG_RO, placeName.split(",")[0]);
+                    break;
+
+                // "Cluj", "Cluj-Napoca"
+                case "cluj":
+                case "cluj-napoca":
+                    addMissingPlace(map, PlaceType.COUNTRY, "România");
+//                    addMissingPlace(map, PlaceType.REGION, "Transilvania");
+                    addMissingPlace(map, PlaceType.COUNTY, "Cluj");
+                    nameMap.put(Const.LANG_RO, "Cluj-Napoca");
+                    break;
+
+                // "Hațeg"
+                case "hateg":
+                    addMissingPlace(map, PlaceType.COUNTRY, "România");
+//                    addMissingPlace(map, PlaceType.REGION, "Transilvania");
+                    addMissingPlace(map, PlaceType.COUNTY, "Hunedoara");
+                    break;
+
+                // "Hodac Hodac"
+                case "hodac hodac":
+                    nameMap.put(Const.LANG_RO, "Hodac");
+                    break;
+
+                // "IAȘI"
+                case "iasi":
+                    addMissingPlace(map, PlaceType.COUNTRY, "România");
+//                    addMissingPlace(map, PlaceType.REGION, "Moldova");
+                    addMissingPlace(map, PlaceType.COUNTY, "Iași");
+                    nameMap.put(Const.LANG_RO, "Iași");
+                    break;
+
+                // "Ilisești (Suceava)"
+                case "ilisesti (suceava)":
+                    addMissingPlace(map, PlaceType.COUNTRY, "România");
+//                    addMissingPlace(map, PlaceType.REGION, "Bucovina");
+                    addMissingPlace(map, PlaceType.COUNTY, "Suceava");
+                    addMissingPlace(map, PlaceType.COMMUNE, "Ilisești");
+                    nameMap.put(Const.LANG_RO, "Ilisești");
+                    break;
+
+                // "Logig"
+                case "logig":
+                    HashMap<String, String> communeMap = map.get(PlaceType.COMMUNE);
+                    String communeName = communeMap.get("ro");
+
+                    // There is an entry for which the county "Maramureș" was assigned, but it should be "Mureș"
+                    if (communeName != null && communeName.equals("Lunca")) {
+                        countyMap.put("ro", "Mureș");
+                        map.put(PlaceType.COUNTY, countyMap);
+                    }
+
+                    break;
+
+                // "Londra"
+                case "londra":
+                    if (map.containsKey(PlaceType.COUNTRY)) {
+                        // Replace "Marea Britanie" with "Anglia"
+                        if (countryName != null && countryName.equals("Marea Britanie")) {
+                            countryMap.put(Const.LANG_RO, "Anglia");
+                        }
+                    }
+                    // Add the country if it is missing
+                    addMissingPlace(map, PlaceType.COUNTRY, "Anglia");
+                    break;
+
+                // "Moscova"
+                case "moscova":
+                    addMissingPlace(map, PlaceType.COUNTRY, "Rusia");
+                    break;
+
+                // "necunoscută", "Necunoscută", "nu are"
+                case "necunoscuta":
+                case "nu are":
+                    nameMap.remove(Const.LANG_RO);
+                    break;
+
+//                // "Olănești (Basarabia)"
+//                case "olanesti (basarabia)":
+//                    addMissingPlace(map, PlaceType.COUNTRY, "Republica Moldova");
+//                    nameMap.put(Const.LANG_RO, "Olănești");
+//                    break;
+
+                // "ORADEA", "Oradea Mare"
+                case "oradea":
+                case "oradea mare":
+                    addMissingPlace(map, PlaceType.COUNTRY, "România");
+//                    addMissingPlace(map, PlaceType.REGION, "Crișana");
+                    addMissingPlace(map, PlaceType.COUNTY, "Bihor");
+                    // replace ORADEA with Oradea
+                    if (lcPlaceName.equals("oradea")) {
+                        nameMap.put(Const.LANG_RO, "Oradea");
+                    }
+                    break;
+
+                // "Șelimbăr", "Sibiu"
+                case "selimbar":
+                case "sibiu":
+                    addMissingPlace(map, PlaceType.COUNTRY, "România");
+//                    addMissingPlace(map, PlaceType.REGION, "Transilvania");
+                    addMissingPlace(map, PlaceType.COUNTY, "Sibiu");
+                    break;
+
+                // "Strassbourg"
+                case "strassbourg":
+                    addMissingPlace(map, PlaceType.COUNTRY, "Franța");
+                    nameMap.put(Const.LANG_RO, "Strasbourg");
+                    break;
+
+                // "Târgu Mureș"
+                case "targu mures":
+                    addMissingPlace(map, PlaceType.COUNTRY, "România");
+//                    addMissingPlace(map, PlaceType.REGION, "Transilvania");
+                    addMissingPlace(map, PlaceType.COUNTY, "Mureș");
+                    break;
+
+                default:
+                    break;
+            }
+
+            if (!nameMap.isEmpty()) {
+                map.put(placeType, nameMap);
+            }
+        }
+    }
+
+    protected static void point(LinkedHashMap<String, HashMap<String, String>> map, HashMap<String, PlaceComplexType> placeMap) {
+        HashMap<String, String> nameMap = Preparation.preparePlaceNameMap(placeMap, PlaceType.POINT);
+        String placeName = nameMap.get(Const.LANG_RO);
+        String placeType = Cleaning.sanitizePlaceType(placeName, PlaceType.POINT);
+
+        if (!nameMap.isEmpty()) {
+            if (placeName != null) {
+                // the placeName may or may not have quotes: "\"Dealul Ruina\"" or "Dealul Ruina"
+                if (placeName.equals("Dealul Ruina") || placeName.equals("\"Dealul Ruina\"") || placeName.equals("Dealu Ruina")) {
+                    HashMap<String, String> localityNameMap = map.get(PlaceType.LOCALITY);
+                    String localityName = localityNameMap.get(Const.LANG_RO);
+
+                    if (localityName != null && localityName.equals("Siret")) {
+                        addMissingPlace(map, PlaceType.COUNTRY, "România");
+//                    addMissingPlace(map, PlaceType.REGION, "Bucovina");
+                        addMissingPlace(map, PlaceType.COUNTY, "Suceava");
+                        nameMap.put(Const.LANG_RO, "Dealul Ruina");
+
+                        map.put(PlaceType.LOCALITY, localityNameMap);
+                    }
+                }
+            }
+
+            map.put(placeType, nameMap);
+        }
     }
 
     private static void addMissingPlace(LinkedHashMap<String, HashMap<String, String>> map, String placeType, String countryName) {
@@ -321,12 +420,14 @@ public class PlaceMapUtils {
             map.put(placeType, countryNameMap);
         }
     }
+}
 
+class Preparation {
     /**
      * Prepare a map containing all the places.
      * @param place The related place
      */
-    public static HashMap<String, PlaceComplexType> preparePlaceMap(PlaceComplexType place) {
+    protected static HashMap<String, PlaceComplexType> preparePlaceMap(PlaceComplexType place) {
         HashMap<String, PlaceComplexType> placeMap = new HashMap<>();
         ArrayList<PartOfPlace> partOfPlaceList = place.getPartOfPlace();
 
@@ -362,7 +463,7 @@ public class PlaceMapUtils {
      * @param placeType The political entity type (E.g.: country, region, county, commune, locality, point)
      * @return Map containing the list of names of political entities
      */
-    private static HashMap<String, String> getPlaceNameMap(HashMap<String, PlaceComplexType> placeMap, String placeType) {
+    protected static HashMap<String, String> preparePlaceNameMap(HashMap<String, PlaceComplexType> placeMap, String placeType) {
         HashMap<String, String> placeNameMap = new HashMap<>();
         PlaceComplexType place = placeMap.get(placeType);
 
@@ -408,14 +509,24 @@ public class PlaceMapUtils {
      * @param language The searching language
      * @return True/False
      */
-    private static boolean isMainLang(String language) {
+    protected static boolean isMainLang(String language) {
         return language == null || language.equals(Env.LANG_MAIN);
     }
+}
 
-    private static String sanitizeCountyName(String placeName) {
+class Cleaning {
+    protected static String sanitizeCountyName(String placeName) {
+        if (placeName == null) {
+            return null;
+        }
+
         switch (placeName) {
             case "jud. Hunedoara":
                 return "Hunedoara";
+            case "Mureș Mureș":
+            case "Mureș M MUREȘ":
+            case "Mureș MU":
+                return "Mureș";
             case "jud. Sibiu":
                 return "Sibiu";
             default:
@@ -423,7 +534,11 @@ public class PlaceMapUtils {
         }
     }
 
-    private static String sanitizeRegionName(String placeName) {
+    protected static String sanitizeRegionName(String placeName) {
+        if (placeName == null) {
+            return null;
+        }
+
         switch (placeName) {
             case "Dobrofgea":
             case "Dobrogea (?)":
@@ -445,7 +560,7 @@ public class PlaceMapUtils {
         }
     }
 
-    private static String sanitizePlaceType(String placeName, String placeType) {
+    protected static String sanitizePlaceType(String placeName, String placeType) {
         // E.g.: "jud. Hunedoara", "jud. Sibiu"
         if (placeName != null && placeName.startsWith("jud")) {
             return PlaceType.COUNTY;

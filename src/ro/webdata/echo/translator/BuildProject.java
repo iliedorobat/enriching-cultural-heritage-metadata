@@ -168,6 +168,7 @@ class BuildLido {
         ArrayList<String> commands = new ArrayList<>();
 
         commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/edm/lido/commons/FileUtils.java");
+        commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/edm/lido/commons/constants/PlaceConst.java");
         commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/edm/lido/commons/constants/LIDOType.java");
         commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/edm/lido/commons/constants/CHOType.java");
         commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/edm/lido/commons/ConceptService.java");
