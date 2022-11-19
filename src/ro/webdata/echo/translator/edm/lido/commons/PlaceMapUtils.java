@@ -193,7 +193,8 @@ class Curation {
             if (placeName != null) {
                 String lcPlaceName = StringUtils.stripAccents(placeName.trim()).toLowerCase();
 
-                if (!lcPlaceName.contains("udesti")) {
+                // "Udești"
+                if (lcPlaceName.equals("udesti")) {
                     HashMap<String, String> countyNameMap = map.get(PlaceType.COUNTY);
 
                     if (countyNameMap == null) {
