@@ -513,9 +513,16 @@ class Preparation {
             <lido:namePlaceSet>
                 <lido:appellationValue>?</lido:appellationValue>
             </lido:namePlaceSet>
+
+            <lido:namePlaceSet>
+                <lido:appellationValue>(?)</lido:appellationValue>
+            </lido:namePlaceSet>
          */
-        if (Pattern.matches("\\p{Punct}", placeName)) {
-            System.err.println(PlaceMapUtils.class.getName() + ": The name of the place cannot be a punctuation mark!");
+        if (Pattern.matches("\\p{Punct}+", placeName)) {
+            System.err.println(
+                    PlaceMapUtils.class.getName()
+                            + ": The name of the place cannot be a punctuation mark or a series of punctuation marks!"
+            );
         } else {
             String language = isMainLang(lang)
                     ? Env.LANG_MAIN
