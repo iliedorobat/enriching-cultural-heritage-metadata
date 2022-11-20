@@ -88,7 +88,7 @@ public class PlaceMapUtils {
             String placeName = placeNameMap.getValue();
             String preparedPlaceName = StringUtils.stripAccents(
                     Text.sanitizeString(
-                            WordUtils.capitalizeFully(placeName)
+                            WordUtils.capitalizeFully(placeName, '-', ' ')
                     )
             );
 
