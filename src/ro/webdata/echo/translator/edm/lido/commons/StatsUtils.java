@@ -34,25 +34,27 @@ public class StatsUtils {
         File lidoDirectory = new File(FileConst.PATH_INPUT_LIDO_DIR);
         File[] subDirectories = lidoDirectory.listFiles();
 
-        for (File file : subDirectories) {
-            int dotIndex = file.getName().lastIndexOf(".");
-            String fileName = file.getName().substring(0, dotIndex);
+        if (subDirectories != null) {
+            for (File file : subDirectories) {
+                int dotIndex = file.getName().lastIndexOf(".");
+                String fileName = file.getName().substring(0, dotIndex);
 
-            if (!fileName.startsWith("demo")) {
-                String inputFilePath = FileUtils.getInputFilePath(fileName);
-                LidoWrap lidoWrap = parserDAO.parseLidoFile(inputFilePath);
+                if (!fileName.startsWith("demo")) {
+                    String inputFilePath = FileUtils.getInputFilePath(fileName);
+                    LidoWrap lidoWrap = parserDAO.parseLidoFile(inputFilePath);
 
-                for (Lido lido : lidoWrap.getLidoList()) {
-                    ArrayList<DescriptiveMetadata> descriptiveMetadataList = lido.getDescriptiveMetadata();
-                    DescriptiveMetadata descriptiveMetadata = descriptiveMetadataList.size() > 0
-                            ? descriptiveMetadataList.get(0)
-                            : null;
+                    for (Lido lido : lidoWrap.getLidoList()) {
+                        ArrayList<DescriptiveMetadata> descriptiveMetadataList = lido.getDescriptiveMetadata();
+                        DescriptiveMetadata descriptiveMetadata = descriptiveMetadataList.size() > 0
+                                ? descriptiveMetadataList.get(0)
+                                : null;
 
-                    if (descriptiveMetadata != null) {
-                        ArrayList<EventSet> eventSets = descriptiveMetadata.getEventWrap().getEventSet();
-                        placeNames.addAll(
-                                getPlaceNames(eventSets, placeType, language)
-                        );
+                        if (descriptiveMetadata != null) {
+                            ArrayList<EventSet> eventSets = descriptiveMetadata.getEventWrap().getEventSet();
+                            placeNames.addAll(
+                                    getPlaceNames(eventSets, placeType, language)
+                            );
+                        }
                     }
                 }
             }
