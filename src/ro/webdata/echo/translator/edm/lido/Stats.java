@@ -3,29 +3,57 @@ package ro.webdata.echo.translator.edm.lido;
 import ro.webdata.echo.commons.Const;
 import ro.webdata.echo.commons.File;
 import ro.webdata.echo.commons.Print;
+import ro.webdata.echo.translator.commons.Env;
 import ro.webdata.echo.translator.commons.FileConst;
+import ro.webdata.echo.translator.edm.lido.stats.MissingPlaces;
 import ro.webdata.normalization.timespan.ro.LidoXmlTimespanAnalysis;
 import ro.webdata.normalization.timespan.ro.TimeExpression;
-import ro.webdata.echo.translator.commons.Env;
 
 import java.io.*;
 import java.util.*;
 
+import static ro.webdata.echo.commons.File.EXTENSION_SEPARATOR;
+import static ro.webdata.echo.commons.File.EXTENSION_XML;
+
 public class Stats {
-    private static final ArrayList<String> EXCLUDED_FILES = new ArrayList<>(
-            Arrays.asList("demo.xml", "demo2.xml", "demo3.xml")
-    );
+    private static final ArrayList<String> EXCLUDED_FILES = getExcludedFiles();
 
     public static void run() {
-        // 1. Write to disc all unique timespan values
+        // 1. Write the timespan values to disc
         LidoXmlTimespanAnalysis.writeAll(FileConst.PATH_INPUT_LIDO_DIR, FileConst.PATH_OUTPUT_TIMESPAN_FILE, EXCLUDED_FILES);
         LidoXmlTimespanAnalysis.writeUnique(FileConst.PATH_INPUT_LIDO_DIR, FileConst.PATH_OUTPUT_UNIQUE_TIMESPAN_FILE, EXCLUDED_FILES);
 
-        // 2. Print the statistics of the new created properties
+        // 2. Write the missing places to disc
+        MissingPlaces.writeAll(FileConst.PATH_INPUT_LIDO_DIR, FileConst.PATH_MISSING_COUNTRY_REGION);
+        MissingPlaces.writeUnique(FileConst.PATH_INPUT_LIDO_DIR, FileConst.PATH_UNIQUE_MISSING_COUNTRY_REGION);
+
+        // 3. Print the statistics of the new created properties
         printNewPropertiesStats();
 
-        // 3. Prepare the timespan statistics
+        // 4. Prepare the timespan statistics
         cleaningTimespanAnalysis();
+    }
+
+    private static ArrayList<String> getExcludedFiles() {
+        ArrayList<String> excludedFiles = new ArrayList<>();
+        java.io.File lidoDirectory = new java.io.File(FileConst.PATH_INPUT_LIDO_DIR);
+        java.io.File[] subDirectories = lidoDirectory.listFiles();
+
+        if (subDirectories != null) {
+            for (java.io.File file : subDirectories) {
+                String fullName = file.getName();
+                int dotIndex = fullName.lastIndexOf(".");
+                String fileName = fullName.substring(0, dotIndex);
+
+                if (fileName.startsWith("demo")) {
+                    excludedFiles.add(fileName + EXTENSION_SEPARATOR + EXTENSION_XML);
+                }
+            }
+        } else {
+            System.err.println(FileConst.PATH_INPUT_LIDO_DIR + " does not contain any directories!");
+        }
+
+        return excludedFiles;
     }
 
     private static void cleaningTimespanAnalysis() {

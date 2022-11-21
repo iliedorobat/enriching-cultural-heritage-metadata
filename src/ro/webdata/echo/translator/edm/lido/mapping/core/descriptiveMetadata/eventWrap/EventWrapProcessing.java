@@ -3,7 +3,6 @@ package ro.webdata.echo.translator.edm.lido.mapping.core.descriptiveMetadata.eve
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import ro.webdata.echo.translator.edm.lido.mapping.leaf.eventComplexType.EventComplexTypeProcessing;
-import ro.webdata.echo.translator.edm.lido.mapping.leaf.eventComplexType.eventPlace.EventPlaceProcessing;
 import ro.webdata.parser.xml.lido.core.leaf.event.Event;
 import ro.webdata.parser.xml.lido.core.set.eventSet.EventSet;
 import ro.webdata.parser.xml.lido.core.wrap.eventWrap.EventWrap;
@@ -30,7 +29,6 @@ public class EventWrapProcessing {
             Event event = eventSet.getEvent();
             EventComplexTypeProcessing.addDate(model, providedCHO, event);
             EventComplexTypeProcessing.addEvent(model, providedCHO, event);
-            EventPlaceProcessing.saveMissingPlaces(event.getEventPlace());
         }
     }
 }
