@@ -30,7 +30,7 @@ public class TimeExpressions {
         // Add the header
         if (!File.exists(outputFullPath)) {
             timeExpressions.add(
-                    StatsUtils.prepareLine("raw value", "normalized value")
+                    StatsUtils.prepareLine("raw value", "normalized value", "dbpedia value")
             );
         }
 
