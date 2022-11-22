@@ -159,6 +159,7 @@ public final class PropertyUtils {
         );
         subProperty.addProperty(RDFS.subPropertyOf, mainProperty);
 
+        // TODO: replace Writer.appendLine with StatsUtils.prepareLine
         // Add the header
         if (!File.exists(FileConst.PATH_OUTPUT_PROPERTIES_FILE)) {
             Writer.appendLine(sw, "parent property", "new property");

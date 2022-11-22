@@ -11,6 +11,7 @@ import ro.webdata.parser.xml.lido.core.set.eventSet.EventSet;
 import ro.webdata.parser.xml.lido.core.wrap.lidoWrap.LidoWrap;
 
 import java.io.File;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -18,6 +19,17 @@ import java.util.LinkedHashMap;
 
 public class StatsUtils {
     private static final ParserDAO parserDAO = new ParserDAOImpl();
+
+    public static String prepareLine(String... columns) {
+        StringWriter sw = new StringWriter();
+
+        for (int i = 0; i < columns.length; ++i) {
+            String separator = i < columns.length - 1 ? "|" : "";
+            sw.append(columns[i]).append(separator);
+        }
+
+        return sw.toString();
+    }
 
     // E.g.: getUniquePlaceNames(PlaceType.COUNTRY, Const.LANG_RO)
     public static ArrayList<String> getUniquePlaceNames(String placeType, String language) {

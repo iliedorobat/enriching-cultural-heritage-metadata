@@ -6,6 +6,7 @@ import ro.webdata.echo.commons.graph.PlaceType;
 import ro.webdata.echo.translator.commons.FileConst;
 import ro.webdata.echo.translator.edm.lido.commons.FileUtils;
 import ro.webdata.echo.translator.edm.lido.commons.PlaceMapUtils;
+import ro.webdata.echo.translator.edm.lido.commons.StatsUtils;
 import ro.webdata.parser.xml.lido.core.ParserDAO;
 import ro.webdata.parser.xml.lido.core.ParserDAOImpl;
 import ro.webdata.parser.xml.lido.core.leaf.descriptiveMetadata.DescriptiveMetadata;
@@ -17,7 +18,6 @@ import ro.webdata.parser.xml.lido.core.set.eventSet.EventSet;
 import ro.webdata.parser.xml.lido.core.wrap.eventWrap.EventWrap;
 import ro.webdata.parser.xml.lido.core.wrap.lidoWrap.LidoWrap;
 
-import java.io.StringWriter;
 import java.util.*;
 
 public class MissingPlaces {
@@ -55,7 +55,7 @@ public class MissingPlaces {
         // Add the header
         if (!File.exists(outputFullPath)) {
             missingPlaces.add(
-                    prepareLine(
+                    StatsUtils.prepareLine(
                             PlaceType.COUNTRY,
                             PlaceType.REGION,
                             PlaceType.COUNTY,
@@ -105,8 +105,7 @@ public class MissingPlaces {
 
             for (EventSet eventSet : eventSetList) {
                 Event event = eventSet.getEvent();
-                ArrayList<EventPlace> eventPlaceList = event.getEventPlace();
-                addFileMissingPlaces(missingPlaces, eventPlaceList);
+                addFileMissingPlaces(missingPlaces, event.getEventPlace());
             }
         }
 
@@ -136,7 +135,7 @@ public class MissingPlaces {
 
             if (commune != null || county != null || locality != null || point != null) {
                 missingPlaces.add(
-                        prepareLine(
+                        StatsUtils.prepareLine(
                                 Writer.toString(null),
                                 Writer.toString(null),
                                 Writer.toString(county),
@@ -147,16 +146,5 @@ public class MissingPlaces {
                 );
             }
         }
-    }
-
-    private static String prepareLine(String... columns) {
-        StringWriter sw = new StringWriter();
-
-        for (int i = 0; i < columns.length; ++i) {
-            String separator = i < columns.length - 1 ? "|" : "";
-            sw.append(columns[i]).append(separator);
-        }
-
-        return sw.toString();
     }
 }

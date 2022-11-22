@@ -1,15 +1,17 @@
 package ro.webdata.echo.translator.edm.lido;
 
 import ro.webdata.echo.commons.Const;
-import ro.webdata.echo.commons.File;
 import ro.webdata.echo.commons.Print;
 import ro.webdata.echo.translator.commons.Env;
 import ro.webdata.echo.translator.commons.FileConst;
 import ro.webdata.echo.translator.edm.lido.stats.MissingPlaces;
+import ro.webdata.echo.translator.edm.lido.stats.TimeExpressions;
 import ro.webdata.normalization.timespan.ro.LidoXmlTimespanAnalysis;
-import ro.webdata.normalization.timespan.ro.TimeExpression;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
 
 import static ro.webdata.echo.commons.File.EXTENSION_SEPARATOR;
@@ -31,7 +33,8 @@ public class Stats {
         printNewPropertiesStats();
 
         // 4. Prepare the timespan statistics
-        cleaningTimespanAnalysis();
+        TimeExpressions.writeAll(FileConst.PATH_OUTPUT_TIMESPAN_FILE, FileConst.PATH_OUTPUT_ALL_TIMESPAN_ANALYSIS_FILE);
+        TimeExpressions.writeUnique(FileConst.PATH_OUTPUT_UNIQUE_TIMESPAN_FILE, FileConst.PATH_OUTPUT_UNIQUE_TIMESPAN_ANALYSIS_FILE);
     }
 
     private static ArrayList<String> getExcludedFiles() {
@@ -54,41 +57,6 @@ public class Stats {
         }
 
         return excludedFiles;
-    }
-
-    private static void cleaningTimespanAnalysis() {
-        String fileName = FileConst.PATH_OUTPUT_UNIQUE_TIMESPAN_FILE;
-        BufferedReader br = null;
-        ArrayList<String> arrayList = new ArrayList<>();
-
-        try {
-            br = new BufferedReader(new FileReader(fileName));
-            String readLine;
-
-            while ((readLine = br.readLine()) != null) {
-                if (readLine.length() > 0) {
-                    String value = readLine.toLowerCase();
-                    TimeExpression timeExpression = new TimeExpression(value, "|");
-                    arrayList.add(timeExpression.toString());
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        Set<String> set = new HashSet<>(arrayList);
-        arrayList.clear();
-        arrayList.addAll(set);
-        Collections.sort(arrayList);
-
-        StringBuilder sb = new StringBuilder();
-        for (String string : arrayList) {
-            sb.append(string).append("\n");
-        }
-
-        StringWriter writer = new StringWriter();
-        writer.write(sb.toString());
-        File.write(writer, FileConst.PATH_OUTPUT_UNIQUE_TIMESPAN_ANALYSIS_FILE, false);
     }
 
     private static void printNewPropertiesStats() {
