@@ -3,8 +3,8 @@ package ro.webdata.echo.translator.edm.lido.mapping.leaf.eventComplexType.eventT
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.RDF;
-import ro.webdata.echo.commons.File;
 import ro.webdata.echo.commons.Text;
+import ro.webdata.echo.commons.graph.Namespace;
 import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.echo.translator.edm.lido.commons.URIUtils;
 import ro.webdata.parser.xml.lido.core.leaf.eventType.EventType;
@@ -54,7 +54,7 @@ public class EventTypeProcessing {
 
         for (Term term : termList) {
             String eventType = Text.sanitizeString(term.getText());
-            String uri = URIUtils.prepareUri(NS_REPO_RESOURCE_EVENT, eventType + File.FILE_SEPARATOR + choUri.substring(startIndex));
+            String uri = URIUtils.prepareUri(NS_REPO_RESOURCE_EVENT, eventType + Namespace.URL_SEPARATOR + choUri.substring(startIndex));
 
             resource = model.getResource(uri)
                     .addProperty(RDF.type, EDM.Event)

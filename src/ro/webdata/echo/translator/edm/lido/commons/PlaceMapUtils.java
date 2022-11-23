@@ -3,8 +3,8 @@ package ro.webdata.echo.translator.edm.lido.commons;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.text.WordUtils;
 import ro.webdata.echo.commons.Const;
-import ro.webdata.echo.commons.File;
 import ro.webdata.echo.commons.Text;
+import ro.webdata.echo.commons.graph.Namespace;
 import ro.webdata.echo.commons.graph.PlaceType;
 import ro.webdata.echo.translator.commons.Env;
 import ro.webdata.echo.translator.edm.lido.commons.constants.PlaceConst;
@@ -92,7 +92,7 @@ public class PlaceMapUtils {
                     )
             );
 
-            return baseUri + placeType + ":" + preparedPlaceName + File.FILE_SEPARATOR;
+            return baseUri + placeType + ":" + preparedPlaceName + Namespace.URL_SEPARATOR;
         }
 
         return baseUri;

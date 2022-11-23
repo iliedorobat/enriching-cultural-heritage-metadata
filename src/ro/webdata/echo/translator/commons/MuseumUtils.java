@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import ro.webdata.echo.commons.Const;
 import ro.webdata.echo.commons.File;
 import ro.webdata.echo.commons.Json;
+import ro.webdata.echo.commons.graph.Namespace;
 import ro.webdata.echo.commons.graph.PlaceType;
 import ro.webdata.parser.xml.lido.core.leaf.legalBodyID.LegalBodyID;
 
@@ -72,11 +73,11 @@ public class MuseumUtils {
         return museumName != null && county != null ? (
                 NS_REPO_RESOURCE_ORGANIZATION
                         + PlaceType.COUNTRY + ":Romania"
-                        + File.FILE_SEPARATOR
+                        + Namespace.URL_SEPARATOR
                         + PlaceType.COUNTY + ":" + sanitizeCountyName(county, ROMANIAN_COUNTY_NAME_SEPARATOR)
-                        + File.FILE_SEPARATOR
+                        + Namespace.URL_SEPARATOR
                         + sanitizeString(museumName)
-                        + File.FILE_SEPARATOR
+                        + Namespace.URL_SEPARATOR
         ) : null;
     }
 
@@ -199,9 +200,9 @@ public class MuseumUtils {
 
     private static String getCimecJsonPath(String lang) {
         return File.PATH_INPUT_DIR
-                + File.FILE_SEPARATOR
+                + Namespace.URL_SEPARATOR
                 + "cimec"
-                + File.FILE_SEPARATOR
+                + Namespace.URL_SEPARATOR
                 + "merged"
                 + StringUtils.capitalize(lang)
                 + "PreparedData"

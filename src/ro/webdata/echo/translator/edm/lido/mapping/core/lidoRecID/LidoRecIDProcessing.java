@@ -1,6 +1,6 @@
 package ro.webdata.echo.translator.edm.lido.mapping.core.lidoRecID;
 
-import ro.webdata.echo.commons.File;
+import ro.webdata.echo.commons.graph.Namespace;
 import ro.webdata.parser.xml.lido.core.leaf.lidoRecID.LidoRecID;
 
 import java.util.ArrayList;
@@ -21,9 +21,9 @@ public class LidoRecIDProcessing {
             String type = lidoRecID.getType().getType();
 
             if (type != null) {
-                id = File.FILE_SEPARATOR + type + File.FILE_SEPARATOR + text;
+                id = Namespace.URL_SEPARATOR + type + Namespace.URL_SEPARATOR + text;
             } else {
-                id = File.FILE_SEPARATOR + text;
+                id = Namespace.URL_SEPARATOR + text;
             }
         } else {
             System.err.println(LidoRecIDProcessing.class.getName() + ":" +

@@ -7,8 +7,8 @@ import org.apache.jena.vocabulary.DC_11;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.SKOS;
 import ro.webdata.echo.commons.Const;
-import ro.webdata.echo.commons.File;
 import ro.webdata.echo.commons.Text;
+import ro.webdata.echo.commons.graph.Namespace;
 import ro.webdata.echo.commons.graph.PlaceType;
 import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.echo.commons.graph.vocab.constraints.EDMRoles;
@@ -24,7 +24,7 @@ import static ro.webdata.echo.translator.edm.lido.commons.ResourceUtils.addUriPr
 public class UpbProvider {
     public static Resource generateOrganization(Model model) {
         String relativeUri = PlaceType.COUNTRY + ":Romania"
-                + File.FILE_SEPARATOR
+                + Namespace.URL_SEPARATOR
                 + Text.sanitizeString("Politehnica University of Bucharest");
         String providerLink = URIUtils.prepareUri(NS_REPO_RESOURCE_ORGANIZATION, relativeUri);
 
@@ -56,7 +56,7 @@ public class UpbProvider {
 
     public static Resource generateAgent(Model model) {
         String relativeUri = PlaceType.COUNTRY + ":Romania"
-                + File.FILE_SEPARATOR
+                + Namespace.URL_SEPARATOR
                 + Text.sanitizeString("Politehnica University of Bucharest");
         String providerLink = URIUtils.prepareUri(NS_REPO_RESOURCE_ORGANIZATION, relativeUri);
 

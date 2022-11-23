@@ -7,8 +7,8 @@ import org.apache.jena.vocabulary.DC_11;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.SKOS;
 import ro.webdata.echo.commons.Const;
-import ro.webdata.echo.commons.File;
 import ro.webdata.echo.commons.Text;
+import ro.webdata.echo.commons.graph.Namespace;
 import ro.webdata.echo.commons.graph.PlaceType;
 import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.echo.commons.graph.vocab.constraints.EDMRoles;
@@ -27,7 +27,7 @@ public class CimecProvider {
 
     public static Resource generateOrganization(Model model) {
         String relativeUri = PlaceType.COUNTRY + ":Romania"
-                + File.FILE_SEPARATOR
+                + Namespace.URL_SEPARATOR
                 + Text.sanitizeString("Institutul Național al Patrimoniului");
         String providerLink = URIUtils.prepareUri(NS_REPO_RESOURCE_ORGANIZATION, relativeUri);
 
@@ -58,7 +58,7 @@ public class CimecProvider {
 
     public static Resource generateAgent(Model model) {
         String relativeUri = PlaceType.COUNTRY + ":Romania"
-                + File.FILE_SEPARATOR
+                + Namespace.URL_SEPARATOR
                 + Text.sanitizeString("Institutul Național al Patrimoniului");
         String providerLink = URIUtils.prepareUri(NS_REPO_RESOURCE_ORGANIZATION, relativeUri);
 

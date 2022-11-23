@@ -146,8 +146,11 @@
             <edm:occuredAt>
               <edm:TimeSpan rdf:about="https://dbpedia.org/page/5th_century"/>
             </edm:occuredAt>
-            <odp:occuredAt>sec. IV-V p.Chr.</odp:occuredAt>
             <edm:occuredAt rdf:resource="https://dbpedia.org/page/4th_century"/>
+            <odp:occuredAt>sec. IV-V p.Chr.</odp:occuredAt>
+            <edm:occuredAt>
+              <edm:TimeSpan rdf:about="https://dbpedia.org/page/1st_millennium"/>
+            </edm:occuredAt>
             <odp:temporal>Perioada romană târzie</odp:temporal>
             <edm:isRelatedTo xml:lang="ro">cultură: romană târzie</edm:isRelatedTo>
             <edm:isRelatedTo xml:lang="en">culture: romană târzie</edm:isRelatedTo>
@@ -156,6 +159,7 @@
         </edm:wasPresentAt>
         <dbo:length xml:lang="ro">57 cm</dbo:length>
         <odp:displayState xml:lang="ro">bună</odp:displayState>
+        <dcterms:created rdf:resource="https://dbpedia.org/page/1st_millennium"/>
         <edm:isRelatedTo xml:lang="en">culture: romană târzie</edm:isRelatedTo>
         <dc:title xml:lang="ro">Colier</dc:title>
         <edm:hasMet rdf:resource="http://opendata.cs.pub.ro/resource/Place/country:Romania/county:Tulcea/commune:Ostrov/locality:Ostrov/point:Beroe_Piatra_Frecatei/"/>

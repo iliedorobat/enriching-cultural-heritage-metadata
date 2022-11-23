@@ -1,6 +1,6 @@
 package ro.webdata.echo.translator.edm.lido.mapping.leaf;
 
-import ro.webdata.echo.commons.File;
+import ro.webdata.echo.commons.graph.Namespace;
 import ro.webdata.parser.xml.lido.core.leaf.recordID.RecordID;
 import ro.webdata.parser.xml.lido.core.wrap.recordWrap.RecordWrap;
 
@@ -31,9 +31,9 @@ public class RecordIDProcessing {
             String type = recordID.getType().getType();
 
             if (type != null) {
-                id = File.FILE_SEPARATOR + type + File.FILE_SEPARATOR + text;
+                id = Namespace.URL_SEPARATOR + type + Namespace.URL_SEPARATOR + text;
             } else {
-                id = File.FILE_SEPARATOR + text;
+                id = Namespace.URL_SEPARATOR + text;
             }
         } else {
             System.err.println(RecordIDProcessing.class.getName() + ":" +
