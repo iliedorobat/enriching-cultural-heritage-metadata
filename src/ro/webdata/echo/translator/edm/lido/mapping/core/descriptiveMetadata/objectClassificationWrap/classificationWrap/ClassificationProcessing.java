@@ -5,6 +5,7 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DC_11;
+import ro.webdata.echo.commons.Const;
 import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.echo.commons.graph.vocab.constraints.EDMType;
 import ro.webdata.echo.translator.edm.lido.commons.RDFConceptService;
@@ -92,6 +93,20 @@ public class ClassificationProcessing {
                     providedCHO.addProperty(EDM.type, literal);
                 }
             } else {
+                /*
+                 * Fix the following issue:
+                 *
+                 * <lido:classification>
+                 *    <lido:term xml:lang="ro">natural sciences</lido:term>
+                 *    <lido:term xml:lang="en">științele naturii</lido:term>
+                 * </lido:classification>
+                 */
+                if (text.equalsIgnoreCase("științele naturii")) {
+                    lang = Const.LANG_RO;
+                } else if (text.equalsIgnoreCase("natural sciences")) {
+                    lang = Const.LANG_EN;
+                }
+
                 Literal literal = model.createLiteral(text, lang);
                 boolean isSuperType = CHOType.isSubject(text, lang);
                 Property property = isSuperType
