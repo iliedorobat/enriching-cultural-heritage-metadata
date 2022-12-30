@@ -159,7 +159,6 @@ class BuildLido {
 
         commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/edm/lido/Statistics.java");
         commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/edm/lido/stats/MissingPlaces.java");
-        commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/edm/lido/stats/TimeExpressions.java");
         commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/edm/lido/Stats.java");
         commands.add("javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/edm/lido/LidoTranslator.java");
 

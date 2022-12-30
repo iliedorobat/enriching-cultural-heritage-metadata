@@ -5,7 +5,6 @@ import ro.webdata.echo.commons.Print;
 import ro.webdata.echo.translator.commons.Env;
 import ro.webdata.echo.translator.commons.FileConst;
 import ro.webdata.echo.translator.edm.lido.stats.MissingPlaces;
-import ro.webdata.echo.translator.edm.lido.stats.TimeExpressions;
 import ro.webdata.normalization.timespan.ro.LidoXmlTimespanAnalysis;
 
 import java.io.BufferedReader;
@@ -21,7 +20,7 @@ public class Stats {
     private static final ArrayList<String> EXCLUDED_FILES = getExcludedFiles();
 
     public static void run() {
-        // 1. Write the timespan values to disc
+        // 1. Write the timespan values & statistics to disc
         LidoXmlTimespanAnalysis.writeAll(FileConst.PATH_INPUT_LIDO_DIR, FileConst.PATH_OUTPUT_TIMESPAN_FILE, EXCLUDED_FILES);
         LidoXmlTimespanAnalysis.writeUnique(FileConst.PATH_INPUT_LIDO_DIR, FileConst.PATH_OUTPUT_UNIQUE_TIMESPAN_FILE, EXCLUDED_FILES);
 
@@ -31,10 +30,6 @@ public class Stats {
 
         // 3. Print the statistics of the new created properties
         printNewPropertiesStats();
-
-        // 4. Prepare the timespan statistics
-        TimeExpressions.writeAll(FileConst.PATH_OUTPUT_TIMESPAN_FILE, FileConst.PATH_OUTPUT_ALL_TIMESPAN_ANALYSIS_FILE);
-        TimeExpressions.writeUnique(FileConst.PATH_OUTPUT_UNIQUE_TIMESPAN_FILE, FileConst.PATH_OUTPUT_UNIQUE_TIMESPAN_ANALYSIS_FILE);
     }
 
     private static ArrayList<String> getExcludedFiles() {

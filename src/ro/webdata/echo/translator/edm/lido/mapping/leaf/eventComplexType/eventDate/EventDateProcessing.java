@@ -6,6 +6,7 @@ import org.apache.jena.vocabulary.RDF;
 import ro.webdata.echo.commons.Const;
 import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.normalization.timespan.ro.TimespanUtils;
+import ro.webdata.normalization.timespan.ro.model.TimespanModel;
 import ro.webdata.parser.xml.lido.core.leaf.displayDate.DisplayDate;
 import ro.webdata.parser.xml.lido.core.leaf.eventDate.EventDate;
 
@@ -33,7 +34,8 @@ public class EventDateProcessing {
             TreeSet<String> timespanSet = new TreeSet<>();
 
             if (LANG_MAIN.equals(Const.LANG_RO)) {
-                timespanSet = TimespanUtils.getTimespanSet(text);
+                TimespanModel timespanModel = TimespanUtils.prepareTimespanModel(text);
+                timespanSet = timespanModel.getTimespanSet();
             }
 
             for (String timespan : timespanSet) {
