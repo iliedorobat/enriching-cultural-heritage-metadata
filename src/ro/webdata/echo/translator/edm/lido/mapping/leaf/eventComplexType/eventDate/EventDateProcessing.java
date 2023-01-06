@@ -35,7 +35,7 @@ public class EventDateProcessing {
 
             if (LANG_MAIN.equals(Const.LANG_RO)) {
                 TimespanModel timespanModel = TimespanUtils.prepareTimespanModel(text);
-                timespanSet = timespanModel.getTimespanSet();
+                timespanSet = timespanModel.getDBpediaUris();
             }
 
             for (String timespan : timespanSet) {
