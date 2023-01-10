@@ -13,12 +13,15 @@ public class EventsStatsUtils {
     protected static final String PREFIX_TIMESPAN_ALL = "timespan_all_";
     protected static final String PREFIX_TIMESPAN_UNIQUE = "timespan_unique_";
 
-    protected static String getFilePath(String filePrefix, String eventType) {
+    protected static String getFilePath(String filePrefix, String choType, String eventType) {
+        String middlePath = choType != null
+                ? choType + File.FILE_SEPARATOR
+                : "";
         String fileName = eventType != null
                 ? filePrefix + eventType
                 : filePrefix.substring(0, filePrefix.lastIndexOf("_"));
 
-        return FileConst.PATH_OUTPUT_LIDO_DIR + File.FILE_SEPARATOR + fileName + File.EXTENSION_SEPARATOR + File.EXTENSION_CSV;
+        return FileConst.PATH_OUTPUT_LIDO_DIR + File.FILE_SEPARATOR + middlePath + fileName + File.EXTENSION_SEPARATOR + File.EXTENSION_CSV;
     }
 
     protected static String getEventType(String fileName, String prefix) {

@@ -42,16 +42,16 @@ public class EventsStats {
             System.out.println("[" + category + "] Last " + -top + " time periods:");
         }
 
-        TimeOccurrences.printAllTimeOccurrences(null, top);
-        TimeOccurrences.printUniqueTimeOccurrences(null, top);
+        TimeOccurrences.printAllTimeOccurrences(choType, null, top);
+        TimeOccurrences.printUniqueTimeOccurrences(choType, null, top);
 
         for (String fileName : fileNames) {
             if (fileName.startsWith(PREFIX_TIMESPAN_ALL)) {
                 String eventType = getEventType(fileName, PREFIX_TIMESPAN_ALL);
-                TimeOccurrences.printAllTimeOccurrences(eventType, top);
+                TimeOccurrences.printAllTimeOccurrences(choType, eventType, top);
             } else if (fileName.startsWith(PREFIX_TIMESPAN_UNIQUE)) {
                 String eventType = getEventType(fileName, PREFIX_TIMESPAN_UNIQUE);
-                TimeOccurrences.printUniqueTimeOccurrences(eventType, top);
+                TimeOccurrences.printUniqueTimeOccurrences(choType, eventType, top);
             }
         }
     }
@@ -77,8 +77,8 @@ public class EventsStats {
 }
 
 class TimeOccurrences {
-    protected static void printAllTimeOccurrences(String eventType, int top) {
-        String fullPath = getFilePath(PREFIX_TIMESPAN_ALL, eventType);
+    protected static void printAllTimeOccurrences(String choType, String eventType, int top) {
+        String fullPath = getFilePath(PREFIX_TIMESPAN_ALL, choType, eventType);
         String title = eventType == null
                 ? "ALL event types"
                 : eventType.toUpperCase() + " event type";
@@ -89,8 +89,8 @@ class TimeOccurrences {
         System.out.println("\t\tTOTAL Time Occurrences: " + topOccurrences);
     }
 
-    protected static void printUniqueTimeOccurrences(String eventType, int top) {
-        String fullPath = getFilePath(PREFIX_TIMESPAN_UNIQUE, eventType);
+    protected static void printUniqueTimeOccurrences(String choType, String eventType, int top) {
+        String fullPath = getFilePath(PREFIX_TIMESPAN_UNIQUE, choType, eventType);
         String title = eventType == null
                 ? "UNIQUE event types"
                 : eventType.toUpperCase() + " event type";
@@ -119,7 +119,7 @@ class TimeOccurrences {
 
 class TypeOccurrences {
     protected static void printAllOccurrences(String eventType) {
-        String fullPath = getFilePath(PREFIX_TIMESPAN_ALL, eventType);
+        String fullPath = getFilePath(PREFIX_TIMESPAN_ALL, null, eventType);
         String title = eventType == null
                 ? "ALL event types"
                 : eventType.toUpperCase() + " event type";
@@ -131,7 +131,7 @@ class TypeOccurrences {
     }
 
     protected static void printUniqueOccurrences(String eventType) {
-        String fullPath = getFilePath(PREFIX_TIMESPAN_UNIQUE, eventType);
+        String fullPath = getFilePath(PREFIX_TIMESPAN_UNIQUE, null, eventType);
         String title = eventType == null
                 ? "ALL event types"
                 : eventType.toUpperCase() + " event type";
