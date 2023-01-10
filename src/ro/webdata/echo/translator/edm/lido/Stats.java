@@ -4,8 +4,9 @@ import ro.webdata.echo.commons.Const;
 import ro.webdata.echo.commons.Print;
 import ro.webdata.echo.translator.commons.Env;
 import ro.webdata.echo.translator.commons.FileConst;
-import ro.webdata.echo.translator.edm.lido.stats.MissingPlaces;
-import ro.webdata.normalization.timespan.ro.LidoXmlTimespanAnalysis;
+import ro.webdata.echo.translator.edm.lido.stats.EventsStats;
+import ro.webdata.echo.translator.edm.lido.stats.PlacesStats;
+import ro.webdata.normalization.timespan.ro.analysis.TimespanAnalysis;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -13,45 +14,28 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-import static ro.webdata.echo.commons.File.EXTENSION_SEPARATOR;
-import static ro.webdata.echo.commons.File.EXTENSION_XML;
-
 public class Stats {
-    private static final ArrayList<String> EXCLUDED_FILES = getExcludedFiles();
-
     public static void run() {
         // 1. Write the timespan values & statistics to disc
-        LidoXmlTimespanAnalysis.writeAll(FileConst.PATH_INPUT_LIDO_DIR, FileConst.PATH_OUTPUT_TIMESPAN_FILE, EXCLUDED_FILES);
-        LidoXmlTimespanAnalysis.writeUnique(FileConst.PATH_INPUT_LIDO_DIR, FileConst.PATH_OUTPUT_UNIQUE_TIMESPAN_FILE, EXCLUDED_FILES);
+        TimespanAnalysis.write(FileConst.PATH_INPUT_LIDO_DIR, FileConst.PATH_OUTPUT_TIMESPAN_FILE, true, false);
+        TimespanAnalysis.write(FileConst.PATH_INPUT_LIDO_DIR, FileConst.PATH_OUTPUT_UNIQUE_TIMESPAN_FILE, true, true);
+
+        TimespanAnalysis.writeDetails(FileConst.PATH_INPUT_LIDO_DIR, FileConst.PATH_OUTPUT_TIMESPAN_FILE, true, false);
+        TimespanAnalysis.writeDetails(FileConst.PATH_INPUT_LIDO_DIR, FileConst.PATH_OUTPUT_UNIQUE_TIMESPAN_FILE, true, true);
 
         // 2. Write the missing places to disc
-        MissingPlaces.writeAll(FileConst.PATH_INPUT_LIDO_DIR, FileConst.PATH_MISSING_COUNTRY_REGION);
-        MissingPlaces.writeUnique(FileConst.PATH_INPUT_LIDO_DIR, FileConst.PATH_UNIQUE_MISSING_COUNTRY_REGION);
+        PlacesStats.writeAll(FileConst.PATH_INPUT_LIDO_DIR, FileConst.PATH_MISSING_COUNTRY_REGION);
+        PlacesStats.writeUnique(FileConst.PATH_INPUT_LIDO_DIR, FileConst.PATH_UNIQUE_MISSING_COUNTRY_REGION);
 
         // 3. Print the statistics of the new created properties
         printNewPropertiesStats();
-    }
 
-    private static ArrayList<String> getExcludedFiles() {
-        ArrayList<String> excludedFiles = new ArrayList<>();
-        java.io.File lidoDirectory = new java.io.File(FileConst.PATH_INPUT_LIDO_DIR);
-        java.io.File[] subDirectories = lidoDirectory.listFiles();
-
-        if (subDirectories != null) {
-            for (java.io.File file : subDirectories) {
-                String fullName = file.getName();
-                int dotIndex = fullName.lastIndexOf(".");
-                String fileName = fullName.substring(0, dotIndex);
-
-                if (fileName.startsWith("demo")) {
-                    excludedFiles.add(fileName + EXTENSION_SEPARATOR + EXTENSION_XML);
-                }
-            }
-        } else {
-            System.err.println(FileConst.PATH_INPUT_LIDO_DIR + " does not contain any directories!");
-        }
-
-        return excludedFiles;
+        // 4. Print statistics of events & time expressions
+        EventsStats.printOccurrences();
+        System.out.println();
+        EventsStats.printTimeOccurrences(5);
+        System.out.println();
+        EventsStats.printTimeOccurrences(-5);
     }
 
     private static void printNewPropertiesStats() {

@@ -2,6 +2,10 @@ package ro.webdata.echo.translator.edm.lido.commons;
 
 import ro.webdata.echo.translator.commons.FileConst;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+
 import static ro.webdata.echo.commons.File.*;
 import static ro.webdata.echo.commons.File.EXTENSION_RDF;
 
