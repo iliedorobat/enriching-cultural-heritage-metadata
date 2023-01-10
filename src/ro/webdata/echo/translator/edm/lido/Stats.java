@@ -31,11 +31,7 @@ public class Stats {
         printNewPropertiesStats();
 
         // 4. Print statistics of events & time expressions
-        EventsStats.printOccurrences();
-        System.out.println();
-        EventsStats.printTimeOccurrences(5);
-        System.out.println();
-        EventsStats.printTimeOccurrences(-5);
+        EventsStats.printEventStats();
     }
 
     private static void printNewPropertiesStats() {

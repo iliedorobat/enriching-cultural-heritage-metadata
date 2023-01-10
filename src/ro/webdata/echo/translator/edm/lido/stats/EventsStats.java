@@ -12,19 +12,40 @@ import java.util.List;
 import static ro.webdata.echo.translator.edm.lido.stats.EventsStatsUtils.*;
 
 public class EventsStats {
-    private static final ArrayList<String> FILE_NAME_LIST = File.getFileNames(FileConst.PATH_OUTPUT_LIDO_DIR, File.EXTENSION_CSV);
+    public static void printEventStats() {
+        EventsStats.printOccurrences(FileConst.PATH_OUTPUT_LIDO_DIR);
+        System.out.println();
+        EventsStats.printTimeOccurrences(FileConst.PATH_OUTPUT_LIDO_DIR, 5);
+    }
 
-    public static void printTimeOccurrences(int top) {
+    public static void printTimeOccurrences(String path, int top) {
+        ArrayList<String> subdirectoryNames = File.getSubDirectoryNames(path);
+        ArrayList<String> fileNames = File.getFileNames(path, File.EXTENSION_CSV);
+        EventsStats.printTimeOccurrences(null, fileNames, top);
+        System.out.println();
+
+        for (String choType : subdirectoryNames) {
+            String newPath = FileConst.PATH_OUTPUT_LIDO_DIR + File.FILE_SEPARATOR + choType;
+            fileNames = File.getFileNames(newPath, File.EXTENSION_CSV);
+            EventsStats.printTimeOccurrences(choType, fileNames, top);
+            System.out.println();
+        }
+    }
+
+    // Display how many collecting, finding, production events have been identified
+    public static void printTimeOccurrences(String choType, ArrayList<String> fileNames, int top) {
+        String category = choType != null ? choType.toUpperCase() : "ALL";
+
         if (top > 0) {
-            System.out.println("Top " + top + " time periods:");
+            System.out.println("[" + category + "] Top " + top + " time periods:");
         } else {
-            System.out.println("Last " + -top + " time periods:");
+            System.out.println("[" + category + "] Last " + -top + " time periods:");
         }
 
         TimeOccurrences.printAllTimeOccurrences(null, top);
         TimeOccurrences.printUniqueTimeOccurrences(null, top);
 
-        for (String fileName : FILE_NAME_LIST) {
+        for (String fileName : fileNames) {
             if (fileName.startsWith(PREFIX_TIMESPAN_ALL)) {
                 String eventType = getEventType(fileName, PREFIX_TIMESPAN_ALL);
                 TimeOccurrences.printAllTimeOccurrences(eventType, top);
@@ -35,13 +56,15 @@ public class EventsStats {
         }
     }
 
-    public static void printOccurrences() {
+    // Display how many date, centuries, millenniums, years, others time periods have been identified
+    public static void printOccurrences(String path) {
         System.out.println("Incidence of Time Period Types:");
 
+        ArrayList<String> fileNames = File.getFileNames(path, File.EXTENSION_CSV);
         TypeOccurrences.printAllOccurrences(null);
         TypeOccurrences.printUniqueOccurrences(null);
 
-        for (String fileName : FILE_NAME_LIST) {
+        for (String fileName : fileNames) {
             if (fileName.startsWith(PREFIX_TIMESPAN_ALL)) {
                 String eventType = getEventType(fileName, PREFIX_TIMESPAN_ALL);
                 TypeOccurrences.printAllOccurrences(eventType);
