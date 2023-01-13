@@ -4,8 +4,10 @@ import ro.webdata.echo.commons.Const;
 import ro.webdata.echo.commons.Print;
 import ro.webdata.echo.translator.commons.Env;
 import ro.webdata.echo.translator.commons.FileConst;
-import ro.webdata.echo.translator.edm.lido.stats.EventsStats;
 import ro.webdata.echo.translator.edm.lido.stats.PlacesStats;
+import ro.webdata.echo.translator.edm.lido.stats.TimePeriodsStats;
+import ro.webdata.echo.translator.edm.lido.stats.EventTypesStats;
+import ro.webdata.echo.translator.edm.lido.stats.NormalizedEventsStats;
 import ro.webdata.normalization.timespan.ro.analysis.TimespanAnalysis;
 
 import java.io.BufferedReader;
@@ -31,7 +33,9 @@ public class Stats {
         printNewPropertiesStats();
 
         // 4. Print statistics of events & time expressions
-        EventsStats.printEventStats();
+        EventTypesStats.printOccurrences(FileConst.PATH_OUTPUT_LIDO_DIR);
+        NormalizedEventsStats.printOccurrences(FileConst.PATH_OUTPUT_LIDO_DIR);
+        TimePeriodsStats.printOccurrences(FileConst.PATH_OUTPUT_LIDO_DIR, 3);
     }
 
     private static void printNewPropertiesStats() {

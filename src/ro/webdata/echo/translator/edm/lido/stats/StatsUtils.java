@@ -8,7 +8,7 @@ import java.io.FileReader;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class EventsStatsUtils {
+public class StatsUtils {
     protected static final String EVENT_TYPE_OTHERS = "others";
     protected static final String PREFIX_TIMESPAN_ALL = "timespan_all_";
     protected static final String PREFIX_TIMESPAN_UNIQUE = "timespan_unique_";
@@ -48,6 +48,7 @@ public class EventsStatsUtils {
         return arrayList;
     }
 
+    // Count how many times each normalized time expression appears in the data set
     protected static HashMap<String, Integer> getTimeOccurrences(String fullPath) {
         BufferedReader br = null;
         HashMap<String, Integer> map = new HashMap<>();
@@ -59,14 +60,8 @@ public class EventsStatsUtils {
             while ((readLine = br.readLine()) != null) {
                 if (readLine.length() > 0) {
                     String[] values = readLine.split("\\|");
-                    String timePeriodsStr = values[values.length - 2];
-                    String typesStr = values[values.length - 1];
-
-//                    if (typesStr.split(",").length > 1) {
-//                        System.out.println();
-//                    }
-
-                    addCsvCells(map, timePeriodsStr);
+                    String urisStr = values[values.length - 2];
+                    updateTimeTypesOccurrences(map, urisStr);
                 }
             }
         } catch (Exception e) {
@@ -76,30 +71,54 @@ public class EventsStatsUtils {
         return map;
     }
 
-    protected static void addCsvCells(HashMap<String, Integer> map, String line) {
-        List<String> cells = csvLineToList(line);
+    protected static void updateTimeTypesOccurrences(HashMap<String, Integer> map, String line) {
+        List<String> entries = csvEntryToList(line);
 
-        for (String cell : cells) {
-            String key = cell;
+        for (String value : entries) {
+            String key = value;
             // "epoch" or "unknown"
-            if (cell.length() == 0) {
+            if (value.length() == 0) {
                 key = EVENT_TYPE_OTHERS;
             }
 
-            if (!map.containsKey(key)) {
-                map.put(key, 1);
-            } else {
-                map.put(key, map.get(key) + 1);
-            }
+            updateMap(map, key);
         }
     }
 
-    protected static List<String> csvLineToList(String line) {
-        return Arrays.stream(line
+    protected static void updateMap(HashMap<String, Integer> map, String key) {
+        if (!map.containsKey(key)) {
+            map.put(key, 1);
+        } else {
+            map.put(key, map.get(key) + 1);
+        }
+    }
+
+    protected static List<String> csvEntryToList(String line) {
+        return Arrays.stream(
+                line
                         .substring(1, line.length() - 1)
                         .split(",")
                 )
                 .map(String::strip)
                 .collect(Collectors.toList());
+    }
+
+    /* E.g.:
+    map = {
+        "century": 42003,
+        "year": 173655,
+        "millennium": 38768,
+        "others": 1458
+    }
+    counter = 255884
+     */
+    protected static long countAllOccurrences(HashMap<String, Integer> occurrencesMap) {
+        long counter = 0;
+
+        for (Map.Entry<String, Integer> entry : occurrencesMap.entrySet()) {
+            counter += entry.getValue();
+        }
+
+        return counter;
     }
 }
