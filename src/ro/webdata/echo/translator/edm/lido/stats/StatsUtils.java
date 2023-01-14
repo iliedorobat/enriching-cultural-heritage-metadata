@@ -49,7 +49,7 @@ public class StatsUtils {
     }
 
     // Count how many times each normalized time expression appears in the data set
-    protected static HashMap<String, Integer> getTimeOccurrences(String fullPath) {
+    protected static HashMap<String, Integer> getTimeOccurrences(String fullPath, boolean isEdge) {
         BufferedReader br = null;
         HashMap<String, Integer> map = new HashMap<>();
 
@@ -60,8 +60,11 @@ public class StatsUtils {
             while ((readLine = br.readLine()) != null) {
                 if (readLine.length() > 0) {
                     String[] values = readLine.split("\\|");
-                    String urisStr = values[values.length - 2];
-                    updateTimeTypesOccurrences(map, urisStr);
+                    int index = isEdge
+                            ? values.length - 1
+                            : values.length - 3;
+                    String urisStr = values[index];
+                    updateTimeCategoryOccurrences(map, urisStr);
                 }
             }
         } catch (Exception e) {
@@ -71,16 +74,22 @@ public class StatsUtils {
         return map;
     }
 
-    protected static void updateTimeTypesOccurrences(HashMap<String, Integer> map, String line) {
+    protected static void updateTimeCategoryOccurrences(HashMap<String, Integer> map, String line) {
+        HashSet<String> keys = new HashSet<>();
         List<String> entries = csvEntryToList(line);
 
+        // Avoid adding two types of time expressions which depict the same thing (E.g.: century)
+        // E.g.: [century, century]
         for (String value : entries) {
             String key = value;
             // "epoch" or "unknown"
-            if (value.length() == 0) {
+            if (value == null || value.length() == 0) {
                 key = EVENT_TYPE_OTHERS;
             }
+            keys.add(key);
+        }
 
+        for (String key : keys) {
             updateMap(map, key);
         }
     }

@@ -85,8 +85,8 @@ public class EventTypesStats {
             while ((readLine = br.readLine()) != null) {
                 if (readLine.length() > 0) {
                     String[] values = readLine.split("\\|");
-                    String typesStr = values[values.length - 1];
-                    StatsUtils.updateTimeTypesOccurrences(map, typesStr);
+                    String typesStr = values[values.length - 2];
+                    StatsUtils.updateTimeCategoryOccurrences(map, typesStr);
                 }
             }
         } catch (Exception e) {

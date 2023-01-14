@@ -34,7 +34,8 @@ public class Stats {
 
         // 4. Print statistics of events & time expressions
         EventTypesStats.printOccurrences(FileConst.PATH_OUTPUT_LIDO_DIR);
-        NormalizedEventsStats.printOccurrences(FileConst.PATH_OUTPUT_LIDO_DIR);
+        NormalizedEventsStats.printOccurrences(FileConst.PATH_OUTPUT_LIDO_DIR, false); // all occurrences
+        NormalizedEventsStats.printOccurrences(FileConst.PATH_OUTPUT_LIDO_DIR, true);  // only edges occurrences
         TimePeriodsStats.printOccurrences(FileConst.PATH_OUTPUT_LIDO_DIR, 3);
     }
 

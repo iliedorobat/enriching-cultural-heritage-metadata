@@ -73,7 +73,7 @@ public class TimePeriodsStats {
     }
 
     private static List<HashMap<String, Object>> getTopElements(String fullPath, int top) {
-        HashMap<String, Integer> occurrences = getTimeOccurrences(fullPath);
+        HashMap<String, Integer> occurrences = getTimeOccurrences(fullPath, false);
         List<HashMap<String, Object>> ordered = getOrderedOccurrences(occurrences);
 
         if (top < 0) {
