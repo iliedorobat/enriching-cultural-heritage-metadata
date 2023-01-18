@@ -1,0 +1,152 @@
+package ro.webdata.echo.fetcher.museums.core;
+
+import ro.webdata.echo.commons.accessor.CimecAccessors;
+import ro.webdata.echo.commons.accessor.InpAccessors;
+import ro.webdata.echo.commons.accessor.MuseumAccessors;
+
+public class DataMapping {
+    /**
+     * Map the keys from CIMEC and data.gov.ro dataset to backend accessors
+     * @param key The key name from the CIMEC or data.gov.ro dataset
+     * @return The backend accessor
+     */
+    public static String getKeyName(String key) {
+        switch (key) {
+            case CimecAccessors.EN_ACCESS:
+            case CimecAccessors.RO_ACCESS:
+            case InpAccessors.EN_ACCESS:
+            case InpAccessors.RO_ACCESS:
+                return MuseumAccessors.LOCATION_ACCESS;
+            case CimecAccessors.EN_ACCREDITATION:
+            case CimecAccessors.RO_ACCREDITATION:
+            case InpAccessors.ACCREDITATION:
+                return MuseumAccessors.MUSEUM_ACCREDITATION;
+            case CimecAccessors.EN_ADDRESS:
+            case CimecAccessors.RO_ADDRESS:
+            case InpAccessors.ADDRESS:
+                return MuseumAccessors.LOCATION_ADDRESS;
+            case InpAccessors.ADMINISTRATIVE_UNIT:
+                return MuseumAccessors.LOCATION_ADM_UNIT;
+            case CimecAccessors.EN_ADMINISTRATIVE_SUBORDINATION:
+            case CimecAccessors.RO_ADMINISTRATIVE_SUBORDINATION:
+                return MuseumAccessors.MUSEUM_SUPERVISED_BY;
+            case InpAccessors.EN_BUILDING_DESCRIPTION:
+            case InpAccessors.RO_BUILDING_DESCRIPTION:
+                return MuseumAccessors.BUILDING_DESCRIPTION;
+            case CimecAccessors.EN_BUILDING_LMI_CODE:
+            case CimecAccessors.RO_BUILDING_LMI_CODE:
+            case InpAccessors.BUILDING_LMI_CODE:
+                return MuseumAccessors.BUILDING_LMI_CODE;
+            case CimecAccessors.CIMEC_URI:
+                return MuseumAccessors.CIMEC_URI;
+            case CimecAccessors.EN_COMMUNE:
+            case CimecAccessors.RO_COMMUNE:
+                return MuseumAccessors.LOCATION_COMMUNE;
+            case CimecAccessors.EN_CONTACT_PERSON:
+            case CimecAccessors.RO_CONTACT_PERSON:
+                return MuseumAccessors.CONTACT_PERSON_NAME;
+            case CimecAccessors.EN_COUNTY:
+            case CimecAccessors.RO_COUNTY:
+            case InpAccessors.COUNTY:
+                return MuseumAccessors.LOCATION_COUNTY;
+            case CimecAccessors.EN_DESCRIPTION:
+            case CimecAccessors.RO_DESCRIPTION:
+            case InpAccessors.EN_DESCRIPTION:
+            case InpAccessors.RO_DESCRIPTION:
+                return MuseumAccessors.DESCRIPTION_DETAILS;
+            case CimecAccessors.DIRECTOR:
+            case InpAccessors.DIRECTOR:
+                return MuseumAccessors.CONTACT_DIRECTOR;
+            case CimecAccessors.EN_EMAIL:
+            case CimecAccessors.RO_EMAIL:
+            case InpAccessors.EMAIL:
+                return MuseumAccessors.CONTACT_EMAIL;
+            case CimecAccessors.FAX:
+            case InpAccessors.FAX:
+                return MuseumAccessors.CONTACT_FAX;
+            case CimecAccessors.EN_FOUNDED:
+            case CimecAccessors.RO_FOUNDED:
+            case InpAccessors.FOUNDED:
+                return MuseumAccessors.MUSEUM_FOUNDED;
+            case CimecAccessors.EN_GENERAL_PROFILE:
+            case CimecAccessors.RO_GENERAL_PROFILE:
+                return MuseumAccessors.COLLECTION_GENERAL_PROFILE;
+            case InpAccessors.GEO_LATITUDE:
+                return MuseumAccessors.LOCATION_GEO_LATITUDE;
+            case InpAccessors.GEO_LONGITUDE:
+                return MuseumAccessors.LOCATION_GEO_LONGITUDE;
+            case InpAccessors.GEO_TARGET:
+                return MuseumAccessors.LOCATION_GEO_TARGET;
+            case InpAccessors.EN_HISTORIC:
+            case InpAccessors.RO_HISTORIC:
+                return MuseumAccessors.DESCRIPTION_HISTORIC;
+            case CimecAccessors.EN_IMPORTANCE:
+            case CimecAccessors.RO_IMPORTANCE:
+            case InpAccessors.EN_IMPORTANCE:
+            case InpAccessors.RO_IMPORTANCE:
+                return MuseumAccessors.COLLECTION_IMPORTANCE;
+            case CimecAccessors.EN_LOCALITY_NAME:
+            case CimecAccessors.RO_LOCALITY_NAME:
+            case InpAccessors.LOCALITY_NAME:
+                return MuseumAccessors.LOCATION_LOCALITY_NAME;
+            case InpAccessors.LOCALITY_CODE:
+                return MuseumAccessors.LOCATION_LOCALITY_CODE;
+            case CimecAccessors.EN_MAIN_PROFILE:
+            case CimecAccessors.RO_MAIN_PROFILE:
+            case InpAccessors.EN_MAIN_PROFILE:
+            case InpAccessors.RO_MAIN_PROFILE:
+                return MuseumAccessors.COLLECTION_MAIN_PROFILE;
+            case CimecAccessors.EN_MUSEUM_CODE:
+            case CimecAccessors.RO_MUSEUM_CODE:
+            case InpAccessors.MUSEUM_CODE:
+                return MuseumAccessors.MUSEUM_CODE;
+            case CimecAccessors.EN_MUSEUM_NAME:
+            case CimecAccessors.RO_MUSEUM_NAME:
+            case InpAccessors.EN_MUSEUM_NAME:
+            case InpAccessors.RO_MUSEUM_NAME:
+                return MuseumAccessors.MUSEUM_NAME;
+            case CimecAccessors.EN_PART_OF:
+            case CimecAccessors.RO_PART_OF:
+                return MuseumAccessors.MUSEUM_COLLECTION_PART_OF;
+            case CimecAccessors.EN_PHONE:
+            case CimecAccessors.RO_PHONE:
+            case InpAccessors.PHONE:
+                return MuseumAccessors.CONTACT_PHONE;
+            case CimecAccessors.EN_PICTURES:
+            case CimecAccessors.RO_PICTURES:
+                return MuseumAccessors.COLLECTION_PICTURES;
+            case CimecAccessors.EN_POSITION:
+            case CimecAccessors.RO_POSITION:
+                return MuseumAccessors.CONTACT_PERSON_POSITION;
+            case CimecAccessors.EN_POSTAL_CODE:
+            case CimecAccessors.RO_POSTAL_CODE:
+            case InpAccessors.POSTAL_CODE:
+                return MuseumAccessors.LOCATION_ZIP_CODE;
+            case CimecAccessors.RO_PUBLICATIONS:
+                return MuseumAccessors.PUBLICATIONS_MATERIAL;
+            case CimecAccessors.EN_SOCIAL_MEDIA:
+            case CimecAccessors.RO_SOCIAL_MEDIA:
+                return MuseumAccessors.CONTACT_SOCIAL_MEDIA;
+            case CimecAccessors.EN_SUBORDINATE_UNITS:
+            case CimecAccessors.RO_SUBORDINATE_UNITS:
+                return MuseumAccessors.MUSEUM_SUPERVISOR_FOR;
+            case InpAccessors.EN_SUMMARY:
+            case InpAccessors.RO_SUMMARY:
+                return MuseumAccessors.DESCRIPTION_SUMMARY;
+            case CimecAccessors.EN_TIME_TABLE:
+            case CimecAccessors.RO_TIME_TABLE:
+            case InpAccessors.EN_TIME_TABLE:
+            case InpAccessors.RO_TIME_TABLE:
+                return MuseumAccessors.CONTACT_TIME_TABLE;
+            case CimecAccessors.EN_VIRTUAL_TOUR:
+            case CimecAccessors.RO_VIRTUAL_TOUR:
+                return MuseumAccessors.CONTACT_VIRTUAL_TOUR;
+            case CimecAccessors.EN_WEB:
+            case CimecAccessors.RO_WEB:
+            case InpAccessors.WEB:
+                return MuseumAccessors.CONTACT_WEB;
+            default:
+                return key;
+        }
+    }
+}
