@@ -21,7 +21,7 @@ import static ro.webdata.echo.commons.accessor.MuseumAccessors.*;
 import static ro.webdata.echo.commons.graph.Namespace.NS_REPO_RESOURCE_ORGANIZATION;
 
 public class MuseumUtils {
-    private static final String ROMANIAN_COUNTY_NAME_SEPARATOR = "-";
+    private static final String PLACE_NAME_SEPARATOR = "-";
 
     public static final String enPath = getCimecJsonPath(Const.LANG_EN);
     public static final String roPath = getCimecJsonPath(Const.LANG_RO);
@@ -69,16 +69,24 @@ public class MuseumUtils {
     public static String generateMuseumId(String museumCode) {
         String museumName = getEnStringValue(museumCode, MUSEUM_NAME.split("\\."));
         String county = getEnStringValue(museumCode, LOCATION_COUNTY.split("\\."));
+        String locality = getEnStringValue(museumCode, LOCATION_LOCALITY_NAME.split("\\."));
 
-        return museumName != null && county != null ? (
-                NS_REPO_RESOURCE_ORGANIZATION
-                        + PlaceType.COUNTRY + ":Romania"
-                        + Namespace.URL_SEPARATOR
-                        + PlaceType.COUNTY + ":" + sanitizeCountyName(county, ROMANIAN_COUNTY_NAME_SEPARATOR)
-                        + Namespace.URL_SEPARATOR
-                        + sanitizeString(museumName)
-                        + Namespace.URL_SEPARATOR
-        ) : null;
+        if (museumName != null && county != null) {
+            String countryPath = PlaceType.COUNTRY + ":Romania" + Namespace.URL_SEPARATOR;
+            String countyPath = PlaceType.COUNTY + ":" + sanitizePlaceName(county, PLACE_NAME_SEPARATOR) + Namespace.URL_SEPARATOR;
+            String localityPath = locality != null && locality.length() > 0
+                    ? PlaceType.LOCALITY + ":" + sanitizePlaceName(locality, PLACE_NAME_SEPARATOR) + Namespace.URL_SEPARATOR
+                    : "";
+            String museumNamePath = sanitizeString(museumName) + Namespace.URL_SEPARATOR;
+
+            return NS_REPO_RESOURCE_ORGANIZATION
+                    + countryPath
+                    + countyPath
+                    + localityPath
+                    + museumNamePath;
+        }
+
+        return null;
     }
 
     /**
@@ -94,7 +102,7 @@ public class MuseumUtils {
      * @param separator The character used to delimit two words in the name of the county
      * @return Cleaned value
      */
-    public static String sanitizeCountyName(String countyName, String separator) {
+    public static String sanitizePlaceName(String countyName, String separator) {
         List<String> countyArr = Arrays.stream(countyName.split(separator))
                 .map(MuseumUtils::sanitizeString)
                 .collect(Collectors.toList());
