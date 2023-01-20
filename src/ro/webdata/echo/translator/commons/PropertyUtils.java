@@ -59,10 +59,42 @@ public final class PropertyUtils {
 
     public static void addSubProperty(Model model, Resource museum, Property parentProperty, String propertyName, String value, String lang) {
         if (value != null) {
-            Literal literal = model.createLiteral(value, lang);
+            Literal literal = createLiteral(model, propertyName, value, lang);
             Property property = createSubProperty(model, parentProperty, propertyName, false);
             museum.addProperty(property, literal);
         }
+    }
+
+    private static Literal createLiteral(Model model, String propertyName, String value, String lang) {
+        ArrayList<String> longList = new ArrayList<>(){{
+            add(LOCATION_LOCALITY_CODE);
+            add(LOCATION_ZIP_CODE);
+            add(MUSEUM_CODE);
+        }};
+        ArrayList<String> floatList = new ArrayList<>(){{
+            add(LOCATION_GEO_LATITUDE);
+            add(LOCATION_GEO_LONGITUDE);
+        }};
+
+        if (longList.contains(propertyName)) {
+            try {
+                Long longValue = Long.parseLong(value);
+                return model.createTypedLiteral(longValue);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return model.createLiteral(value, lang);
+            }
+        } else if (floatList.contains(propertyName)) {
+            try {
+                Float floatValue = Float.parseFloat(value);
+                return model.createTypedLiteral(floatValue);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return model.createLiteral(value, lang);
+            }
+        }
+
+        return model.createLiteral(value, lang);
     }
 
     public static void addSubProperty(Model model, Resource museum, Property parentProperty, String propertyName, JsonElement value, String lang) {
@@ -85,7 +117,22 @@ public final class PropertyUtils {
     public static void addSubProperty(Model model, Resource museum, Property parentProperty, String propertyName, JsonObject object, String objectProperty, String lang) {
         try {
             JsonElement value = object.get(objectProperty);
-            addSubProperty(model, museum, parentProperty, propertyName, value, lang);
+
+            if (value instanceof JsonPrimitive) {
+                String strValue = value.getAsString();
+
+                // workaround for the case of "410210  410210"
+                if (strValue.equals("410210  410210")) {
+                    strValue = "410210";
+                }
+
+                // workaround for cases like "555600," and "537.071"
+                if (propertyName.equals(LOCATION_ZIP_CODE)) {
+                    strValue = strValue.replaceAll("\\p{Punct}", "");
+                }
+
+                addSubProperty(model, museum, parentProperty, propertyName, strValue, lang);
+            }
         } catch (IllegalStateException e) {
             e.printStackTrace();
         }
