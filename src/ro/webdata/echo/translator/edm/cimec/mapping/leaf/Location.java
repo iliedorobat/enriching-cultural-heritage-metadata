@@ -45,7 +45,7 @@ public class Location {
                         mapCounty(model, museum, contact);
                         break;
                     case GEO:
-                        mapGeo(model, museum, contact);
+                        mapGeo(model, museum, contact, lang);
                         break;
                     case LOCALITY:
                         mapLocality(model, museum, lang, contact);
@@ -75,19 +75,22 @@ public class Location {
         }
     }
 
-    private static void mapGeo(Model model, Resource museum, JsonObject contact) {
-        JsonObject agent = contact.get(GEO).getAsJsonObject();
-        ArrayList<Map.Entry<String, JsonElement>> entries = new ArrayList<>(agent.entrySet());
+    private static void mapGeo(Model model, Resource museum, JsonObject contact, String lang) {
+        JsonObject geolocation = contact.get(GEO).getAsJsonObject();
+        ArrayList<Map.Entry<String, JsonElement>> entries = new ArrayList<>(geolocation.entrySet());
 
         for (Map.Entry<String, JsonElement> entry : entries) {
             String key = entry.getKey();
 
             switch (key) {
                 case LATITUDE:
-                    PropertyUtils.addSubProperty(model, museum, SKOS.note, LOCATION_GEO_LATITUDE, agent, LATITUDE, null);
+                    PropertyUtils.addSubProperty(model, museum, SKOS.note, LOCATION_GEO_LATITUDE, geolocation, LATITUDE, null);
                     break;
                 case LONGITUDE:
-                    PropertyUtils.addSubProperty(model, museum, SKOS.note, LOCATION_GEO_LONGITUDE, agent, LONGITUDE, null);
+                    PropertyUtils.addSubProperty(model, museum, SKOS.note, LOCATION_GEO_LONGITUDE, geolocation, LONGITUDE, null);
+                    break;
+                case TARGET:
+                    PropertyUtils.addSubProperty(model, museum, SKOS.note, "geolocationType", geolocation, TARGET, lang);
                     break;
                 default:
                     break;

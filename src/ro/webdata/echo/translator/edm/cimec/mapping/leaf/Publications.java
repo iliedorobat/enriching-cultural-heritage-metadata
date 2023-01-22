@@ -29,7 +29,7 @@ public class Publications {
 
                 switch (key) {
                     case MATERIAL:
-                        PropertyUtils.addSubProperty(model, museum, SKOS.note, PUBLICATIONS_MATERIAL, publications, lang);
+                        PropertyUtils.addSubProperty(model, museum, SKOS.note, PUBLICATIONS_MATERIAL, publications, MATERIAL, lang);
                         break;
                     default:
                         break;

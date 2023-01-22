@@ -25,7 +25,7 @@ public class GeneralInfo {
 
         switch (key) {
             case ACCREDITATION:
-                PropertyUtils.addSubProperty(model, museum, SKOS.note, MUSEUM_ACCREDITATION, value, lang);
+                PropertyUtils.addSubProperties(model, museum, SKOS.note, MUSEUM_ACCREDITATION, value.getAsJsonArray(), lang);
                 break;
             case CIMEC_URI:
                 PropertyUtils.addAgentUri(model, museum, DC_11.identifier, CIMEC_URI, value, null);

@@ -138,8 +138,8 @@ public class Row {
 
         if (value.length() > 0) {
             if (ArrayUtils.contains(ARRAYS, key)) {
-                List<String> accreditation = CollectionsUtils.splitString(value, separator);
-                pairs.put(key, accreditation);
+                List<String> list = CollectionsUtils.splitString(value, separator);
+                pairs.put(key, list);
             } else {
                 pairs.put(key, value);
             }

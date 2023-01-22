@@ -22,21 +22,21 @@ public class Subordination {
             String lang
     ) {
         try {
-            JsonObject building = jsonEntry.getValue().getAsJsonObject();
-            ArrayList<Map.Entry<String, JsonElement>> entries = new ArrayList<>(building.entrySet());
+            JsonObject subordination = jsonEntry.getValue().getAsJsonObject();
+            ArrayList<Map.Entry<String, JsonElement>> entries = new ArrayList<>(subordination.entrySet());
 
             for (Map.Entry<String, JsonElement> entry : entries) {
                 String key = entry.getKey();
 
                 switch (key) {
                     case SUPERVISED_BY:
-                        PropertyUtils.addSubProperty(model, museum, SKOS.note, MUSEUM_SUPERVISED_BY, building, SUPERVISED_BY, lang);
+                        PropertyUtils.addSubProperty(model, museum, SKOS.note, MUSEUM_SUPERVISED_BY, subordination, SUPERVISED_BY, lang);
                         break;
                     case SUPERVISOR_FOR:
-                        PropertyUtils.addSubProperties(model, museum, SKOS.note, MUSEUM_SUPERVISOR_FOR, building, SUPERVISOR_FOR, lang);
+                        PropertyUtils.addSubProperties(model, museum, SKOS.note, MUSEUM_SUPERVISOR_FOR, subordination, SUPERVISOR_FOR, lang);
                         break;
                     case PART_OF:
-                        PropertyUtils.addProperty(model, museum, DCTerms.isPartOf, building, PART_OF, lang);
+                        PropertyUtils.addProperty(model, museum, DCTerms.isPartOf, subordination, PART_OF, lang);
                         break;
                     default:
                         break;

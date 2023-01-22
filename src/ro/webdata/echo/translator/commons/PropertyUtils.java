@@ -10,6 +10,7 @@ import org.apache.jena.vocabulary.DC_11;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.RDFS;
 import org.apache.jena.vocabulary.SKOS;
+import ro.webdata.echo.commons.Const;
 import ro.webdata.echo.commons.File;
 import ro.webdata.echo.commons.Text;
 import ro.webdata.echo.commons.Writer;
@@ -100,17 +101,31 @@ public final class PropertyUtils {
     public static void addSubProperty(Model model, Resource museum, Property parentProperty, String propertyName, JsonElement value, String lang) {
         if (value instanceof JsonPrimitive) {
             addSubProperty(model, museum, parentProperty, propertyName, value.getAsString(), lang);
+        } else if (value instanceof JsonObject) {
+            // supervisorFor
+            if (propertyName.equals(MUSEUM_SUPERVISOR_FOR)) {
+                try {
+                    String cimec = value.getAsJsonObject().get(CIMEC_URI).getAsString();
+                    PropertyUtils.addAgentUri(model, museum, DC_11.identifier, "supervisorFor", cimec, null);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
     public static void addSubProperties(Model model, Resource museum, Property parentProperty, String modelProperty, JsonObject jsonObject, String accessor, String lang) {
         try {
             JsonArray array = jsonObject.getAsJsonArray(accessor);
-            for (JsonElement value : array) {
-                addSubProperty(model, museum, parentProperty, modelProperty, value, lang);
-            }
+            addSubProperties(model, museum, parentProperty, modelProperty, array, lang);
         } catch (IllegalStateException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void addSubProperties(Model model, Resource museum, Property parentProperty, String modelProperty, JsonArray array, String lang) {
+        for (JsonElement value : array) {
+            addSubProperty(model, museum, parentProperty, modelProperty, value, lang);
         }
     }
 
@@ -129,6 +144,10 @@ public final class PropertyUtils {
                 // workaround for cases like "555600," and "537.071"
                 if (propertyName.equals(LOCATION_ZIP_CODE)) {
                     strValue = strValue.replaceAll("\\p{Punct}", "");
+                }
+
+                if (propertyName.equals("geolocationType") && lang.equals(Const.LANG_EN) && strValue.equals("Muzeu")) {
+                    strValue = "Museum";
                 }
 
                 addSubProperty(model, museum, parentProperty, propertyName, strValue, lang);
@@ -219,42 +238,42 @@ public final class PropertyUtils {
 
     private static String mapProperty(String property) {
         switch (property) {
-            case BUILDING_DESCRIPTION:          return NS_DBPEDIA_ONTOLOGY + "construction";
-            case BUILDING_LMI_CODE:             return NS_REPO_PROPERTY + "lmiCode";
-            case CODE:                          return NS_REPO_PROPERTY + "cimec";
-            case COLLECTION_IMPORTANCE:         return NS_REPO_PROPERTY + "importance";
-            case COLLECTION_PICTURES:           return NS_DBPEDIA_ONTOLOGY + "picture";
-            case COLLECTION_GENERAL_PROFILE:    return NS_REPO_PROPERTY + "generalProfile";
-            case COLLECTION_MAIN_PROFILE:       return NS_REPO_PROPERTY + "mainProfile";
-            case CONTACT_PERSON_NAME:           return NS_REPO_PROPERTY + "employee";
-            case CONTACT_PERSON_POSITION:       return NS_REPO_PROPERTY + "employeePosition";
-            case CONTACT_DIRECTOR:              return NS_DBPEDIA_PROPERTY + "director";
-            case CONTACT_EMAIL:                 return NS_DBPEDIA_PROPERTY + "email";
-            case CONTACT_FAX:                   return NS_DBPEDIA_PROPERTY + "fax";
-            case CONTACT_SOCIAL_MEDIA:          return NS_DBPEDIA_PROPERTY + "socialMedia";
-            case CONTACT_PHONE:                 return NS_DBPEDIA_PROPERTY + "telephoneNumber";
-            case CONTACT_TIME_TABLE:            return NS_DBPEDIA_PROPERTY + "schedule";
-            case CONTACT_VIRTUAL_TOUR:          return NS_REPO_PROPERTY + "virtualTour";
-            case CONTACT_WEB:                   return NS_DBPEDIA_PROPERTY + "website";
-            case DESCRIPTION_DETAILS:           return NS_DBPEDIA_PROPERTY + "details";
+           case BUILDING_DESCRIPTION:          return NS_DBPEDIA_ONTOLOGY + "construction";
+           case BUILDING_LMI_CODE:             return NS_REPO_PROPERTY + "lmiCode";
+           case CODE:                          return NS_REPO_PROPERTY + "cimec";
+           case COLLECTION_IMPORTANCE:         return NS_REPO_PROPERTY + "importance";
+           case COLLECTION_PICTURES:           return NS_DBPEDIA_ONTOLOGY + "picture";
+           case COLLECTION_GENERAL_PROFILE:    return NS_REPO_PROPERTY + "generalProfile";
+           case COLLECTION_MAIN_PROFILE:       return NS_REPO_PROPERTY + "mainProfile";
+           case CONTACT_PERSON_NAME:           return NS_REPO_PROPERTY + "employee";
+           case CONTACT_PERSON_POSITION:       return NS_REPO_PROPERTY + "employeePosition";
+           case CONTACT_DIRECTOR:              return NS_DBPEDIA_PROPERTY + "director";
+           case CONTACT_EMAIL:                 return NS_DBPEDIA_PROPERTY + "email";
+           case CONTACT_FAX:                   return NS_DBPEDIA_PROPERTY + "fax";
+           case CONTACT_SOCIAL_MEDIA:          return NS_DBPEDIA_PROPERTY + "socialMedia";
+           case CONTACT_PHONE:                 return NS_DBPEDIA_PROPERTY + "telephoneNumber";
+           case CONTACT_TIME_TABLE:            return NS_DBPEDIA_PROPERTY + "schedule";
+           case CONTACT_VIRTUAL_TOUR:          return NS_REPO_PROPERTY + "virtualTour";
+           case CONTACT_WEB:                   return NS_DBPEDIA_PROPERTY + "website";
+           case DESCRIPTION_DETAILS:           return NS_DBPEDIA_PROPERTY + "details";
             case DESCRIPTION_HISTORIC:          return NS_DBPEDIA_PROPERTY + "historic";
             case DESCRIPTION_SUMMARY:           return NS_DBPEDIA_PROPERTY + "summary";
             case FOUNDED:                       return NS_DBPEDIA_PROPERTY + "foundingDate";
             case MUSEUM_ACCREDITATION:          return NS_DBPEDIA_PROPERTY + "accreditation";
-            case LOCATION_ACCESS:               return NS_DBPEDIA_ONTOLOGY + "access";
-            case LOCATION_ADDRESS:              return NS_DBPEDIA_ONTOLOGY + "address";
-            case LOCATION_ADM_UNIT:             return NS_DBPEDIA_PROPERTY + "administrativeDivision";
-            case LOCATION_COMMUNE:              return NS_DBPEDIA_PROPERTY + "commune";
-            case LOCATION_COUNTY:               return NS_DBPEDIA_PROPERTY + "county";
-            case LOCATION_GEO_LATITUDE:         return NS_DBPEDIA_PROPERTY + "latitude";
-            case LOCATION_GEO_LONGITUDE:        return NS_DBPEDIA_PROPERTY + "longitude";
-            case LOCATION_LOCALITY_CODE:        return NS_REPO_PROPERTY + "siruta";
-            case LOCATION_LOCALITY_NAME:        return NS_DBPEDIA_PROPERTY + "locality";
-            case LOCATION_ZIP_CODE:             return NS_DBPEDIA_ONTOLOGY + "postalCode";
+           case LOCATION_ACCESS:               return NS_DBPEDIA_ONTOLOGY + "access";
+           case LOCATION_ADDRESS:              return NS_DBPEDIA_ONTOLOGY + "address";
+           case LOCATION_ADM_UNIT:             return NS_DBPEDIA_PROPERTY + "administrativeDivision";
+           case LOCATION_COMMUNE:              return NS_DBPEDIA_PROPERTY + "commune";
+           case LOCATION_COUNTY:               return NS_DBPEDIA_PROPERTY + "county";
+           case LOCATION_GEO_LATITUDE:         return NS_DBPEDIA_PROPERTY + "latitude";
+           case LOCATION_GEO_LONGITUDE:        return NS_DBPEDIA_PROPERTY + "longitude";
+           case LOCATION_LOCALITY_CODE:        return NS_REPO_PROPERTY + "siruta";
+           case LOCATION_LOCALITY_NAME:        return NS_DBPEDIA_PROPERTY + "locality";
+           case LOCATION_ZIP_CODE:             return NS_DBPEDIA_ONTOLOGY + "postalCode";
             case PUBLICATIONS_MATERIAL:         return NS_DBPEDIA_ONTOLOGY + "publication";
-            case MUSEUM_SUPERVISED_BY:          return NS_REPO_PROPERTY + "supervisedBy";
+           case MUSEUM_SUPERVISED_BY:          return NS_REPO_PROPERTY + "supervisedBy";
             case MUSEUM_SUPERVISOR_FOR:         return NS_REPO_PROPERTY + "supervisorFor";
-            case TYPE:                          return NS_DBPEDIA_ONTOLOGY + "type";
+           case TYPE:                          return NS_DBPEDIA_ONTOLOGY + "type";
             case "country":                     return NS_DBPEDIA_ONTOLOGY + "country";
             case "homepage":                    return NS_FOAF + "homepage";
             case "logo":                        return NS_FOAF + "logo";

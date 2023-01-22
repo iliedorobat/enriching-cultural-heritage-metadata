@@ -31,10 +31,10 @@ public class Description {
                         PropertyUtils.addSubProperty(model, museum, SKOS.note, DESCRIPTION_DETAILS, building, DETAILS, lang);
                         break;
                     case HISTORIC:
-                        PropertyUtils.addSubProperty(model, museum, SKOS.note, DESCRIPTION_HISTORIC, building, DESCRIPTION, lang);
+                        PropertyUtils.addSubProperty(model, museum, SKOS.note, DESCRIPTION_HISTORIC, building, HISTORIC, lang);
                         break;
                     case SUMMARY:
-                        PropertyUtils.addSubProperty(model, museum, SKOS.note, DESCRIPTION_SUMMARY, building, DESCRIPTION, lang);
+                        PropertyUtils.addSubProperty(model, museum, SKOS.note, DESCRIPTION_SUMMARY, building, SUMMARY, lang);
                         break;
                     default:
                         break;
