@@ -7,6 +7,7 @@ import ro.webdata.echo.commons.Const;
 import ro.webdata.echo.commons.Text;
 import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.echo.translator.edm.dspace.commons.PrintMessages;
+import ro.webdata.echo.translator.edm.lido.commons.RDFConceptService;
 import ro.webdata.parser.xml.dspace.core.attribute.record.BasicRecord;
 import ro.webdata.parser.xml.dspace.core.attribute.record.SubjectRecord;
 import ro.webdata.parser.xml.dspace.core.leaf.dcValue.DcValue;
@@ -24,10 +25,10 @@ public class SubjectMapping {
             case BasicRecord.EMPTY:
             case BasicRecord.NONE:
             case REFINEMENT_OTHER:
-                providedCHO.addProperty(DC_11.subject, value, language);
+                RDFConceptService.addConcept(model, providedCHO, DC_11.subject, value, language, null);
                 break;
             case REFINEMENT_CLASSIFICATION:
-                providedCHO.addProperty(EDM.hasType, value, language);
+                RDFConceptService.addConcept(model, providedCHO, EDM.hasType, value, language, null);
                 break;
             case SubjectRecord.SCHEME_DDC:
             case SubjectRecord.SCHEME_LCC:

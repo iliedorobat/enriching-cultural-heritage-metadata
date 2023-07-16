@@ -19,6 +19,9 @@ public class RDFConceptService {
         if (providedCHO != null) {
             if (literal.getLanguage().equalsIgnoreCase("en") && concept != null)
                 providedCHO.addProperty(property, concept);
+            // TODO: revisit
+            else if (literal.getLanguage().equalsIgnoreCase("en_us") && concept != null)
+                providedCHO.addProperty(property, concept);
             else
                 providedCHO.addProperty(property, literal);
         }
@@ -40,6 +43,10 @@ public class RDFConceptService {
         }
 
         if (isDBpediaUri(uri) && !literal.getLanguage().equalsIgnoreCase("en")) {
+            return null;
+        }
+        // TODO: revisit
+        else if (isDBpediaUri(uri) && !literal.getLanguage().equalsIgnoreCase("en_us")) {
             return null;
         }
 

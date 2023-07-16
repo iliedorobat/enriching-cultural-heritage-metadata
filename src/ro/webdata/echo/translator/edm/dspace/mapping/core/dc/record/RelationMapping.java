@@ -7,6 +7,7 @@ import org.apache.jena.vocabulary.DC_11;
 import ro.webdata.echo.commons.Const;
 import ro.webdata.echo.commons.graph.vocab.EDM;
 import ro.webdata.echo.translator.edm.dspace.commons.PrintMessages;
+import ro.webdata.echo.translator.edm.lido.commons.RDFConceptService;
 import ro.webdata.parser.xml.dspace.core.attribute.record.RelationRecord;
 import ro.webdata.parser.xml.dspace.core.leaf.dcValue.DcValue;
 
@@ -21,7 +22,7 @@ public class RelationMapping {
 
         switch (qualifier) {
             case RelationRecord.REFINEMENT_HAS_FORMAT:
-                providedCHO.addProperty(DCTerms.hasFormat, value, language);
+                RDFConceptService.addConcept(model, providedCHO, DCTerms.hasFormat, value, language, null);
                 break;
             case RelationRecord.REFINEMENT_HAS_PART:
                 providedCHO.addProperty(DCTerms.hasPart, value, language);

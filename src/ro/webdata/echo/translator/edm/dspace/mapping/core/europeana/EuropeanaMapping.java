@@ -74,7 +74,7 @@ public class EuropeanaMapping {
     // TODO: add edm:dataProvider and edm:rights
     private static Resource generateAggregation(Model model, Resource providedCHO) {
         Resource aggregation = null;
-        String providedCHOUri = providedCHO.getURI();
+        String providedCHOUri = providedCHO.getURI() + "/";
         String aggregationUri = URIUtils.prepareUri(providedCHOUri, Namespace.LINK_ID_AGGREGATION);
 
         aggregation = model

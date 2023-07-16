@@ -23,7 +23,8 @@ public class ConceptService {
     public static void add(Literal literal) {
         String concept = literal.getString();
         String lang = literal.getLanguage();
-        boolean isDBpediaConcept = lang != null && lang.equals("en");
+        // TODO: revisit
+        boolean isDBpediaConcept = lang != null && (lang.equals("en") || lang.equals("en_US"));
 
         if (isDBpediaConcept) {
             String camelCaseConcept = Text.toCamelCase(concept, true, DELIMITERS);
