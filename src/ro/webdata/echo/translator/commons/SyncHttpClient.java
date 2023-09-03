@@ -5,6 +5,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 
 // https://mkyong.com/java/java-11-httpclient-examples/
 public class SyncHttpClient {
@@ -12,6 +13,7 @@ public class SyncHttpClient {
 
     public static HttpResponse<String> callApi(String link) {
         HttpRequest request = HttpRequest.newBuilder()
+                .timeout(Duration.ofSeconds(300))
                 .GET()
                 .uri(URI.create(link))
                 .build();
