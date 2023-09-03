@@ -6,7 +6,11 @@ import org.apache.jena.vocabulary.RDF;
 import ro.webdata.echo.commons.Const;
 import ro.webdata.echo.commons.Print;
 import ro.webdata.echo.commons.graph.vocab.EDM;
+import ro.webdata.echo.translator.edm.lido.commons.URIUtils;
 import ro.webdata.echo.translator.edm.lido.mapping.core.administrativeMetadata.AdministrativeMetadataProcessing;
+import ro.webdata.echo.translator.edm.lido.mapping.core.category.CategoryProcessing;
+import ro.webdata.echo.translator.edm.lido.mapping.core.descriptiveMetadata.DescriptiveMetadataProcessing;
+import ro.webdata.echo.translator.edm.lido.mapping.core.lidoRecID.LidoRecIDProcessing;
 import ro.webdata.parser.xml.lido.core.ParserDAO;
 import ro.webdata.parser.xml.lido.core.ParserDAOImpl;
 import ro.webdata.parser.xml.lido.core.leaf.administrativeMetadata.AdministrativeMetadata;
@@ -15,11 +19,8 @@ import ro.webdata.parser.xml.lido.core.leaf.descriptiveMetadata.DescriptiveMetad
 import ro.webdata.parser.xml.lido.core.leaf.lido.Lido;
 import ro.webdata.parser.xml.lido.core.leaf.lidoRecID.LidoRecID;
 import ro.webdata.parser.xml.lido.core.wrap.lidoWrap.LidoWrap;
-import ro.webdata.echo.translator.edm.lido.commons.URIUtils;
-import ro.webdata.echo.translator.edm.lido.mapping.core.category.CategoryProcessing;
-import ro.webdata.echo.translator.edm.lido.mapping.core.descriptiveMetadata.DescriptiveMetadataProcessing;
-import ro.webdata.echo.translator.edm.lido.mapping.core.lidoRecID.LidoRecIDProcessing;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import static ro.webdata.echo.commons.graph.Namespace.NS_REPO_RESOURCE_CHO;
@@ -34,8 +35,16 @@ public class LidoWrapProcessing {
         LidoWrap lidoWrap = parserDAO.parseLidoFile(fullPath);
         ArrayList<Lido> lidoList = lidoWrap.getLidoList();
 
+        int i = 0;
         for (Lido lido : lidoList) {
             ArrayList<LidoRecID> lidoRecIDList = lido.getLidoRecID();
+            if (lidoRecIDList.size() > 0)
+                System.out.println(
+                        ++i
+                        + "   " + new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new java.util.Date())
+                        + "   " + lidoRecIDList.get(0).getText()
+                );
+
             Category category = lido.getCategory();
             ArrayList<AdministrativeMetadata> administrativeMetadataList = lido.getAdministrativeMetadata();
             ArrayList<DescriptiveMetadata> descriptiveMetadataList = lido.getDescriptiveMetadata();
