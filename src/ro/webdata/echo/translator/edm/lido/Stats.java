@@ -8,6 +8,7 @@ import ro.webdata.echo.translator.edm.lido.stats.PlacesStats;
 import ro.webdata.echo.translator.edm.lido.stats.TimePeriodsStats;
 import ro.webdata.echo.translator.edm.lido.stats.EventTypesStats;
 import ro.webdata.echo.translator.edm.lido.stats.NormalizedEventsStats;
+import ro.webdata.normalization.timespan.ro.TimespanType;
 import ro.webdata.normalization.timespan.ro.analysis.TimespanAnalysis;
 
 import java.io.BufferedReader;
@@ -36,7 +37,7 @@ public class Stats {
         EventTypesStats.printOccurrences(FileConst.PATH_OUTPUT_LIDO_DIR);
         NormalizedEventsStats.printOccurrences(FileConst.PATH_OUTPUT_LIDO_DIR, false); // all occurrences
         NormalizedEventsStats.printOccurrences(FileConst.PATH_OUTPUT_LIDO_DIR, true);  // only edges occurrences
-        TimePeriodsStats.printOccurrences(FileConst.PATH_OUTPUT_LIDO_DIR, 3);
+        TimePeriodsStats.printOccurrences(FileConst.PATH_OUTPUT_LIDO_DIR, 10, TimespanType.CENTURY);
     }
 
     private static void printNewPropertiesStats() {
