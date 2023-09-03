@@ -108,8 +108,8 @@ public class ClassificationProcessing {
                 }
 
                 Literal literal = model.createLiteral(text, lang);
-                boolean isSuperType = CHOType.isSubject(text, lang);
-                Property property = isSuperType
+                boolean isDomain = CHOType.isDomainClassification(text);
+                Property property = isDomain
                         ? EDM.hasType
                         : DC_11.subject;
                 RDFConceptService.addConcept(model, providedCHO, property, literal, null);

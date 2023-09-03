@@ -19,6 +19,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static ro.webdata.echo.commons.graph.Namespace.NS_REPO_RESOURCE_PLACE;
+import static ro.webdata.echo.translator.commons.MuseumUtils.PLACE_NAME_SEPARATOR;
+import static ro.webdata.echo.translator.commons.MuseumUtils.sanitizePlaceName;
 
 public class EventPlaceProcessing {
     /**
@@ -86,6 +88,9 @@ public class EventPlaceProcessing {
         for (Map.Entry<String, String> entry : nameMap.entrySet()) {
             String lang = entry.getKey();
             String name = entry.getValue();
+            String sanitizedName = sanitizePlaceName(name, PLACE_NAME_SEPARATOR);
+
+            addLabelProperty(placeResource, sanitizedName, lang);
             addLabelProperty(placeResource, name, lang);
         }
 

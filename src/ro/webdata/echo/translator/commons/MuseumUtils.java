@@ -21,7 +21,7 @@ import static ro.webdata.echo.commons.accessor.MuseumAccessors.*;
 import static ro.webdata.echo.commons.graph.Namespace.NS_REPO_RESOURCE_ORGANIZATION;
 
 public class MuseumUtils {
-    private static final String PLACE_NAME_SEPARATOR = "-";
+    public static final String PLACE_NAME_SEPARATOR = "-";
 
     public static final String enPath = getCimecJsonPath(Const.LANG_EN);
     public static final String roPath = getCimecJsonPath(Const.LANG_RO);
