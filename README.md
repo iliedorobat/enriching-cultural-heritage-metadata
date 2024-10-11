@@ -105,43 +105,15 @@ and can be queried by using the [opendata sparql endpoint](http://opendata.cs.pu
 
   
 ## Publications:
-TPDL 2019: [Enriching the Cultural Heritage Metadata Using Historical Events: A Graph-Based Representation](https://link.springer.com/chapter/10.1007/978-3-030-30760-8_30)
+ECAI 2021: [The Power of Regular Expressions in Recognizing Dates and Epochs](https://ieeexplore.ieee.org/document/9515139)
 ```
-@InProceedings{10.1007/978-3-030-30760-8_30,
+@InProceedings{9515139,
     author="Dorobat, Ilie Cristian and Posea, Vlad",
-    title="Enriching the Cultural Heritage Metadata Using Historical Events: A Graph-Based Representation",
-    booktitle="Digital Libraries for Open Knowledge",
-    year="2019",
-    publisher="Springer International Publishing",
-    pages="344-347",
-    isbn="978-3-030-30760-8"
-    doi="10.1007/978-3-030-30760-8_30"
-}
-```
-
-ECAI 2020: [Evolving the DSpace Storage into Linked Data](https://ieeexplore.ieee.org/document/9223189)
-```
-@InProceedings{9223189,
-    author="Dorobat, Ilie Cristian and Posea, Vlad",
-    booktitle="2020 12th International Conference on Electronics, Computers and Artificial Intelligence (ECAI)",
-    title="Evolving the DSpace Storage into Linked Data",
-    year="2020",
-    pages="1-5",
-    doi="10.1109/ECAI50035.2020.9223189"
-}
-```
-
-EMCIS 2020: [Raising the Interoperability of Cultural Datasets: The Romanian Cultural Heritage Case Study](https://link.springer.com/chapter/10.1007/978-3-030-63396-7_3)
-```
-@InProceedings{10.1007/978-3-030-63396-7_3,
-    author="Dorobat, Ilie Cristian and Posea, Vlad",
-    title="Raising the Interoperability of Cultural Datasets: The Romanian Cultural Heritage Case Study",
-    booktitle="Information Systems",
-    year="2020",
-    publisher="Springer International Publishing",
-    pages="35-48",
-    isbn="978-3-030-63396-7"
-    doi="10.1007/978-3-030-63396-7_3"
+    booktitle="2021 13th International Conference on Electronics, Computers and Artificial Intelligence (ECAI)",
+    title="The Power of Regular Expressions in Recognizing Dates and Epochs",
+    year="2021",
+    pages="1-3",
+    doi="10.1109/ECAI52376.2021.9515139"
 }
 ```
 
@@ -159,14 +131,41 @@ EuroMed 2020: [The Usability of Romanian Open Data in the Development of Tourist
 }
 ```
 
-ECAI 2021: [The Power of Regular Expressions in Recognizing Dates and Epochs](https://ieeexplore.ieee.org/document/9515139)
+EMCIS 2020: [Raising the Interoperability of Cultural Datasets: The Romanian Cultural Heritage Case Study](https://link.springer.com/chapter/10.1007/978-3-030-63396-7_3)
 ```
-@InProceedings{9515139,
+@InProceedings{10.1007/978-3-030-63396-7_3,
     author="Dorobat, Ilie Cristian and Posea, Vlad",
-    booktitle="2021 13th International Conference on Electronics, Computers and Artificial Intelligence (ECAI)",
-    title="The Power of Regular Expressions in Recognizing Dates and Epochs",
-    year="2021",
-    pages="1-3",
-    doi="10.1109/ECAI52376.2021.9515139"
+    title="Raising the Interoperability of Cultural Datasets: The Romanian Cultural Heritage Case Study",
+    booktitle="Information Systems",
+    year="2020",
+    publisher="Springer International Publishing",
+    pages="35-48",
+    isbn="978-3-030-63396-7"
+    doi="10.1007/978-3-030-63396-7_3"
+}
+```
+
+ECAI 2020: [Evolving the DSpace Storage into Linked Data](https://ieeexplore.ieee.org/document/9223189)
+```
+@InProceedings{9223189,
+    author="Dorobat, Ilie Cristian and Posea, Vlad",
+    booktitle="2020 12th International Conference on Electronics, Computers and Artificial Intelligence (ECAI)",
+    title="Evolving the DSpace Storage into Linked Data",
+    year="2020",
+    pages="1-5",
+    doi="10.1109/ECAI50035.2020.9223189"
+}
+```
+TPDL 2019: [Enriching the Cultural Heritage Metadata Using Historical Events: A Graph-Based Representation](https://link.springer.com/chapter/10.1007/978-3-030-30760-8_30)
+```
+@InProceedings{10.1007/978-3-030-30760-8_30,
+    author="Dorobat, Ilie Cristian and Posea, Vlad",
+    title="Enriching the Cultural Heritage Metadata Using Historical Events: A Graph-Based Representation",
+    booktitle="Digital Libraries for Open Knowledge",
+    year="2019",
+    publisher="Springer International Publishing",
+    pages="344-347",
+    isbn="978-3-030-30760-8"
+    doi="10.1007/978-3-030-30760-8_30"
 }
 ```
