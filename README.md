@@ -1,55 +1,49 @@
 # eCHO: Enriching The Digital Representation of Cultural Heritage Objects
 
+## Requirements
+JDK 11+ or OpenJDK 11+<br/>
+Maven 3.x
 
-
-## Local setup
-### Requirements
-- JDK 11 or OpenJDK 11.
-
-### Setup
-1. Clone the repository:
+## Setup
+1. Download and install [JDK 11](https://www.oracle.com/nl/java/technologies/javase/jdk11-archive-downloads.html) or [OpenJDK 11](https://openjdk.org/install/) (or newer versions)
+2. Download and install [Maven 3.x](https://maven.apache.org/install.html)
+3. Clone the repository:
 ```bash
 git clone https://github.com/iliedorobat/enriching-cultural-heritage-metadata.git
 ```
-2. The main language is set to **Romanian** language by default. If the dataset uses a different language, you must modify the `LANG_MAIN` environment variable located in [EnvConstants.java](https://github.com/iliedorobat/enriching-cultural-heritage-metadata/blob/master/src/ro/webdata/echo/translator/commons/EnvConstants.java).
-3. Open the Terminal/Command Prompt and navigate to the root directory (`enriching-cultural-heritage-metadata` directory).
-4. Register the environment variables:
+4. The main language is set to **Romanian** language by default. If the dataset uses a different language, you must modify the `LANG_MAIN` environment variable located in [EnvConstants.java](https://github.com/iliedorobat/enriching-cultural-heritage-metadata/blob/master/src/ro/webdata/echo/translator/commons/EnvConstants.java).
+5. Open the Terminal/Command Prompt and navigate to the root directory (`enriching-cultural-heritage-metadata` directory).
+6. Generate the library:
 ```bash
-export ECHO_PATH=`pwd`
-export CLASSPATH="${ECHO_PATH}/out/production/enriching-cultural-heritage-metadata:${ECHO_PATH}/lib/commons-compress-1.17.jar:${ECHO_PATH}/lib/commons-echo-1.6.2.jar:${ECHO_PATH}/lib/commons-io-2.6.jar:${ECHO_PATH}/lib/commons-lang3-3.4.jar:${ECHO_PATH}/lib/commons-text-1.6.jar:${ECHO_PATH}/lib/commons-validator-1.7.jar:${ECHO_PATH}/lib/Dublin-Core-Parser-1.1.jar:${ECHO_PATH}/lib/gson-2.3.1.jar:${ECHO_PATH}/lib/httpclient-4.5.5.jar:${ECHO_PATH}/lib/jackson-annotations-2.9.0.jar:${ECHO_PATH}/lib/jackson-core-2.9.6.jar:${ECHO_PATH}/lib/jackson-databind-2.9.6.jar:${ECHO_PATH}/lib/jena-arq-3.9.0.jar:${ECHO_PATH}/lib/jena-base-3.9.0.jar:${ECHO_PATH}/lib/jena-core-3.9.0.jar:${ECHO_PATH}/lib/jena-dboe-base-3.9.0.jar:${ECHO_PATH}/lib/jena-iri-3.9.0.jar:${ECHO_PATH}/lib/jena-shaded-guava-3.9.0.jar:${ECHO_PATH}/lib/jsonld-java-0.12.1.jar:${ECHO_PATH}/lib/libthrift-0.10.0.jar:${ECHO_PATH}/lib/LIDO-Parser-1.2.jar:${ECHO_PATH}/lib/log4j-1.2.17.jar:${ECHO_PATH}/lib/slf4j-api-1.7.25.jar:${ECHO_PATH}/lib/slf4j-log4j12-1.7.25.jar:${ECHO_PATH}/lib/timespan-normalization-1.9.4.jar"
-```
-4. Compile the project:
-```bash
-javac -d ./out/production/enriching-cultural-heritage-metadata src/ro/webdata/echo/translator/BuildProject.java
-java ro/webdata/echo/translator/BuildProject
+mvn validate && mvn clean package
 ```
 
-### Translate the XML files to EDM:
+## Translate XML files to EDM:
 1. CIMEC to EDM:
 ```bash
 ## main command
-java ro.webdata.echo.translator/Main --dataType=CIMEC
+java -jar target/eCHO-1.3-jar-with-dependencies.jar --dataType=CIMEC
 ## quick demo
-java ro.webdata.echo.translator/Main --demo --dataType=CIMEC
+java -jar target/eCHO-1.3-jar-with-dependencies.jar --demo --dataType=CIMEC
 ```
 2. DSPACE to EDM:
 ```bash
 ## main command
-java ro.webdata.echo.translator/Main --dataType=DSPACE
+java -jar target/eCHO-1.3-jar-with-dependencies.jar --dataType=DSPACE
 ## quick demo
-java ro.webdata.echo.translator/Main --demo --dataType=DSPACE
+java -jar target/eCHO-1.3-jar-with-dependencies.jar --demo --dataType=DSPACE
 ```
 3. LIDO to EDM:
 ```bash
 ## main command
-java ro.webdata.echo.translator/Main --dataType=LIDO
+java -jar target/eCHO-1.3-jar-with-dependencies.jar --dataType=LIDO
 ## quick demo
-java ro.webdata.echo.translator/Main --demo --dataType=LIDO
+java -jar target/eCHO-1.3-jar-with-dependencies.jar --demo --dataType=LIDO
 ```
 
 ### Normalize time expression
 ```bash
-java ro.webdata.echo.translator/Main --expression="1/2 sec. 3 - sec. 1 a. chr."
+java -jar target/eCHO-1.3-jar-with-dependencies.jar --expression="1/2 sec. 3 a. chr - sec. 2 p. chr."
 ```
 
 
