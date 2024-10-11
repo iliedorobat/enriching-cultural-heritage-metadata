@@ -63,105 +63,77 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-install-plugin</artifactId>
-                <configuration>
-                    <groupId>ro.webdata.echo.commons</groupId>
-                    <artifactId>commons-echo</artifactId>
-                    <version>1.3</version>
-                    <packaging>jar</packaging>
-                    <file>${project.basedir}/src/main/resources/commons-echo-1.3.jar</file>
-                    <generatePom>true</generatePom>
-                </configuration>
                 <executions>
                     <execution>
-                        <id>install-jar-lib</id>
+                        <id>install-commons-echo</id>
+                        <configuration>
+                            <groupId>ro.webdata.echo.commons</groupId>
+                            <artifactId>commons-echo</artifactId>
+                            <version>1.3</version>
+                            <packaging>jar</packaging>
+                            <file>${project.basedir}/src/main/resources/commons-echo-1.3.jar</file>
+                            <generatePom>true</generatePom>
+                        </configuration>
                         <goals>
                             <goal>install-file</goal>
                         </goals>
                         <phase>validate</phase>
                     </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-                <configuration>
-                    <groupId>ro.webdata.parser.xml.dspace</groupId>
-                    <artifactId>Dublin-Core-Parser</artifactId>
-                    <version>1.1</version>
-                    <packaging>jar</packaging>
-                    <file>${project.basedir}/src/main/resources/Dublin-Core-Parser-1.1.jar</file>
-                    <generatePom>true</generatePom>
-                </configuration>
-                <executions>
                     <execution>
-                        <id>install-jar-lib</id>
+                        <id>install-dspace-parser</id>
+                        <configuration>
+                            <groupId>ro.webdata.parser.xml.dspace</groupId>
+                            <artifactId>Dublin-Core-Parser</artifactId>
+                            <version>1.1</version>
+                            <packaging>jar</packaging>
+                            <file>${project.basedir}/src/main/resources/Dublin-Core-Parser-1.1.jar</file>
+                            <generatePom>true</generatePom>
+                        </configuration>
                         <goals>
                             <goal>install-file</goal>
                         </goals>
                         <phase>validate</phase>
                     </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-                <configuration>
-                    <groupId>ro.webdata.parser.xml.lido</groupId>
-                    <artifactId>LIDO-Parser</artifactId>
-                    <version>1.1</version>
-                    <packaging>jar</packaging>
-                    <file>${project.basedir}/src/main/resources/LIDO-Parser-1.1.jar</file>
-                    <generatePom>true</generatePom>
-                </configuration>
-                <executions>
                     <execution>
-                        <id>install-jar-lib</id>
+                        <id>install-lido-parser</id>
+                        <configuration>
+                            <groupId>ro.webdata.parser.xml.lido</groupId>
+                            <artifactId>LIDO-Parser</artifactId>
+                            <version>1.1</version>
+                            <packaging>jar</packaging>
+                            <file>${project.basedir}/src/main/resources/LIDO-Parser-1.1.jar</file>
+                            <generatePom>true</generatePom>
+                        </configuration>
                         <goals>
                             <goal>install-file</goal>
                         </goals>
                         <phase>validate</phase>
                     </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-                <configuration>
-                    <groupId>ro.webdata.normalization.timespan</groupId>
-                    <artifactId>timespan-normalization</artifactId>
-                    <version>1.3</version>
-                    <packaging>jar</packaging>
-                    <file>${project.basedir}/src/main/resources/timespan-normalization-1.3.jar</file>
-                    <generatePom>true</generatePom>
-                </configuration>
-                <executions>
                     <execution>
-                        <id>install-jar-lib</id>
+                        <id>install-timespan-normalization</id>
+                        <configuration>
+                            <groupId>ro.webdata.normalization.timespan</groupId>
+                            <artifactId>timespan-normalization</artifactId>
+                            <version>1.3</version>
+                            <packaging>jar</packaging>
+                            <file>${project.basedir}/src/main/resources/timespan-normalization-1.3.jar</file>
+                            <generatePom>true</generatePom>
+                        </configuration>
                         <goals>
                             <goal>install-file</goal>
                         </goals>
                         <phase>validate</phase>
                     </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-                <configuration>
-                    <groupId>org.geonames</groupId>
-                    <artifactId>geonames</artifactId>
-                    <version>1.1.15</version>
-                    <packaging>jar</packaging>
-                    <file>${project.basedir}/src/main/resources/geonames-1.1.15.jar</file>
-                    <generatePom>true</generatePom>
-                </configuration>
-                <executions>
                     <execution>
-                        <id>install-jar-lib</id>
+                        <id>install-geo-names</id>
+                        <configuration>
+                            <groupId>org.geonames</groupId>
+                            <artifactId>geonames</artifactId>
+                            <version>1.1.15</version>
+                            <packaging>jar</packaging>
+                            <file>${project.basedir}/src/main/resources/geonames-1.1.15.jar</file>
+                            <generatePom>true</generatePom>
+                        </configuration>
                         <goals>
                             <goal>install-file</goal>
                         </goals>
