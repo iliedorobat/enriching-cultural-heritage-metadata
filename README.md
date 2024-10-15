@@ -20,35 +20,35 @@ mvn validate && mvn clean package
 
 ## Collect museum datasets:
 ```bash
-java -jar target/eCHO-1.3-jar-with-dependencies.jar --museumsCollector
+java -jar target/eCHO-1.4-jar-with-dependencies.jar --museumsCollector
 ```
 
 ## Translate XML files to EDM:
 1. CIMEC to EDM:
 ```bash
 ## main command
-java -jar target/eCHO-1.3-jar-with-dependencies.jar --dataType=CIMEC
+java -jar target/eCHO-1.4-jar-with-dependencies.jar --dataType=CIMEC
 ## quick demo
-java -jar target/eCHO-1.3-jar-with-dependencies.jar --demo --dataType=CIMEC
+java -jar target/eCHO-1.4-jar-with-dependencies.jar --demo --dataType=CIMEC
 ```
 2. DSPACE to EDM:
 ```bash
 ## main command
-java -jar target/eCHO-1.3-jar-with-dependencies.jar --dataType=DSPACE
+java -jar target/eCHO-1.4-jar-with-dependencies.jar --dataType=DSPACE
 ## quick demo
-java -jar target/eCHO-1.3-jar-with-dependencies.jar --demo --dataType=DSPACE
+java -jar target/eCHO-1.4-jar-with-dependencies.jar --demo --dataType=DSPACE
 ```
 3. LIDO to EDM:
 ```bash
 ## main command
-java -jar target/eCHO-1.3-jar-with-dependencies.jar --dataType=LIDO
+java -jar target/eCHO-1.4-jar-with-dependencies.jar --dataType=LIDO
 ## quick demo
-java -jar target/eCHO-1.3-jar-with-dependencies.jar --demo --dataType=LIDO
+java -jar target/eCHO-1.4-jar-with-dependencies.jar --demo --dataType=LIDO
 ```
 
 ### Normalize time expression
 ```bash
-java -jar target/eCHO-1.3-jar-with-dependencies.jar --expression="1/2 sec. 3 a. chr - sec. 2 p. chr."
+java -jar target/eCHO-1.4-jar-with-dependencies.jar --expression="1/2 sec. 3 a. chr - sec. 2 p. chr."
 ```
 
 
