@@ -18,6 +18,11 @@ git clone https://github.com/iliedorobat/enriching-cultural-heritage-metadata.gi
 mvn validate && mvn clean package
 ```
 
+## Collect museum datasets:
+```bash
+java -jar target/eCHO-1.3-jar-with-dependencies.jar --museumsCollector
+```
+
 ## Translate XML files to EDM:
 1. CIMEC to EDM:
 ```bash

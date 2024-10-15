@@ -41,8 +41,8 @@ public class CimecFetcher {
         ArrayList<TreeMap<String, Object>> list = new ArrayList<>();
 
         String uri = lang.equals(Const.LANG_EN)
-                ? "http://ghidulmuzeelor.cimec.ro/idEN.asp?k=14&-Muzeul-National-George-Enescu-BUCURESTI"
-                : "http://ghidulmuzeelor.cimec.ro/id.asp?k=14&-Muzeul-National-George-Enescu-BUCURESTI";
+                ? "https://ghidulmuzeelor.cimec.ro/idEN.asp?k=14&-Muzeul-National-George-Enescu-BUCURESTI"
+                : "https://ghidulmuzeelor.cimec.ro/id.asp?k=14&-Muzeul-National-George-Enescu-BUCURESTI";
 
         TreeMap<String, Object> pairs = Row.getEntryPairs(uri, lang, 280, 0);
         if (!pairs.isEmpty()) {

@@ -50,6 +50,10 @@ public final class Env {
         return args.contains("--demo");
     }
 
+    public static boolean museumsCollector(List<String> args) {
+        return args.contains("--museumsCollector");
+    }
+
     public static boolean normalizeTimeExpression(List<String> args) {
         for (String arg : args) {
             if (arg.contains("--expression=")) {

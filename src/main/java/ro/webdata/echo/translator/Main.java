@@ -18,21 +18,24 @@ public class Main {
         String dataType = Env.getDataType(list);
         boolean isDemo = Env.isDemo(list);
         boolean normalizeTimeExpression = Env.normalizeTimeExpression(list);
+        boolean museumsCollector = Env.museumsCollector(list);
 
         Print.operation(Const.OPERATION_START, IS_PRINT_ENABLED);
 
-        if (!normalizeTimeExpression) {
-            if (!isDemo)
-                EdmTranslator.run(dataType);
-            else
-                EdmTranslatorDemo.run(dataType);
-        } else {
+        if (museumsCollector) {
+            ro.webdata.echo.fetcher.museums.Main.main(args);
+        } else if (normalizeTimeExpression) {
             String timeInput = Env.getInputTime(list);
             TimeExpression timeExpression = new TimeExpression(timeInput, null);
 
             System.out.println("input value: " + timeExpression.getValue());
             System.out.println("prepared value: " + timeExpression.getSanitizedValue());
             System.out.println("centuries: " + timeExpression.getNormalizedValues());
+        } else {
+            if (!isDemo)
+                EdmTranslator.run(dataType);
+            else
+                EdmTranslatorDemo.run(dataType);
         }
 
         Print.operation(Const.OPERATION_END, IS_PRINT_ENABLED);
